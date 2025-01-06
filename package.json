@@ -23,6 +23,7 @@
     "lint-fix": "eslint src/**/*.{js,mjs,jsx} --cache --fix"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "vite": "^6.0.7"
   }
 }
