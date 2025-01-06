@@ -1,0 +1,20 @@
+{
+  "name": "holidaze",
+  "version": "0.0.1",
+  "description": "PE2",
+  "homepage": "https://github.com/jonhenrikaavitsland/holidaze#readme",
+  "bugs": {
+    "url": "https://github.com/jonhenrikaavitsland/holidaze/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonhenrikaavitsland/holidaze.git"
+  },
+  "license": "ISC",
+  "author": "Jon Henrik Aavitsland",
+  "main": "index.jsx",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
