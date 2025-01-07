@@ -10,6 +10,14 @@ export default {
         serif: ["Poppins", ...defaultTheme.fontFamily.serif],
         mono: ["Nosifer", ...defaultTheme.fontFamily.mono],
       },
+      fontSize: {
+        "xl-leading-none": [
+          "1.25rem",
+          {
+            lineHeight: "1",
+          },
+        ],
+      },
     },
   },
   plugins: [],
