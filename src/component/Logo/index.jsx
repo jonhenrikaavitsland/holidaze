@@ -4,7 +4,9 @@ export default function Logo() {
       <div className="size-[3.125rem]">
         <img src="/public/logo_warm_200.png" alt="holidaze" />
       </div>
-      <span className="font-mono text-xl-leading-none">holidaze</span>
+      <span className="font-mono text-xl-leading-none text-deep-blue">
+        holidaze
+      </span>
     </div>
   );
 }

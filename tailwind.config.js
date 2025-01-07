@@ -4,6 +4,10 @@ import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   content: ["./**/index.html", "./src/**/*.{js,ts,jsx,tsx,mjs,cjs}"],
   theme: {
+    screens: {
+      md: "834px",
+      lg: "1440px",
+    },
     extend: {
       fontFamily: {
         sans: ["Roboto", ...defaultTheme.fontFamily.sans],
