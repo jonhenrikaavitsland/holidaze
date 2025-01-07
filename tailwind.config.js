@@ -38,6 +38,9 @@ export default {
         "golden-yellow": "#FFC107",
         "accent-teal": "#20C997",
       },
+      height: {
+        "h-7.5": "1.875rem",
+      },
     },
   },
   plugins: [],
