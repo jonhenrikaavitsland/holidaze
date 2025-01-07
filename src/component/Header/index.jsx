@@ -59,7 +59,7 @@ function Navbar() {
 
 function HamburgerIcon({ toggleMenu }) {
   return (
-    <div className="fixed visible p-3.5 top-0 right-0 lg:collapse">
+    <div className="absolute z-10 visible p-3.5 top-0 right-0 lg:collapse">
       <button className="p-1.5" onClick={() => toggleMenu()}>
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
@@ -86,7 +86,11 @@ function LinkBtn(props) {
 
 function CloseIcon({ toggleMenu, isOpen }) {
   return (
-    <div className={isOpen ? "fixed p-2.5 visible top-0 right-0" : " collapse"}>
+    <div
+      className={
+        isOpen ? "absolute z-10 p-2.5 visible top-0 right-0" : " collapse"
+      }
+    >
       <button className="p-2.5" onClick={() => toggleMenu()}>
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
