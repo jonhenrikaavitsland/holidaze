@@ -21,6 +21,12 @@ export default {
             lineHeight: "1",
           },
         ],
+        "5xl-50": [
+          "3.125rem",
+          {
+            lineHeight: "1",
+          },
+        ],
       },
       colors: {
         "deep-blue": "#004E89",
