@@ -34,9 +34,9 @@ export default {
         "light-sky-blue": "#E6F0FA",
         "warm-beige": "#FFECD1",
         "light-gray": "#F2F4F6",
-        "natural-charcoal": "#333333",
         "golden-yellow": "#FFC107",
         "accent-teal": "#20C997",
+        "natural-charcoal": "#333",
       },
       height: {
         6.5: "1.5625rem",
