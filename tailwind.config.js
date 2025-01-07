@@ -39,7 +39,10 @@ export default {
         "accent-teal": "#20C997",
       },
       height: {
-        "h-7.5": "1.875rem",
+        6.5: "1.5625rem",
+      },
+      width: {
+        7.5: "1.875rem",
       },
     },
   },
