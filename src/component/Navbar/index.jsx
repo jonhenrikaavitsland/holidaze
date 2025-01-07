@@ -35,7 +35,7 @@ export default function Navbar() {
       >
         <LinkBtn to="/" text="Home" />
         <LinkBtn
-          to={isLoggedIn ? "/account/" : /* triggers login modal */ "/login/"}
+          to={isLoggedIn ? "/account/" : /* triggers login-modal */ "/login/"}
           text={isLoggedIn ? "Account" : "Log in"}
         />
         <LinkBtn
