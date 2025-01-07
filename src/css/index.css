@@ -90,4 +90,8 @@
     font-display: swap;
     src: url('/src/fonts/Roboto/Roboto-Black.ttf') format('truetype');
   }
+
+  body {
+    @apply text-natural-charcoal;
+  }
 }
