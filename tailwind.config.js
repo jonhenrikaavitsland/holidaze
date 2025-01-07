@@ -44,6 +44,9 @@ export default {
       width: {
         7.5: "1.875rem",
       },
+      size: {
+        6.5: "1.5625rem",
+      },
     },
   },
   plugins: [],
