@@ -3,14 +3,36 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
 
   console.log(setIsLoggedIn, setIsManager);
 
+  function toggleMenu() {
+    setIsOpen(!isOpen);
+  }
+
   return (
-    <nav className="collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end">
-      <ul className="invisible lg:visible flex flex-col lg:flex-row lg:gap-10">
+    <nav
+      className={
+        isOpen
+          ? `visible pt-10 pb-10 md:pt-20`
+          : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end"
+      }
+    >
+      {isOpen ? (
+        <CloseIcon toggleMenu={toggleMenu} isOpen={isOpen} />
+      ) : (
+        <HamburgerIcon toggleMenu={toggleMenu} />
+      )}
+      <ul
+        className={
+          isOpen
+            ? "visible flex flex-col items-center gap-8"
+            : "collapse lg:visible flex flex-col lg:flex-row lg:gap-10"
+        }
+      >
         <LinkBtn to="/" text="Home" />
         <LinkBtn
           to={isLoggedIn ? "/account/" : /* triggers login modal */ "/login/"}
@@ -21,15 +43,14 @@ export default function Navbar() {
           text={isManager ? "Venue HUB" : "List Your Venue"}
         />
       </ul>
-      <HamburgerIcon />
     </nav>
   );
 }
 
-function HamburgerIcon() {
+function HamburgerIcon({ toggleMenu }) {
   return (
     <div className="fixed visible p-3.5 top-0 right-0 lg:collapse">
-      <button className="p-1.5">
+      <button className="p-1.5" onClick={() => toggleMenu()}>
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
     </div>
@@ -50,5 +71,15 @@ function LinkBtn(props) {
         {props.text}
       </NavLink>
     </li>
+  );
+}
+
+function CloseIcon({ toggleMenu, isOpen }) {
+  return (
+    <div className={isOpen ? "fixed p-2.5 visible top-0 right-0" : " collapse"}>
+      <button className="p-2.5" onClick={() => toggleMenu()}>
+        <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
+      </button>
+    </div>
   );
 }
