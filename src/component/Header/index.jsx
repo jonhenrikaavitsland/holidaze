@@ -60,7 +60,10 @@ function Navbar() {
 function HamburgerIcon({ toggleMenu }) {
   return (
     <div className="absolute z-10 visible p-3.5 top-0 right-0 lg:collapse">
-      <button className="p-1.5" onClick={() => toggleMenu()}>
+      <button
+        className="p-1.5 hover:bg-deep-blue/20 rounded-xl"
+        onClick={() => toggleMenu()}
+      >
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
     </div>
@@ -74,7 +77,7 @@ function LinkBtn(props) {
         className={({ isActive }) =>
           isActive
             ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/25 font-serif hover:bg-golden-yellow/75"
-            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/25"
+            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
         }
         to={props.to}
       >
@@ -91,7 +94,10 @@ function CloseIcon({ toggleMenu, isOpen }) {
         isOpen ? "absolute z-10 p-2.5 visible top-0 right-0" : " collapse"
       }
     >
-      <button className="p-2.5" onClick={() => toggleMenu()}>
+      <button
+        className="p-2.5 hover:bg-custom-coral/20 rounded-xl"
+        onClick={() => toggleMenu()}
+      >
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
     </div>
