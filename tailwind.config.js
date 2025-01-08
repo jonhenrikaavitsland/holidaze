@@ -45,6 +45,9 @@ export default {
         6.5: "1.5625rem",
         7.5: "1.875rem",
       },
+      padding: {
+        7.5: "30px",
+      },
     },
   },
   plugins: [],
