@@ -15,6 +15,13 @@ export default function Layout() {
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
       <main className="flex-grow py-6 px-3">
         <Outlet />
+        <div
+          className={
+            isOpen
+              ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-10 overflow-hidden"
+              : "collapse"
+          }
+        ></div>
       </main>
       <Footer />
     </div>

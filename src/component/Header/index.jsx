@@ -80,7 +80,7 @@ function Navbar({ isOpen, toggleMenu }) {
 
 function HamburgerIcon({ toggleMenu, handleClick, isThrottled }) {
   return (
-    <div className="absolute z-10 visible p-3.5 top-0 right-0 lg:collapse">
+    <div className="absolute visible p-3.5 top-0 right-0 lg:collapse">
       <button
         className="p-1.5 hover:bg-deep-blue/20 rounded-xl"
         onClick={() => {
@@ -115,9 +115,7 @@ function LinkBtn(props) {
 function CloseIcon({ toggleMenu, isOpen, handleClick, isThrottled }) {
   return (
     <div
-      className={
-        isOpen ? "absolute z-10 p-2.5 visible top-0 right-0" : " collapse"
-      }
+      className={isOpen ? "absolute p-2.5 visible top-0 right-0" : " collapse"}
     >
       <button
         className="p-2.5 hover:bg-custom-coral/20 rounded-xl"
