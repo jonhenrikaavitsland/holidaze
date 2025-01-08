@@ -3,18 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleMenu() {
-    setIsOpen(!isOpen);
-  }
-
+export default function Header({ isOpen, toggleMenu }) {
   return (
     <header
       className={
         isOpen
-          ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-10"
+          ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-50"
           : "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative"
       }
     >
