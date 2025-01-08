@@ -19,10 +19,21 @@ export default function Header({ isOpen, toggleMenu }) {
 }
 
 function Navbar({ isOpen, toggleMenu }) {
+  const [isThrottled, setIsThrottled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
 
   console.log(setIsLoggedIn, setIsManager);
+
+  function handleClick() {
+    if (isThrottled) return;
+
+    setIsThrottled(true);
+
+    setTimeout(() => {
+      setIsThrottled(false);
+    }, 500);
+  }
 
   return (
     <nav
@@ -33,9 +44,18 @@ function Navbar({ isOpen, toggleMenu }) {
       }
     >
       {isOpen ? (
-        <CloseIcon toggleMenu={toggleMenu} isOpen={isOpen} />
+        <CloseIcon
+          toggleMenu={toggleMenu}
+          isOpen={isOpen}
+          handleClick={handleClick}
+          isThrottled={isThrottled}
+        />
       ) : (
-        <HamburgerIcon toggleMenu={toggleMenu} />
+        <HamburgerIcon
+          toggleMenu={toggleMenu}
+          handleClick={handleClick}
+          isThrottled={isThrottled}
+        />
       )}
       <ul
         className={
@@ -58,12 +78,16 @@ function Navbar({ isOpen, toggleMenu }) {
   );
 }
 
-function HamburgerIcon({ toggleMenu }) {
+function HamburgerIcon({ toggleMenu, handleClick, isThrottled }) {
   return (
     <div className="absolute z-10 visible p-3.5 top-0 right-0 lg:collapse">
       <button
         className="p-1.5 hover:bg-deep-blue/20 rounded-xl"
-        onClick={() => toggleMenu()}
+        onClick={() => {
+          toggleMenu();
+          handleClick();
+        }}
+        disabled={isThrottled}
       >
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
@@ -88,7 +112,7 @@ function LinkBtn(props) {
   );
 }
 
-function CloseIcon({ toggleMenu, isOpen }) {
+function CloseIcon({ toggleMenu, isOpen, handleClick, isThrottled }) {
   return (
     <div
       className={
@@ -97,7 +121,11 @@ function CloseIcon({ toggleMenu, isOpen }) {
     >
       <button
         className="p-2.5 hover:bg-custom-coral/20 rounded-xl"
-        onClick={() => toggleMenu()}
+        onClick={() => {
+          toggleMenu();
+          handleClick();
+        }}
+        disabled={isThrottled}
       >
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
