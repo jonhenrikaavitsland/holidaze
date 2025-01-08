@@ -21,6 +21,7 @@ export default function Layout() {
               ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-10 overflow-hidden"
               : "collapse"
           }
+          onClick={toggleMenu}
         ></div>
       </main>
       <Footer />
