@@ -4,24 +4,25 @@ import { useState } from "react";
 import Logo from "../Logo";
 
 export default function Header() {
-  return (
-    <header className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative">
-      <Logo />
-      <Navbar />
-    </header>
-  );
-}
-
-function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isManager, setIsManager] = useState(false);
-
-  console.log(setIsLoggedIn, setIsManager);
 
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
+
+  return (
+    <header className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative">
+      <Logo />
+      <Navbar isOpen={isOpen} toggleMenu={toggleMenu} />
+    </header>
+  );
+}
+
+function Navbar({ isOpen, toggleMenu }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isManager, setIsManager] = useState(false);
+
+  console.log(setIsLoggedIn, setIsManager);
 
   return (
     <nav
