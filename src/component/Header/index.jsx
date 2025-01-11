@@ -75,15 +75,19 @@ function Navbar({ isOpen, toggleMenu }) {
           text={isManager ? "Venue HUB" : "List Your Venue"}
         />
       </ul>
-      <div
-        className={
-          isOpen
-            ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
-            : "collapse"
-        }
-      >
-        <Button content="Logout" color="custom-coral" />
-      </div>
+      {isLoggedIn ? (
+        <div
+          className={
+            isOpen
+              ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
+              : "collapse"
+          }
+        >
+          <Button content="Logout" color="custom-coral" />
+        </div>
+      ) : (
+        ""
+      )}
     </nav>
   );
 }
