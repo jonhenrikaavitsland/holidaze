@@ -30,7 +30,7 @@ export default {
       },
       colors: {
         "deep-blue": "#004E89",
-        "custom-coral": "#FF6B6B",
+        "custom-coral": "#D24343",
         "light-sky-blue": "#E6F0FA",
         "warm-beige": "#FFECD1",
         "light-gray": "#F2F4F6",
