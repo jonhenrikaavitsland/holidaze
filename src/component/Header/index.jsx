@@ -2,6 +2,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo";
+import Button from "../Button";
 
 export default function Header({ isOpen, toggleMenu }) {
   return (
@@ -60,7 +61,7 @@ function Navbar({ isOpen, toggleMenu }) {
       <ul
         className={
           isOpen
-            ? "visible flex flex-col items-center gap-8"
+            ? "visible flex flex-col items-center gap-8 pb-7.5"
             : "collapse lg:visible flex flex-col lg:flex-row lg:gap-10"
         }
       >
@@ -74,6 +75,15 @@ function Navbar({ isOpen, toggleMenu }) {
           text={isManager ? "Venue HUB" : "List Your Venue"}
         />
       </ul>
+      <div
+        className={
+          isOpen
+            ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
+            : "collapse"
+        }
+      >
+        <Button content="Logout" color="custom-coral" />
+      </div>
     </nav>
   );
 }
