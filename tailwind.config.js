@@ -49,6 +49,12 @@ export default {
         3.75: "15px",
         7.5: "30px",
       },
+      backgroundImage: {
+        "hero-1": "url(`/src/data/hero/hero_1.jpg`)",
+        "hero-2": "url(`/src/data/hero/hero_2.jpg`)",
+        "hero-3": "url(`/src/data/hero/hero_3.jpg`)",
+        "hero-4": "url(`/src/data/hero/hero_4.jpg`)",
+      },
     },
   },
   plugins: [],
