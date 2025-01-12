@@ -22,9 +22,15 @@ export default function Hero() {
       className="h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23"
       style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
-      <div className="bg-natural-charcoal/80 text-white font-serif font-black text-center text-2xl md:text-[2.5rem] p-4 md:p-7.5">
-        <h1>We know Fuerteventura!</h1>
-      </div>
+      <Heading />
     </section>
+  );
+}
+
+function Heading() {
+  return (
+    <div className="bg-natural-charcoal/80 text-white font-serif font-black text-center text-2xl md:text-[2.5rem] p-4 md:p-7.5">
+      <h1>We know Fuerteventura!</h1>
+    </div>
   );
 }
