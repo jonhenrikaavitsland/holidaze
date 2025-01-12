@@ -13,7 +13,7 @@ export default function Layout() {
   return (
     <div className="flex flex-col h-screen">
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
-      <main className="flex-grow py-6 px-3">
+      <main className="flex-grow">
         <Outlet />
         <div
           className={
