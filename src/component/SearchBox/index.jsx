@@ -71,7 +71,7 @@ function Field() {
 
 function Go() {
   return (
-    <button className="bg-custom-coral text-white font-serif uppercase py-2 px-3 rounded-e-xl sm:rounded-t-none sm:rounded-b-xl text-2xl-leading-none font-bold ">
+    <button className="bg-custom-coral text-white font-serif uppercase py-2 px-3 rounded-e-xl sm:rounded-t-none sm:rounded-b-xl text-2xl-leading-none md:text-3xl-leading-none font-bold ">
       go
     </button>
   );
