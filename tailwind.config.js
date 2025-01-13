@@ -61,12 +61,15 @@ export default {
         6.5: "1.5625rem",
         7.5: "1.875rem",
         13: "3.125rem",
+        25: "6.25rem",
         70: "16.875rem",
+        120: "33.5rem",
       },
       width: {
         6.5: "1.5625rem",
         7.5: "1.875rem",
         13: "3.125rem",
+        25: "6.25rem",
       },
       padding: {
         3.75: "15px",
@@ -89,6 +92,8 @@ export default {
       gridTemplateRows: {
         hero: "min-content 30px min-content",
         heroMd: "min-content 90px min-content",
+        locationCard: "min-content 1fr 30px",
+        locationCardMd: "min-content 1fr 60px",
       },
       gridTemplateColumns: {
         hero: "20px 1fr 20px",
