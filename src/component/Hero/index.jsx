@@ -19,7 +19,7 @@ export default function Hero() {
 
   return (
     <section
-      className="h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23"
+      className="h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 z-10 relative"
       style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
       <Heading />
