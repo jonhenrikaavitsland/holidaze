@@ -11,7 +11,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen lg:container mx-auto">
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
       <main className="flex-grow">
         <Outlet />
