@@ -90,6 +90,7 @@ export default {
       gridTemplateColumns: {
         hero: "20px 1fr 20px",
         heroMd: "30px 1fr 30px",
+        heroLg: "1fr 1000px 1fr",
       },
     },
   },
