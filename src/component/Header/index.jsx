@@ -32,7 +32,7 @@ function Navbar({ isOpen, toggleMenu }) {
     <nav
       className={
         isOpen
-          ? `visible fixed w-full top-0 left-0 pt-5 pb-10 bg-light-gray rounded-b-xl`
+          ? `visible fixed w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/30`
           : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end"
       }
     >
