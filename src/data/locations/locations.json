@@ -1,7 +1,7 @@
 [
   {
     "name": "Corralejo",
-    "display-img": {
+    "displayImg": {
       "url": "/src/data/locations/images/corralejo_1.jpg",
       "alt": "a view of corralejo from a window",
       "source": {
@@ -72,7 +72,7 @@
   },
   {
     "name": "Costa Calma",
-    "display-img": {
+    "displayImg": {
       "url": "/src/data/locations/images/costa-calma_1.jpg",
       "alt": "coastline of costa calma",
       "source": {
@@ -143,7 +143,7 @@
   },
   {
     "name": "Caleta de Fuste",
-    "display-img": {
+    "displayImg": {
       "url": "/src/data/locations/images/caleta_1.jpg",
       "alt": "aerial photo of caleta de fuste",
       "source": {
@@ -213,8 +213,8 @@
     ]
   },
   {
-    "name": "Moro Jable",
-    "display-img": {
+    "name": "Morro Jable",
+    "displayImg": {
       "url": "/src/data/locations/images/morro_1.jpg",
       "alt": "overview of morro jable beach and lighthouse",
       "source": {
@@ -285,7 +285,7 @@
   },
   {
     "name": "El Cotillo",
-    "display-img": {
+    "displayImg": {
       "url": "/src/data/locations/images/cotillo_1.jpg",
       "alt": "sign by the sea that names the town",
       "source": {
