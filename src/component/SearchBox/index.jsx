@@ -7,7 +7,7 @@ export default function SearchBox() {
   const [locationData] = useState(locations.map((location) => location.name));
 
   return (
-    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/30">
+    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 sm:px-5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/30">
       <SearchBar />
       <Locations locationData={locationData} />
     </div>
@@ -28,22 +28,42 @@ function SearchBar() {
 }
 
 function Locations({ locationData }) {
+  const [activeButton, setActiveButton] = useState(null);
+
+  function handleClick(content) {
+    if (content !== activeButton) {
+      setActiveButton(content);
+    }
+  }
+
+  console.log("active:", activeButton);
+
   return (
     <div className="grid sm:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7.5">
-      <LocationBtn content="All Destinations" />
+      <LocationBtn
+        content="All Destinations"
+        isActive={activeButton === "All Destinations"}
+        handleClick={handleClick}
+      />
       {locationData.map((location, index) => (
-        <LocationBtn key={index} content={location} />
+        <LocationBtn
+          key={index}
+          content={location}
+          isActive={activeButton === location}
+          handleClick={handleClick}
+        />
       ))}
     </div>
   );
 }
 
-function LocationBtn(props) {
+function LocationBtn({ content, isActive, handleClick }) {
   return (
     <button
-      className={`bg-white leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 active:font-bold`}
+      className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"}`}
+      onClick={() => handleClick(content)}
     >
-      {props.content}
+      {content}
     </button>
   );
 }
