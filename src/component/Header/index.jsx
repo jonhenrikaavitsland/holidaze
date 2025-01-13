@@ -91,7 +91,7 @@ function LinkBtn(props) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/25 font-serif hover:bg-golden-yellow/75"
+            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/30 font-serif hover:bg-golden-yellow/75"
             : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
         }
         to={props.to}
