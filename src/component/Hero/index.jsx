@@ -8,10 +8,15 @@ const images = [hero1, hero2, hero3, hero4];
 
 export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImage((prev) => (prev + 1) % images.length);
+        setFade(true);
+      }, 1000);
     }, 20000);
 
     return () => clearInterval(interval);
@@ -19,7 +24,7 @@ export default function Hero() {
 
   return (
     <section
-      className="h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 z-10 relative"
+      className={`h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 z-10 relative ${fade ? "opacity-100" : "opacity-0"}`}
       style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
       <Heading />
