@@ -5,6 +5,18 @@ import Logo from "../Logo";
 import Button from "../Button";
 
 export default function Header({ isOpen, toggleMenu }) {
+  const [isThrottled, setIsThrottled] = useState(false);
+
+  function handleClick() {
+    if (isThrottled) return;
+
+    setIsThrottled(true);
+
+    setTimeout(() => {
+      setIsThrottled(false);
+    }, 500);
+  }
+
   return (
     <header className="bg-light-gray">
       <div
@@ -15,14 +27,23 @@ export default function Header({ isOpen, toggleMenu }) {
         }
       >
         <Logo />
-        <HamburgerIcon toggleMenu={toggleMenu} />
-        <Navbar isOpen={isOpen} toggleMenu={toggleMenu} />
+        <HamburgerIcon
+          toggleMenu={toggleMenu}
+          handleClick={handleClick}
+          isThrottled={isThrottled}
+        />
+        <Navbar
+          isOpen={isOpen}
+          toggleMenu={toggleMenu}
+          handleClick={handleClick}
+          isThrottled={isThrottled}
+        />
       </div>
     </header>
   );
 }
 
-function Navbar({ isOpen, toggleMenu }) {
+function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
 
@@ -39,7 +60,12 @@ function Navbar({ isOpen, toggleMenu }) {
       <div className="lg:collapse">
         <Logo />
       </div>
-      <CloseIcon toggleMenu={toggleMenu} isOpen={isOpen} />
+      <CloseIcon
+        toggleMenu={toggleMenu}
+        isOpen={isOpen}
+        handleClick={handleClick}
+        isThrottled={isThrottled}
+      />
       <ul
         className={
           isOpen
@@ -74,12 +100,16 @@ function Navbar({ isOpen, toggleMenu }) {
   );
 }
 
-function HamburgerIcon({ toggleMenu }) {
+function HamburgerIcon({ toggleMenu, handleClick, isThrottled }) {
   return (
     <div className="absolute visible p-3.5 top-0 right-0 lg:collapse">
       <button
         className="p-1.5 hover:bg-deep-blue/20 rounded-xl"
-        onClick={() => toggleMenu()}
+        onClick={() => {
+          handleClick();
+          toggleMenu();
+        }}
+        disabled={isThrottled}
       >
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
@@ -104,14 +134,18 @@ function LinkBtn(props) {
   );
 }
 
-function CloseIcon({ toggleMenu, isOpen }) {
+function CloseIcon({ toggleMenu, isOpen, handleClick, isThrottled }) {
   return (
     <div
       className={isOpen ? "absolute p-2.5 visible top-0 right-0" : " collapse"}
     >
       <button
         className="p-2.5 hover:bg-custom-coral/20 rounded-xl"
-        onClick={() => toggleMenu()}
+        onClick={() => {
+          handleClick();
+          toggleMenu();
+        }}
+        disabled={isThrottled}
       >
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
