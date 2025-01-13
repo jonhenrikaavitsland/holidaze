@@ -72,9 +72,11 @@ export default {
       },
       gridTemplateRows: {
         hero: "min-content 30px min-content",
+        heroMd: "min-content 90px min-content",
       },
       gridTemplateColumns: {
         hero: "20px 1fr 20px",
+        heroMd: "30px 1fr 30px",
       },
     },
   },
