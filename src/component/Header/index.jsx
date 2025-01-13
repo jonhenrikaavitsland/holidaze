@@ -62,7 +62,7 @@ function Navbar({ isOpen, toggleMenu }) {
           className={
             isOpen
               ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
-              : "collapse"
+              : "collapse lg:visible lg:ms-10"
           }
         >
           <Button content="Logout" color="custom-coral" />
