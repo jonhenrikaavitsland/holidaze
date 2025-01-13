@@ -55,12 +55,16 @@ export default {
       padding: {
         3.75: "15px",
         7.5: "30px",
+        15: "60px",
         23: "90px",
       },
       margin: {
         7.5: "30px",
       },
       inset: {
+        7.5: "30px",
+      },
+      gap: {
         7.5: "30px",
       },
       boxShadow: {
