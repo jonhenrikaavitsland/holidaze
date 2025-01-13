@@ -21,6 +21,12 @@ export default {
             lineHeight: "1",
           },
         ],
+        "2xl-leading-none": [
+          "1.5rem",
+          {
+            lineHeight: "1",
+          },
+        ],
         "5xl-50": [
           "3.125rem",
           {
@@ -52,6 +58,9 @@ export default {
       },
       margin: {
         7.5: "30px",
+      },
+      boxShadow: {
+        md: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       },
     },
   },
