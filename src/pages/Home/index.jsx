@@ -1,5 +1,13 @@
 import Hero from "../../component/Hero";
+import SearchBox from "../../component/SearchBox";
 
 export default function Home() {
-  return <Hero />;
+  return (
+    <>
+      <div className="grid grid-rows-hero grid-cols-hero relative">
+        <Hero />
+        <SearchBox />
+      </div>
+    </>
+  );
 }
