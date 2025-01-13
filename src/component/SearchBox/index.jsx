@@ -41,7 +41,7 @@ function Locations({ locationData }) {
 function LocationBtn(props) {
   return (
     <button
-      className={`bg-white leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 active:bg-golden-yellow active:font-bold hover:bg-golden-yellow/20 ${({ isActive }) => (isActive ? "bg-golden-yellow" : "")}`}
+      className={`bg-white leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 active:font-bold`}
     >
       {props.content}
     </button>
