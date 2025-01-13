@@ -7,7 +7,7 @@ export default function SearchBox() {
   const [locationData] = useState(locations.map((location) => location.name));
 
   return (
-    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 md:pt-7.5 md:px-5 md:pb-15 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/30">
+    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/30">
       <SearchBar />
       <Locations locationData={locationData} />
     </div>
@@ -29,7 +29,7 @@ function SearchBar() {
 
 function Locations({ locationData }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-7.5">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7.5">
       <LocationBtn content="All Destinations" />
       {locationData.map((location, index) => (
         <LocationBtn key={index} content={location} />
