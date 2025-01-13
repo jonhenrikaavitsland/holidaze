@@ -13,12 +13,14 @@ export default function Layout() {
   return (
     <div className="flex flex-col h-screen">
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
-      <main className="flex-grow lg:container lg:mx-auto">
+      <main
+        className={`flex-grow lg:container lg:mx-auto ${isOpen ? "overflow-hidden" : ""}`}
+      >
         <Outlet />
         <div
           className={
             isOpen
-              ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-40 overflow-hidden cursor-pointer"
+              ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-40 cursor-pointer"
               : "collapse"
           }
           onClick={toggleMenu}
