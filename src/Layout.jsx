@@ -18,7 +18,7 @@ export default function Layout() {
         <div
           className={
             isOpen
-              ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-10 overflow-hidden"
+              ? "absolute top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-10 overflow-hidden cursor-pointer"
               : "collapse"
           }
           onClick={toggleMenu}
