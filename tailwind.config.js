@@ -28,6 +28,12 @@ export default {
             lineHeight: "1",
           },
         ],
+        "3xl-leading-none": [
+          "1.875rem",
+          {
+            lineHeight: "1",
+          },
+        ],
         "5xl-50": [
           "3.125rem",
           {
