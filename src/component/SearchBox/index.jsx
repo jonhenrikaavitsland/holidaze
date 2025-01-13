@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import Label from "../Label";
 import locations from "../../data/locations/locations.json";
+import { useEffect, useState } from "react";
 
 export default function SearchBox() {
   const [locationData] = useState(locations.map((location) => location.name));
@@ -29,6 +29,7 @@ function SearchBar() {
 
 function Locations({ locationData }) {
   const [activeButton, setActiveButton] = useState(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   function handleClick(content) {
     if (content !== activeButton) {
@@ -36,10 +37,23 @@ function Locations({ locationData }) {
     }
   }
 
-  console.log("active:", activeButton);
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 0) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="grid sm:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7.5">
+    <div
+      className={`grid sm:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7.5`}
+    >
       <LocationBtn
         content="All Destinations"
         isActive={activeButton === "All Destinations"}
@@ -51,16 +65,17 @@ function Locations({ locationData }) {
           content={location}
           isActive={activeButton === location}
           handleClick={handleClick}
+          hasScrolled={hasScrolled}
         />
       ))}
     </div>
   );
 }
 
-function LocationBtn({ content, isActive, handleClick }) {
+function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
   return (
     <button
-      className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"}`}
+      className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"} ${hasScrolled ? "sm:visible sm:translate-y-0" : "sm:sr-only"}`}
       onClick={() => handleClick(content)}
     >
       {content}
