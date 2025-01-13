@@ -6,16 +6,18 @@ import Button from "../Button";
 
 export default function Header({ isOpen, toggleMenu }) {
   return (
-    <header
-      className={
-        isOpen
-          ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-50"
-          : "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative"
-      }
-    >
-      <Logo />
-      <HamburgerIcon toggleMenu={toggleMenu} />
-      <Navbar isOpen={isOpen} toggleMenu={toggleMenu} />
+    <header className="bg-light-gray">
+      <div
+        className={
+          isOpen
+            ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-50"
+            : "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative lg:container lg:mx-auto"
+        }
+      >
+        <Logo />
+        <HamburgerIcon toggleMenu={toggleMenu} />
+        <Navbar isOpen={isOpen} toggleMenu={toggleMenu} />
+      </div>
     </header>
   );
 }
