@@ -16,7 +16,7 @@ export default function Home() {
           Explore Fuerteventura
         </h2>
       </div>
-      <div className="flex flex-col gap-5 lg:flex-row relative overflow-hidden">
+      <div className="grid gap-5 lg:gap-10 lg:grid-cols-2">
         {locationData.map((location) => (
           <CardLocation key={location.name} location={location} />
         ))}

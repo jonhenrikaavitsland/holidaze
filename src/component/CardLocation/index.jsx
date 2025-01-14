@@ -18,7 +18,7 @@ export default function CardLocation({ location }) {
 
   return (
     <section
-      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl relative lg:hover:w-screen lg:min-w-0`}
+      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl shadow-md shadow-natural-charcoal/30`}
       style={{ backgroundImage: `url(${image})` }}
     >
       <figure className="p-2.5 md:p-7.5">
