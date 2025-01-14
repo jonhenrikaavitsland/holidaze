@@ -6,6 +6,7 @@ import imageMorroJable from "../../data/locations/images/morro_1.jpg";
 import imageElCotillo from "../../data/locations/images/cotillo_1.jpg";
 import { useState } from "react";
 import IconSun from "../IconSun";
+import NamePlate from "../NamePlate";
 
 export default function CardLocation({ location, className }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -30,15 +31,5 @@ export default function CardLocation({ location, className }) {
       <IconSun isHovered={isHovered} />
       <NamePlate location={location} />
     </section>
-  );
-}
-
-function NamePlate({ location }) {
-  return (
-    <div className="flex flex-col items-end justify-end">
-      <div className="bg-custom-coral text-white font-serif font-bold text-lg-leading-none md:text-2xl-leading-none py-4 px-5 md:px-7.5 md:py-5 w-48 md:w-64">
-        <h3>{location.name}</h3>
-      </div>
-    </div>
   );
 }
