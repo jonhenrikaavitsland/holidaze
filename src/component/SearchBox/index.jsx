@@ -42,6 +42,7 @@ export default function SearchBox({ setFetchedData }) {
         query={query}
         setQuery={setQuery}
         handleSearch={handleSearch}
+        hasCalledHandleLocationClick={hasCalledHandleLocationClick}
       />
       <Locations
         locationData={locationData}
@@ -56,7 +57,12 @@ export default function SearchBox({ setFetchedData }) {
   );
 }
 
-function SearchBar({ query, setQuery, handleSearch }) {
+function SearchBar({
+  query,
+  setQuery,
+  handleSearch,
+  hasCalledHandleLocationClick,
+}) {
   return (
     <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
       <Label classes="sr-only" content="search-bar" target="search-bar" />
@@ -64,7 +70,10 @@ function SearchBar({ query, setQuery, handleSearch }) {
         <Icon />
         <Field query={query} setQuery={setQuery} />
       </div>
-      <Go handleSearch={handleSearch} />
+      <Go
+        handleSearch={handleSearch}
+        hasCalledHandleLocationClick={hasCalledHandleLocationClick}
+      />
     </div>
   );
 }
@@ -92,7 +101,7 @@ function Locations({
       handleLocationClick();
       hasCalledHandleLocationClick.current = true;
     }
-  }, [isAnyBtnActive, handleLocationClick]);
+  }, [isAnyBtnActive, handleLocationClick, hasCalledHandleLocationClick]);
 
   useEffect(() => {
     function handleScroll() {
