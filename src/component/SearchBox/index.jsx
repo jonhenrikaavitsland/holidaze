@@ -16,7 +16,7 @@ export default function SearchBox() {
 
 function SearchBar() {
   return (
-    <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-custom-coral focus-within:outline-2 focus-within:outline">
+    <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
       <Label classes="sr-only" content="search-bar" target="search-bar" />
       <div className="flex grow">
         <Icon />
