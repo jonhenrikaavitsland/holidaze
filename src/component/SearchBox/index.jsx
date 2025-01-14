@@ -3,31 +3,61 @@ import Label from "../Label";
 import locations from "../../data/locations/locations.json";
 import { useEffect, useState } from "react";
 
-export default function SearchBox() {
+export default function SearchBox({ setFetchedData }) {
   const [locationData] = useState(locations.map((location) => location.name));
+  const [query, setQuery] = useState("");
+
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setFetchedData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      fetchData(`https://v2.api.noroff.dev/holidaze/venues/search?q=${query}`);
+    }
+  };
+
+  const handleLocationClick = () =>
+    fetchData("https://v2.api.noroff.dev/holidaze/venues");
 
   return (
     <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 sm:px-5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/40">
-      <SearchBar />
-      <Locations locationData={locationData} />
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        handleSearch={handleSearch}
+      />
+      <Locations
+        locationData={locationData}
+        handleLocationClick={handleLocationClick}
+      />
     </div>
   );
 }
 
-function SearchBar() {
+function SearchBar({ query, setQuery, handleSearch }) {
   return (
     <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
       <Label classes="sr-only" content="search-bar" target="search-bar" />
       <div className="flex grow">
         <Icon />
-        <Field />
+        <Field query={query} setQuery={setQuery} />
       </div>
-      <Go />
+      <Go handleSearch={handleSearch} />
     </div>
   );
 }
 
-function Locations({ locationData }) {
+function Locations({ locationData, handleLocationClick }) {
   const [activeButton, setActiveButton] = useState(null);
   const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -58,6 +88,7 @@ function Locations({ locationData }) {
         content="All Destinations"
         isActive={activeButton === "All Destinations"}
         handleClick={handleClick}
+        handleLocationClick={handleLocationClick}
       />
       {locationData.map((location, index) => (
         <LocationBtn
@@ -65,6 +96,7 @@ function Locations({ locationData }) {
           content={location}
           isActive={activeButton === location}
           handleClick={handleClick}
+          handleLocationClick={handleLocationClick}
           hasScrolled={hasScrolled}
         />
       ))}
@@ -72,11 +104,20 @@ function Locations({ locationData }) {
   );
 }
 
-function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
+function LocationBtn({
+  content,
+  isActive,
+  handleClick,
+  handleLocationClick,
+  hasScrolled = true,
+}) {
   return (
     <button
       className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/40 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"} ${hasScrolled ? "sm:visible sm:translate-y-0" : "sm:sr-only"}`}
-      onClick={() => handleClick(content)}
+      onClick={() => {
+        handleClick(content);
+        handleLocationClick();
+      }}
     >
       {content}
     </button>
@@ -95,20 +136,25 @@ function Icon() {
   );
 }
 
-function Field() {
+function Field({ query, setQuery }) {
   return (
     <input
       className="grow sm:rounded-t-xl sm:px-4 sm:text-center active:ring-transparent focus:outline-none"
       type="text"
       id="search-bar"
       placeholder="Choose your destination..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
     />
   );
 }
 
-function Go() {
+function Go({ handleSearch }) {
   return (
-    <button className="bg-custom-coral text-white font-serif uppercase py-2 px-3 md:py-3.75 md:px-10 rounded-e-xl sm:rounded-t-none sm:rounded-b-xl text-2xl-leading-none md:text-3xl-leading-none font-bold hover:bg-custom-coral/90">
+    <button
+      className="bg-custom-coral text-white font-serif uppercase py-2 px-3 md:py-3.75 md:px-10 rounded-e-xl sm:rounded-t-none sm:rounded-b-xl text-2xl-leading-none md:text-3xl-leading-none font-bold hover:bg-custom-coral/90"
+      onClick={() => handleSearch()}
+    >
       go
     </button>
   );
