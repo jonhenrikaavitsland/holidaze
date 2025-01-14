@@ -16,7 +16,7 @@ export default function Home() {
           Explore Fuerteventura
         </h2>
       </div>
-      <div className="grid gap-5 lg:gap-10 lg:grid-cols-2">
+      <div className="grid gap-5 md:gap-7.5 lg:gap-10 lg:grid-cols-2">
         {locationData.map((location, index) => (
           <CardLocation
             key={location.name}
