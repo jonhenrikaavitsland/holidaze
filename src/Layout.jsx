@@ -14,7 +14,7 @@ export default function Layout() {
     <div className="flex flex-col h-screen">
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
       <main
-        className={`flex-grow lg:container lg:mx-auto mb-10 lg:mb-20 ${isOpen ? "overflow-hidden" : ""}`}
+        className={`flex-grow lg:container lg:mx-auto mb-10 md:mb-15 lg:mb-20 ${isOpen ? "overflow-hidden" : ""}`}
       >
         <Outlet />
         <div
