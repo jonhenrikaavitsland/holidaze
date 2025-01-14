@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import Label from "../Label";
 import locations from "../../data/locations/locations.json";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SearchBox({ setFetchedData }) {
   const [locationData] = useState(locations.map((location) => location.name));
   const [query, setQuery] = useState("");
+  const [activeButton, setActiveButton] = useState(null);
+  const [isAnyBtnActive, setIsAnyBtnActive] = useState(false);
+  const hasCalledHandleLocationClick = useRef(false);
 
   const fetchData = async (url) => {
     try {
@@ -24,6 +27,10 @@ export default function SearchBox({ setFetchedData }) {
     if (query.trim()) {
       fetchData(`https://v2.api.noroff.dev/holidaze/venues/search?q=${query}`);
     }
+    // Reset location-related states
+    setActiveButton(null);
+    setIsAnyBtnActive(false);
+    hasCalledHandleLocationClick.current = false;
   };
 
   const handleLocationClick = () =>
@@ -39,6 +46,11 @@ export default function SearchBox({ setFetchedData }) {
       <Locations
         locationData={locationData}
         handleLocationClick={handleLocationClick}
+        hasCalledHandleLocationClick={hasCalledHandleLocationClick}
+        activeButton={activeButton}
+        setActiveButton={setActiveButton}
+        isAnyBtnActive={isAnyBtnActive}
+        setIsAnyBtnActive={setIsAnyBtnActive}
       />
     </div>
   );
@@ -57,15 +69,30 @@ function SearchBar({ query, setQuery, handleSearch }) {
   );
 }
 
-function Locations({ locationData, handleLocationClick }) {
-  const [activeButton, setActiveButton] = useState(null);
+function Locations({
+  locationData,
+  handleLocationClick,
+  hasCalledHandleLocationClick,
+  activeButton,
+  setActiveButton,
+  isAnyBtnActive,
+  setIsAnyBtnActive,
+}) {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   function handleClick(content) {
     if (content !== activeButton) {
       setActiveButton(content);
+      setIsAnyBtnActive(true);
     }
   }
+
+  useEffect(() => {
+    if (isAnyBtnActive && !hasCalledHandleLocationClick.current) {
+      handleLocationClick();
+      hasCalledHandleLocationClick.current = true;
+    }
+  }, [isAnyBtnActive, handleLocationClick]);
 
   useEffect(() => {
     function handleScroll() {
@@ -88,7 +115,6 @@ function Locations({ locationData, handleLocationClick }) {
         content="All Destinations"
         isActive={activeButton === "All Destinations"}
         handleClick={handleClick}
-        handleLocationClick={handleLocationClick}
       />
       {locationData.map((location, index) => (
         <LocationBtn
@@ -96,7 +122,6 @@ function Locations({ locationData, handleLocationClick }) {
           content={location}
           isActive={activeButton === location}
           handleClick={handleClick}
-          handleLocationClick={handleLocationClick}
           hasScrolled={hasScrolled}
         />
       ))}
@@ -104,20 +129,11 @@ function Locations({ locationData, handleLocationClick }) {
   );
 }
 
-function LocationBtn({
-  content,
-  isActive,
-  handleClick,
-  handleLocationClick,
-  hasScrolled = true,
-}) {
+function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
   return (
     <button
       className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/40 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"} ${hasScrolled ? "sm:visible sm:translate-y-0" : "sm:sr-only"}`}
-      onClick={() => {
-        handleClick(content);
-        handleLocationClick();
-      }}
+      onClick={() => handleClick(content)}
     >
       {content}
     </button>
