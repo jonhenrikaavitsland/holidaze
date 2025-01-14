@@ -16,7 +16,7 @@ export default function SearchBox() {
 
 function SearchBar() {
   return (
-    <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col">
+    <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-custom-coral focus-within:outline-2 focus-within:outline">
       <Label classes="sr-only" content="search-bar" target="search-bar" />
       <div className="flex grow">
         <Icon />
@@ -98,7 +98,7 @@ function Icon() {
 function Field() {
   return (
     <input
-      className="grow sm:rounded-t-xl sm:px-4 sm:text-center"
+      className="grow sm:rounded-t-xl sm:px-4 sm:text-center active:ring-transparent focus:outline-none"
       type="text"
       id="search-bar"
       placeholder="Choose your destination..."
