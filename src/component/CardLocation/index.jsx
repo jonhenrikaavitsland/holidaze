@@ -4,8 +4,12 @@ import imageCostaCalma from "../../data/locations/images/costa-calma_1.jpg";
 import imageCaletaDeFuste from "../../data/locations/images/caleta_1.jpg";
 import imageMorroJable from "../../data/locations/images/morro_1.jpg";
 import imageElCotillo from "../../data/locations/images/cotillo_1.jpg";
+import { useState } from "react";
+import IconSun from "../IconSun";
 
 export default function CardLocation({ location, className }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const imageMapping = {
     Corralejo: imageCorralejo,
     "Costa Calma": imageCostaCalma,
@@ -18,21 +22,23 @@ export default function CardLocation({ location, className }) {
 
   return (
     <section
-      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl shadow-md shadow-natural-charcoal/40 ${className}`}
+      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl shadow-md shadow-natural-charcoal/40 ${className} hover:contrast-125`}
       style={{ backgroundImage: `url(${image})` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <figure className="p-2.5 md:p-7.5">
-        <img
-          src="/logo_white_200.png"
-          alt="white sun"
-          className="h-13 w-13 md:h-25 md:w-25"
-        />
-      </figure>
-      <div className="flex flex-col items-end justify-end">
-        <div className="bg-custom-coral text-white font-serif font-bold text-lg-leading-none md:text-2xl-leading-none py-4 px-5 md:px-7.5 md:py-5 w-48 md:w-64">
-          <h3>{location.name}</h3>
-        </div>
-      </div>
+      <IconSun isHovered={isHovered} />
+      <NamePlate location={location} />
     </section>
+  );
+}
+
+function NamePlate({ location }) {
+  return (
+    <div className="flex flex-col items-end justify-end">
+      <div className="bg-custom-coral text-white font-serif font-bold text-lg-leading-none md:text-2xl-leading-none py-4 px-5 md:px-7.5 md:py-5 w-48 md:w-64">
+        <h3>{location.name}</h3>
+      </div>
+    </div>
   );
 }
