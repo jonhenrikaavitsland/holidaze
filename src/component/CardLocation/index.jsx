@@ -5,7 +5,7 @@ import imageCaletaDeFuste from "../../data/locations/images/caleta_1.jpg";
 import imageMorroJable from "../../data/locations/images/morro_1.jpg";
 import imageElCotillo from "../../data/locations/images/cotillo_1.jpg";
 
-export default function CardLocation({ location }) {
+export default function CardLocation({ location, className }) {
   const imageMapping = {
     Corralejo: imageCorralejo,
     "Costa Calma": imageCostaCalma,
@@ -18,7 +18,7 @@ export default function CardLocation({ location }) {
 
   return (
     <section
-      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl shadow-md shadow-natural-charcoal/30`}
+      className={`grid grid-rows-locationCard md:grid-rows-locationCardMd bg-cover bg-no-repeat bg-center h-70 md:h-120 cursor-pointer lg:rounded-xl shadow-md shadow-natural-charcoal/30 ${className}`}
       style={{ backgroundImage: `url(${image})` }}
     >
       <figure className="p-2.5 md:p-7.5">

@@ -17,8 +17,14 @@ export default function Home() {
         </h2>
       </div>
       <div className="grid gap-5 lg:gap-10 lg:grid-cols-2">
-        {locationData.map((location) => (
-          <CardLocation key={location.name} location={location} />
+        {locationData.map((location, index) => (
+          <CardLocation
+            key={location.name}
+            location={location}
+            className={
+              index === locationData.length - 1 ? "lg:col-span-full" : ""
+            }
+          />
         ))}
       </div>
     </>
