@@ -75,7 +75,7 @@ function Locations({ locationData }) {
 function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
   return (
     <button
-      className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/30 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"} ${hasScrolled ? "sm:visible sm:translate-y-0" : "sm:sr-only"}`}
+      className={`leading-none md:text-lg-leading-none py-3 px-6 md:py-4 rounded-xl shadow-md shadow-natural-charcoal/40 ${isActive ? "bg-golden-yellow hover:bg-golden-yellow/80 font-bold" : "bg-white hover:bg-golden-yellow/20"} ${hasScrolled ? "sm:visible sm:translate-y-0" : "sm:sr-only"}`}
       onClick={() => handleClick(content)}
     >
       {content}

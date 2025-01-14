@@ -53,7 +53,7 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
     <nav
       className={
         isOpen
-          ? `visible fixed w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/30`
+          ? `visible fixed w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/40`
           : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end"
       }
     >
@@ -123,7 +123,7 @@ function LinkBtn(props) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/30 font-serif hover:bg-golden-yellow/75"
+            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75"
             : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
         }
         to={props.to}
