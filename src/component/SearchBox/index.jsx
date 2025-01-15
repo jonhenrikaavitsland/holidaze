@@ -2,9 +2,8 @@
 import Label from "../Label";
 import locations from "../../data/locations/locations.json";
 import { useEffect, useRef, useState } from "react";
-import { fetchData } from "../../js/api/fetchData";
 
-export default function SearchBox({ setFetchedData }) {
+export default function SearchBox({ setFetchAll, setFetchQuery }) {
   const [locationData] = useState(locations.map((location) => location.name));
   const [query, setQuery] = useState("");
   const [activeButton, setActiveButton] = useState(null);
@@ -13,10 +12,8 @@ export default function SearchBox({ setFetchedData }) {
 
   const handleSearch = () => {
     if (query.trim()) {
-      fetchData(
-        `https://v2.api.noroff.dev/holidaze/venues/search?q=${query}`,
-        setFetchedData,
-      );
+      setFetchQuery(query);
+      setFetchAll(false);
     }
     // Reset location-related states
     setActiveButton(null);
@@ -24,8 +21,10 @@ export default function SearchBox({ setFetchedData }) {
     hasCalledHandleLocationClick.current = false;
   };
 
-  const handleLocationClick = () =>
-    fetchData("https://v2.api.noroff.dev/holidaze/venues?", setFetchedData);
+  const handleLocationClick = () => {
+    setFetchAll(true);
+    setFetchQuery("");
+  };
 
   return (
     <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 sm:px-5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/40">
