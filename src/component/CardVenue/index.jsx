@@ -11,7 +11,7 @@ export default function CardVenue({ venue, className }) {
   return (
     <div
       className={`bg-cover bg-no-repeat bg-center lg:rounded-xl h-56 md:h-110 lg:h-96 cursor-pointer shadow-md shadow-natural-charcoal/40 ${className} hover:contrast-125 grid grid-rows-locationCard md:grid-rows-locationCardMd`}
-      style={{ backgroundImage: `url(${venue.media[0].url})` }}
+      style={{ backgroundImage: `url(${venue.media[0]?.url})` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
