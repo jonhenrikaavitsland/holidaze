@@ -47,8 +47,6 @@ export default function Home() {
     }
   }, [data, resetPagination, paginateData]);
 
-  console.log("Arranged Venues:", arrangedVenues);
-
   return (
     <>
       <div className="flex flex-col gap-10 md:gap-12.5 lg:gap-15">
