@@ -26,7 +26,7 @@ export function useAPISearch(url) {
         const { meta, data: initialData } = json;
 
         if (!meta || meta.pageCount <= 1) {
-          setData(initialData);
+          setData(initialData.reverse());
           return;
         }
 
@@ -48,7 +48,7 @@ export function useAPISearch(url) {
           }
         });
 
-        setData(allData);
+        setData(allData.reverse());
       } catch (error) {
         console.error(error);
         setIsError(true);
