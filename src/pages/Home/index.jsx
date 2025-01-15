@@ -5,6 +5,7 @@ import SearchBox from "../../component/SearchBox";
 import locationData from "../../data/locations/locations.json";
 import { useAPISearch } from "../../js/api/useAPISearch";
 import CardVenue from "../../component/CardVenue";
+import HeadingTwo from "../../component/HeadingTwo";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -62,9 +63,7 @@ export default function Home() {
           <Hero />
           <SearchBox setFetchAll={setFetchAll} setFetchQuery={setFetchQuery} />
         </div>
-        <h2 className="font-serif font-bold text-center text-deep-blue text-xl-leading-none md:text-2xl-leading-none lg:text-3xl-leading-none mb-5 md:mb-7.5">
-          Explore Fuerteventura
-        </h2>
+        <HeadingTwo content={"explore fuerteventura"} />
       </div>
       <div className="grid gap-5 md:gap-7.5 lg:gap-10 lg:grid-cols-2">
         {isLoading ? (
