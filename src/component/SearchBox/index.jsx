@@ -59,7 +59,7 @@ function SearchBar({
       <Label classes="sr-only" content="search-bar" target="search-bar" />
       <div className="flex grow">
         <Icon />
-        <Field query={query} setQuery={setQuery} />
+        <Field query={query} setQuery={setQuery} handleSearch={handleSearch} />
       </div>
       <Go
         handleSearch={handleSearch}
@@ -152,7 +152,13 @@ function Icon() {
   );
 }
 
-function Field({ query, setQuery }) {
+function Field({ query, setQuery, handleSearch }) {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <input
       className="grow sm:rounded-t-xl sm:px-4 sm:text-center active:ring-transparent focus:outline-none"
@@ -161,6 +167,7 @@ function Field({ query, setQuery }) {
       placeholder="Choose your destination..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      onKeyDown={handleKeyDown}
     />
   );
 }
