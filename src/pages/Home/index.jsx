@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useMemo, useState, useCallback } from "react";
 import CardLocation from "../../component/CardLocation";
 import Hero from "../../component/Hero";
@@ -11,7 +12,6 @@ export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
   const [fetchQuery, setFetchQuery] = useState("");
   const [arrangedVenues, setArrangedVenues] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
 
   const apiURL = useMemo(() => {
     if (fetchQuery) {
@@ -32,19 +32,18 @@ export default function Home() {
 
   const resetPagination = useCallback(() => {
     setArrangedVenues([]);
-    setCurrentPage(0);
   }, []);
 
-  const paginateData = useCallback(
-    (dataArray, pageSize) => {
-      const start = currentPage * pageSize;
-      const end = start + pageSize;
-      const nextPageData = dataArray.slice(start, end);
-      setArrangedVenues((prev) => [...prev, ...nextPageData]);
-      setCurrentPage((prev) => prev + 1);
-    },
-    [currentPage],
-  );
+  const paginateData = useCallback((dataArray, pageSize) => {
+    setArrangedVenues((prev) => {
+      const currentLength = prev.length;
+      const nextPageData = dataArray.slice(
+        currentLength,
+        currentLength + pageSize,
+      );
+      return [...prev, ...nextPageData];
+    });
+  }, []);
 
   useMemo(() => {
     if (data && data.length > 0) {
@@ -97,6 +96,22 @@ export default function Home() {
           ))
         )}
       </div>
+      <div className="flex justify-center">
+        {data && arrangedVenues.length < data.length && (
+          <ViewMoreBtn data={data} paginateData={paginateData} />
+        )}
+      </div>
     </>
+  );
+}
+
+function ViewMoreBtn({ data, paginateData }) {
+  return (
+    <button
+      onClick={() => paginateData(data, 10)}
+      className="font-serif font-bold capitalize text-natural-charcoal bg-golden-yellow rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-golden-yellow/90 lg:mt-10 lg:py-5 lg:px-10"
+    >
+      load more
+    </button>
   );
 }
