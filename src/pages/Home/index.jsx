@@ -24,11 +24,6 @@ export default function Home() {
   }, [fetchQuery, fetchAll]);
 
   const { data, isLoading, isError } = useAPISearch(apiURL);
-  console.log("Data:", data);
-  console.log(isLoading, isError);
-
-  console.log("fetchAll:", fetchAll);
-  console.log("fetchQuery:", fetchQuery);
 
   const resetPagination = useCallback(() => {
     setArrangedVenues([]);
