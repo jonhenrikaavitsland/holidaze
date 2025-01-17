@@ -3,10 +3,14 @@ import Label from "../Label";
 import locations from "../../data/locations/locations.json";
 import { useEffect, useRef, useState } from "react";
 
-export default function SearchBox({ setFetchAll, setFetchQuery }) {
+export default function SearchBox({
+  setFetchAll,
+  setFetchQuery,
+  activeButton,
+  setActiveButton,
+}) {
   const [locationData] = useState(locations.map((location) => location.name));
   const [query, setQuery] = useState("");
-  const [activeButton, setActiveButton] = useState(null);
   const [isAnyBtnActive, setIsAnyBtnActive] = useState(false);
   const hasCalledHandleLocationClick = useRef(false);
 

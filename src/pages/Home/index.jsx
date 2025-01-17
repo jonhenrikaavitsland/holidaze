@@ -12,6 +12,7 @@ export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
   const [fetchQuery, setFetchQuery] = useState("");
   const [arrangedVenues, setArrangedVenues] = useState([]);
+  const [activeButton, setActiveButton] = useState(null);
 
   const apiURL = useMemo(() => {
     if (fetchQuery) {
@@ -53,9 +54,20 @@ export default function Home() {
         <div className="grid grid-rows-hero grid-cols-hero md:grid-cols-heroMd md:grid-rows-heroMd lg:grid-cols-heroLg relative">
           <div className="row-start-1 row-end-3 col-span-full bg-natural-charcoal"></div>
           <Hero />
-          <SearchBox setFetchAll={setFetchAll} setFetchQuery={setFetchQuery} />
+          <SearchBox
+            setFetchAll={setFetchAll}
+            setFetchQuery={setFetchQuery}
+            activeButton={activeButton}
+            setActiveButton={setActiveButton}
+          />
         </div>
-        <HeadingTwo content={"explore fuerteventura"} />
+        <HeadingTwo
+          content={
+            arrangedVenues.length
+              ? `Venues in ${activeButton}`
+              : "explore fuerteventura"
+          }
+        />
       </div>
       <div className="grid gap-5 md:gap-7.5 lg:gap-10 lg:grid-cols-2">
         {isLoading ? (
