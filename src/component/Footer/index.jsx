@@ -10,16 +10,7 @@ export default function Footer() {
           </Link>
         </li>
         <li>
-          <button
-            className="p-2.5 capitalize"
-            onClick={
-              {
-                /* trigger login functionality */
-              }
-            }
-          >
-            log in
-          </button>
+          <button className="p-2.5 capitalize">log in</button>
         </li>
         <li>
           <Link className="p-2.5" to="/list-your-venue">
