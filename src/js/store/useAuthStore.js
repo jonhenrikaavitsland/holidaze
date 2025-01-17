@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export function useAutStore() {
+export default function useAutStore() {
   create((set) => ({
     user: null,
     token: null,
