@@ -11,6 +11,7 @@ export default function Button(props) {
     <div>
       <button
         className={`rounded-xl text-white font-serif font-bold py-3.75 px-7.5 shadow-md shadow-natural-charcoal/40 ${handleColor()}`}
+        type="button"
       >
         {props.content}
       </button>

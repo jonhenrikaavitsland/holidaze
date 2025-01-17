@@ -1,17 +1,24 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 
-export default function LoginModal() {
+export default function LoginModal({ setModal }) {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  console.log("HELP");
   const { login: loginToStore, initializeAuth } = useAutStore();
+  console.log("LOGIN", loginToStore, initializeAuth);
 
   useEffect(() => {
-    initializeAuth();
+    try {
+      initializeAuth();
+    } catch (error) {
+      console.error("error in initializeAuth", error);
+    }
   }, [initializeAuth]);
 
   const handleSubmit = async (e) => {
@@ -29,7 +36,7 @@ export default function LoginModal() {
   };
 
   return (
-    <div className="z-50 absolute">
+    <div>
       <div>
         <Logo />
       </div>
@@ -38,7 +45,11 @@ export default function LoginModal() {
           <h2>Welcome Back</h2>
           <p>Login with your registered account</p>
         </section>
-        {error && <p className="text-custom-coral">{error}</p>}
+        {error && (
+          <p className="text-custom-coral">
+            {error || "An unknown error occurred"}
+          </p>
+        )}
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
@@ -52,7 +63,7 @@ export default function LoginModal() {
           <div>
             <div className="flex">
               <label htmlFor="password">Password</label>
-              <button>Forgot your password?</button>
+              <button type="button">Forgot your password?</button>
             </div>
             <input
               type="password"
@@ -65,6 +76,17 @@ export default function LoginModal() {
             <button type="submit">Login</button>
           </div>
         </form>
+      </div>
+      <div>
+        <button type="button">
+          <img
+            src="/xmark-solid.svg"
+            alt="close"
+            onClick={() => {
+              setModal(false);
+            }}
+          />
+        </button>
       </div>
     </div>
   );

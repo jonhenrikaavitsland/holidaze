@@ -1,11 +1,12 @@
-export async function login(emailAddress, password) {
+export async function login(email, password) {
   try {
     const response = await fetch("https://v2.api.noroff.dev/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Noroff-API-Key": "15bd7de6-1a86-45ac-9f64-46d861d8837a",
       },
-      body: JSON.stringify({ emailAddress, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     if (!response.ok) {
@@ -13,8 +14,8 @@ export async function login(emailAddress, password) {
     }
 
     const data = await response.json();
-    const { name, email, avatar, accessToken } = data.data;
-    return { name, email, avatar, token: accessToken };
+    const { name, mail, avatar, accessToken } = data.data;
+    return { name, mail, avatar, token: accessToken };
   } catch (error) {
     console.error(error);
   }

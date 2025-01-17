@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo";
 import Button from "../Button";
+import LoginModal from "../LoginModal";
 
 export default function Header({ isOpen, toggleMenu }) {
   const [isThrottled, setIsThrottled] = useState(false);
@@ -46,8 +47,10 @@ export default function Header({ isOpen, toggleMenu }) {
 function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
+  const [modal, setModal] = useState(false);
 
   console.log(setIsLoggedIn, setIsManager);
+  console.log("Show login modal", modal);
 
   return (
     <nav
@@ -74,10 +77,18 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
         }
       >
         <LinkBtn to="/" text="Home" />
-        <LinkBtn
-          to={isLoggedIn ? "/account/" : /* triggers login-modal */ "/login/"}
-          text={isLoggedIn ? "Account" : "Log in"}
-        />
+        {isLoggedIn ? (
+          <LinkBtn to="/account" text="Account" />
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              setModal(true);
+            }}
+          >
+            Log In
+          </button>
+        )}
         <LinkBtn
           to={isManager ? "/venue-hub/" : "/list-your-venue/"}
           text={isManager ? "Venue HUB" : "List Your Venue"}
@@ -96,6 +107,7 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
       ) : (
         ""
       )}
+      {modal ? <LoginModal setModal={setModal} /> : ""}
     </nav>
   );
 }
@@ -110,6 +122,7 @@ function HamburgerIcon({ toggleMenu, handleClick, isThrottled }) {
           toggleMenu();
         }}
         disabled={isThrottled}
+        type="button"
       >
         <img src="/bars-solid.svg" alt="menu" className="w-7.5 h-6.5" />
       </button>
@@ -146,6 +159,7 @@ function CloseIcon({ toggleMenu, isOpen, handleClick, isThrottled }) {
           toggleMenu();
         }}
         disabled={isThrottled}
+        type="button"
       >
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
