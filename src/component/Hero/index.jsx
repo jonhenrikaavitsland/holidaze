@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import hero1 from "/src/data/hero/hero_1.jpg";
 import hero2 from "/src/data/hero/hero_2.jpg";
@@ -24,9 +25,10 @@ export default function Hero() {
 
   return (
     <section
-      className={`h-60 md:h-[480px] bg-cover bg-center transition-all duration-1000 pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 z-10 relative ${fade ? "opacity-100" : "opacity-0"}`}
-      style={{ backgroundImage: `url(${images[currentImage]})` }}
+      className={`h-60 md:h-[480px] bg-cover bg-center pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 relative`}
+      // style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
+      <BackgroundWrapper currentImage={currentImage} fade={fade} />
       <Heading />
     </section>
   );
@@ -34,8 +36,17 @@ export default function Hero() {
 
 function Heading() {
   return (
-    <div className="bg-natural-charcoal/80 text-white font-serif font-black text-center text-2xl md:text-[2.5rem] p-4 md:p-7.5">
+    <div className="bg-natural-charcoal/80 text-white font-serif font-black text-center text-2xl md:text-[2.5rem] p-4 md:p-7.5 z-20 relative">
       <h1>We know Fuerteventura!</h1>
     </div>
+  );
+}
+
+function BackgroundWrapper({ currentImage, fade }) {
+  return (
+    <div
+      className={`z-10 bg-cover bg-center transition-opacity duration-1000 absolute inset-0 ${fade ? "opacity-100" : "opacity-0"}`}
+      style={{ backgroundImage: `url(${images[currentImage]})` }}
+    ></div>
   );
 }
