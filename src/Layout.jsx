@@ -24,7 +24,13 @@ export default function Layout() {
               : "collapse"
           }
           onClick={toggleMenu}
-        ></div>
+        >
+          <div>
+            <button>
+              <img src="/public/xmark-solid.svg" alt="close" />
+            </button>
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
