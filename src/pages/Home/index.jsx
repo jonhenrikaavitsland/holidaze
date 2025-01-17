@@ -63,9 +63,11 @@ export default function Home() {
         </div>
         <HeadingTwo
           content={
-            arrangedVenues.length
-              ? `Venues in ${activeButton}`
-              : "explore fuerteventura"
+            fetchQuery
+              ? `Venues in ${fetchQuery}`
+              : arrangedVenues.length
+                ? `Venues in ${activeButton}`
+                : "explore fuerteventura"
           }
         />
       </div>

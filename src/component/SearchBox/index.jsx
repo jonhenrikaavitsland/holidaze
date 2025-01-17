@@ -10,19 +10,23 @@ export default function SearchBox({
   setActiveButton,
 }) {
   const [locationData] = useState(locations.map((location) => location.name));
-  const [query, setQuery] = useState("");
   const [isAnyBtnActive, setIsAnyBtnActive] = useState(false);
   const hasCalledHandleLocationClick = useRef(false);
+  const [query, setQuery] = useState("");
 
   const handleSearch = () => {
     if (query.trim()) {
       setFetchQuery(query);
       setFetchAll(false);
+      setActiveButton(null);
+      setIsAnyBtnActive(false);
+      hasCalledHandleLocationClick.current = false;
+    } else {
+      // Treat empty query as clicking "All Destinations"
+      handleLocationClick();
+      setActiveButton("All Destinations");
+      hasCalledHandleLocationClick.current = true;
     }
-    // Reset location-related states
-    setActiveButton(null);
-    setIsAnyBtnActive(false);
-    hasCalledHandleLocationClick.current = false;
   };
 
   const handleLocationClick = () => {
