@@ -36,7 +36,7 @@ export default function LoginModal({ setModal }) {
   };
 
   return (
-    <div>
+    <div className="absolute z-50 top-0">
       <div>
         <Logo />
       </div>

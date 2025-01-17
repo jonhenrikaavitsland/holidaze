@@ -47,10 +47,10 @@ export default function Header({ isOpen, toggleMenu }) {
 function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
-  const [modal, setModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   console.log(setIsLoggedIn, setIsManager);
-  console.log("Show login modal", modal);
+  console.log("Show login modal", showModal);
 
   return (
     <nav
@@ -83,7 +83,7 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
           <button
             type="button"
             onClick={() => {
-              setModal(true);
+              setShowModal(true);
             }}
           >
             Log In
@@ -107,7 +107,7 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
       ) : (
         ""
       )}
-      {modal ? <LoginModal setModal={setModal} /> : ""}
+      {showModal ? <LoginModal setModal={setShowModal} /> : ""}
     </nav>
   );
 }
