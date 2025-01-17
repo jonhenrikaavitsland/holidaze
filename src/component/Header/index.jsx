@@ -22,7 +22,7 @@ export default function Header({ isOpen, toggleMenu }) {
       <div
         className={
           isOpen
-            ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-50"
+            ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-40"
             : "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative lg:container lg:mx-auto"
         }
       >
