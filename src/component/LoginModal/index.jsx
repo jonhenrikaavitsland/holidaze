@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
+import useUIStore from "../../js/store/useUIStore";
 
 export default function LoginModal() {
   const [emailAddress, setEmailAddress] = useState("");
@@ -9,6 +10,7 @@ export default function LoginModal() {
   const [error, setError] = useState("");
 
   const { login: loginToStore } = useAutStore();
+  const { closeAll } = useUIStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ export default function LoginModal() {
       );
       loginToStore(name, email, avatar, token);
       // alert("Login successful");
+      closeAll();
     } catch (error) {
       setError(error.message);
     }
