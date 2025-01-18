@@ -2,9 +2,10 @@ import { Outlet } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import useUIStore from "./js/store/useUIStore";
+import LoginModal from "./component/LoginModal";
 
 export default function Layout() {
-  const { isOverlayOpen } = useUIStore();
+  const { isOverlayOpen, isLoginModalOpen } = useUIStore();
 
   return (
     <div className="flex flex-col h-screen">
@@ -14,6 +15,7 @@ export default function Layout() {
       >
         <Outlet />
         <Overlay />
+        {isLoginModalOpen ? <LoginModal /> : ""}
       </main>
       <Footer />
     </div>
@@ -27,7 +29,7 @@ function Overlay() {
     <div
       className={
         isOverlayOpen
-          ? "absolute flex justify-end p-2.5 top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-30 cursor-pointer"
+          ? "absolute flex justify-end p-2.5 top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-40 cursor-pointer"
           : "collapse"
       }
       onClick={closeAll}
