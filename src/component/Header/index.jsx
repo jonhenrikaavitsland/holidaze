@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo";
 import Button from "../Button";
-import LoginModal from "../LoginModal";
+import useUIStore from "../../js/store/useUIStore";
 
-export default function Header({ isOpen, toggleMenu }) {
+export default function Header() {
   const [isThrottled, setIsThrottled] = useState(false);
 
   function handleClick() {
@@ -20,34 +20,21 @@ export default function Header({ isOpen, toggleMenu }) {
 
   return (
     <header className="bg-light-gray">
-      <div
-        className={
-          isOpen
-            ? "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative z-40"
-            : "flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 relative lg:container lg:mx-auto"
-        }
-      >
+      <div className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 lg:container lg:mx-auto">
         <Logo />
-        <HamburgerIcon
-          toggleMenu={toggleMenu}
-          handleClick={handleClick}
-          isThrottled={isThrottled}
-        />
-        <Navbar
-          isOpen={isOpen}
-          toggleMenu={toggleMenu}
-          handleClick={handleClick}
-          isThrottled={isThrottled}
-        />
+        <HamburgerIcon isThrottled={isThrottled} handleClick={handleClick} />
+        <Navbar isThrottled={isThrottled} handleClick={handleClick} />
       </div>
     </header>
   );
 }
 
-function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
+function Navbar({ isThrottled, handleClick }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const { isMenuOpen } = useUIStore();
 
   console.log(setIsLoggedIn, setIsManager);
   console.log("Show login modal", showModal);
@@ -55,23 +42,18 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
   return (
     <nav
       className={
-        isOpen
-          ? `visible fixed w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/40`
+        isMenuOpen
+          ? `visible absolute z-50 w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/40`
           : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end"
       }
     >
       <div className="lg:collapse">
         <Logo />
       </div>
-      <CloseIcon
-        toggleMenu={toggleMenu}
-        isOpen={isOpen}
-        handleClick={handleClick}
-        isThrottled={isThrottled}
-      />
+      <CloseIcon isThrottled={isThrottled} handleClick={handleClick} />
       <ul
         className={
-          isOpen
+          isMenuOpen
             ? "visible flex flex-col items-center gap-8 pb-7.5 mt-10"
             : "collapse lg:visible flex flex-col lg:flex-row lg:gap-10"
         }
@@ -97,7 +79,7 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
       {isLoggedIn ? (
         <div
           className={
-            isOpen
+            isMenuOpen
               ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
               : "collapse lg:visible lg:ms-10"
           }
@@ -107,19 +89,20 @@ function Navbar({ isOpen, toggleMenu, handleClick, isThrottled }) {
       ) : (
         ""
       )}
-      {showModal ? <LoginModal setModal={setShowModal} /> : ""}
     </nav>
   );
 }
 
-function HamburgerIcon({ toggleMenu, handleClick, isThrottled }) {
+function HamburgerIcon({ isThrottled, handleClick }) {
+  const { openStateWithOverlay } = useUIStore();
+
   return (
     <div className="absolute visible p-3.5 top-0 right-0 lg:collapse">
       <button
         className="p-1.5 hover:bg-deep-blue/20 rounded-xl"
         onClick={() => {
           handleClick();
-          toggleMenu();
+          openStateWithOverlay("isMenuOpen");
         }}
         disabled={isThrottled}
         type="button"
@@ -147,19 +130,22 @@ function LinkBtn(props) {
   );
 }
 
-function CloseIcon({ toggleMenu, isOpen, handleClick, isThrottled }) {
+function CloseIcon({ isThrottled, handleClick }) {
+  const { isMenuOpen, closeAll } = useUIStore();
   return (
     <div
-      className={isOpen ? "absolute p-2.5 visible top-0 right-0" : " collapse"}
+      className={
+        isMenuOpen ? "absolute p-2.5 visible top-0 right-0" : " collapse"
+      }
     >
       <button
-        className="p-2.5 hover:bg-custom-coral/20 rounded-xl"
+        className="p-2.5 hover:bg-custom-coral/20 rounded-xl cursor-pointer"
         onClick={() => {
           handleClick();
-          toggleMenu();
+          closeAll();
         }}
-        disabled={isThrottled}
         type="button"
+        disabled={isThrottled}
       >
         <img src="/xmark-solid.svg" alt="close menu" className="w-6.5 h-6.5" />
       </button>
