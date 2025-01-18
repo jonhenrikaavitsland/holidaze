@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import Label from "../Label";
 import locations from "../../data/locations/locations.json";
 import { useEffect, useRef, useState } from "react";
 
@@ -63,7 +62,9 @@ function SearchBar({
 }) {
   return (
     <div className="flex bg-white rounded-xl shadow-md shadow-natural-charcoal/40 sm:flex-col focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
-      <Label classes="sr-only" content="search-bar" target="search-bar" />
+      <label className="sr-only" htmlFor="search-bar">
+        search-bar
+      </label>
       <div className="flex grow">
         <Icon />
         <Field query={query} setQuery={setQuery} handleSearch={handleSearch} />
