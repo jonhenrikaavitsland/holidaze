@@ -4,6 +4,7 @@ import { useState } from "react";
 import Logo from "../Logo";
 import Button from "../Button";
 import useUIStore from "../../js/store/useUIStore";
+import useAuthStore from "../../js/store/useAuthStore";
 
 export default function Header() {
   const [isThrottled, setIsThrottled] = useState(false);
@@ -30,12 +31,10 @@ export default function Header() {
 }
 
 function Navbar({ isThrottled, handleClick }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isManager, setIsManager] = useState(false);
+  const [isManager] = useState(false);
 
   const { isMenuOpen, openStateWithOverlay, checkAndCloseAll } = useUIStore();
-
-  console.log(setIsLoggedIn, setIsManager);
+  const { isLoggedIn } = useAuthStore();
 
   return (
     <nav
@@ -87,7 +86,7 @@ function Navbar({ isThrottled, handleClick }) {
               : "collapse lg:visible lg:ms-10"
           }
         >
-          <Button content="Logout" color="custom-coral" />
+          <Button content="Logout" color="custom-coral" action={true} />
         </div>
       ) : (
         ""
