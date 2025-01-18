@@ -1,13 +1,15 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
+import useUIStore from "../../js/store/useUIStore";
 
-export default function LoginModal({ setModal }) {
+export default function LoginModal() {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { closeAll } = useUIStore();
 
   console.log("HELP");
   const { login: loginToStore, initializeAuth } = useAutStore();
@@ -38,7 +40,7 @@ export default function LoginModal({ setModal }) {
   return (
     <div className="absolute z-50 top-0">
       <div>
-        <Logo />
+        <Logo color={"white"} />
       </div>
       <div>
         <section>
@@ -79,13 +81,7 @@ export default function LoginModal({ setModal }) {
       </div>
       <div>
         <button type="button">
-          <img
-            src="/xmark-solid.svg"
-            alt="close"
-            onClick={() => {
-              setModal(false);
-            }}
-          />
+          <img src="/xmark-solid.svg" alt="close" onClick={closeAll} />
         </button>
       </div>
     </div>
