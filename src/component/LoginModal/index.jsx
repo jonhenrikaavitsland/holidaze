@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
-import useUIStore from "../../js/store/useUIStore";
 
 export default function LoginModal() {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const { closeAll } = useUIStore();
 
   console.log("HELP");
   const { login: loginToStore, initializeAuth } = useAutStore();
@@ -78,11 +75,6 @@ export default function LoginModal() {
             <button type="submit">Login</button>
           </div>
         </form>
-      </div>
-      <div>
-        <button type="button">
-          <img src="/xmark-solid.svg" alt="close" onClick={closeAll} />
-        </button>
       </div>
     </div>
   );
