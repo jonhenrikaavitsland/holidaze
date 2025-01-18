@@ -32,12 +32,10 @@ export default function Header() {
 function Navbar({ isThrottled, handleClick }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
-  const { isMenuOpen } = useUIStore();
+  const { isMenuOpen, openStateWithOverlay, checkAndCloseAll } = useUIStore();
 
   console.log(setIsLoggedIn, setIsManager);
-  console.log("Show login modal", showModal);
 
   return (
     <nav
@@ -65,7 +63,12 @@ function Navbar({ isThrottled, handleClick }) {
           <button
             type="button"
             onClick={() => {
-              setShowModal(true);
+              if (isMenuOpen) {
+                checkAndCloseAll();
+                openStateWithOverlay("isLoginModalOpen");
+              } else {
+                openStateWithOverlay("isLoginModalOpen");
+              }
             }}
           >
             Log In
