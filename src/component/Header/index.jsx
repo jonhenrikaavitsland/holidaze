@@ -31,7 +31,7 @@ export default function Header() {
 }
 
 function Navbar({ isThrottled, handleClick }) {
-  const [isManager] = useState(false);
+  const [isVenueManager] = useState(false);
 
   const { isMenuOpen, openStateWithOverlay, checkAndCloseAll } = useUIStore();
   const { isLoggedIn } = useAuthStore();
@@ -74,8 +74,8 @@ function Navbar({ isThrottled, handleClick }) {
           </button>
         )}
         <LinkBtn
-          to={isManager ? "/venue-hub/" : "/list-your-venue/"}
-          text={isManager ? "Venue HUB" : "List Your Venue"}
+          to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
+          text={isVenueManager ? "Venue HUB" : "List Your Venue"}
         />
       </ul>
       {isLoggedIn ? (

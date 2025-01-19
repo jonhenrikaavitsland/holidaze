@@ -12,11 +12,10 @@ export default function LoginModal() {
 
   const { login: loginToStore } = useAutStore();
   const { closeAll } = useUIStore();
-  const { isManager, setIsManager } = useManagerStore();
+  const { isManager } = useManagerStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsManager(false);
     try {
       const { name, email, avatar, token, venueManager } = await login(
         emailAddress,
