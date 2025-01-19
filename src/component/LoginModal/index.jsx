@@ -31,7 +31,7 @@ export default function LoginModal() {
     <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
       <div className="flex flex-col gap-5 sm:min-w-72 min-w-96 ">
         <div>
-          <Logo color={"white"} />
+          <Logo color={"white"} modal={true} />
         </div>
         <div className="bg-light-sky-blue rounded-xl flex flex-col gap-5 pt-5 px-5 pb-10 shadow-md shadow-natural-charcoal/40  ">
           <section className="text-center flex flex-col gap-2.5">
