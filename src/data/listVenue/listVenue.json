@@ -1,0 +1,51 @@
+{
+  "headingOne": "Connect with thousands of travelers looking for the perfect place to stay in Fuerteventura.",
+  "headingTwo": "Why List Your Venue with Holidaze?",
+  "list": [
+    {
+      "title": "Reach a Global Audience",
+      "text": "Holidaze attracts travelers from all over the world who are eager to experience the beauty of Fuerteventura. Your venue could be their dream destination."
+    },
+    {
+      "title": "Hassle-Free Marketing",
+      "text": "We do the heavy lifting—advertising, SEO, and promotion—so your venue gets the attention it deserves without extra effort on your part."
+    },
+    {
+      "title": "Fill Your Calendar",
+      "text": "Our platform makes it easy to keep your property booked year-round. Whether it’s a luxury villa or a cozy apartment, we connect you with guests who match your offering."
+    },
+    {
+      "title": "Local Expertise",
+      "text": "As locals, we understand Fuerteventura’s unique charm. Our platform highlights what makes your property special in a way that resonates with potential guests."
+    },
+    {
+      "title": "User-Friendly Platform",
+      "text": "Listing your venue is quick, simple, and stress-free. Manage bookings, communicate with guests, and update your availability—all in one place."
+    },
+    {
+      "title": "Dedicated Support",
+      "text": "Our team is here to support you at every step, from setting up your listing to optimizing its visibility."
+    }
+  ],
+  "review": [
+    {
+      "media": {
+        "url": "/src/data/listVenue/venue.jpg",
+        "alt": "villa by a pool",
+        "source": "https://unsplash.com/photos/white-and-grey-concrete-building-near-swimming-pool-under-clear-sky-during-daytime-2d4lAQAlbDA",
+        "author": "Frames For Your Heart"
+      },
+      "text": "Since listing my villa on Holidaze, I’ve seen consistent bookings and guests who genuinely appreciate Fuerteventura’s beauty. Highly recommend!",
+      "cite": "– Local Host"
+    }
+  ],
+  "cta": {
+    "title": "Ready to List Your Venue?",
+    "text": "It's fast, easy, and free to get started.",
+    "cta-text": "sign up now",
+    "else": "Already have an account?",
+    "elsePlus": "Log in",
+    "elseLast": "to manage your listings."
+  },
+  "final": "Maximize your bookings with Holidaze. Your venue deserves to shine."
+}
