@@ -60,6 +60,7 @@ function Navbar({ isThrottled, handleClick }) {
           <LinkBtn to="/account" text="Account" />
         ) : (
           <button
+            className="py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
             type="button"
             onClick={() => {
               if (isMenuOpen) {
