@@ -64,6 +64,7 @@ export default {
         "natural-charcoal": "#333",
       },
       height: {
+        4.5: "1.125rem",
         6.5: "1.5625rem",
         7.5: "1.875rem",
         13: "3.125rem",
@@ -73,6 +74,7 @@ export default {
         120: "33.5rem",
       },
       width: {
+        4.5: "1.125rem",
         6.5: "1.5625rem",
         7.5: "1.875rem",
         13: "3.125rem",
