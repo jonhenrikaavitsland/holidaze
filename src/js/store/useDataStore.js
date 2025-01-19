@@ -9,6 +9,13 @@ const useDataStore = create((set) => ({
   setPassword: (password) => set({ password }),
   setName: (name) => set({ name }),
   setError: (error) => set({ error }),
+  clear: () =>
+    set({
+      emailAddress: "",
+      password: "",
+      name: "",
+      error: "",
+    }),
 }));
 
 export default useDataStore;
