@@ -3,6 +3,7 @@ import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
+import useManagerStore from "../../js/store/useManagerStore";
 
 export default function LoginModal() {
   const [emailAddress, setEmailAddress] = useState("");
@@ -11,15 +12,18 @@ export default function LoginModal() {
 
   const { login: loginToStore } = useAutStore();
   const { closeAll } = useUIStore();
+  const { isManager, setIsManager } = useManagerStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsManager(false);
     try {
-      const { name, email, avatar, token } = await login(
+      const { name, email, avatar, token, venueManager } = await login(
         emailAddress,
         password,
+        isManager,
       );
-      loginToStore(name, email, avatar, token);
+      loginToStore(name, email, avatar, token, venueManager);
       // alert("Login successful");
       closeAll();
     } catch (error) {
