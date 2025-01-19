@@ -7,11 +7,22 @@ const useAuthStore = create(
       user: null,
       token: null,
       isLoggedIn: false,
-      login: (name, email, avatar, token) => {
-        set({ user: { name, email, avatar }, token, isLoggedIn: true });
+      isVenueManager: false,
+      login: (name, email, avatar, token, venueManager) => {
+        set({
+          user: { name, email, avatar },
+          token,
+          isLoggedIn: true,
+          isVenueManager: !!venueManager,
+        });
       },
       logout: () => {
-        set({ user: null, token: null, isLoggedIn: false });
+        set({
+          user: null,
+          token: null,
+          isLoggedIn: false,
+          isVenueManager: false,
+        });
       },
     }),
     {
