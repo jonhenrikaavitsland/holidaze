@@ -11,7 +11,7 @@ export default function LoginModal() {
   const [error, setError] = useState("");
 
   const { login: loginToStore } = useAutStore();
-  const { closeAll } = useUIStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
   const { isManager } = useManagerStore();
 
   const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ export default function LoginModal() {
   };
 
   return (
-    <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+    <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <div className="flex flex-col gap-5 sm:min-w-72 min-w-96 ">
         <div>
           <Logo color={"white"} modal={true} />
@@ -100,7 +100,13 @@ export default function LoginModal() {
               </button>
             </div>
             <div className="mx-auto">
-              <button className="font-bold py-2.5 leading-none">
+              <button
+                className="font-bold py-2.5 leading-none"
+                onClick={() => {
+                  checkAndCloseAll();
+                  openStateWithOverlay("isRegisterModalOpen");
+                }}
+              >
                 Not yet registered? Register
               </button>
             </div>
