@@ -1,14 +1,19 @@
-import { useState } from "react";
 import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
 import useManagerStore from "../../js/store/useManagerStore";
+import useDataStore from "../../js/store/useDataStore";
 
 export default function LoginModal() {
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const {
+    emailAddress,
+    setEmailAddress,
+    password,
+    setPassword,
+    error,
+    setError,
+  } = useDataStore();
 
   const { login: loginToStore } = useAutStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
@@ -22,6 +27,7 @@ export default function LoginModal() {
         password,
         isManager,
       );
+
       loginToStore(name, email, avatar, token, venueManager);
       // alert("Login successful");
       closeAll();

@@ -30,10 +30,6 @@ export default async function registerUser(name, email, password, manager) {
         `Error ${response.status}: ${error.message || "Unknown error"}`,
       );
     }
-
-    const data = await response.json();
-
-    return data.email;
   } catch (error) {
     console.error("An error occurred:", error.message);
     throw error;

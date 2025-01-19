@@ -1,14 +1,31 @@
-import { useState } from "react";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
+import registerUser from "../../js/api/registerUser";
+import useDataStore from "../../js/store/useDataStore";
 
 export default function RegisterModal() {
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error] = useState("");
-
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
+  const {
+    name,
+    setName,
+    emailAddress,
+    setEmailAddress,
+    password,
+    setPassword,
+    error,
+    setError,
+  } = useDataStore();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await registerUser(name, emailAddress, password, false);
+      checkAndCloseAll();
+      openStateWithOverlay("isLoginModalOpen");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -28,7 +45,7 @@ export default function RegisterModal() {
               {error || "An unknown error occurred"}
             </p>
           )}
-          <form className="flex flex-col gap-5">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="email"
