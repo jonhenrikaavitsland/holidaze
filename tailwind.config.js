@@ -110,6 +110,10 @@ export default {
         heroMd: "30px 1fr 30px",
         heroLg: "1fr 1000px 1fr",
       },
+      borderRadius: {
+        big: "200px",
+        bigger: "400px",
+      },
     },
   },
   plugins: [],
