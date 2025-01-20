@@ -2,8 +2,10 @@ import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
 import registerUser from "../../js/api/registerUser";
 import useDataStore from "../../js/store/useDataStore";
+import { useLocation } from "react-router-dom";
 
 export default function RegisterModal() {
+  const location = useLocation();
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
   const {
     name,
@@ -18,8 +20,11 @@ export default function RegisterModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const isListingVenue = location.pathname.includes("list-your-venue");
+
     try {
-      await registerUser(name, emailAddress, password, false);
+      await registerUser(name, emailAddress, password, isListingVenue);
       checkAndCloseAll();
       openStateWithOverlay("isLoginModalOpen");
     } catch (error) {
