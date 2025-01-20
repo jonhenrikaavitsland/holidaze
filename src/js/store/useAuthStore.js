@@ -24,6 +24,11 @@ const useAuthStore = create(
           isVenueManager: false,
         });
       },
+      updateVenueManager: (venueManager) => {
+        set({
+          isVenueManager: !!venueManager,
+        });
+      },
     }),
     {
       name: "auth",

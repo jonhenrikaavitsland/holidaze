@@ -3,11 +3,32 @@ import listVenue from "../../data/listVenue/listVenue.json";
 import ListElement from "../../component/ListElement";
 import useUIStore from "../../js/store/useUIStore";
 import useAuthStore from "../../js/store/useAuthStore";
+import useUpdateProfile from "../../js/api/useUpdateProfile";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
   const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
-  const { isLoggedIn, isVenueManager } = useAuthStore();
+  const { isLoggedIn, isVenueManager, updateVenueManager } = useAuthStore();
+  const { updateProfile, loading, error } = useUpdateProfile();
+
+  const handleClick = async () => {
+    if (isLoggedIn) {
+      try {
+        const { venueManager } = await updateProfile();
+        console.log("API RESPONSE:", venueManager);
+        updateVenueManager(venueManager);
+        console.log(
+          "STORE isVenueManager:",
+          useAuthStore.getState().isVenueManager,
+        );
+      } catch (err) {
+        console.error("Error updating profile", err);
+      }
+    } else {
+      checkAndCloseAll();
+      openStateWithOverlay("isRegisterModalOpen");
+    }
+  };
 
   return (
     <div className="flex flex-col gap-10 md:gap-15">
@@ -67,15 +88,17 @@ export default function ListYourVenue() {
               </p>
             </section>
             <div>
-              <button
-                className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
-                onClick={() => {
-                  checkAndCloseAll();
-                  openStateWithOverlay("isRegisterModalOpen");
-                }}
-              >
-                {data.cta["cta-text"]}
-              </button>
+              {error ? (
+                <p className="text-custom-coral font-bold">{error}</p>
+              ) : (
+                <button
+                  className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+                  onClick={handleClick}
+                  disabled={loading}
+                >
+                  {loading ? "Updating..." : data.cta["cta-text"]}
+                </button>
+              )}
             </div>
           </div>
 
