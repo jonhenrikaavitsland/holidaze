@@ -32,7 +32,7 @@ function Overlay() {
       className={
         isOverlayOpen
           ? "absolute flex justify-end p-2.5 top-0 left-0 w-dvw h-dvh bg-natural-charcoal/80 z-40 cursor-pointer"
-          : "collapse"
+          : "hidden"
       }
       onClick={closeAll}
     >
