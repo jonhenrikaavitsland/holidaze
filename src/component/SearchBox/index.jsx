@@ -34,7 +34,7 @@ export default function SearchBox({
   };
 
   return (
-    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 sm:px-5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full min-w-64 shadow-md shadow-natural-charcoal/40">
+    <div className="flex flex-col gap-5 md:gap-7.5 pt-5 px-2.5 pb-7.5 sm:px-5 md:pt-7.5 md:px-5 md:pb-15 lg:px-7.5 bg-light-sky-blue rounded-xl sm:rounded-none relative z-20 row-start-2 row-end-4 col-start-2 col-end-3 sm:col-span-full sm:w-full sm:min-w-60 sm:flex-shrink w-90 md:w-200 lg:w-250 mx-auto shadow-md shadow-natural-charcoal/40">
       <SearchBar
         query={query}
         setQuery={setQuery}
@@ -169,7 +169,7 @@ function Field({ query, setQuery, handleSearch }) {
 
   return (
     <input
-      className="grow sm:rounded-t-xl sm:px-4 sm:text-center active:ring-transparent focus:outline-none"
+      className="grow sm:rounded-t-xl sm:px-4 sm:text-center active:ring-transparent focus:outline-none sm:min-w-48"
       type="text"
       id="search-bar"
       placeholder="Choose your destination..."
