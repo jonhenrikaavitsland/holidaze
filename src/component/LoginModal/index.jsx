@@ -3,8 +3,11 @@ import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
 import useDataStore from "../../js/store/useDataStore";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginModal() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     emailAddress,
     setEmailAddress,
@@ -28,6 +31,9 @@ export default function LoginModal() {
       loginToStore(name, email, avatar, token, venueManager);
       // alert("Login successful");
       closeAll();
+      if (location.pathname.includes("list-your-venue")) {
+        navigate("/venue-hub/");
+      }
     } catch (error) {
       setError(error.message);
     }
