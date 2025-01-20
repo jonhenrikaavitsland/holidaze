@@ -25,13 +25,9 @@ export default function RegisterModal() {
 
     const isListingVenue =
       location.pathname.includes("list-your-venue") && !isLoggedIn;
-    const updateToManager =
-      location.pathname.includes("list-your-venue") && isLoggedIn;
 
     try {
-      if (updateToManager) {
-        // await updateUser()
-      } else if (isListingVenue) {
+      if (isListingVenue) {
         await registerUser(name, emailAddress, password, isListingVenue);
       } else {
         await registerUser(name, emailAddress, password, false);
