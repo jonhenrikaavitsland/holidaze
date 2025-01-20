@@ -2,10 +2,12 @@ import { useState } from "react";
 import listVenue from "../../data/listVenue/listVenue.json";
 import ListElement from "../../component/ListElement";
 import useUIStore from "../../js/store/useUIStore";
+import useAuthStore from "../../js/store/useAuthStore";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
   const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
+  const { isLoggedIn } = useAuthStore();
 
   return (
     <div className="flex flex-col gap-10 md:gap-15">
@@ -73,19 +75,24 @@ export default function ListYourVenue() {
             </button>
           </div>
         </div>
-        <div>
-          <button
-            className="sm:py-0 py-2.5 text-lg-leading-none"
-            onClick={() => {
-              checkAndCloseAll();
-              openStateWithOverlay("isLoginModalOpen");
-            }}
-          >
-            <span>{data.cta.else}</span>
-            <span className="font-bold">{data.cta.elsePlus}</span>
-            <span>{data.cta.elseLast}</span>
-          </button>
-        </div>
+
+        {isLoggedIn ? (
+          ""
+        ) : (
+          <div>
+            <button
+              className="sm:py-0 py-2.5 text-lg-leading-none"
+              onClick={() => {
+                checkAndCloseAll();
+                openStateWithOverlay("isLoginModalOpen");
+              }}
+            >
+              <span>{data.cta.else}</span>
+              <span className="font-bold">{data.cta.elsePlus}</span>
+              <span>{data.cta.elseLast}</span>
+            </button>
+          </div>
+        )}
       </div>
       <section className="mx-5 md:mx-7.5 font-serif italic font-bold text-2xl md:text-4xl-leading-150">
         <h3>{data.final}</h3>
