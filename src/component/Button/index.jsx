@@ -1,11 +1,9 @@
 import useAuthStore from "../../js/store/useAuthStore";
 import useDataStore from "../../js/store/useDataStore";
-import useManagerStore from "../../js/store/useManagerStore";
 
 /* eslint-disable react/prop-types */
 export default function Button(props) {
   const { logout } = useAuthStore();
-  const { setIsManager } = useManagerStore();
   const { clear } = useDataStore();
 
   function handleColor() {
@@ -22,7 +20,6 @@ export default function Button(props) {
         type="button"
         onClick={() => {
           if (props.action) {
-            setIsManager(false);
             logout();
             clear();
           }
