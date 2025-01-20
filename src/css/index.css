@@ -13,6 +13,14 @@
 
   @font-face {
     font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-LightItalic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
