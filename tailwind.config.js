@@ -46,6 +46,12 @@ export default {
             lineHeight: "1",
           },
         ],
+        "3xl-leading-150": [
+          "1.875rem",
+          {
+            lineHeight: "1.5",
+          },
+        ],
         "5xl-50": [
           "3.125rem",
           {
@@ -94,6 +100,7 @@ export default {
         7.5: "30px",
       },
       gap: {
+        3.75: "15px",
         7.5: "30px",
         12.5: "50px",
         15: "60px",
