@@ -17,7 +17,7 @@ export default function App() {
           ) : (
             <Route
               path="/list-your-venue/"
-              element={<Navigate to="/404" replace />}
+              element={<Navigate to="/venue-hub/" replace />}
             />
           )}
           {/* Catch-all 404 route */}
