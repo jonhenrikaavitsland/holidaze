@@ -127,7 +127,6 @@ export default {
       },
       borderRadius: {
         big: "200px",
-        bigger: "400px",
       },
     },
   },
