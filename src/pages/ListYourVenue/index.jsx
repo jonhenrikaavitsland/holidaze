@@ -7,7 +7,7 @@ import useAuthStore from "../../js/store/useAuthStore";
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
   const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn, isVenueManager } = useAuthStore();
 
   return (
     <div className="flex flex-col gap-10 md:gap-15">
@@ -53,47 +53,51 @@ export default function ListYourVenue() {
           </p>
         </article>
       </div>
-      <div className="flex flex-col text-center gap-10 mx-5 md:mx-7.5 md:gap-12.5">
-        <div className="flex flex-col gap-5 md:gap-7.5">
-          <section className="flex flex-col gap-2.5 md:gap-3.75">
-            <h2 className="font-serif font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue">
-              {data.cta.title}
-            </h2>
-            <p className="leading-none md:text-lg-leading-none">
-              {data.cta.text}
-            </p>
-          </section>
-          <div>
-            <button
-              className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
-              onClick={() => {
-                checkAndCloseAll();
-                openStateWithOverlay("isRegisterModalOpen");
-              }}
-            >
-              {data.cta["cta-text"]}
-            </button>
+      {isVenueManager ? (
+        ""
+      ) : (
+        <div className="flex flex-col text-center gap-10 mx-5 md:mx-7.5 md:gap-12.5">
+          <div className="flex flex-col gap-5 md:gap-7.5">
+            <section className="flex flex-col gap-2.5 md:gap-3.75">
+              <h2 className="font-serif font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue">
+                {data.cta.title}
+              </h2>
+              <p className="leading-none md:text-lg-leading-none">
+                {data.cta.text}
+              </p>
+            </section>
+            <div>
+              <button
+                className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+                onClick={() => {
+                  checkAndCloseAll();
+                  openStateWithOverlay("isRegisterModalOpen");
+                }}
+              >
+                {data.cta["cta-text"]}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {isLoggedIn ? (
-          ""
-        ) : (
-          <div>
-            <button
-              className="sm:py-0 py-2.5 text-lg-leading-none"
-              onClick={() => {
-                checkAndCloseAll();
-                openStateWithOverlay("isLoginModalOpen");
-              }}
-            >
-              <span>{data.cta.else}</span>
-              <span className="font-bold">{data.cta.elsePlus}</span>
-              <span>{data.cta.elseLast}</span>
-            </button>
-          </div>
-        )}
-      </div>
+          {isLoggedIn ? (
+            ""
+          ) : (
+            <div>
+              <button
+                className="sm:py-0 py-2.5 text-lg-leading-none"
+                onClick={() => {
+                  checkAndCloseAll();
+                  openStateWithOverlay("isLoginModalOpen");
+                }}
+              >
+                <span>{data.cta.else}</span>
+                <span className="font-bold">{data.cta.elsePlus}</span>
+                <span>{data.cta.elseLast}</span>
+              </button>
+            </div>
+          )}
+        </div>
+      )}
       <section className="mx-5 md:mx-7.5 font-serif italic font-bold text-2xl md:text-4xl-leading-150">
         <h3>{data.final}</h3>
       </section>
