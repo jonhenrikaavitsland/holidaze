@@ -1,9 +1,11 @@
 import { useState } from "react";
 import listVenue from "../../data/listVenue/listVenue.json";
 import ListElement from "../../component/ListElement";
+import useUIStore from "../../js/store/useUIStore";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
+  const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
 
   return (
     <div className="flex flex-col gap-10 md:gap-15">
@@ -60,13 +62,25 @@ export default function ListYourVenue() {
             </p>
           </section>
           <div>
-            <button className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
+            <button
+              className="py-3.75 md:py-5 px-7.5 md:px-10 bg-deep-blue text-white font-serif font-bold text-xl-leading-none md:text-2xl-leading-none rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+              onClick={() => {
+                checkAndCloseAll();
+                openStateWithOverlay("isRegisterModalOpen");
+              }}
+            >
               {data.cta["cta-text"]}
             </button>
           </div>
         </div>
         <div>
-          <button className="sm:py-0 py-2.5 text-lg-leading-none">
+          <button
+            className="sm:py-0 py-2.5 text-lg-leading-none"
+            onClick={() => {
+              checkAndCloseAll();
+              openStateWithOverlay("isLoginModalOpen");
+            }}
+          >
             <span>{data.cta.else}</span>
             <span className="font-bold">{data.cta.elsePlus}</span>
             <span>{data.cta.elseLast}</span>
