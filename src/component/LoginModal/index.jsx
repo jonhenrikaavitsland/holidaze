@@ -2,7 +2,6 @@ import useAutStore from "../../js/store/useAuthStore";
 import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
-import useManagerStore from "../../js/store/useManagerStore";
 import useDataStore from "../../js/store/useDataStore";
 
 export default function LoginModal() {
@@ -17,7 +16,6 @@ export default function LoginModal() {
 
   const { login: loginToStore } = useAutStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
-  const { isManager } = useManagerStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +23,6 @@ export default function LoginModal() {
       const { name, email, avatar, token, venueManager } = await login(
         emailAddress,
         password,
-        isManager,
       );
 
       loginToStore(name, email, avatar, token, venueManager);

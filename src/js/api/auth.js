@@ -1,7 +1,7 @@
-export async function login(emailAddress, password, isManager) {
+export async function login(emailAddress, password) {
   try {
     const response = await fetch(
-      `https://v2.api.noroff.dev/auth/login?_holidaze=${isManager}`,
+      `https://v2.api.noroff.dev/auth/login?_holidaze=true`,
       {
         method: "POST",
         headers: {
