@@ -19,7 +19,7 @@ const useCreateVenueStore = create((set) => ({
   location: "",
   zipCode: "",
   price: 0,
-  rating: 0,
+  rating: 1,
   sleeps: 0,
 
   // Setters for form inputs
