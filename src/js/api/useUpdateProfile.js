@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { useLocation } from "react-router-dom";
+import { apiKey, apiUrl, profilesPath } from "../data/constants";
 
 const useUpdateProfile = () => {
   const { user, token } = useAuthStore();
@@ -11,10 +12,10 @@ const useUpdateProfile = () => {
   const updateProfile = async (formData = null) => {
     const url = location.pathname;
     const isVenueManager = url.includes("list-your-venue");
-    const apiUrl = `https://v2.api.noroff.dev/holidaze/profiles/${user.name}`;
+    const apiAddress = `${apiUrl}${profilesPath}/${user.name}`;
     const headers = {
       "Content-Type": "application/json",
-      "X-Noroff-API-Key": "15bd7de6-1a86-45ac-9f64-46d861d8837a",
+      "X-Noroff-API-Key": apiKey,
       Authorization: `Bearer ${token}`,
     };
 
@@ -29,7 +30,7 @@ const useUpdateProfile = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(apiUrl, {
+      const response = await fetch(apiAddress, {
         method: "PUT",
         headers,
         body,
