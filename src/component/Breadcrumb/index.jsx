@@ -22,11 +22,11 @@ export default function BreadCrumb() {
     switch (currentPath) {
       case "/venue-hub/create-new-venue/":
         return (
-          <nav>
-            <ul>
+          <nav className="ms-5 md:ms-7.5 lg:ms-10">
+            <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
               <LinkElement to="/venue-hub" content="Venue HUB" />
-              <li>
+              <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{"Create New Venue"}</span>
               </li>
             </ul>
@@ -34,11 +34,11 @@ export default function BreadCrumb() {
         );
       case "/venue-hub/update-venue/":
         return (
-          <nav>
-            <ul>
+          <nav className="ms-5 md:ms-7.5 lg:ms-10">
+            <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
               <LinkElement to="/venue-hub" content="Venue HUB" />
-              <li>
+              <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{"Update Venue"}</span>
               </li>
             </ul>
@@ -46,11 +46,11 @@ export default function BreadCrumb() {
         );
       case `/${venueId}/booking/`:
         return (
-          <nav>
-            <ul>
+          <nav className="ms-5 md:ms-7.5 lg:ms-10">
+            <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
               <LinkElement to={venueId} content={venueName} />
-              <li>
+              <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{"Booking"}</span>
               </li>
             </ul>
@@ -58,10 +58,10 @@ export default function BreadCrumb() {
         );
       case `/${venueId}/`:
         return (
-          <nav>
-            <ul>
+          <nav className="ms-5 md:ms-7.5 lg:ms-10">
+            <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
-              <li>
+              <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{venueName}</span>
               </li>
             </ul>
@@ -69,10 +69,10 @@ export default function BreadCrumb() {
         );
       case currentBreadcrumb:
         return (
-          <nav>
-            <ul>
+          <nav className="ms-5 md:ms-7.5 lg:ms-10">
+            <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
-              <li>
+              <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{currentBreadcrumb}</span>
               </li>
             </ul>
