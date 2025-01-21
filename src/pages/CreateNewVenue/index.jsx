@@ -119,7 +119,7 @@ export default function CreateNewVenue() {
             <div>
               <label htmlFor="description"></label>
               <textarea
-                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain"
+                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar"
                 name="description"
                 id="description"
               ></textarea>
