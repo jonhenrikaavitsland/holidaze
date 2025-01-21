@@ -28,6 +28,7 @@ export default function CreateNewVenue() {
             <legend className="sr-only">name and location data</legend>
             <ul className="flex flex-col gap-5">
               <FormListElement
+                setter="venue"
                 element="venue"
                 label="venue"
                 error={error}
@@ -35,6 +36,7 @@ export default function CreateNewVenue() {
                 placeholder="Venue name"
               />
               <FormListElement
+                setter="address"
                 element="address"
                 label="address"
                 error={error}
@@ -43,6 +45,7 @@ export default function CreateNewVenue() {
               />
               <ChooseLocation />
               <FormListElement
+                setter="zipCode"
                 element="zip-code"
                 label="zip code"
                 error={error}
@@ -55,6 +58,7 @@ export default function CreateNewVenue() {
             <legend className="sr-only">accommodation details</legend>
             <ul className="flex flex-col gap-5">
               <FormListElement
+                setter="price"
                 element="price"
                 label="price €"
                 error={error}
@@ -63,6 +67,7 @@ export default function CreateNewVenue() {
               />
               <RatingElement />
               <FormListElement
+                setter="sleeps"
                 element="sleeps"
                 label="sleeps"
                 error={error}
@@ -144,12 +149,9 @@ function CustomSwitch({ isOn, onToggle, id, label }) {
 }
 
 function RatingElement() {
-  const { rating, setRating } = useCreateVenueStore();
+  const { setRating } = useCreateVenueStore();
   const [iconCount, setIconCount] = useState(1);
   const maxIcons = 5;
-
-  console.log("Rating:", rating);
-  console.log("Count", iconCount);
 
   useEffect(() => {
     setRating(iconCount);
@@ -214,6 +216,42 @@ function RatingElement() {
 }
 
 function FormListElement(props) {
+  const {
+    venue,
+    address,
+    zipCode,
+    price,
+    sleeps,
+    setVenue,
+    setAddress,
+    setZipCode,
+    setPrice,
+    setSleeps,
+  } = useCreateVenueStore();
+
+  const valueMap = { venue, address, zipCode, price, sleeps };
+  const value = valueMap[props.setter] ?? "";
+
+  // A switch that returns the appropriate setter function
+  const getOnChangeHandler = () => {
+    switch (props.setter) {
+      case "venue":
+        return (e) => setVenue(e.target.value);
+      case "address":
+        return (e) => setAddress(e.target.value);
+      case "zipCode":
+        return (e) => setZipCode(e.target.value);
+      case "price":
+        return (e) => setPrice(e.target.value);
+      case "sleeps":
+        return (e) => setSleeps(e.target.value);
+      default:
+        return undefined;
+    }
+  };
+
+  const onChangeHandler = getOnChangeHandler();
+
   return (
     <li>
       <div className="flex flex-col gap-1">
@@ -231,6 +269,8 @@ function FormListElement(props) {
           required={props.mustHave}
           aria-invalid={!!props.error}
           aria-describedby={props.error ? `${props.element}-error` : undefined}
+          value={value}
+          onChange={onChangeHandler}
         />
         {props.error && (
           <p
@@ -248,7 +288,6 @@ function FormListElement(props) {
 function ChooseLocation() {
   const { location, setLocation } = useCreateVenueStore();
 
-  console.log("Location:", location);
   return (
     <li>
       <div className="flex flex-col gap-1">
