@@ -1,6 +1,7 @@
+import { apiKey, apiUrl, registerPath } from "../data/constants";
+
 export default async function registerUser(name, email, password, manager) {
-  const url = "https://v2.api.noroff.dev/auth/register";
-  const apiKey = "15bd7de6-1a86-45ac-9f64-46d861d8837a";
+  const url = apiUrl + registerPath;
 
   const requestBody = {
     name,
