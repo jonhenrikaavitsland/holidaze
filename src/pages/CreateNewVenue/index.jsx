@@ -76,7 +76,7 @@ export default function CreateNewVenue() {
               />
             </ul>
           </fieldset>
-          <fieldset className="flex flex-col gap-2.5">
+          <fieldset className="flex flex-col gap-2.5 mt-5">
             <legend className="sr-only">amenities</legend>
             <h2 className="font-serif text-lg-leading-none font-bold text-deep-blue text-center">
               Amenities
@@ -110,21 +110,32 @@ export default function CreateNewVenue() {
               </ul>
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset className="mt-5">
             <legend className="sr-only">media</legend>
             <MediaElement />
           </fieldset>
-          <fieldset>
+          <fieldset className="my-5">
             <legend className="sr-only">description</legend>
-            <div>
-              <label htmlFor="description"></label>
+            <div className="flex flex-col gap-1">
+              <label
+                className="text-sm-leading-none capitalize"
+                htmlFor="description"
+              >
+                description
+              </label>
               <textarea
                 className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar"
                 name="description"
                 id="description"
+                placeholder="Describe your amazing venue"
               ></textarea>
             </div>
           </fieldset>
+          <div className="flex justify-center">
+            <button className="font-serif font-bold text-xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 rounded-xl shadow-md shadow-natural-charcoal/40">
+              Create Venue
+            </button>
+          </div>
         </form>
       </section>
     </div>
