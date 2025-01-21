@@ -1,3 +1,5 @@
+import BreadCrumb from "../../component/Breadcrumb";
+
 export default function CreateNewVenue() {
-  return <div></div>;
+  return <div>{<BreadCrumb />}</div>;
 }
