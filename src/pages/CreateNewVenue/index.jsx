@@ -110,8 +110,70 @@ export default function CreateNewVenue() {
               </ul>
             </div>
           </fieldset>
+          <fieldset>
+            <legend className="sr-only">media</legend>
+            <MediaElement />
+          </fieldset>
+          <fieldset>
+            <legend className="sr-only">description</legend>
+            <div>
+              <label htmlFor="description"></label>
+              <textarea
+                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain"
+                name="description"
+                id="description"
+              ></textarea>
+            </div>
+          </fieldset>
         </form>
       </section>
+    </div>
+  );
+}
+
+function MediaElement(props) {
+  const [inputs, setInputs] = useState([""]);
+
+  const handleInputChange = (index, value) => {
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+    setInputs(newInputs);
+
+    // If the last input has a value, add a new empty input
+    if (
+      value.trim() !== "" &&
+      index === inputs.length - 1 &&
+      inputs.length < 10
+    ) {
+      setInputs([...newInputs, ""]);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-1">
+      <label className="text-sm-leading-none capitalize" htmlFor="media-0">
+        media
+      </label>
+      <ul className="flex flex-col gap-2.5">
+        {inputs.map((input, index) => (
+          <li key={index}>
+            <input
+              className="bg-warm-beige border border-natural-charcoal/40 h-6 text-center font-medium leading-none w-full"
+              type="text"
+              value={input}
+              placeholder="https://unsplash.com/photos/"
+              onChange={(e) => handleInputChange(index, e.target.value)}
+              required={index === 0 ? true : ""}
+              id={`media-${index}`}
+            />
+          </li>
+        ))}
+      </ul>
+      {props.error && (
+        <p className="text-custom-coral text-sm-leading-none font-bold text-center">
+          {props.error}
+        </p>
+      )}
     </div>
   );
 }
