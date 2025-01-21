@@ -12,6 +12,24 @@ const useCreateVenueStore = create((set) => ({
   toggleBreakfast: () => set((state) => ({ breakfast: !state.breakfast })),
   toggleParking: () => set((state) => ({ parking: !state.parking })),
   togglePets: () => set((state) => ({ pets: !state.pets })),
+
+  // Additional states
+  venue: "",
+  address: "",
+  location: "",
+  zipCode: "",
+  price: 0,
+  rating: 0,
+  sleeps: 0,
+
+  // Setters for form inputs
+  setVenue: (value) => set(() => ({ venue: value })),
+  setAddress: (value) => set(() => ({ address: value })),
+  setLocation: (value) => set(() => ({ location: value })),
+  setZipCode: (value) => set(() => ({ zipCode: value })),
+  setPrice: (value) => set(() => ({ price: value })),
+  setRating: (value) => set(() => ({ rating: value })),
+  setSleeps: (value) => set(() => ({ sleeps: value })),
 }));
 
 export default useCreateVenueStore;
