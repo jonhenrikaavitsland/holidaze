@@ -1,35 +1,43 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useCreateVenueStore = create((set) => ({
-  // Initial states for amenities
-  wifi: false,
-  breakfast: false,
-  parking: false,
-  pets: false,
+const useCreateVenueStore = create(
+  persist(
+    (set) => ({
+      // Initial states for amenities
+      wifi: false,
+      breakfast: false,
+      parking: false,
+      pets: false,
 
-  // Toggle functions for amenities
-  toggleWifi: () => set((state) => ({ wifi: !state.wifi })),
-  toggleBreakfast: () => set((state) => ({ breakfast: !state.breakfast })),
-  toggleParking: () => set((state) => ({ parking: !state.parking })),
-  togglePets: () => set((state) => ({ pets: !state.pets })),
+      // Toggle functions for amenities
+      toggleWifi: () => set((state) => ({ wifi: !state.wifi })),
+      toggleBreakfast: () => set((state) => ({ breakfast: !state.breakfast })),
+      toggleParking: () => set((state) => ({ parking: !state.parking })),
+      togglePets: () => set((state) => ({ pets: !state.pets })),
 
-  // Additional states
-  venue: "",
-  address: "",
-  location: "",
-  zipCode: "",
-  price: "",
-  rating: 1,
-  sleeps: "",
+      // Additional states
+      venue: "",
+      address: "",
+      location: "",
+      zipCode: "",
+      price: "",
+      rating: 1,
+      sleeps: "",
 
-  // Setters for form inputs
-  setVenue: (value) => set(() => ({ venue: value })),
-  setAddress: (value) => set(() => ({ address: value })),
-  setLocation: (value) => set(() => ({ location: value })),
-  setZipCode: (value) => set(() => ({ zipCode: value })),
-  setPrice: (value) => set(() => ({ price: value })),
-  setRating: (value) => set(() => ({ rating: value })),
-  setSleeps: (value) => set(() => ({ sleeps: value })),
-}));
+      // Setters for form inputs
+      setVenue: (value) => set(() => ({ venue: value })),
+      setAddress: (value) => set(() => ({ address: value })),
+      setLocation: (value) => set(() => ({ location: value })),
+      setZipCode: (value) => set(() => ({ zipCode: value })),
+      setPrice: (value) => set(() => ({ price: value })),
+      setRating: (value) => set(() => ({ rating: value })),
+      setSleeps: (value) => set(() => ({ sleeps: value })),
+    }),
+    {
+      name: "createVenue",
+    },
+  ),
+);
 
 export default useCreateVenueStore;
