@@ -143,12 +143,24 @@ export default function CreateNewVenue() {
 }
 
 function MediaElement(props) {
-  const [inputs, setInputs] = useState([""]);
+  const { setMedia, ...mediaStates } = useCreateVenueStore();
+  const [inputs, setInputs] = useState(() => {
+    const initialInputs = [];
+    for (let i = 0; i < 10; i++) {
+      initialInputs.push(mediaStates[`media-${i}`] || "");
+    }
+    return (
+      initialInputs.filter((input, index) => index === 0 || input !== "") || [
+        "",
+      ]
+    );
+  });
 
   const handleInputChange = (index, value) => {
+    setMedia(index, value);
     const newInputs = [...inputs];
     newInputs[index] = value;
-    setInputs(newInputs);
+    // setInputs(newInputs);
 
     // If the last input has a value, add a new empty input
     if (
@@ -156,8 +168,11 @@ function MediaElement(props) {
       index === inputs.length - 1 &&
       inputs.length < 10
     ) {
-      setInputs([...newInputs, ""]);
+      newInputs.push("");
     }
+
+    const trimmedInputs = newInputs.slice(0, 10);
+    setInputs(trimmedInputs);
   };
 
   return (
@@ -174,7 +189,7 @@ function MediaElement(props) {
               value={input}
               placeholder="https://unsplash.com/photos/"
               onChange={(e) => handleInputChange(index, e.target.value)}
-              required={index === 0 ? true : ""}
+              required={index === 0}
               id={`media-${index}`}
             />
           </li>
