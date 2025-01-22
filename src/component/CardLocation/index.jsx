@@ -7,9 +7,12 @@ import imageElCotillo from "../../data/locations/images/cotillo_1.jpg";
 import { useState } from "react";
 import IconSun from "../IconSun";
 import NamePlate from "../NamePlate";
+import { useNavigate } from "react-router-dom";
 
 export default function CardLocation({ location, className }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const navigate = useNavigate();
 
   const imageMapping = {
     Corralejo: imageCorralejo,
@@ -27,6 +30,11 @@ export default function CardLocation({ location, className }) {
       style={{ backgroundImage: `url(${image})` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() =>
+        navigate(
+          `/locations/${location.name.toLowerCase().replace(/\s+/g, "-")}`,
+        )
+      }
     >
       <IconSun isHovered={isHovered} />
       <NamePlate location={location} />
