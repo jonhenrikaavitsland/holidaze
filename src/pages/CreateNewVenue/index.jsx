@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import BreadCrumb from "../../component/Breadcrumb";
 import useCreateVenueStore from "../../js/store/useCreateVenueStore";
+import useCreateVenue from "../../js/api/useCreateVenue";
+import { apiKey, apiUrl } from "../../js/data/constants";
 
 export default function CreateNewVenue() {
   const {
@@ -15,8 +17,62 @@ export default function CreateNewVenue() {
     togglePets,
     description,
     setDescription,
+    clearAll,
+    venue,
+    address,
+    location,
+    zipCode,
+    price,
+    rating,
+    sleeps,
+    media0,
+    media1,
+    media2,
+    media3,
+    media4,
+    media5,
+    media6,
+    media7,
+    media8,
+    media9,
   } = useCreateVenueStore();
-  const error = "";
+  const { createVenue, isLoading, error, success } = useCreateVenue(
+    apiUrl,
+    apiKey,
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createVenue({
+      wifi,
+      breakfast,
+      parking,
+      pets,
+      venue,
+      address,
+      location,
+      zipCode,
+      price,
+      rating,
+      sleeps,
+      description,
+      media0,
+      media1,
+      media2,
+      media3,
+      media4,
+      media5,
+      media6,
+      media7,
+      media8,
+      media9,
+    });
+    console.log("Error:", error);
+    if (success) {
+      clearAll();
+      // navigate to the venue-page of the new venue
+    }
+  };
 
   return (
     <div>
@@ -25,7 +81,7 @@ export default function CreateNewVenue() {
         <h1 className="font-bold font-serif text-deep-blue text-xl-leading-none text-center">
           Create new Venue
         </h1>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <fieldset>
             <legend className="sr-only">name and location data</legend>
             <ul className="flex flex-col gap-5">
@@ -136,7 +192,10 @@ export default function CreateNewVenue() {
             </div>
           </fieldset>
           <div className="flex justify-center">
-            <button className="font-serif font-bold text-xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 rounded-xl shadow-md shadow-natural-charcoal/40">
+            <button
+              className="font-serif font-bold text-xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 rounded-xl shadow-md shadow-natural-charcoal/40"
+              disabled={isLoading}
+            >
               Create Venue
             </button>
           </div>
@@ -151,7 +210,7 @@ function MediaElement(props) {
   const [inputs, setInputs] = useState(() => {
     const initialInputs = [];
     for (let i = 0; i < 10; i++) {
-      initialInputs.push(mediaStates[`media-${i}`] || "");
+      initialInputs.push(mediaStates[`media${i}`] || "");
     }
     return (
       initialInputs.filter((input, index) => index === 0 || input !== "") || [

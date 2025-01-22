@@ -1,6 +1,8 @@
 import { useState } from "react";
+import useAuthStore from "../store/useAuthStore";
 
 const useCreateVenue = (apiUrl, apiKey) => {
+  const { token } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -24,7 +26,16 @@ const useCreateVenue = (apiUrl, apiKey) => {
         rating,
         sleeps,
         description,
-        ...mediaUrls
+        media0,
+        media1,
+        media2,
+        media3,
+        media4,
+        media5,
+        media6,
+        media7,
+        media8,
+        media9,
       } = values;
 
       // Map location
@@ -41,11 +52,21 @@ const useCreateVenue = (apiUrl, apiKey) => {
       const lat = selectedLocation.lat || 0;
       const lng = selectedLocation.lng || 0;
 
-      // Prepare media array
-      const media = Object.keys(mediaUrls)
-        .filter((key) => key.startsWith("media-") && mediaUrls[key])
-        .map((key) => ({
-          url: mediaUrls[key],
+      const media = [
+        media0,
+        media1,
+        media2,
+        media3,
+        media4,
+        media5,
+        media6,
+        media7,
+        media8,
+        media9,
+      ]
+        .filter((url) => url && url.trim() !== "")
+        .map((url) => ({
+          url,
           alt: "A wonderful place under the sun",
         }));
 
@@ -80,9 +101,11 @@ const useCreateVenue = (apiUrl, apiKey) => {
         headers: {
           "Content-Type": "application/json",
           "X-Noroff-API-Key": apiKey,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(requestBody),
       });
+      console.log(await response.json());
 
       if (!response.ok) {
         const errorData = await response.json();
