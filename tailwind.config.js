@@ -108,6 +108,7 @@ export default {
       },
       inset: {
         7.5: "30px",
+        loader: "33.33333px",
       },
       gap: {
         3.75: "15px",
@@ -131,6 +132,25 @@ export default {
       },
       borderRadius: {
         big: "200px",
+      },
+      animation: {
+        ldsEllipsis1: "ldsEllipsis1 0.6s infinite cubic-bezier(0, 1, 1, 0)",
+        ldsEllipsis2: "ldsEllipsis2 0.6s infinite cubic-bezier(0, 1, 1, 0)",
+        ldsEllipsis3: "ldsEllipsis3 0.6s infinite cubic-bezier(0, 1, 1, 0)",
+      },
+      keyframes: {
+        ldsEllipsis1: {
+          "0%": { transform: "scale(0)" },
+          "100%": { transform: "scale(1)" },
+        },
+        ldsEllipsis2: {
+          "0%": { transform: "translate(0, 0)" },
+          "100%": { transform: "translate(24px, 0)" },
+        },
+        ldsEllipsis3: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(0)" },
+        },
       },
     },
   },
