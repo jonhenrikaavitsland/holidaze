@@ -2,9 +2,12 @@
 import { useState } from "react";
 import IconSun from "../IconSun";
 import NamePlate from "../NamePlate";
+import { useNavigate } from "react-router-dom";
 
 export default function CardVenue({ venue, className }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -12,6 +15,7 @@ export default function CardVenue({ venue, className }) {
       style={{ backgroundImage: `url(${venue.media[0]?.url})` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => navigate(`/${venue.id}`)}
     >
       <IconSun isHovered={isHovered} />
       <NamePlate location={venue} />
