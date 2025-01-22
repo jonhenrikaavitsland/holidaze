@@ -25,7 +25,11 @@ export default function App() {
             path="/venue-hub/create-new-venue/"
             element={<CreateNewVenue />}
           />
-          <Route path="/:venueId" />
+          <Route path="/venue/:venueId" />
+          <Route path="/locations/:locationName" />
+          {/* Redirects */}
+          <Route path="/venue" element={<Navigate to="/" replace />} />
+          <Route path="/locations" element={<Navigate to="/" replace />} />
           {/* Catch-all 404 route */}
           {/* <Route path='*' element={<NotFound />} /> */}
         </Route>
