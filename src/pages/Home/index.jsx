@@ -7,6 +7,7 @@ import locationData from "../../data/locations/locations.json";
 import { useAPISearch } from "../../js/api/useAPISearch";
 import CardVenue from "../../component/CardVenue";
 import HeadingTwo from "../../component/HeadingTwo";
+import Loader from "../../component/Loader";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -74,12 +75,7 @@ export default function Home() {
       <div className="grid gap-5 md:gap-7.5 lg:gap-10 lg:grid-cols-2">
         {isLoading ? (
           <div className="col-span-full justify-self-center">
-            <div className="lds-ellipsis">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <Loader />
           </div>
         ) : isError ? (
           <div>Error</div>
