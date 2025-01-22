@@ -1,5 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { locationsMap } from "../data/constants";
+
+// Constants for filtering
+const TARGET_LOCATIONS = Object.values(locationsMap).map(({ lat, lng }) => ({
+  lat,
+  lng,
+}));
 
 export function useAPISearch(url) {
   const [data, setData] = useState([]);
@@ -25,8 +32,17 @@ export function useAPISearch(url) {
         const json = await fetchedData.json();
         const { meta, data: initialData } = json;
 
+        const isTargetLocation = (item) =>
+          item.location &&
+          TARGET_LOCATIONS.some(
+            (target) =>
+              item.location.lat === target.lat &&
+              item.location.lng === target.lng,
+          );
+
         if (!meta || meta.pageCount <= 1) {
-          setData(initialData.reverse());
+          const filteredData = initialData.filter(isTargetLocation);
+          setData(filteredData.reverse());
           return;
         }
 
@@ -48,7 +64,9 @@ export function useAPISearch(url) {
           }
         });
 
-        setData(allData.reverse());
+        const filteredData = allData.filter(isTargetLocation);
+
+        setData(filteredData.reverse());
       } catch (error) {
         console.error(error);
         setIsError(true);
