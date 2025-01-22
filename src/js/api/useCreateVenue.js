@@ -105,7 +105,6 @@ const useCreateVenue = (apiUrl, apiKey) => {
         },
         body: JSON.stringify(requestBody),
       });
-      console.log(await response.json());
 
       if (!response.ok) {
         const errorData = await response.json();
