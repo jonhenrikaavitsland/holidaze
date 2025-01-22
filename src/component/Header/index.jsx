@@ -51,7 +51,7 @@ function Navbar({ isThrottled, handleClick }) {
       <ul
         className={
           isMenuOpen
-            ? "visible flex flex-col items-center gap-8 pb-7.5 mt-10"
+            ? "flex flex-col items-center gap-8 pb-7.5 mt-10"
             : "collapse lg:visible flex flex-col lg:flex-row lg:gap-10"
         }
       >
@@ -60,7 +60,7 @@ function Navbar({ isThrottled, handleClick }) {
           <LinkBtn to="/account" text="Account" />
         ) : (
           <button
-            className="py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
+            className="py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto"
             type="button"
             onClick={() => {
               if (isMenuOpen) {
@@ -122,8 +122,8 @@ function LinkBtn(props) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75"
-            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20"
+            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75 w-44 lg:w-auto inline-block text-center"
+            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto inline-block text-center"
         }
         to={props.to}
       >
