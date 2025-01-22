@@ -17,7 +17,6 @@ export default function CreateNewVenue() {
     togglePets,
     description,
     setDescription,
-    clearAll,
     venue,
     address,
     location,
@@ -36,10 +35,7 @@ export default function CreateNewVenue() {
     media8,
     media9,
   } = useCreateVenueStore();
-  const { createVenue, isLoading, error, success } = useCreateVenue(
-    apiUrl,
-    apiKey,
-  );
+  const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,10 +64,6 @@ export default function CreateNewVenue() {
       media9,
     });
     console.log("Error:", error);
-    if (success) {
-      clearAll();
-      // navigate to the venue-page of the new venue
-    }
   };
 
   return (
@@ -195,6 +187,7 @@ export default function CreateNewVenue() {
             <button
               className="font-serif font-bold text-xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 rounded-xl shadow-md shadow-natural-charcoal/40"
               disabled={isLoading}
+              type="submit"
             >
               Create Venue
             </button>

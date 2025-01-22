@@ -1,11 +1,13 @@
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
+import useCreateVenueStore from "../store/useCreateVenueStore";
 
 const useCreateVenue = (apiUrl, apiKey) => {
   const { token } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const { clearAll } = useCreateVenueStore();
 
   const createVenue = async (values) => {
     setIsLoading(true);
@@ -112,6 +114,7 @@ const useCreateVenue = (apiUrl, apiKey) => {
       }
 
       setSuccess(true);
+      clearAll();
     } catch (error) {
       setError(error.message || "An error occurred");
     } finally {
