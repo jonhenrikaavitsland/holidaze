@@ -1,9 +1,9 @@
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
-import registerUser from "../../js/api/registerUser";
 import useDataStore from "../../js/store/useDataStore";
 import { useLocation } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
+import { useRegisterUser } from "../../js/api/useRegisterUser";
 
 export default function RegisterModal() {
   const location = useLocation();
@@ -19,6 +19,7 @@ export default function RegisterModal() {
     setError,
   } = useDataStore();
   const { isLoggedIn } = useAuthStore();
+  const { registerUser } = useRegisterUser(); //loading, error: registerError Will look into error handling and loading
 
   const handleSubmit = async (e) => {
     e.preventDefault();
