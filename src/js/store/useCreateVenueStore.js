@@ -46,7 +46,7 @@ const useCreateVenueStore = create(
       setDescription: (value) => set(() => ({ description: value })),
 
       clearAll: () =>
-        set(() => ({
+        set({
           wifi: false,
           breakfast: false,
           parking: false,
@@ -69,7 +69,7 @@ const useCreateVenueStore = create(
           media8: "",
           media9: "",
           description: "",
-        })),
+        }),
     }),
     {
       name: "createVenue",

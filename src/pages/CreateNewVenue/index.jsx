@@ -36,7 +36,10 @@ export default function CreateNewVenue() {
     media8,
     media9,
   } = useCreateVenueStore();
-  const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
+  const { createVenue, isLoading, error, success } = useCreateVenue(
+    apiUrl,
+    apiKey,
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,8 +68,10 @@ export default function CreateNewVenue() {
       media9,
     });
     console.log("Error:", error);
-    clearAll();
-    // navigate to the venue-page of the new venue
+    if (success) {
+      clearAll();
+      // navigate to the venue-page of the new venue
+    }
   };
 
   return (
