@@ -15,7 +15,7 @@ export default function CardVenue({ venue, className }) {
       style={{ backgroundImage: `url(${venue.media[0]?.url})` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => navigate(`/${venue.id}`)}
+      onClick={() => navigate(`/venue/${venue.id}`)}
     >
       <IconSun isHovered={isHovered} />
       <NamePlate location={venue} />
