@@ -1,9 +1,9 @@
 import useAutStore from "../../js/store/useAuthStore";
-import { login } from "../../js/api/auth";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
 import useDataStore from "../../js/store/useDataStore";
 import { useLocation, useNavigate } from "react-router-dom";
+import useLogin from "../../js/api/useLogin";
 
 export default function LoginModal() {
   const location = useLocation();
@@ -16,6 +16,10 @@ export default function LoginModal() {
     error,
     setError,
   } = useDataStore();
+  const { login } = useLogin();
+  {
+    /*loading, error: loginError will add when ready to look more into error handling etc*/
+  }
 
   const { login: loginToStore } = useAutStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
