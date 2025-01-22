@@ -13,6 +13,8 @@ export default function CreateNewVenue() {
     toggleParking,
     pets,
     togglePets,
+    description,
+    setDescription,
   } = useCreateVenueStore();
   const error = "";
 
@@ -128,6 +130,8 @@ export default function CreateNewVenue() {
                 name="description"
                 id="description"
                 placeholder="Describe your amazing venue"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
           </fieldset>
