@@ -8,7 +8,7 @@ export default function Button(props) {
 
   function handleColor() {
     if (props.color === "custom-coral") {
-      return "bg-custom-coral hover:bg-custom-coral/80";
+      return "bg-custom-coral hover:bg-custom-coral/80 w-44 lg:w-auto text-center";
     }
     return "bg-deep-blue hover:bg-deep-blue/80";
   }
