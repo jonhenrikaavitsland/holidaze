@@ -19,7 +19,7 @@ export default function CreateNewVenue() {
   return (
     <div>
       {<BreadCrumb />}
-      <section className="flex flex-col gap-5 pt-5 px-5 pb-10">
+      <section className="flex flex-col gap-5 pt-5 px-5">
         <h1 className="font-bold font-serif text-deep-blue text-xl-leading-none text-center">
           Create new Venue
         </h1>
