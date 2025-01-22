@@ -25,6 +25,7 @@ export default function App() {
             path="/venue-hub/create-new-venue/"
             element={<CreateNewVenue />}
           />
+          <Route path="/:venueId" />
           {/* Catch-all 404 route */}
           {/* <Route path='*' element={<NotFound />} /> */}
         </Route>
