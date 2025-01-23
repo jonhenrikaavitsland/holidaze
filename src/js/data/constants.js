@@ -4,6 +4,7 @@ export const apiUrl = import.meta.env.VITE_API_URL;
 export const loginPath = "/auth/login";
 export const registerPath = "/auth/register";
 export const profilesPath = "/holidaze/profiles";
+export const venuesPath = "/holidaze/venues";
 
 export const locationsMap = {
   1: { city: "Corralejo", lat: 28.7296937, lng: -13.8671499 },
