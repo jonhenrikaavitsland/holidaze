@@ -7,6 +7,7 @@ import Carousel from "../../component/Carousel";
 import BreadCrumb from "../../component/Breadcrumb";
 import Map from "../../component/Map";
 import Calendar from "../../component/Calendar";
+import CardLocation from "../../component/CardLocation";
 
 export default function VenuePage() {
   const [data, setData] = useState(null);
@@ -76,6 +77,12 @@ export default function VenuePage() {
           plan your visit
         </h2>
         <Calendar />
+      </section>
+      <section className="flex flex-col gap-5">
+        <h2 className="font-serif text-center font-bold text-lg-leading-none text-deep-blue capitalize">
+          Explore {data.location.city}
+        </h2>
+        <CardLocation location={{ name: data.location.city }} />
       </section>
     </div>
   );
