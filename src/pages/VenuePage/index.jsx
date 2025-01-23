@@ -91,7 +91,7 @@ export default function VenuePage() {
 function Includes({ data }) {
   const included = {
     rating: `Rating of ${data.rating}`,
-    sleeps: `Sleeps up to ${data.sleeps}`,
+    sleeps: `Sleeps up to ${data.maxGuests}`,
     wifi: data.meta.wifi ? "WiFi is available" : null,
     breakfast: data.meta.breakfast ? "Breakfast is included" : null,
     pets: data.meta.pets ? "Pets are welcome" : null,
