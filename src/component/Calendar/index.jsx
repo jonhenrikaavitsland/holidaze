@@ -107,7 +107,7 @@ export default function Calendar() {
               <span className="sr-only">previous</span>
             </button>
           </div>
-          <div className="font-serif font-bold uppercase bg-white py-2 rounded-full w-48 sm:w-40 text-center leading-none">
+          <div className="font-serif font-bold uppercase bg-white py-2 rounded-full w-48 sm:w-40 text-center leading-none border border-natural-charcoal/40">
             {currentDate.toLocaleString("default", { month: "long" })}{" "}
             {currentDate.getFullYear()}
           </div>
@@ -125,7 +125,7 @@ export default function Calendar() {
         </div>
 
         {/* Selected Range */}
-        <div className="bg-white">
+        <div className="bg-white border border-natural-charcoal/40">
           <div className="text-sm-leading-none font-bold p-2.5">
             <span>You picked:</span>
           </div>
