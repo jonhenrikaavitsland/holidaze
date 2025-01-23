@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { apiUrl, locationsMap, venuesPath } from "../../js/data/constants";
+import {
+  apiUrl,
+  fallBackMap,
+  locationsMap,
+  venuesPath,
+} from "../../js/data/constants";
 import Loader from "../../component/Loader";
 import Carousel from "../../component/Carousel";
 import BreadCrumb from "../../component/Breadcrumb";
@@ -130,9 +135,7 @@ function Map({ data }) {
   );
 
   // Fallback URL if no match is found
-  const mapUrl = location
-    ? location.map
-    : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d763938.2269933398!2d-14.789922060442619!3d28.399025647562258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc47a473afc20f81%3A0x2ac71c13b5b57f23!2sFuerteventura!5e1!3m2!1sno!2sno!4v1737627755427!5m2!1sno!2sno"; // Default fallback map URL
+  const mapUrl = location ? location.map : fallBackMap; // Default fallback map URL
 
   return (
     <>
