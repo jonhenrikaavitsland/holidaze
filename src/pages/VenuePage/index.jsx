@@ -117,17 +117,19 @@ function Includes({ data }) {
 
 function BtnCheckAvailability({ data }) {
   return (
-    <button className="shadow-md shadow-natural-charcoal/40">
-      <div className="font-serif text-center bg-natural-charcoal text-white py-4 font-bold uppercase text-lg-leading-none w-48 sm:w-full">
-        <h2>{data.location.city}</h2>
-      </div>
-      <div className="text-center text-lg-leading-none font-bold py-2.5">
-        <span>{`€${data.price} / Night`}</span>
-      </div>
-      <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none font-bold capitalize py-3.75">
-        <p className="w-30 mx-auto">check availability</p>
-      </div>
-    </button>
+    <div>
+      <button className="shadow-md shadow-natural-charcoal/40 sm:w-full">
+        <div className="font-serif text-center bg-natural-charcoal text-white py-4 font-bold uppercase text-lg-leading-none w-48 sm:w-full">
+          <h2>{data.location.city}</h2>
+        </div>
+        <div className="text-center text-lg-leading-none font-bold py-2.5">
+          <span>{`€${data.price} / Night`}</span>
+        </div>
+        <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none font-bold capitalize py-3.75">
+          <p className="w-30 mx-auto">check availability</p>
+        </div>
+      </button>
+    </div>
   );
 }
 
