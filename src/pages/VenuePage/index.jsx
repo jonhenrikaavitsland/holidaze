@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  apiUrl,
-  fallBackMap,
-  locationsMap,
-  venuesPath,
-} from "../../js/data/constants";
+import { apiUrl, venuesPath } from "../../js/data/constants";
 import Loader from "../../component/Loader";
 import Carousel from "../../component/Carousel";
 import BreadCrumb from "../../component/Breadcrumb";
+import Map from "../../component/Map";
+import Calendar from "../../component/Calendar";
 
 export default function VenuePage() {
   const [data, setData] = useState(null);
@@ -72,15 +69,14 @@ export default function VenuePage() {
       </section>
       <div className="flex flex-col gap-5 mx-5">
         <Map data={data} />
-        <div className="flex flex-col leading-none gap-1">
-          <span>{data.name}</span>
-          <span>{data.location.address}</span>
-          <span>
-            {data.location.zip} {data.location.city}
-          </span>
-          <span>Fuerteventura, {data.location.country}</span>
-        </div>
+        <Address data={data} />
       </div>
+      <section className="flex flex-col gap-5">
+        <h2 className="font-serif text-center font-bold text-lg-leading-none text-deep-blue capitalize">
+          plan your visit
+        </h2>
+        <Calendar />
+      </section>
     </div>
   );
 }
@@ -128,32 +124,15 @@ function BtnCheckAvailability({ data }) {
   );
 }
 
-function Map({ data }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const location = Object.values(locationsMap).find(
-    (loc) => loc.lat === data.location.lat && loc.lng === data.location.lng,
-  );
-
-  // Fallback URL if no match is found
-  const mapUrl = location ? location.map : fallBackMap; // Default fallback map URL
-
+function Address({ data }) {
   return (
-    <>
-      {isLoading && (
-        <div className="mx-auto">
-          <Loader />
-        </div>
-      )}
-      <iframe
-        className="border-0 w-full"
-        src={mapUrl}
-        width="400"
-        height="300"
-        allowfullscreen=""
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        onLoad={() => setIsLoading(false)}
-      ></iframe>
-    </>
+    <div className="flex flex-col leading-none gap-1">
+      <span>{data.name}</span>
+      <span>{data.location.address}</span>
+      <span>
+        {data.location.zip} {data.location.city}
+      </span>
+      <span>Fuerteventura, {data.location.country}</span>
+    </div>
   );
 }
