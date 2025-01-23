@@ -1,12 +1,9 @@
 import { useLocation } from "react-router-dom";
 import LinkElement from "./LinkElement";
 
-export default function BreadCrumb() {
+export default function BreadCrumb({ venueId, venueName }) {
   const location = useLocation();
   const currentPath = location.pathname;
-
-  let venueId;
-  let venueName;
 
   const breadcrumbMap = {
     "/corralejo/": "Corralejo",
@@ -44,7 +41,7 @@ export default function BreadCrumb() {
             </ul>
           </nav>
         );
-      case `/${venueId}/booking/`:
+      case `/venue/${venueId}/booking/`:
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
@@ -56,7 +53,7 @@ export default function BreadCrumb() {
             </ul>
           </nav>
         );
-      case `/${venueId}/`:
+      case `/venue/${venueId}`:
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
