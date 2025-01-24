@@ -62,7 +62,7 @@ export default function VenuePage() {
         <h1 className="text-center font-serif font-bold text-xl-leading-none md:text-2xl-leading-none lg:text-3xl-leading-none text-deep-blue">
           {data.name}
         </h1>
-        <div className="flex sm:flex-col gap-5 md:gap-7.5 ms-5 sm:mx-5 md:mx-7.5">
+        <div className="flex sm:flex-col gap-5 md:gap-7.5 lg:gap-10 ms-5 sm:mx-5 md:mx-7.5 lg:mx-10">
           <Includes data={data} />
           <BtnCheckAvailability data={data} />
         </div>
@@ -99,21 +99,27 @@ function Includes({ data }) {
   };
 
   return (
-    <div className="bg-light-sky-blue rounded-xl pt-2.5 px-2.5 pb-5 md:pt-5 md:px-5 md:pb-10 flex flex-col md:flex-row md:flex-wrap gap-2.5 md:gap-5 shadow-md shadow-natural-charcoal/40 grow">
-      {Object.entries(included).map(([key, value]) => {
-        if (value) {
-          return (
-            <div
-              key={key}
-              className="flex gap-2.5 leading-none md:text-xl-leading-none md:w-1/3 grow"
-            >
-              <img src="/logo_warm_200.png" alt="icon" className="h-4 md:h-5" />
-              <span>{value}</span>
-            </div>
-          );
-        }
-        return null;
-      })}
+    <div className="grow">
+      <div className="bg-light-sky-blue rounded-xl pt-2.5 px-2.5 pb-5 md:pt-5 md:px-5 md:pb-10 lg:pt-7.5 lg:px-7.5 lg:pb-15 flex flex-col md:flex-row md:flex-wrap gap-2.5 md:gap-5 lg:gap-7.5 shadow-md shadow-natural-charcoal/40">
+        {Object.entries(included).map(([key, value]) => {
+          if (value) {
+            return (
+              <div
+                key={key}
+                className="flex gap-2.5 leading-none md:text-lg-leading-none lg:text-xl-leading-none md:w-1/3 grow lg:w-1/4"
+              >
+                <img
+                  src="/logo_warm_200.png"
+                  alt="icon"
+                  className="h-4 md:h-4.5 lg:h-5"
+                />
+                <span>{value}</span>
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
     </div>
   );
 }
@@ -122,14 +128,14 @@ function BtnCheckAvailability({ data }) {
   return (
     <div>
       <button className="shadow-md shadow-natural-charcoal/40 sm:w-full">
-        <div className="font-serif text-center bg-natural-charcoal text-white py-4 md:py-5 font-bold uppercase text-lg-leading-none md:text-xl-leading-none w-48 md:w-56 sm:w-full">
+        <div className="font-serif text-center bg-natural-charcoal text-white py-4 md:py-5 font-bold uppercase text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none w-48 md:w-56 lg:w-64 sm:w-full">
           <h2>{data.location.city}</h2>
         </div>
-        <div className="text-center text-lg-leading-none md:text-xl-leading-none font-bold py-2.5 md:py-5">
+        <div className="text-center text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none font-bold py-2.5 md:py-5">
           <span>{`€${data.price} / Night`}</span>
         </div>
-        <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none md:text-2xl-leading-none font-bold capitalize py-3.75 md:py-5 hover:bg-deep-blue/90">
-          <p className="w-30 md:w-36 mx-auto">check availability</p>
+        <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none md:text-2xl-leading-none lg:text-3xl-leading-none font-bold capitalize py-3.75 md:py-5 lg:py-7.5 hover:bg-deep-blue/90">
+          <p className="w-30 md:w-36 lg:w-44 mx-auto">check availability</p>
         </div>
       </button>
     </div>
