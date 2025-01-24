@@ -99,12 +99,15 @@ function Includes({ data }) {
   };
 
   return (
-    <div className="bg-light-sky-blue rounded-xl pt-2.5 px-2.5 pb-5 flex flex-col gap-2.5 shadow-md shadow-natural-charcoal/40 grow">
+    <div className="bg-light-sky-blue rounded-xl pt-2.5 px-2.5 pb-5 md:pt-5 md:px-5 md:pb-10 flex flex-col md:flex-row md:flex-wrap gap-2.5 md:gap-5 shadow-md shadow-natural-charcoal/40 grow">
       {Object.entries(included).map(([key, value]) => {
         if (value) {
           return (
-            <div key={key} className="flex gap-2.5 leading-none">
-              <img src="/logo_warm_200.png" alt="icon" className="h-4" />
+            <div
+              key={key}
+              className="flex gap-2.5 leading-none md:text-xl-leading-none md:w-1/3 grow"
+            >
+              <img src="/logo_warm_200.png" alt="icon" className="h-4 md:h-5" />
               <span>{value}</span>
             </div>
           );
