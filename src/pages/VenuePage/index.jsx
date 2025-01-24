@@ -125,7 +125,7 @@ function BtnCheckAvailability({ data }) {
         <div className="text-center text-lg-leading-none md:text-xl-leading-none font-bold py-2.5 md:py-5">
           <span>{`€${data.price} / Night`}</span>
         </div>
-        <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none md:text-2xl-leading-none font-bold capitalize py-3.75 md:py-5">
+        <div className="font-serif text-center bg-deep-blue text-white text-xl-leading-none md:text-2xl-leading-none font-bold capitalize py-3.75 md:py-5 hover:bg-deep-blue/90">
           <p className="w-30 md:w-36 mx-auto">check availability</p>
         </div>
       </button>
