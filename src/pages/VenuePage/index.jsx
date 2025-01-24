@@ -66,7 +66,7 @@ export default function VenuePage() {
           <Includes data={data} />
           <BtnCheckAvailability data={data} />
         </div>
-        <p className="mx-5">{data.description}</p>
+        <p className="mx-5 md:mx-7.5 text-lg">{data.description}</p>
       </section>
       <div className="flex flex-col gap-5 mx-5">
         <Map data={data} />
