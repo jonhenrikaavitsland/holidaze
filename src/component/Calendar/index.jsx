@@ -144,15 +144,17 @@ export default function Calendar() {
         </div>
 
         {/* Selected Range */}
-        <div className="bg-white border border-natural-charcoal/40 md:col-start-2 md:col-end-3 md:row-start-2 row-end-3">
-          <div className="text-sm-leading-none font-bold p-2.5">
-            <span>You picked:</span>
-          </div>
-          <div className="flex justify-center pb-5 text-xl-leading-none">
-            {formatDate(selectedRange.from)} - {formatDate(selectedRange.to)}
+        <div className="md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 self-center">
+          <div className="bg-white border border-natural-charcoal/40">
+            <div className="text-sm-leading-none font-bold p-2.5">
+              <span>You picked:</span>
+            </div>
+            <div className="flex justify-center pb-5 text-xl-leading-none">
+              {formatDate(selectedRange.from)} - {formatDate(selectedRange.to)}
+            </div>
           </div>
         </div>
-        <div className="mx-auto md:col-start-2 md:col-end-3">
+        <div className="mx-auto md:col-start-2 md:col-end-3 self-end">
           <button className="font-serif font-black capitalize text-white bg-deep-blue text-3xl-leading-none px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
             book now
           </button>
