@@ -19,7 +19,7 @@ export default function Carousel({ media }) {
   }
 
   return (
-    <div className="flex flex-col items-center bg-natural-charcoal">
+    <div className="flex flex-col items-center bg-natural-charcoal md:mx-7.5">
       {/* Main Image */}
       <div className="relative h-64 md:h-110 w-full">
         <img
