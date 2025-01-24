@@ -73,7 +73,7 @@ export default function VenuePage() {
         <Address data={data} />
       </div>
       <section className="flex flex-col gap-5 md:gap-7.5">
-        <h2 className="font-serif text-center font-bold text-lg-leading-none text-deep-blue capitalize">
+        <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue capitalize">
           plan your visit
         </h2>
         <Calendar />
