@@ -86,6 +86,8 @@ export default function Calendar() {
     return calendarDays;
   };
 
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   const formatDate = (date) => {
     return date
       ? `${String(date.getDate()).padStart(2, "0")}.${String(date.getMonth() + 1).padStart(2, "0")}.${date.getFullYear()}`
@@ -127,7 +129,18 @@ export default function Calendar() {
 
         {/* Calendar */}
         <div className="flex justify-center md:col-start-1 md:col-end-2 md:row-start-1 row-end-4">
-          <div className="grid  grid-cols-7">{renderCalendar()}</div>
+          <div className="grid grid-cols-7">
+            {/* Weekday headers */}
+            {weekdays.map((weekday, index) => (
+              <div
+                key={index}
+                className="w-13 h-13 sm:h-10 sm:w-10 flex items-center justify-center uppercase font-bold border border-natural-charcoal/40 bg-white"
+              >
+                {weekday}
+              </div>
+            ))}
+            {renderCalendar()}
+          </div>
         </div>
 
         {/* Selected Range */}
