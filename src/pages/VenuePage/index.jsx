@@ -59,7 +59,7 @@ export default function VenuePage() {
         <Carousel media={data.media} />
       </div>
       <section className="flex flex-col gap-5">
-        <h1 className="text-center font-serif font-bold text-xl-leading-none text-deep-blue">
+        <h1 className="text-center font-serif font-bold text-xl-leading-none md:text-2xl-leading-none text-deep-blue">
           {data.name}
         </h1>
         <div className="flex sm:flex-col gap-5 ms-5 sm:mx-5">
