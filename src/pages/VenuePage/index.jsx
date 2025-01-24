@@ -31,7 +31,7 @@ export default function VenuePage() {
         setIsLoading(false);
       }
     }
-    getData(`${apiUrl}${venuesPath}/${venueId}`);
+    getData(`${apiUrl}${venuesPath}/${venueId}?_bookings=true`);
   }, [venueId]);
 
   if (isLoading || !data) {
@@ -76,7 +76,7 @@ export default function VenuePage() {
         <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue capitalize">
           plan your visit
         </h2>
-        <Calendar />
+        <Calendar data={data.bookings} />
       </section>
       <section className="flex flex-col gap-5 md:gap-7.5">
         <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue capitalize">
