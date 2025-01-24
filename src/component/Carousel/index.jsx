@@ -21,7 +21,7 @@ export default function Carousel({ media }) {
   return (
     <div className="flex flex-col items-center">
       {/* Main Image */}
-      <div className="relative h-64 w-full">
+      <div className="relative h-64 md:h-110 w-full">
         <img
           src={media[currentIndex].url}
           alt={media[currentIndex].alt || `Slide ${currentIndex + 1}`}
