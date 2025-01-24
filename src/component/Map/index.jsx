@@ -11,7 +11,7 @@ export default function Map({ data }) {
 
   return (
     <iframe
-      className="border-0 w-full"
+      className="border-0 w-full md:h-110"
       src={mapUrl}
       width="400"
       height="300"
