@@ -81,7 +81,7 @@ export default function VenuePage() {
         <Calendar data={data.bookings} />
       </section>
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-        <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue capitalize">
+        <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none text-deep-blue capitalize">
           Explore {data.location.city}
         </h2>
         <CardLocation location={{ name: data.location.city }} />
