@@ -66,7 +66,9 @@ export default function VenuePage() {
           <Includes data={data} />
           <BtnCheckAvailability data={data} />
         </div>
-        <p className="mx-5 md:mx-7.5 text-lg">{data.description}</p>
+        <p className="mx-5 md:mx-7.5 lg:mx-10 md:text-lg lg:text-xl">
+          {data.description}
+        </p>
       </section>
       <div className="flex flex-col md:flex-row gap-5 md:gap-7.5 mx-5 md:mx-7.5">
         <Map data={data} />
@@ -144,7 +146,7 @@ function BtnCheckAvailability({ data }) {
 
 function Address({ data }) {
   return (
-    <div className="flex flex-col leading-none md:text-lg-leading-none gap-1 md:gap-2 justify-end">
+    <div className="flex flex-col leading-none md:text-lg-leading-none lg:text-xl-leading-none gap-1 md:gap-2 lg:gap-3 justify-end">
       <span className="w-max">{data.name}</span>
       <span className="w-max">{data.location.address}</span>
       <span className="w-max">
