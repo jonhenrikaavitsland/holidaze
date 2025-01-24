@@ -68,7 +68,7 @@ export default function VenuePage() {
         </div>
         <p className="mx-5 md:mx-7.5 text-lg">{data.description}</p>
       </section>
-      <div className="flex flex-col gap-5 mx-5">
+      <div className="flex flex-col md:flex-row gap-5 mx-5">
         <Map data={data} />
         <Address data={data} />
       </div>
