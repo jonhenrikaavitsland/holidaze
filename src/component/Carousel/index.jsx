@@ -47,7 +47,7 @@ export default function Carousel({ media }) {
         {media.map((item, index) => (
           <div
             key={index}
-            className={`relative w-1/5 md:w-1/6 h-11 cursor-pointer`}
+            className={`relative w-1/5 md:w-1/6 lg:w-1/10 h-11 cursor-pointer`}
             onClick={() => setCurrentIndex(index)}
           >
             {/* Thumbnail Image */}
