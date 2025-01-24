@@ -95,7 +95,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className="p-5 bg-light-sky-blue flex justify-center pb-10 shadow-md shadow-natural-charcoal/40 md:mx-7.5 rounded-xl md:w-210">
+    <div className="p-5 bg-light-sky-blue flex justify-center pb-10 shadow-md shadow-natural-charcoal/40 md:mx-auto rounded-xl md:w-210">
       <div className="sm:px-0 flex flex-col gap-5 max-w-100 md:grid md:grid-cols-2 md:gap-7.5">
         {/* Header */}
         <div className="md:col-start-2 md:col-end-3">
