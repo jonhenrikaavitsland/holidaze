@@ -62,7 +62,7 @@ export default function VenuePage() {
         <h1 className="text-center font-serif font-bold text-xl-leading-none md:text-2xl-leading-none text-deep-blue">
           {data.name}
         </h1>
-        <div className="flex sm:flex-col gap-5 ms-5 sm:mx-5">
+        <div className="flex sm:flex-col gap-5 md:gap-7.5 ms-5 sm:mx-5">
           <Includes data={data} />
           <BtnCheckAvailability data={data} />
         </div>
