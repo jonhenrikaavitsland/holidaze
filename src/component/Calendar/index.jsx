@@ -94,38 +94,44 @@ export default function Calendar() {
 
   return (
     <div className="bg-light-sky-blue flex justify-center pb-10 shadow-md shadow-natural-charcoal/40">
-      <div className=" p-5 sm:px-0 flex flex-col gap-5 max-w-100">
+      <div className=" p-5 sm:px-0 flex flex-col gap-5 max-w-100 md:grid md:grid-cols-2">
         {/* Header */}
-        <div className="flex justify-center sm:items-center gap-4 flex-wrap">
-          <div className="bg-white rounded-full h-8 w-8">
-            <button onClick={prevMonth}>
-              <img
-                src="/circle-right-sharp-solid.svg"
-                alt=""
-                className="h-8 rotate-180"
-              />
-              <span className="sr-only">previous</span>
-            </button>
-          </div>
-          <div className="font-serif font-bold uppercase bg-white py-2 rounded-full w-48 sm:w-40 text-center leading-none border border-natural-charcoal/40">
-            {currentDate.toLocaleString("default", { month: "long" })}{" "}
-            {currentDate.getFullYear()}
-          </div>
-          <div className="bg-white rounded-full h-8 w-8">
-            <button onClick={nextMonth}>
-              <img src="/circle-right-sharp-solid.svg" alt="" className="h-8" />
-              <span className="sr-only">next</span>
-            </button>
+        <div className="md:col-start-2 md:col-end-3">
+          <div className="flex justify-center sm:items-center gap-4 flex-wrap">
+            <div className="bg-white rounded-full h-8 w-8">
+              <button onClick={prevMonth}>
+                <img
+                  src="/circle-right-sharp-solid.svg"
+                  alt=""
+                  className="h-8 rotate-180"
+                />
+                <span className="sr-only">previous</span>
+              </button>
+            </div>
+            <div className="font-serif font-bold uppercase bg-white py-2 rounded-full w-48 sm:w-40 text-center leading-none border border-natural-charcoal/40">
+              {currentDate.toLocaleString("default", { month: "long" })}{" "}
+              {currentDate.getFullYear()}
+            </div>
+            <div className="bg-white rounded-full h-8 w-8">
+              <button onClick={nextMonth}>
+                <img
+                  src="/circle-right-sharp-solid.svg"
+                  alt=""
+                  className="h-8"
+                />
+                <span className="sr-only">next</span>
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Calendar */}
-        <div className="flex justify-center">
+        <div className="flex justify-center md:col-start-1 md:col-end-2 md:row-start-1 row-end-4">
           <div className="grid  grid-cols-7">{renderCalendar()}</div>
         </div>
 
         {/* Selected Range */}
-        <div className="bg-white border border-natural-charcoal/40">
+        <div className="bg-white border border-natural-charcoal/40 md:col-start-2 md:col-end-3 md:row-start-2 row-end-3">
           <div className="text-sm-leading-none font-bold p-2.5">
             <span>You picked:</span>
           </div>
@@ -133,7 +139,7 @@ export default function Calendar() {
             {formatDate(selectedRange.from)} - {formatDate(selectedRange.to)}
           </div>
         </div>
-        <div className="mx-auto">
+        <div className="mx-auto md:col-start-2 md:col-end-3">
           <button className="font-serif font-black capitalize text-white bg-deep-blue text-3xl-leading-none px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
             book now
           </button>
