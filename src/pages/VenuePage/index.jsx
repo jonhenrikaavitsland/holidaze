@@ -78,7 +78,7 @@ export default function VenuePage() {
         </h2>
         <Calendar />
       </section>
-      <section className="flex flex-col gap-5">
+      <section className="flex flex-col gap-5 md:gap-7.5">
         <h2 className="font-serif text-center font-bold text-lg-leading-none text-deep-blue capitalize">
           Explore {data.location.city}
         </h2>
