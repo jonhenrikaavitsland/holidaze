@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function Calendar() {
+export default function Calendar({ data }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedRange, setSelectedRange] = useState({
     from: null,
@@ -37,6 +38,14 @@ export default function Calendar() {
     return date > range.from && date < range.to;
   };
 
+  const isDateDisabled = (date) => {
+    return data.some((booking) => {
+      const dateFrom = new Date(booking.dateFrom);
+      const dateTo = new Date(booking.dateTo);
+      return date >= dateFrom && date <= dateTo;
+    });
+  };
+
   const renderCalendar = () => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -68,15 +77,17 @@ export default function Calendar() {
         selectedRange.to.getMonth() === month &&
         selectedRange.to.getFullYear() === year;
       const isInRange = isDateInRange(date, selectedRange);
+      const disabled = isDateDisabled(date);
 
       calendarDays.push(
         <div
           key={day}
           className={`w-13 h-13 sm:h-10 sm:w-10 flex items-center justify-center cursor-pointer border border-natural-charcoal/40  
+            ${disabled ? "bg-gray-200 cursor-not-allowed" : ""}
             ${isFromDate || isToDate ? "bg-golden-yellow" : ""} 
             ${isInRange ? "bg-golden-yellow/20" : ""} 
-            ${!isFromDate && !isToDate && !isInRange ? "bg-white hover:bg-blue-100" : ""}`}
-          onClick={() => handleDateClick(date)}
+            ${!isFromDate && !isToDate && !isInRange && !disabled ? "bg-white hover:bg-blue-100" : ""}`}
+          onClick={() => !disabled && handleDateClick(date)}
         >
           {day}
         </div>,
@@ -144,7 +155,7 @@ export default function Calendar() {
         </div>
 
         {/* Selected Range */}
-        <div className="md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 self-center">
+        <div className="md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:self-center">
           <div className="bg-white border border-natural-charcoal/40">
             <div className="text-sm-leading-none font-bold p-2.5">
               <span>You picked:</span>
