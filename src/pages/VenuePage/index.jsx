@@ -54,7 +54,7 @@ export default function VenuePage() {
 
   return (
     <div className="flex flex-col gap-10 md:gap-15">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 md:gap-7.5">
         <BreadCrumb venueId={venueId} venueName={data.name} />
         <Carousel media={data.media} />
       </div>
