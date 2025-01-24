@@ -8,6 +8,7 @@ import { useAPISearch } from "../../js/api/useAPISearch";
 import CardVenue from "../../component/CardVenue";
 import HeadingTwo from "../../component/HeadingTwo";
 import Loader from "../../component/Loader";
+import { apiUrl, venuesPath } from "../../js/data/constants";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -17,10 +18,10 @@ export default function Home() {
 
   const apiURL = useMemo(() => {
     if (fetchQuery) {
-      return `https://v2.api.noroff.dev/holidaze/venues/search?q=${fetchQuery}`;
+      return `${apiUrl}${venuesPath}/search?q=${fetchQuery}`;
     }
     if (fetchAll) {
-      return "https://v2.api.noroff.dev/holidaze/venues?";
+      return `${apiUrl}${venuesPath}?`;
     }
     return null;
   }, [fetchQuery, fetchAll]);
