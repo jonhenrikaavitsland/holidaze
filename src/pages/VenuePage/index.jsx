@@ -74,7 +74,7 @@ export default function VenuePage() {
         <Map data={data} />
         <Address data={data} />
       </div>
-      <section className="flex flex-col gap-5 md:gap-7.5">
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
         <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue capitalize">
           plan your visit
         </h2>
