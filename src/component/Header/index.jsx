@@ -57,9 +57,7 @@ function Navbar({ isThrottled, handleClick }) {
       >
         <LinkBtn to="/" text="Home" />
         {isLoggedIn ? (
-          <li className="py-2.5">
-            <LinkBtn to="/account" text="Account" />
-          </li>
+          <LinkBtn to="/account" text="Account" />
         ) : (
           <li className="py-2.5">
             <button
@@ -78,12 +76,10 @@ function Navbar({ isThrottled, handleClick }) {
             </button>
           </li>
         )}
-        <li>
-          <LinkBtn
-            to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
-            text={isVenueManager ? "Venue HUB" : "List Your Venue"}
-          />
-        </li>
+        <LinkBtn
+          to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
+          text={isVenueManager ? "Venue HUB" : "List Your Venue"}
+        />
         {isLoggedIn ? (
           <li
             className={
