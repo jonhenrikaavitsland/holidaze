@@ -52,7 +52,7 @@ function Navbar({ isThrottled, handleClick }) {
         className={
           isMenuOpen
             ? "flex flex-col items-center gap-8 pb-7.5 mt-10"
-            : "collapse lg:visible flex flex-col lg:flex-row lg:gap-10"
+            : "collapse lg:visible flex flex-col lg:items-center lg:flex-row lg:gap-10"
         }
       >
         <LinkBtn to="/" text="Home" />
@@ -78,24 +78,26 @@ function Navbar({ isThrottled, handleClick }) {
             </button>
           </li>
         )}
-        <LinkBtn
-          to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
-          text={isVenueManager ? "Venue HUB" : "List Your Venue"}
-        />
+        <li>
+          <LinkBtn
+            to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
+            text={isVenueManager ? "Venue HUB" : "List Your Venue"}
+          />
+        </li>
+        {isLoggedIn ? (
+          <li
+            className={
+              isMenuOpen
+                ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
+                : "collapse lg:visible"
+            }
+          >
+            <Button content="Logout" color="custom-coral" action={true} />
+          </li>
+        ) : (
+          ""
+        )}
       </ul>
-      {isLoggedIn ? (
-        <div
-          className={
-            isMenuOpen
-              ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
-              : "collapse lg:visible lg:ms-10"
-          }
-        >
-          <Button content="Logout" color="custom-coral" action={true} />
-        </div>
-      ) : (
-        ""
-      )}
     </nav>
   );
 }
