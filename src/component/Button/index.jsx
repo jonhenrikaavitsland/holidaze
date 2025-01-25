@@ -16,7 +16,7 @@ export default function Button(props) {
   return (
     <div>
       <button
-        className={`rounded-xl text-white font-serif font-bold py-3.75 px-7.5 shadow-md shadow-natural-charcoal/40 ${handleColor()}`}
+        className={`rounded-xl leading-none text-white font-serif font-bold py-3.75 px-7.5 shadow-md shadow-natural-charcoal/40 ${props.action ? "lg:py-2.5 lg:px-5" : ""} ${handleColor()}`}
         type="button"
         onClick={() => {
           if (props.action) {
