@@ -57,22 +57,26 @@ function Navbar({ isThrottled, handleClick }) {
       >
         <LinkBtn to="/" text="Home" />
         {isLoggedIn ? (
-          <LinkBtn to="/account" text="Account" />
+          <li className="py-2.5">
+            <LinkBtn to="/account" text="Account" />
+          </li>
         ) : (
-          <button
-            className="py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto"
-            type="button"
-            onClick={() => {
-              if (isMenuOpen) {
-                checkAndCloseAll();
-                openStateWithOverlay("isLoginModalOpen");
-              } else {
-                openStateWithOverlay("isLoginModalOpen");
-              }
-            }}
-          >
-            Log In
-          </button>
+          <li className="py-2.5">
+            <button
+              className="py-2.5 px-5 rounded-xl leading-none font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto"
+              type="button"
+              onClick={() => {
+                if (isMenuOpen) {
+                  checkAndCloseAll();
+                  openStateWithOverlay("isLoginModalOpen");
+                } else {
+                  openStateWithOverlay("isLoginModalOpen");
+                }
+              }}
+            >
+              Log In
+            </button>
+          </li>
         )}
         <LinkBtn
           to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
@@ -122,8 +126,8 @@ function LinkBtn(props) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75 w-44 lg:w-auto inline-block text-center"
-            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto inline-block text-center"
+            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75 w-44 lg:w-auto inline-block text-center leading-none"
+            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto inline-block text-center leading-none"
         }
         to={props.to}
       >
