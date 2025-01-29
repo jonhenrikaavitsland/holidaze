@@ -4,6 +4,7 @@ import ListElement from "../../component/ListElement";
 import useUIStore from "../../js/store/useUIStore";
 import useAuthStore from "../../js/store/useAuthStore";
 import useUpdateProfile from "../../js/api/useUpdateProfile";
+import Heading from "../../component/Heading";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
@@ -40,22 +41,24 @@ export default function ListYourVenue() {
           }}
         ></div>
         <section className="px-5 pt-5 md:pt-7.5 md:px-7.5">
-          <h1 className="font-serif italic font-bold text-2xl md:text-3xl-leading-150">
+          <span className="font-serif italic font-bold text-2xl md:text-3xl-leading-150">
             {data.headingOne}
-          </h1>
+          </span>
         </section>
       </div>
       <section className="flex flex-col px-5 md:px-7.5 gap-5 md:gap-7.5">
-        <h2 className="capitalize font-serif font-bold text-xl-leading-none md:text-2xl-leading-none text-deep-blue text-center ">
+        <Heading level="1" className="text-center text-deep-blue">
           {data.headingTwo}
-        </h2>
+        </Heading>
         <ul className="flex flex-col gap-5 md:gap-7.5">
           {data.list.map((item, index) => (
             <ListElement
               key={index}
               number={index + 1}
-              height={"h-4.5 md:h-5"}
+              height={"h-5 md:h-6 lg:h-7.5"}
               item={item}
+              level="2"
+              className
             />
           ))}
         </ul>
@@ -80,9 +83,9 @@ export default function ListYourVenue() {
         <div className="flex flex-col text-center gap-10 mx-5 md:mx-7.5 md:gap-12.5">
           <div className="flex flex-col gap-5 md:gap-7.5">
             <section className="flex flex-col gap-2.5 md:gap-3.75">
-              <h2 className="font-serif font-bold text-lg-leading-none md:text-xl-leading-none text-deep-blue">
+              <Heading level="2" className="text-center text-deep-blue">
                 {data.cta.title}
-              </h2>
+              </Heading>
               <p className="leading-none md:text-lg-leading-none">
                 {data.cta.text}
               </p>
@@ -122,7 +125,7 @@ export default function ListYourVenue() {
         </div>
       )}
       <section className="mx-5 md:mx-7.5 font-serif italic font-bold text-2xl md:text-4xl-leading-150">
-        <h3>{data.final}</h3>
+        <span>{data.final}</span>
       </section>
     </div>
   );
