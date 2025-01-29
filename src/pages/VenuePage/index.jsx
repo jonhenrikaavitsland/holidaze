@@ -8,6 +8,7 @@ import BreadCrumb from "../../component/Breadcrumb";
 import Map from "../../component/Map";
 import Calendar from "../../component/Calendar";
 import CardLocation from "../../component/CardLocation";
+import Heading from "../../component/Heading";
 
 export default function VenuePage() {
   const [data, setData] = useState(null);
@@ -59,9 +60,9 @@ export default function VenuePage() {
         <Carousel media={data.media} />
       </div>
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-        <h1 className="text-center font-serif font-bold text-xl-leading-none md:text-2xl-leading-none lg:text-3xl-leading-none text-deep-blue">
+        <Heading level="1" className={"text-center text-deep-blue"}>
           {data.name}
-        </h1>
+        </Heading>
         <div className="flex sm:flex-col gap-5 md:gap-7.5 lg:gap-10 ms-5 sm:mx-5 md:mx-7.5 lg:mx-10">
           <Includes data={data} />
           <BtnCheckAvailability data={data} />
@@ -75,15 +76,15 @@ export default function VenuePage() {
         <Address data={data} />
       </div>
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-        <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none text-deep-blue capitalize">
+        <Heading level="2" className={"text-center text-deep-blue"}>
           plan your visit
-        </h2>
+        </Heading>
         <Calendar data={data.bookings} />
       </section>
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-        <h2 className="font-serif text-center font-bold text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none text-deep-blue capitalize">
+        <Heading level="2" className={"text-center text-deep-blue"}>
           Explore {data.location.city}
-        </h2>
+        </Heading>
         <CardLocation location={{ name: data.location.city }} />
       </section>
     </div>
