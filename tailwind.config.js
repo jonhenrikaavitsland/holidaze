@@ -52,6 +52,12 @@ export default {
             lineHeight: "1.5",
           },
         ],
+        "4xl-leading-none": [
+          "2.25rem",
+          {
+            lineHeight: "1",
+          },
+        ],
         "4xl-leading-150": [
           "2.25rem",
           {
