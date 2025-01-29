@@ -6,9 +6,9 @@ import SearchBox from "../../component/SearchBox";
 import locationData from "../../data/locations/locations.json";
 import { useAPISearch } from "../../js/api/useAPISearch";
 import CardVenue from "../../component/CardVenue";
-import HeadingTwo from "../../component/HeadingTwo";
 import Loader from "../../component/Loader";
 import { apiUrl, venuesPath } from "../../js/data/constants";
+import Heading from "../../component/Heading";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -63,15 +63,16 @@ export default function Home() {
             setActiveButton={setActiveButton}
           />
         </div>
-        <HeadingTwo
-          content={
-            fetchQuery
-              ? `Venues in ${fetchQuery}`
-              : arrangedVenues.length
-                ? `Venues in ${activeButton}`
-                : "explore fuerteventura"
-          }
-        />
+        <Heading
+          level={"2"}
+          className="text-center text-deep-blue mb-5 md:mb-7.5 lg:mb-10"
+        >
+          {fetchQuery
+            ? `Venues in ${fetchQuery}`
+            : arrangedVenues.length
+              ? `Venues in ${activeButton}`
+              : "explore fuerteventura"}
+        </Heading>
       </div>
       <div className="grid gap-5 md:gap-7.5 lg:gap-10 lg:grid-cols-2">
         {isLoading ? (
