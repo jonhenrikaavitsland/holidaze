@@ -18,7 +18,7 @@ export default function Heading({ level, className, children }) {
   }
 
   return (
-    <Tag className={`font-serif font-bold ${classes} ${className}`}>
+    <Tag className={`font-serif font-bold capitalize ${classes} ${className}`}>
       {children}
     </Tag>
   );
