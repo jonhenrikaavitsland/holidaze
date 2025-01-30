@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { apiUrl, venuesPath } from "../../js/data/constants";
@@ -78,19 +79,24 @@ export default function BookingPage() {
             </span>
           </section>
         </div>
-        <section className="pt-5 px-2.5">
+        <section className="flex flex-col gap-2.5 pt-5 px-2.5">
           <h3 className="font-serif font-bold">Booking Details:</h3>
-          <div className="bg-white w-full border border-natural-charcoal/40 pt-1 px-1 pb-2.5 flex flex-col gap-1">
-            <p className="uppercase text-xs-leading-none font-bold">
-              Arrival - departure
-            </p>
-            <div className="w-full flex justify-center">
-              <span className="font-bold leading-none">
-                {fromDate} - {toDate}
-              </span>
-            </div>
-          </div>
+          <WhiteBox
+            content={`${fromDate} - ${toDate}`}
+            label="Arrival - departure"
+          />
         </section>
+      </div>
+    </div>
+  );
+}
+
+function WhiteBox(props) {
+  return (
+    <div className="bg-white w-full border border-natural-charcoal/40 pt-1 px-1 pb-2.5 flex flex-col gap-1">
+      <p className="uppercase text-xs-leading-none font-bold">{props.label}</p>
+      <div className="w-full flex justify-center">
+        <span className="font-bold leading-none">{props.content}</span>
       </div>
     </div>
   );
