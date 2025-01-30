@@ -28,6 +28,7 @@ export default function App() {
             element={<CreateNewVenue />}
           />
           <Route path="/venue/:venueId" element={<VenuePage />} />
+          <Route path="/venue/:venueId/booking" />
           <Route path="/locations/:locationName" element={<LocationPage />} />
           {/* Redirects */}
           <Route path="/venue" element={<Navigate to="/" replace />} />
