@@ -84,7 +84,7 @@ export default {
         "warm-beige": "#FFECD1",
         "light-gray": "#F2F4F6",
         "golden-yellow": "#FFC107",
-        "accent-teal": "#20C997",
+        "accent-teal": "#157F65",
         "natural-charcoal": "#333",
       },
       height: {
