@@ -88,7 +88,7 @@ export default function VenuePage() {
         <Heading level="2" className={"text-center text-deep-blue"}>
           plan your visit
         </Heading>
-        <Calendar data={data.bookings} />
+        <Calendar data={data.bookings} venueId={venueId} />
       </section>
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
         <Heading level="2" className={"text-center text-deep-blue"}>

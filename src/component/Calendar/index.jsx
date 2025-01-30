@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Calendar({ data }) {
+export default function Calendar({ data, venueId }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedRange, setSelectedRange] = useState({
     from: null,
     to: null,
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -138,6 +140,19 @@ export default function Calendar({ data }) {
       : "--";
   };
 
+  const bookNow = () => {
+    if (selectedRange.from && selectedRange.to) {
+      const formattedFrom = selectedRange.from.toISOString().split("T")[0];
+      const formattedTo = selectedRange.to.toISOString().split("T")[0];
+
+      navigate(
+        `/venue/${venueId}/booking?from=${formattedFrom}&to=${formattedTo}`,
+      );
+    } else {
+      console.warn("please select a valid date range before booking");
+    }
+  };
+
   return (
     <div className="p-5 bg-light-sky-blue flex justify-center pb-10 shadow-md shadow-natural-charcoal/40 md:mx-auto rounded-xl md:w-210">
       <div className="sm:px-0 flex flex-col gap-5 max-w-100 md:grid md:grid-cols-2 md:gap-7.5">
@@ -199,7 +214,10 @@ export default function Calendar({ data }) {
           </div>
         </div>
         <div className="mx-auto md:col-start-2 md:col-end-3 self-end">
-          <button className="font-serif font-black capitalize text-white bg-deep-blue text-3xl-leading-none px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
+          <button
+            className="font-serif font-black capitalize text-white bg-deep-blue text-3xl-leading-none px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+            onClick={bookNow}
+          >
             book now
           </button>
         </div>
