@@ -109,7 +109,8 @@ export default function BookingPage() {
               }
               label="how many guests:"
             />
-          </div>
+          </div>{" "}
+          {/* Let's redo this as a form input.  */}
         </section>
       </div>
     </div>
