@@ -5,6 +5,7 @@ import { apiUrl, venuesPath } from "../../js/data/constants";
 import Loader from "../../component/Loader";
 import BreadCrumb from "../../component/Breadcrumb";
 import Heading from "../../component/Heading";
+import NumberIcon from "../../component/NumberIcon";
 
 export default function BookingPage() {
   const [data, setData] = useState(null);
@@ -95,6 +96,18 @@ export default function BookingPage() {
                 </span>
               }
               label="status:"
+            />
+            <WhiteBox
+              content={
+                <div className="flex gap-3.5">
+                  {[...Array(data.maxGuests)].map((_, index) => (
+                    <button key={index}>
+                      <NumberIcon number={index + 1} className="h-7.5" />
+                    </button>
+                  ))}
+                </div>
+              }
+              label="how many guests:"
             />
           </div>
         </section>
