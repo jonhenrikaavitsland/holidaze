@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl, venuesPath } from "../../js/data/constants";
 import Loader from "../../component/Loader";
@@ -15,6 +15,7 @@ export default function VenuePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   let { venueId } = useParams();
+  const calendarRef = useRef(null);
 
   useEffect(() => {
     async function getData(url) {
@@ -65,7 +66,12 @@ export default function VenuePage() {
         </Heading>
         <div className="flex sm:flex-col gap-5 md:gap-7.5 lg:gap-10 ms-5 sm:mx-5 md:mx-7.5 lg:mx-10">
           <Includes data={data} />
-          <BtnCheckAvailability data={data} />
+          <BtnCheckAvailability
+            data={data}
+            scrollToCalendar={() =>
+              calendarRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+          />
         </div>
         <p className="mx-5 md:mx-7.5 lg:mx-10 md:text-lg lg:text-xl">
           {data.description}
@@ -75,7 +81,10 @@ export default function VenuePage() {
         <Map data={data} />
         <Address data={data} />
       </div>
-      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+      <section
+        className="flex flex-col gap-5 md:gap-7.5 lg:gap-10"
+        ref={calendarRef}
+      >
         <Heading level="2" className={"text-center text-deep-blue"}>
           plan your visit
         </Heading>
@@ -127,10 +136,13 @@ function Includes({ data }) {
   );
 }
 
-function BtnCheckAvailability({ data }) {
+function BtnCheckAvailability({ data, scrollToCalendar }) {
   return (
     <div>
-      <button className="shadow-md shadow-natural-charcoal/40 sm:w-full">
+      <button
+        className="shadow-md shadow-natural-charcoal/40 sm:w-full"
+        onClick={scrollToCalendar}
+      >
         <div className="font-serif text-center bg-natural-charcoal text-white py-4 md:py-5 font-bold uppercase text-lg-leading-none md:text-xl-leading-none lg:text-2xl-leading-none w-48 md:w-56 lg:w-64 sm:w-full">
           <h2>{data.location.city}</h2>
         </div>
