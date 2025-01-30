@@ -22,7 +22,7 @@ export default function BreadCrumb({ venueId, venueName }) {
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
-              <LinkElement to={venueId} content={venueName} />
+              <LinkElement to={`/venue/${venueId}`} content={venueName} />
               <li className="py-2.5 font-serif font-bold leading-none;">
                 <span>{"Booking"}</span>
               </li>
