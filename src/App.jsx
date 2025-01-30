@@ -6,6 +6,7 @@ import useAuthStore from "./js/store/useAuthStore";
 import CreateNewVenue from "./pages/CreateNewVenue";
 import VenuePage from "./pages/VenuePage";
 import LocationPage from "./pages/LocationPage/index.";
+import BookingPage from "./pages/BookingPage";
 
 export default function App() {
   const { isVenueManager } = useAuthStore();
@@ -28,7 +29,7 @@ export default function App() {
             element={<CreateNewVenue />}
           />
           <Route path="/venue/:venueId" element={<VenuePage />} />
-          <Route path="/venue/:venueId/booking" />
+          <Route path="/venue/:venueId/booking" element={<BookingPage />} />
           <Route path="/locations/:locationName" element={<LocationPage />} />
           {/* Redirects */}
           <Route path="/venue" element={<Navigate to="/" replace />} />
