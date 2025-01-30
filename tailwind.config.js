@@ -16,6 +16,12 @@ export default {
         mono: ["Nosifer", ...defaultTheme.fontFamily.mono],
       },
       fontSize: {
+        "xs-leading-none": [
+          "0.75rem",
+          {
+            lineHeight: "1",
+          },
+        ],
         "sm-leading-none": [
           "0.875rem",
           {
@@ -106,6 +112,9 @@ export default {
         210: "50rem",
         250: "62.5rem",
         "1/10": "10%",
+      },
+      maxWidth: {
+        "1/2": "50%",
       },
       padding: {
         3.75: "15px",
