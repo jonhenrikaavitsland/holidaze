@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl, venuesPath } from "../../js/data/constants";
 import Loader from "../../component/Loader";
+import BreadCrumb from "../../component/Breadcrumb";
+import Heading from "../../component/Heading";
 
 export default function BookingPage() {
   const [data, setData] = useState(null);
@@ -46,5 +48,14 @@ export default function BookingPage() {
 
   console.log("Data:", data);
 
-  return <div></div>;
+  return (
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-5">
+        <BreadCrumb venueId={data.id} venueName={data.name} />
+        <Heading level="1" className={"text-center text-deep-blue"}>
+          let&apos;s book that holiday
+        </Heading>
+      </div>
+    </div>
+  );
 }
