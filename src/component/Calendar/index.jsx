@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Calendar({ data }) {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -7,6 +7,19 @@ export default function Calendar({ data }) {
     from: null,
     to: null,
   });
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedRange({ from: null, to: null });
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const nextMonth = () => {
     setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
@@ -20,11 +33,31 @@ export default function Calendar({ data }) {
     if (!selectedRange.from || (selectedRange.from && selectedRange.to)) {
       setSelectedRange({ from: date, to: null });
     } else {
-      const newRange = { from: selectedRange.from, to: date };
+      let newRange = { from: selectedRange.from, to: date };
+
+      // Ensure "from" is earlier than "to"
       if (newRange.from > newRange.to) {
-        newRange.from = date;
-        newRange.to = selectedRange.from;
+        newRange = { from: date, to: selectedRange.from };
       }
+
+      // Check if there are disabled dates between "from" and "to"
+      let hasDisabledDates = false;
+      let currentDate = new Date(newRange.from);
+
+      while (currentDate < newRange.to) {
+        currentDate.setDate(currentDate.getDate() + 1);
+        if (isDateDisabled(currentDate)) {
+          hasDisabledDates = true;
+          break;
+        }
+      }
+
+      if (hasDisabledDates) {
+        // Prevent selection and provide feedback (optional)
+        console.warn("Cannot select range with blocked dates.");
+        return;
+      }
+
       setSelectedRange(newRange);
     }
   };
