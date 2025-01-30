@@ -17,31 +17,7 @@ export default function BreadCrumb({ venueId, venueName }) {
 
   const renderBreadCrumb = () => {
     switch (currentPath) {
-      case "/venue-hub/create-new-venue/":
-        return (
-          <nav className="ms-5 md:ms-7.5 lg:ms-10">
-            <ul className="flex flex-wrap items-center gap-x-2.5">
-              <LinkElement to="/" content="Home" />
-              <LinkElement to="/venue-hub" content="Venue HUB" />
-              <li className="py-2.5 font-serif font-bold leading-none;">
-                <span>{"Create New Venue"}</span>
-              </li>
-            </ul>
-          </nav>
-        );
-      case "/venue-hub/update-venue/":
-        return (
-          <nav className="ms-5 md:ms-7.5 lg:ms-10">
-            <ul className="flex flex-wrap items-center gap-x-2.5">
-              <LinkElement to="/" content="Home" />
-              <LinkElement to="/venue-hub" content="Venue HUB" />
-              <li className="py-2.5 font-serif font-bold leading-none;">
-                <span>{"Update Venue"}</span>
-              </li>
-            </ul>
-          </nav>
-        );
-      case `/venue/${venueId}/booking/`:
+      case `/venue/${venueId}/booking`:
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
