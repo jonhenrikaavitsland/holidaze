@@ -29,11 +29,19 @@ export default function Calendar({ data, venueId }) {
   }, []);
 
   const nextMonth = () => {
-    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+    setCurrentDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(newDate.getMonth() + 1);
+      return newDate;
+    });
   };
 
   const prevMonth = () => {
-    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+    setCurrentDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(newDate.getMonth() - 1);
+      return newDate;
+    });
   };
 
   const handleDateClick = (date) => {
@@ -51,7 +59,7 @@ export default function Calendar({ data, venueId }) {
       let newRange = { from: selectedRange.from, to: date };
 
       // Ensure "from" is earlier than "to" and not the same date
-      if (newRange.from >= newRange.to) {
+      if (newRange.from.getTime() >= newRange.to.getTime()) {
         console.warn("The end date must be after the start date.");
         return;
       }
@@ -180,8 +188,8 @@ export default function Calendar({ data, venueId }) {
 
   const proceedWithBooking = () => {
     if (selectedRange.from && selectedRange.to) {
-      const formattedFrom = selectedRange.from.toISOString().split("T")[0];
-      const formattedTo = selectedRange.to.toISOString().split("T")[0];
+      const formattedFrom = formatDateForURL(selectedRange.from);
+      const formattedTo = formatDateForURL(selectedRange.to);
 
       navigate(
         `/venue/${venueId}/booking?from=${formattedFrom}&to=${formattedTo}`,
@@ -189,6 +197,14 @@ export default function Calendar({ data, venueId }) {
     } else {
       console.warn("please select a valid date range before booking");
     }
+  };
+
+  // Utility function to ensure the date is correctly formatted in local time
+  const formatDateForURL = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`; // Ensures proper local format
   };
 
   return (
