@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../js/store/useAuthStore";
+import useUIStore from "../../js/store/useUIStore";
 
 export default function Calendar({ data, venueId }) {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -9,6 +11,9 @@ export default function Calendar({ data, venueId }) {
     to: null,
   });
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuthStore();
+  const { openStateWithOverlay } = useUIStore();
+  const [waitingForLogin, setWaitingForLogin] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -141,6 +146,22 @@ export default function Calendar({ data, venueId }) {
   };
 
   const bookNow = () => {
+    if (!isLoggedIn) {
+      openStateWithOverlay("isLoginModalOpen");
+      setWaitingForLogin(true); // Set flag to track login attempt
+    } else {
+      proceedWithBooking();
+    }
+  };
+
+  useEffect(() => {
+    if (waitingForLogin && isLoggedIn) {
+      setWaitingForLogin(false);
+      proceedWithBooking();
+    }
+  }, [isLoggedIn, waitingForLogin]);
+
+  const proceedWithBooking = () => {
     if (selectedRange.from && selectedRange.to) {
       const formattedFrom = selectedRange.from.toISOString().split("T")[0];
       const formattedTo = selectedRange.to.toISOString().split("T")[0];
