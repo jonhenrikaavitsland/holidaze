@@ -130,7 +130,7 @@ function BookingComp({ data, fromDate, toDate }) {
           <div className="mx-auto">
             <button
               type="submit"
-              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none capitalize px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40"
+              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none capitalize px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
             >
               Book now
             </button>
