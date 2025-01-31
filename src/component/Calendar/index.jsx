@@ -37,6 +37,14 @@ export default function Calendar({ data, venueId }) {
   };
 
   const handleDateClick = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to prevent time-based issues
+
+    if (date < today || isDateDisabled(date)) {
+      console.warn("Cannot select past or blocked dates.");
+      return;
+    }
+
     if (!selectedRange.from || (selectedRange.from && selectedRange.to)) {
       setSelectedRange({ from: date, to: null });
     } else {
@@ -60,7 +68,6 @@ export default function Calendar({ data, venueId }) {
       }
 
       if (hasDisabledDates) {
-        // Prevent selection and provide feedback (optional)
         console.warn("Cannot select range with blocked dates.");
         return;
       }
@@ -79,11 +86,17 @@ export default function Calendar({ data, venueId }) {
   };
 
   const isDateDisabled = (date) => {
-    return data.some((booking) => {
-      const dateFrom = new Date(booking.dateFrom);
-      const dateTo = new Date(booking.dateTo);
-      return date >= dateFrom && date <= dateTo;
-    });
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return (
+      date < today || // Disable past dates
+      data.some((booking) => {
+        const dateFrom = new Date(booking.dateFrom);
+        const dateTo = new Date(booking.dateTo);
+        return date >= dateFrom && date <= dateTo;
+      })
+    );
   };
 
   const renderCalendar = () => {
@@ -118,16 +131,19 @@ export default function Calendar({ data, venueId }) {
         selectedRange.to.getFullYear() === year;
       const isInRange = isDateInRange(date, selectedRange);
       const disabled = isDateDisabled(date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const isPastDate = date < today;
 
       calendarDays.push(
         <div
           key={day}
           className={`w-13 h-13 sm:h-10 sm:w-10 flex items-center justify-center cursor-pointer border border-natural-charcoal/40  
-            ${disabled ? "bg-gray-200 cursor-not-allowed" : ""}
+            ${disabled || isPastDate ? "bg-light-gray cursor-not-allowed" : ""}
             ${isFromDate || isToDate ? "bg-golden-yellow" : ""} 
             ${isInRange ? "bg-golden-yellow/20" : ""} 
-            ${!isFromDate && !isToDate && !isInRange && !disabled ? "bg-white hover:bg-blue-100" : ""}`}
-          onClick={() => !disabled && handleDateClick(date)}
+            ${!isFromDate && !isToDate && !isInRange && !disabled && !isPastDate ? "bg-white hover:bg-blue-100" : ""}`}
+          onClick={() => !disabled && !isPastDate && handleDateClick(date)}
         >
           {day}
         </div>,
