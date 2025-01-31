@@ -31,6 +31,7 @@ export default function Calendar({ data, venueId }) {
   const nextMonth = () => {
     setCurrentDate((prevDate) => {
       const newDate = new Date(prevDate);
+      newDate.setDate(1); // Ensure it starts from the first day
       newDate.setMonth(newDate.getMonth() + 1);
       return newDate;
     });
@@ -39,6 +40,7 @@ export default function Calendar({ data, venueId }) {
   const prevMonth = () => {
     setCurrentDate((prevDate) => {
       const newDate = new Date(prevDate);
+      newDate.setDate(1); // Ensure it starts from the first day
       newDate.setMonth(newDate.getMonth() - 1);
       return newDate;
     });
