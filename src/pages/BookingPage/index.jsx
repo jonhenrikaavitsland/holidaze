@@ -63,7 +63,7 @@ export default function BookingPage() {
   console.log("Data:", data);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
       <div className="flex flex-col gap-5">
         <BreadCrumb venueId={data.id} venueName={data.name} />
         <Heading level="1" className={"text-center text-deep-blue"}>
@@ -78,7 +78,7 @@ export default function BookingPage() {
         setIsReserved={setIsReserved}
       />
       {isReserved && (
-        <section className="flex flex-col gap-5">
+        <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
           <Heading level="2" className={"text-center text-deep-blue"}>
             Explore your destination
           </Heading>
