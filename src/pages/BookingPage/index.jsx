@@ -5,7 +5,6 @@ import { apiUrl, venuesPath } from "../../js/data/constants";
 import Loader from "../../component/Loader";
 import BreadCrumb from "../../component/Breadcrumb";
 import Heading from "../../component/Heading";
-import NumberIcon from "../../component/NumberIcon";
 
 export default function BookingPage() {
   const [data, setData] = useState(null);
@@ -82,34 +81,46 @@ export default function BookingPage() {
         </div>
         <section className="flex flex-col gap-2.5 pt-5 px-2.5">
           <h3 className="font-serif font-bold">Booking Details:</h3>
-          <div className="flex flex-col gap-5">
-            <WhiteBox
-              content={
-                <span className="font-bold leading-none">{`${fromDate} - ${toDate}`}</span>
-              }
-              label="Arrival - departure:"
-            />
-            <WhiteBox
-              content={
-                <span className="font-bold leading-none text-accent-teal uppercase">
-                  available
-                </span>
-              }
-              label="status:"
-            />
-            <WhiteBox
-              content={
-                <div className="flex gap-3.5">
-                  {[...Array(data.maxGuests)].map((_, index) => (
-                    <button key={index}>
-                      <NumberIcon number={index + 1} className="h-7.5" />
-                    </button>
-                  ))}
-                </div>
-              }
-              label="how many guests:"
-            />
-          </div>{" "}
+          <form className="">
+            <fieldset className="flex flex-col gap-5">
+              <legend className="sr-only">Booking details</legend>
+              <WhiteBox
+                content={
+                  <span className="font-bold leading-none">{`${fromDate} - ${toDate}`}</span>
+                }
+                label="Arrival - departure:"
+              />
+              <WhiteBox
+                content={
+                  <span className="font-bold leading-none text-accent-teal uppercase">
+                    available
+                  </span>
+                }
+                label="status:"
+              />
+              <WhiteBox
+                content={
+                  <>
+                    <label className="sr-only" htmlFor="numGuests">
+                      how many guests
+                    </label>
+                    <select
+                      className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
+                      id="numGuests"
+                    >
+                      {[...Array(data.maxGuests)].map((_, index) => (
+                        <option key={index} value={index + 1}>
+                          {index + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                }
+                label="how many guests:"
+                isSelect={true}
+              />
+            </fieldset>
+          </form>{" "}
           {/* Let's redo this as a form input.  */}
         </section>
       </div>
@@ -119,7 +130,9 @@ export default function BookingPage() {
 
 function WhiteBox(props) {
   return (
-    <div className="bg-white w-full border border-natural-charcoal/40 pt-1 px-1 pb-2.5 flex flex-col gap-1">
+    <div
+      className={`bg-white w-full border border-natural-charcoal/40 pt-1 px-1 ${!props.isSelect ? "pb-2.5 gap-1" : ""} flex flex-col`}
+    >
       <p className="uppercase text-xs-leading-none font-bold">{props.label}</p>
       <div className="w-full flex justify-center">{props.content}</div>
     </div>
