@@ -68,17 +68,17 @@ export default function BookingPage() {
 
 function BookingComp({ data, fromDate, toDate }) {
   return (
-    <div className="flex flex-col rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 md:mx-7.5 lg:mx-10 pb-10">
-      <div className="flex sm:flex-col">
-        <div className="max-w-1/2 sm:max-w-full">
+    <div className="flex flex-col md:flex-row rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 pb-10 md:w-200 md:mx-auto lg:w-250">
+      <div className="flex sm:flex-col md:w-1/2 md:flex-col">
+        <div className="max-w-1/2 sm:max-w-full md:max-w-full">
           <img
             src={data.media[0].url}
             alt={data.media[0].alt}
             className="rounded-tl-xl sm:rounded-t-xl h-full object-cover"
           />
         </div>
-        <section className="px-5 flex flex-col items-center gap-2 py-5 w-full">
-          <h2 className="w-max uppercase text-deep-blue font-serif font-bold text-xl-leading-none">
+        <section className="px-5 flex flex-col items-center justify-center gap-2 lg:gap-3.75 py-5 md:py-7.5 w-full">
+          <h2 className="uppercase text-deep-blue font-serif font-bold text-xl-leading-none text-center">
             {data.name}
           </h2>
           <span className="font-serif uppercase text-lg-leading-none font-bold">
@@ -86,10 +86,10 @@ function BookingComp({ data, fromDate, toDate }) {
           </span>
         </section>
       </div>
-      <section className="flex flex-col gap-2.5 pt-5 px-2.5">
+      <section className="flex flex-col gap-2.5 lg:gap-7.5 pt-5 px-2.5 md:w-1/2 lg:px-5 lg:pt-7.5">
         <h3 className="font-serif font-bold">Booking Details:</h3>
         <form className="flex flex-col gap-10">
-          <fieldset className="flex flex-col gap-5">
+          <fieldset className="flex flex-col gap-5 lg:gap-7.5">
             <legend className="sr-only">Booking details</legend>
             <WhiteBox
               content={
@@ -130,7 +130,7 @@ function BookingComp({ data, fromDate, toDate }) {
           <div className="mx-auto">
             <button
               type="submit"
-              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none capitalize px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none lg:text-4xl-leading-none capitalize px-7.5 py-3.75 lg:px-15 lg:py-7.5 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
             >
               Book now
             </button>
