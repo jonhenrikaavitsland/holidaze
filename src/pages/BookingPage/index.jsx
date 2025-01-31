@@ -11,6 +11,8 @@ import Loader from "../../component/Loader";
 import BreadCrumb from "../../component/Breadcrumb";
 import Heading from "../../component/Heading";
 import useAuthStore from "../../js/store/useAuthStore";
+import CardVenue from "../../component/CardVenue";
+import CardLocation from "../../component/CardLocation";
 
 export default function BookingPage() {
   const [data, setData] = useState(null);
@@ -75,6 +77,15 @@ export default function BookingPage() {
         isReserved={isReserved}
         setIsReserved={setIsReserved}
       />
+      {isReserved && (
+        <section className="flex flex-col gap-5">
+          <Heading level="2" className={"text-center text-deep-blue"}>
+            Explore your destination
+          </Heading>
+          <CardVenue venue={data} />
+          <CardLocation location={{ name: data.location.city }} />
+        </section>
+      )}
     </div>
   );
 }
