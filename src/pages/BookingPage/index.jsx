@@ -61,68 +61,82 @@ export default function BookingPage() {
           let&apos;s book that holiday
         </Heading>
       </div>
-      <div className="rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 md:mx-7.5 lg:mx-10">
-        <div className="flex sm:flex-col">
-          <div className="max-w-1/2 sm:max-w-full">
-            <img
-              src={data.media[0].url}
-              alt={data.media[0].alt}
-              className="rounded-tl-xl sm:rounded-t-xl h-full object-cover"
-            />
-          </div>
-          <section className="px-5 flex flex-col items-center gap-2 py-5 w-full">
-            <h2 className="w-max uppercase text-deep-blue font-serif font-bold text-xl-leading-none">
-              {data.name}
-            </h2>
-            <span className="font-serif uppercase text-lg-leading-none font-bold">
-              {data.location.city}
-            </span>
-          </section>
+      <BookingComp data={data} fromDate={fromDate} toDate={toDate} />
+    </div>
+  );
+}
+
+function BookingComp({ data, fromDate, toDate }) {
+  return (
+    <div className="rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 md:mx-7.5 lg:mx-10 pb-10">
+      <div className="flex sm:flex-col">
+        <div className="max-w-1/2 sm:max-w-full">
+          <img
+            src={data.media[0].url}
+            alt={data.media[0].alt}
+            className="rounded-tl-xl sm:rounded-t-xl h-full object-cover"
+          />
         </div>
-        <section className="flex flex-col gap-2.5 pt-5 px-2.5">
-          <h3 className="font-serif font-bold">Booking Details:</h3>
-          <form className="">
-            <fieldset className="flex flex-col gap-5">
-              <legend className="sr-only">Booking details</legend>
-              <WhiteBox
-                content={
-                  <span className="font-bold leading-none">{`${fromDate} - ${toDate}`}</span>
-                }
-                label="Arrival - departure:"
-              />
-              <WhiteBox
-                content={
-                  <span className="font-bold leading-none text-accent-teal uppercase">
-                    available
-                  </span>
-                }
-                label="status:"
-              />
-              <WhiteBox
-                content={
-                  <>
-                    <label className="sr-only" htmlFor="numGuests">
-                      how many guests
-                    </label>
-                    <select
-                      className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
-                      id="numGuests"
-                    >
-                      {[...Array(data.maxGuests)].map((_, index) => (
-                        <option key={index} value={index + 1}>
-                          {index + 1}
-                        </option>
-                      ))}
-                    </select>
-                  </>
-                }
-                label="how many guests:"
-                isSelect={true}
-              />
-            </fieldset>
-          </form>
+        <section className="px-5 flex flex-col items-center gap-2 py-5 w-full">
+          <h2 className="w-max uppercase text-deep-blue font-serif font-bold text-xl-leading-none">
+            {data.name}
+          </h2>
+          <span className="font-serif uppercase text-lg-leading-none font-bold">
+            {data.location.city}
+          </span>
         </section>
       </div>
+      <section className="flex flex-col gap-2.5 pt-5 px-2.5">
+        <h3 className="font-serif font-bold">Booking Details:</h3>
+        <form className="flex flex-col gap-10">
+          <fieldset className="flex flex-col gap-5">
+            <legend className="sr-only">Booking details</legend>
+            <WhiteBox
+              content={
+                <span className="font-bold leading-none">{`${fromDate} - ${toDate}`}</span>
+              }
+              label="Arrival - departure:"
+            />
+            <WhiteBox
+              content={
+                <span className="font-bold leading-none text-accent-teal uppercase">
+                  available
+                </span>
+              }
+              label="status:"
+            />
+            <WhiteBox
+              content={
+                <>
+                  <label className="sr-only" htmlFor="numGuests">
+                    how many guests
+                  </label>
+                  <select
+                    className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
+                    id="numGuests"
+                  >
+                    {[...Array(data.maxGuests)].map((_, index) => (
+                      <option key={index} value={index + 1}>
+                        {index + 1}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              }
+              label="how many guests:"
+              isSelect={true}
+            />
+          </fieldset>
+          <div className="mx-auto">
+            <button
+              type="submit"
+              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none capitalize px-7.5 py-3.75 rounded-xl shadow-md shadow-natural-charcoal/40"
+            >
+              Book now
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 }
