@@ -5,6 +5,7 @@ export const loginPath = "/auth/login";
 export const registerPath = "/auth/register";
 export const profilesPath = "/holidaze/profiles";
 export const venuesPath = "/holidaze/venues";
+export const bookingPath = "/holidaze/bookings";
 
 export const locationsMap = {
   1: {
