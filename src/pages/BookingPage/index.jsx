@@ -18,6 +18,7 @@ export default function BookingPage() {
   const [isError, setIsError] = useState(false);
   let { venueId } = useParams();
   let [searchParams] = useSearchParams();
+  const [isReserved, setIsReserved] = useState(false);
 
   const fromDate = searchParams.get("from");
   const toDate = searchParams.get("to");
@@ -67,14 +68,19 @@ export default function BookingPage() {
           let&apos;s book that holiday
         </Heading>
       </div>
-      <BookingComp data={data} fromDate={fromDate} toDate={toDate} />
+      <BookingComp
+        data={data}
+        fromDate={fromDate}
+        toDate={toDate}
+        isReserved={isReserved}
+        setIsReserved={setIsReserved}
+      />
     </div>
   );
 }
 
-function BookingComp({ data, fromDate, toDate }) {
+function BookingComp({ data, fromDate, toDate, isReserved, setIsReserved }) {
   const [numGuests, setNumGuests] = useState(1);
-  const [isReserved, setIsReserved] = useState(false);
   const { token } = useAuthStore();
 
   async function handleBooking(e) {
@@ -146,29 +152,31 @@ function BookingComp({ data, fromDate, toDate }) {
               }
               label="status:"
             />
-            <WhiteBox
-              content={
-                <>
-                  <label className="sr-only" htmlFor="numGuests">
-                    how many guests
-                  </label>
-                  <select
-                    className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
-                    id="numGuests"
-                    value={numGuests}
-                    onChange={(e) => setNumGuests(Number(e.target.value))}
-                  >
-                    {[...Array(data.maxGuests)].map((_, index) => (
-                      <option key={index} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                </>
-              }
-              label="how many guests:"
-              isSelect={true}
-            />
+            {!isReserved && (
+              <WhiteBox
+                content={
+                  <>
+                    <label className="sr-only" htmlFor="numGuests">
+                      how many guests
+                    </label>
+                    <select
+                      className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
+                      id="numGuests"
+                      value={numGuests}
+                      onChange={(e) => setNumGuests(Number(e.target.value))}
+                    >
+                      {[...Array(data.maxGuests)].map((_, index) => (
+                        <option key={index} value={index + 1}>
+                          {index + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                }
+                label="how many guests:"
+                isSelect={true}
+              />
+            )}
           </fieldset>
           {!isReserved && (
             <div className="mx-auto">
