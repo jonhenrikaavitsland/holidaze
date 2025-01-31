@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { apiUrl, venuesPath } from "../../js/data/constants";
+import {
+  apiKey,
+  apiUrl,
+  bookingPath,
+  venuesPath,
+} from "../../js/data/constants";
 import Loader from "../../component/Loader";
 import BreadCrumb from "../../component/Breadcrumb";
 import Heading from "../../component/Heading";
+import useAuthStore from "../../js/store/useAuthStore";
 
 export default function BookingPage() {
   const [data, setData] = useState(null);
@@ -67,6 +73,39 @@ export default function BookingPage() {
 }
 
 function BookingComp({ data, fromDate, toDate }) {
+  const [numGuests, setNumGuests] = useState(1);
+  const [isReserved, setIsReserved] = useState(false);
+  const { token } = useAuthStore();
+
+  async function handleBooking(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${apiUrl}${bookingPath}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Noroff-API-Key": apiKey,
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          dateFrom: fromDate,
+          dateTo: toDate,
+          guests: numGuests,
+          venueId: data.id,
+        }),
+      });
+
+      if (response.ok) {
+        setIsReserved(true);
+      } else {
+        console.error("Booking Failed");
+      }
+    } catch (error) {
+      console.error("Error during booking:", error);
+    }
+  }
+
   return (
     <div className="flex flex-col md:flex-row rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 pb-10 md:w-200 md:mx-auto lg:w-250">
       <div className="flex sm:flex-col md:w-1/2 md:flex-col">
@@ -88,7 +127,7 @@ function BookingComp({ data, fromDate, toDate }) {
       </div>
       <section className="flex flex-col gap-2.5 lg:gap-7.5 pt-5 px-2.5 md:w-1/2 lg:px-5 lg:pt-7.5">
         <h3 className="font-serif font-bold">Booking Details:</h3>
-        <form className="flex flex-col gap-10">
+        <form className="flex flex-col gap-10" onSubmit={handleBooking}>
           <fieldset className="flex flex-col gap-5 lg:gap-7.5">
             <legend className="sr-only">Booking details</legend>
             <WhiteBox
@@ -99,8 +138,10 @@ function BookingComp({ data, fromDate, toDate }) {
             />
             <WhiteBox
               content={
-                <span className="font-bold leading-none text-accent-teal uppercase">
-                  available
+                <span
+                  className={`font-bold leading-none ${isReserved ? "text-golden-yellow" : "text-accent-teal"} uppercase`}
+                >
+                  {isReserved ? "reserved" : "available"}
                 </span>
               }
               label="status:"
@@ -114,6 +155,8 @@ function BookingComp({ data, fromDate, toDate }) {
                   <select
                     className="grow rounded-xl text-center bg-white px-4 pt-1 pb-2.5"
                     id="numGuests"
+                    value={numGuests}
+                    onChange={(e) => setNumGuests(Number(e.target.value))}
                   >
                     {[...Array(data.maxGuests)].map((_, index) => (
                       <option key={index} value={index + 1}>
