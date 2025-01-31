@@ -50,9 +50,10 @@ export default function Calendar({ data, venueId }) {
     } else {
       let newRange = { from: selectedRange.from, to: date };
 
-      // Ensure "from" is earlier than "to"
-      if (newRange.from > newRange.to) {
-        newRange = { from: date, to: selectedRange.from };
+      // Ensure "from" is earlier than "to" and not the same date
+      if (newRange.from >= newRange.to) {
+        console.warn("The end date must be after the start date.");
+        return;
       }
 
       // Check if there are disabled dates between "from" and "to"
