@@ -68,7 +68,7 @@ export default function BookingPage() {
 
 function BookingComp({ data, fromDate, toDate }) {
   return (
-    <div className="rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 md:mx-7.5 lg:mx-10 pb-10">
+    <div className="flex flex-col rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 md:mx-7.5 lg:mx-10 pb-10">
       <div className="flex sm:flex-col">
         <div className="max-w-1/2 sm:max-w-full">
           <img
