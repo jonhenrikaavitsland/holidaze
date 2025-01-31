@@ -48,25 +48,30 @@ export default function Calendar({ data, venueId }) {
 
   const handleDateClick = (date) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize to prevent time-based issues
+    today.setHours(0, 0, 0, 0);
 
     if (date < today || isDateDisabled(date)) {
       console.warn("Cannot select past or blocked dates.");
       return;
     }
 
-    if (!selectedRange.from || (selectedRange.from && selectedRange.to)) {
+    if (selectedRange.from && selectedRange.from.getTime() === date.getTime()) {
+      // If clicking the same date as "from", reset selection
+      setSelectedRange({ from: null, to: null });
+    } else if (
+      !selectedRange.from ||
+      (selectedRange.from && selectedRange.to)
+    ) {
+      // Start new selection
       setSelectedRange({ from: date, to: null });
     } else {
       let newRange = { from: selectedRange.from, to: date };
 
-      // Ensure "from" is earlier than "to" and not the same date
       if (newRange.from.getTime() >= newRange.to.getTime()) {
         console.warn("The end date must be after the start date.");
         return;
       }
 
-      // Check if there are disabled dates between "from" and "to"
       let hasDisabledDates = false;
       let currentDate = new Date(newRange.from);
 
