@@ -103,6 +103,10 @@ export default function Calendar({ data, venueId }) {
       data.some((booking) => {
         const dateFrom = new Date(booking.dateFrom);
         const dateTo = new Date(booking.dateTo);
+
+        dateFrom.setHours(0, 0, 0, 0);
+        dateTo.setHours(0, 0, 0, 0);
+
         return date >= dateFrom && date <= dateTo;
       })
     );
