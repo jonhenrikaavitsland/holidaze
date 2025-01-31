@@ -120,8 +120,7 @@ export default function BookingPage() {
                 isSelect={true}
               />
             </fieldset>
-          </form>{" "}
-          {/* Let's redo this as a form input.  */}
+          </form>
         </section>
       </div>
     </div>
