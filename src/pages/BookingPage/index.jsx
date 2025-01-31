@@ -170,14 +170,16 @@ function BookingComp({ data, fromDate, toDate }) {
               isSelect={true}
             />
           </fieldset>
-          <div className="mx-auto">
-            <button
-              type="submit"
-              className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none lg:text-4xl-leading-none capitalize px-7.5 py-3.75 lg:px-15 lg:py-7.5 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
-            >
-              Book now
-            </button>
-          </div>
+          {!isReserved && (
+            <div className="mx-auto">
+              <button
+                type="submit"
+                className="bg-deep-blue text-white font-serif font-black text-3xl-leading-none lg:text-4xl-leading-none capitalize px-7.5 py-3.75 lg:px-15 lg:py-7.5 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+              >
+                Book now
+              </button>
+            </div>
+          )}
         </form>
       </section>
     </div>
