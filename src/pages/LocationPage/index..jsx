@@ -3,6 +3,7 @@ import BreadCrumb from "../../component/Breadcrumb";
 import Heading from "../../component/Heading";
 import { useEffect, useState } from "react";
 import Loader from "../../component/Loader";
+import CardLocation from "../../component/CardLocation";
 
 export default function LocationPage() {
   const { locationName } = useParams();
@@ -56,6 +57,7 @@ export default function LocationPage() {
         <Heading level="1" className="text-center text-deep-blue">
           {`Explore ${locationData.name}`}
         </Heading>
+        <CardLocation location={locationData} />
       </section>
     </div>
   );
