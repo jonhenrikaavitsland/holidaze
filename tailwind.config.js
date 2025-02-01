@@ -144,6 +144,7 @@ export default {
         heroMd: "min-content 90px min-content",
         locationCard: "min-content 1fr 30px",
         locationCardMd: "min-content 1fr 60px",
+        2: "24px 1fr",
       },
       gridTemplateColumns: {
         hero: "20px 1fr 20px",
