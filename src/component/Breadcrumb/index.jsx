@@ -6,18 +6,19 @@ export default function BreadCrumb({ venueId, venueName }) {
   const currentPath = location.pathname;
 
   const breadcrumbMap = {
-    "/corralejo/": "Corralejo",
-    "/costa-calma/": "Costa Calma",
-    "/caleta-de-fuste/": "Caleta de Fuste",
-    "/el-cotillo/": "El Cotillo",
-    "/morro-jable/": "Morro Jable",
+    "/locations/corralejo": "Corralejo",
+    "/locations/costa-calma": "Costa-Calma",
+    "/locations/caleta-de-fuste": "Caleta-de-Fuste",
+    "/locations/el-cotillo": "El-Cotillo",
+    "/locations/morro-jable": "Morro-Jable",
   };
 
   const currentBreadcrumb = breadcrumbMap[currentPath];
+  console.log("BreadCrumb:", currentBreadcrumb);
 
   const renderBreadCrumb = () => {
-    switch (currentPath) {
-      case `/venue/${venueId}/booking`:
+    switch (currentPath.toLowerCase()) {
+      case `/venue/${venueId}/booking`.toLowerCase():
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
@@ -29,7 +30,7 @@ export default function BreadCrumb({ venueId, venueName }) {
             </ul>
           </nav>
         );
-      case `/venue/${venueId}`:
+      case `/venue/${venueId}`.toLowerCase():
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
@@ -40,13 +41,13 @@ export default function BreadCrumb({ venueId, venueName }) {
             </ul>
           </nav>
         );
-      case currentBreadcrumb:
+      case `/locations/${currentBreadcrumb}`.toLowerCase():
         return (
           <nav className="ms-5 md:ms-7.5 lg:ms-10">
             <ul className="flex flex-wrap items-center gap-x-2.5">
               <LinkElement to="/" content="Home" />
               <li className="py-2.5 font-serif font-bold leading-none;">
-                <span>{currentBreadcrumb}</span>
+                <span>{currentBreadcrumb.replace(/-/g, " ")}</span>
               </li>
             </ul>
           </nav>
