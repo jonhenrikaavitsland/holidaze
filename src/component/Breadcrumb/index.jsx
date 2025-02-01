@@ -14,7 +14,6 @@ export default function BreadCrumb({ venueId, venueName }) {
   };
 
   const currentBreadcrumb = breadcrumbMap[currentPath];
-  console.log("BreadCrumb:", currentBreadcrumb);
 
   const renderBreadCrumb = () => {
     switch (currentPath.toLowerCase()) {
