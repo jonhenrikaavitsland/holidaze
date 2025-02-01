@@ -51,13 +51,20 @@ export default function LocationPage() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
         <BreadCrumb />
         <Heading level="1" className="text-center text-deep-blue">
           {`Explore ${locationData.name}`}
         </Heading>
         <CardLocation location={locationData} />
+        <p className="mx-5 md:mx-7.5 lg:mx-10">{locationData.description}</p>
+      </section>
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+        <Heading
+          level="2"
+          className="text-center text-deep-blue"
+        >{`4 Things to see and do in ${locationData.name}`}</Heading>
       </section>
     </div>
   );
