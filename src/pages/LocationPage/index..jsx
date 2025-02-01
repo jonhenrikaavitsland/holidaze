@@ -98,7 +98,18 @@ export default function LocationPage() {
             <Loader />
           ) : (
             data &&
-            data.map((venue) => <CardVenue key={venue.id} venue={venue} />)
+            data.map((venue, index) => {
+              // Check if the number of venues is odd and if this is the last item
+              const isLastOdd =
+                data.length % 2 === 1 && index === data.length - 1;
+              return (
+                <CardVenue
+                  key={venue.id}
+                  venue={venue}
+                  className={isLastOdd ? "lg:col-span-full" : ""}
+                />
+              );
+            })
           )}
         </div>
       </section>
