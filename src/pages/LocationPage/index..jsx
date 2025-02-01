@@ -5,11 +5,20 @@ import Heading from "../../component/Heading";
 import { useEffect, useState } from "react";
 import Loader from "../../component/Loader";
 import CardLocation from "../../component/CardLocation";
+import { useAPISearch } from "../../js/api/useAPISearch";
+import { apiUrl, venuesPath } from "../../js/data/constants";
+import CardVenue from "../../component/CardVenue";
 
 export default function LocationPage() {
   const { locationName } = useParams();
   const [locationData, setLocationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const {
+    data,
+    isLoading: loading,
+    isError,
+  } = useAPISearch(`${apiUrl}${venuesPath}/search?q=${locationName}`);
 
   useEffect(() => {
     const fetchLocationData = async () => {
@@ -51,7 +60,7 @@ export default function LocationPage() {
     );
   }
 
-  console.log(locationData);
+  console.log(data);
 
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
@@ -75,12 +84,23 @@ export default function LocationPage() {
           <FourThings key={index} thing={thing} index={index} />
         ))}
       </section>
-      <section>
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
         <Heading
           level="2"
           className="text-center text-deep-blue"
         >{`Available venues in ${locationData.name}`}</Heading>
-        {/* Fetch and render venues in corralejo */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-10 lg:mx-10">
+          {isError ? (
+            <p className="font-bold text-custom-coral text-center">
+              Something went wrong fetching venues!
+            </p>
+          ) : loading ? (
+            <Loader />
+          ) : (
+            data &&
+            data.map((venue) => <CardVenue key={venue.id} venue={venue} />)
+          )}
+        </div>
       </section>
     </div>
   );
@@ -93,16 +113,16 @@ function FourThings({ thing, index }) {
       ? "lg:col-start-2 lg:col-end-3"
       : "lg:col-start-1 lg:col-end-2";
   return (
-    <div className="flex flex-col gap-3.75 lg:grid lg:grid-cols-2 lg:grid-rows-2">
-      <Heading level="3" className="mx-5 md:mx-7.5 lg:mx-10">
+    <div className="flex flex-col gap-3.75 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:mx-10 lg:gap-x-10 lg:gap-y-5">
+      <Heading level="3" className="mx-5 md:mx-7.5 lg:mx-0">
         {thing.title}
       </Heading>
       <img
         src={thing.image.url}
         alt={thing.image.alt}
-        className={`md:mx-7.5 lg:mx-10 ${gridClasses} row-span-full`}
+        className={`md:mx-7.5 lg:mx-0 ${gridClasses} row-span-full`}
       />
-      <p className="mx-5 md:mx-7.5 lg:mx-10 md:text-lg lg:text-xl">
+      <p className="mx-5 md:mx-7.5 lg:mx-0 md:text-lg lg:text-xl">
         {thing.description}
       </p>
     </div>
