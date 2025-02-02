@@ -18,7 +18,7 @@ export default function AccountPage() {
       </Heading>
       <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2">
         <BioCard user={user} />
-        <section>
+        <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
           <Heading level="2" className="text-center text-deep-blue">
             Upcoming bookings
           </Heading>
@@ -84,7 +84,7 @@ function BookingCard({ booking, index, maxNum }) {
         {index + 1} / {maxNum}
       </span>
       <section
-        className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-10 rounded-xl shadow-md shadow-natural-charcoal/40"
+        className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-10 rounded-xl shadow-md shadow-natural-charcoal/40 cursor-pointer"
         onClick={() => setIsCardOpen(!isCardOpen)}
       >
         <Heading level="3" className="text-deep-blue">
