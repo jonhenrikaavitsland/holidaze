@@ -12,7 +12,7 @@ export default function AccountPage() {
   console.log("bookings:", bookings);
 
   return (
-    <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10 pt-5 md:pt-7.5 lg:pt-10 pb-10 md:pb-15 lg:pb-20">
+    <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10 pt-5 md:pt-7.5 lg:pt-10">
       <Heading level="1" className="text-center text-deep-blue">
         Account
       </Heading>
@@ -76,6 +76,8 @@ function BookingCard({ booking, index, maxNum }) {
     })
     .replace(/\//g, ".");
 
+  const dayCount = (dateToObj - dateFromObj) / (1000 * 60 * 60 * 24);
+
   return (
     <div>
       <span className="text-xs-leading-none">
@@ -100,6 +102,7 @@ function BookingCard({ booking, index, maxNum }) {
             booking={booking}
             formattedDateFrom={formattedDateFrom}
             formattedDateTo={formattedDateTo}
+            days={dayCount}
           />
         )}
         <BtnOpenClose openState={isCardOpen} />
@@ -108,7 +111,9 @@ function BookingCard({ booking, index, maxNum }) {
   );
 }
 
-function OpenCard({ booking, formattedDateFrom, formattedDateTo }) {
+function OpenCard({ booking, formattedDateFrom, formattedDateTo, days }) {
+  const totalValue = booking.venue.price * days;
+
   return (
     <div className="flex flex-col gap-5">
       <Address booking={booking} />
@@ -123,6 +128,11 @@ function OpenCard({ booking, formattedDateFrom, formattedDateTo }) {
         </Heading>
         <DisplayMeta meta={booking.venue.meta} />
       </section>
+      <div className="flex flex-col gap-2.5 leading-none">
+        <span>{booking.guests} Guests</span>
+        <span>€{booking.venue.price} / night</span>
+        <span>€{totalValue} Total</span>
+      </div>
     </div>
   );
 }
