@@ -5,9 +5,15 @@ import useUIStore from "./js/store/useUIStore";
 import LoginModal from "./component/LoginModal";
 import RegisterModal from "./component/RegisterModal";
 import Overlay from "./component/Overlay";
+import EditProfileModal from "./component/EditProfileModal";
 
 export default function Layout() {
-  const { isOverlayOpen, isLoginModalOpen, isRegisterModalOpen } = useUIStore();
+  const {
+    isOverlayOpen,
+    isLoginModalOpen,
+    isRegisterModalOpen,
+    isEditProfileOpen,
+  } = useUIStore();
 
   return (
     <div className="flex flex-col h-screen">
@@ -19,6 +25,7 @@ export default function Layout() {
         {isLoginModalOpen ? <LoginModal /> : ""}
         {isRegisterModalOpen ? <RegisterModal /> : ""}
         {isOverlayOpen ? <Overlay /> : ""}
+        {isEditProfileOpen ? <EditProfileModal /> : ""}
       </main>
       <Footer />
     </div>
