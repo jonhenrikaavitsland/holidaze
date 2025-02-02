@@ -5,6 +5,7 @@ const useUIStore = create((set) => ({
   isMenuOpen: false,
   isLoginModalOpen: false,
   isRegisterModalOpen: false,
+  isEditProfileOpen: false,
 
   // Function to open a state and overlay together
   openStateWithOverlay: (stateKey) =>
@@ -20,6 +21,7 @@ const useUIStore = create((set) => ({
       isMenuOpen: false,
       isLoginModalOpen: false,
       isRegisterModalOpen: false,
+      isEditProfileOpen: false,
     })),
 
   // Utility to check if any state is open and close everything
@@ -35,6 +37,7 @@ const useUIStore = create((set) => ({
           isMenuOpen: false,
           isLoginModalOpen: false,
           isRegisterModalOpen: false,
+          isEditProfileOpen: false,
         };
       }
       return {}; // No state changes needed
