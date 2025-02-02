@@ -87,9 +87,7 @@ function BookingCard({ booking, index, maxNum }) {
         className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-10 rounded-xl shadow-md shadow-natural-charcoal/40 cursor-pointer"
         onClick={() => setIsCardOpen(!isCardOpen)}
       >
-        <Heading level="3" className="text-deep-blue">
-          {booking.venue.name}
-        </Heading>
+        <VenueName booking={booking} isCardOpen={isCardOpen} />
         {!isCardOpen && (
           <ClosedCard
             booking={booking}
@@ -107,6 +105,29 @@ function BookingCard({ booking, index, maxNum }) {
         )}
         <BtnOpenClose openState={isCardOpen} />
       </section>
+    </div>
+  );
+}
+
+function VenueName({ booking, isCardOpen }) {
+  return (
+    <div className="flex gap-2.5 md:gap-3.75 lg:gap-5">
+      <Heading level="3" className="text-deep-blue">
+        {booking.venue.name}
+      </Heading>
+      {isCardOpen && (
+        <div className="flex gap-2">
+          {[...Array(booking.venue.rating)].map((_, index) => (
+            <div key={index}>
+              <img
+                src="/logo_warm_200.png"
+                alt="rating icon"
+                className="h-4.5 md:h-5 lg:h-6"
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
