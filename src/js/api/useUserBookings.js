@@ -34,7 +34,14 @@ export default function useUserBookings() {
         const data = await response.json();
 
         // Assuming that the returned profile includes a bookings property when using the query param.
-        setBookings(data.data.bookings || []);
+        const unsortedBookings = data.data.bookings || [];
+
+        // Sort the bookings array by dateFrom.
+        const sortedBookings = unsortedBookings.sort(
+          (a, b) => new Date(a.dateFrom) - new Date(b.dateFrom),
+        );
+
+        setBookings(sortedBookings);
       } catch (err) {
         setError(err);
       } finally {
