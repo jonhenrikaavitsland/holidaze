@@ -7,6 +7,7 @@ import CreateNewVenue from "./pages/CreateNewVenue";
 import VenuePage from "./pages/VenuePage";
 import LocationPage from "./pages/LocationPage/index.";
 import BookingPage from "./pages/BookingPage";
+import AccountPage from "./pages/AccountPage";
 
 export default function App() {
   const { isVenueManager, isLoggedIn } = useAuthStore();
@@ -31,7 +32,7 @@ export default function App() {
           <Route path="/venue/:venueId" element={<VenuePage />} />
           <Route path="/venue/:venueId/booking" element={<BookingPage />} />
           <Route path="/locations/:locationName" element={<LocationPage />} />
-          {isLoggedIn && <Route path="/account" />}
+          {isLoggedIn && <Route path="/account" element={<AccountPage />} />}
           {/* Redirects */}
           <Route path="/venue" element={<Navigate to="/" replace />} />
           <Route path="/locations" element={<Navigate to="/" replace />} />
