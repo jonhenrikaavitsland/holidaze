@@ -18,7 +18,7 @@ function BioCard({ user }) {
   return (
     <div className="relative flex flex-col pt-2.5 border border-natural-charcoal/40 rounded-xl">
       <div
-        className="h-50 w-50 rounded-full shadow-md shadow-natural-charcoal/40 bg-cover bg-center"
+        className="h-50 w-50 rounded-full shadow-md shadow-natural-charcoal/40 bg-cover bg-center mx-auto"
         style={{ backgroundImage: `url(${user.avatar.url})` }}
         aria-label={user.avatar.alt} // Optional: for accessibility
       />
