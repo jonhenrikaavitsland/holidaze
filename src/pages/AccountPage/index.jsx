@@ -9,19 +9,26 @@ export default function AccountPage() {
       <Heading level="1" className="text-center text-deep-blue">
         Account
       </Heading>
-      <BioCard user={user} />
+      <div>
+        <BioCard user={user} />
+      </div>
     </section>
   );
 }
 
 function BioCard({ user }) {
   return (
-    <div className="relative flex flex-col pt-2.5 border border-natural-charcoal/40 rounded-xl">
+    <div className="relative flex flex-col pt-2.5 md:pt-5 lg:pt-7.5 border border-natural-charcoal/40 rounded-xl">
       <div
         className="h-50 w-50 rounded-full shadow-md shadow-natural-charcoal/40 bg-cover bg-center mx-auto"
         style={{ backgroundImage: `url(${user.avatar.url})` }}
         aria-label={user.avatar.alt} // Optional: for accessibility
       />
+      <div className="absolute z-20 top-0 right-0">
+        <button className="p-2.5 rounded-xl">
+          <img src="/pen-solid.svg" alt="update image" className="h-5" />
+        </button>
+      </div>
     </div>
   );
 }
