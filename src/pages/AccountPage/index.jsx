@@ -242,7 +242,7 @@ function BioCard({ user }) {
           aria-label={user.avatar.alt}
         />
         <div className="absolute z-20 top-0 right-0">
-          <button className="p-2.5 rounded-xl">
+          <button className="p-2.5 rounded-xl hover:bg-deep-blue/20">
             <img src="/pen-solid.svg" alt="update image" className="h-5" />
           </button>
         </div>
