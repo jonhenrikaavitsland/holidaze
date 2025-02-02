@@ -95,8 +95,57 @@ function BookingCard({ booking, index, maxNum }) {
             formattedDateTo={formattedDateTo}
           />
         )}
+        {isCardOpen && (
+          <OpenCard
+            booking={booking}
+            formattedDateFrom={formattedDateFrom}
+            formattedDateTo={formattedDateTo}
+          />
+        )}
         <BtnOpenClose openState={isCardOpen} />
       </section>
+    </div>
+  );
+}
+
+function OpenCard({ booking, formattedDateFrom, formattedDateTo }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <Address booking={booking} />
+      <CheckInOutBox
+        booking={booking}
+        formattedDateFrom={formattedDateFrom}
+        formattedDateTo={formattedDateTo}
+      />
+    </div>
+  );
+}
+
+function CheckInOutBox({ booking, formattedDateFrom, formattedDateTo }) {
+  return (
+    <div className="flex flex-col gap-1.5 bg-white border border-natural-charcoal/40 p-1 leading-none">
+      <span className="text-sm-leading-none font-medium">
+        Check-in / Check-out
+      </span>
+      <div className="mx-auto text-base">
+        <time className="" dateTime={booking.dateFrom}>
+          {formattedDateFrom}
+        </time>
+        <span> - </span>
+        <time dateTime={booking.dateTo}>{formattedDateTo}</time>
+      </div>
+    </div>
+  );
+}
+
+function Address({ booking }) {
+  return (
+    <div className="flex flex-col leading-none gap-2.5 md:text-lg-leading-none lg:text-xl-leading-none">
+      <span>{booking.venue.location.address}</span>
+      <span>
+        {booking.venue.location.zip} {booking.venue.location.city}
+      </span>
+      <span>Fuerteventura, {booking.venue.location.country}</span>
     </div>
   );
 }
@@ -108,12 +157,13 @@ function ClosedCard({ booking, formattedDateFrom, formattedDateTo }) {
         {booking.venue.location.city}, Fuerteventura
       </span>
       <span className="leading-none">{booking.venue.location.country}</span>
-      <span className="leading-none">
+      <div className="leading-none">
         <time className="" dateTime={booking.dateFrom}>
           {formattedDateFrom}
-        </time>{" "}
-        - <time dateTime={booking.dateTo}>{formattedDateTo}</time>
-      </span>
+        </time>
+        <span> - </span>
+        <time dateTime={booking.dateTo}>{formattedDateTo}</time>
+      </div>
     </div>
   );
 }
