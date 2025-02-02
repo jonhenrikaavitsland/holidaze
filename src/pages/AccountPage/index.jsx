@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import Heading from "../../component/Heading";
 import Loader from "../../component/Loader";
 import useUserBookings from "../../js/api/useUserBookings";
@@ -57,6 +58,7 @@ export default function AccountPage() {
 function BookingCard({ booking, index, maxNum }) {
   const dateFromObj = new Date(booking.dateFrom);
   const dateToObj = new Date(booking.dateTo);
+  const [isCardOpen, setIsCardOpen] = useState(false);
 
   const formattedDateFrom = dateFromObj
     .toLocaleDateString("en-GB", {
@@ -78,22 +80,29 @@ function BookingCard({ booking, index, maxNum }) {
       <span className="text-xs-leading-none">
         {index + 1} / {maxNum}
       </span>
-      <section className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-7.5">
+      <section
+        className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-7.5"
+        onClick={() => setIsCardOpen(!isCardOpen)}
+      >
         <Heading level="3" className="text-deep-blue">
           {booking.venue.name}
         </Heading>
-        <div className="flex flex-col gap-2.5">
-          <span className="leading-none">
-            {booking.venue.location.city}, Fuerteventura
-          </span>
-          <span className="leading-none">{booking.venue.location.country}</span>
-          <span className="leading-none">
-            <time className="" dateTime={booking.dateFrom}>
-              {formattedDateFrom}
-            </time>{" "}
-            - <time dateTime={booking.dateTo}>{formattedDateTo}</time>
-          </span>
-        </div>
+        {!isCardOpen && (
+          <div className="flex flex-col gap-2.5">
+            <span className="leading-none">
+              {booking.venue.location.city}, Fuerteventura
+            </span>
+            <span className="leading-none">
+              {booking.venue.location.country}
+            </span>
+            <span className="leading-none">
+              <time className="" dateTime={booking.dateFrom}>
+                {formattedDateFrom}
+              </time>{" "}
+              - <time dateTime={booking.dateTo}>{formattedDateTo}</time>
+            </span>
+          </div>
+        )}
       </section>
     </div>
   );
