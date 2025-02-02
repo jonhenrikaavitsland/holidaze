@@ -9,8 +9,13 @@ export default function AccountPage() {
       <Heading level="1" className="text-center text-deep-blue">
         Account
       </Heading>
-      <div>
+      <div className="flex flex-col gap-10">
         <BioCard user={user} />
+        <section>
+          <Heading level="2" className="text-center text-deep-blue">
+            Upcoming bookings
+          </Heading>
+        </section>
       </div>
     </section>
   );
