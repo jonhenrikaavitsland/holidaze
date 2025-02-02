@@ -117,12 +117,40 @@ function OpenCard({ booking, formattedDateFrom, formattedDateTo }) {
         formattedDateFrom={formattedDateFrom}
         formattedDateTo={formattedDateTo}
       />
-      <section>
+      <section className="flex flex-col gap-2.5">
         <Heading level="3" className="text-deep-blue">
           Amenities Included:
         </Heading>
+        <DisplayMeta meta={booking.venue.meta} />
       </section>
     </div>
+  );
+}
+
+function DisplayMeta({ meta }) {
+  return (
+    <ul className="flex flex-col gap-1 leading-none list-disc ms-5">
+      {meta.wifi && (
+        <li>
+          <span>WiFi is included</span>
+        </li>
+      )}
+      {meta.breakfast && (
+        <li>
+          <span>Breakfast is included</span>
+        </li>
+      )}
+      {meta.parking && (
+        <li>
+          <span>Parking is available</span>
+        </li>
+      )}
+      {meta.pets && (
+        <li>
+          <span>Pets are welcome</span>
+        </li>
+      )}
+    </ul>
   );
 }
 
