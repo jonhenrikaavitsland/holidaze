@@ -117,6 +117,11 @@ function OpenCard({ booking, formattedDateFrom, formattedDateTo }) {
         formattedDateFrom={formattedDateFrom}
         formattedDateTo={formattedDateTo}
       />
+      <section>
+        <Heading level="3" className="text-deep-blue">
+          Amenities Included:
+        </Heading>
+      </section>
     </div>
   );
 }
