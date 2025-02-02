@@ -4,6 +4,7 @@ import Heading from "../../component/Heading";
 import Loader from "../../component/Loader";
 import useUserBookings from "../../js/api/useUserBookings";
 import useAuthStore from "../../js/store/useAuthStore";
+import BtnOpenClose from "../../component/BtnOpenClose";
 
 export default function AccountPage() {
   const { user } = useAuthStore();
@@ -81,7 +82,7 @@ function BookingCard({ booking, index, maxNum }) {
         {index + 1} / {maxNum}
       </span>
       <section
-        className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-7.5"
+        className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-7.5 rounded-xl shadow-md shadow-natural-charcoal/40"
         onClick={() => setIsCardOpen(!isCardOpen)}
       >
         <Heading level="3" className="text-deep-blue">
@@ -103,6 +104,7 @@ function BookingCard({ booking, index, maxNum }) {
             </span>
           </div>
         )}
+        <BtnOpenClose openState={isCardOpen} />
       </section>
     </div>
   );
