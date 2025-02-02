@@ -149,7 +149,7 @@ function OpenCard({ booking, formattedDateFrom, formattedDateTo, days }) {
         </Heading>
         <DisplayMeta meta={booking.venue.meta} />
       </section>
-      <div className="flex flex-col gap-2.5 leading-none">
+      <div className="flex flex-col gap-2.5 leading-none md:text-lg-leading-none lg:text-xl-leading-none">
         <span>{booking.guests} Guests</span>
         <span>€{booking.venue.price} / night</span>
         <span>€{totalValue} Total</span>
@@ -160,7 +160,7 @@ function OpenCard({ booking, formattedDateFrom, formattedDateTo, days }) {
 
 function DisplayMeta({ meta }) {
   return (
-    <ul className="flex flex-col gap-1 leading-none list-disc ms-5">
+    <ul className="flex flex-col gap-1 leading-none md:text-lg-leading-none lg:text-xl-leading-none list-disc ms-5 md:ms-7.5 lg:ms-10">
       {meta.wifi && (
         <li>
           <span>WiFi is included</span>
