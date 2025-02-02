@@ -8,6 +8,7 @@ export default function BtnOpenClose({ openState }) {
           alt=""
           className={`h-5 ${openState ? "rotate-180" : ""}`}
         />
+        <span className="sr-only">toggle</span>
       </button>
     </div>
   );
