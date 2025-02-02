@@ -36,8 +36,66 @@ export default function AccountPage() {
             It looks like you have not placed any bookings yet.
           </p>
         )}
+        {!loading && !error && bookings.length > 0 && (
+          <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+            {bookings.map((booking, index) => (
+              <li key={booking.id}>
+                <BookingCard
+                  booking={booking}
+                  index={index}
+                  maxNum={bookings.length}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
+  );
+}
+
+function BookingCard({ booking, index, maxNum }) {
+  const dateFromObj = new Date(booking.dateFrom);
+  const dateToObj = new Date(booking.dateTo);
+
+  const formattedDateFrom = dateFromObj
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+  const formattedDateTo = dateToObj
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+
+  return (
+    <div>
+      <span className="text-xs-leading-none">
+        {index + 1} / {maxNum}
+      </span>
+      <section className="relative flex flex-col gap-2.5 bg-light-sky-blue pt-2.5 px-2.5 pb-7.5">
+        <Heading level="3" className="text-deep-blue">
+          {booking.venue.name}
+        </Heading>
+        <div className="flex flex-col gap-2.5">
+          <span className="leading-none">
+            {booking.venue.location.city}, Fuerteventura
+          </span>
+          <span className="leading-none">{booking.venue.location.country}</span>
+          <span className="leading-none">
+            <time className="" dateTime={booking.dateFrom}>
+              {formattedDateFrom}
+            </time>{" "}
+            - <time dateTime={booking.dateTo}>{formattedDateTo}</time>
+          </span>
+        </div>
+      </section>
+    </div>
   );
 }
 
