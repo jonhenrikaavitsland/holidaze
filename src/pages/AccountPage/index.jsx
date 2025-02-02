@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 import Heading from "../../component/Heading";
+import Loader from "../../component/Loader";
+import useUserBookings from "../../js/api/useUserBookings";
 import useAuthStore from "../../js/store/useAuthStore";
 
 export default function AccountPage() {
   const { user } = useAuthStore();
+  const { bookings, loading, error } = useUserBookings();
+  console.log("bookings:", bookings);
+
   return (
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10 pt-5 md:pt-7.5 lg:pt-10 pb-10 md:pb-15 lg:pb-20">
       <Heading level="1" className="text-center text-deep-blue">
@@ -16,6 +21,21 @@ export default function AccountPage() {
             Upcoming bookings
           </Heading>
         </section>
+        {loading && (
+          <div className="flex justify-center">
+            <Loader />
+          </div>
+        )}
+        {error && (
+          <p className="text-center font-bold text-custom-coral">
+            {error.message}
+          </p>
+        )}
+        {!loading && !error && bookings.length === 0 && (
+          <p className="text-center">
+            It looks like you have not placed any bookings yet.
+          </p>
+        )}
       </div>
     </section>
   );
