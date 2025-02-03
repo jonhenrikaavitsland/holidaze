@@ -129,6 +129,7 @@ export default {
       margin: {
         7.5: "30px",
         15: "60px",
+        17.5: "70px",
       },
       inset: {
         7.5: "30px",
