@@ -29,6 +29,11 @@ const useAuthStore = create(
           isVenueManager: !!venueManager,
         });
       },
+      updateAvatarObject: (newAvatar) => {
+        set((state) => ({
+          user: state.user ? { ...state.user, avatar: newAvatar } : null,
+        }));
+      },
     }),
     {
       name: "auth",
