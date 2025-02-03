@@ -5,6 +5,7 @@ import Loader from "../../component/Loader";
 import useUserBookings from "../../js/api/useUserBookings";
 import useAuthStore from "../../js/store/useAuthStore";
 import BtnOpenClose from "../../component/BtnOpenClose";
+import useUIStore from "../../js/store/useUIStore";
 
 export default function AccountPage() {
   const { user } = useAuthStore();
@@ -233,6 +234,7 @@ function ClosedCard({ booking, formattedDateFrom, formattedDateTo }) {
 }
 
 function BioCard({ user }) {
+  const { openStateWithOverlay } = useUIStore();
   return (
     <div>
       <div className="relative flex flex-col gap-5 lg:gap-7.5 pt-2.5 md:pt-5 lg:pt-7.5 pb-10 lg:pb-15 border border-natural-charcoal/40 rounded-xl">
@@ -242,7 +244,12 @@ function BioCard({ user }) {
           aria-label={user.avatar.alt}
         />
         <div className="absolute z-20 top-0 right-0">
-          <button className="p-2.5 rounded-xl hover:bg-deep-blue/20">
+          <button
+            className="p-2.5 rounded-xl hover:bg-deep-blue/20"
+            onClick={() => {
+              openStateWithOverlay("isEditProfileOpen");
+            }}
+          >
             <img src="/pen-solid.svg" alt="update image" className="h-5" />
           </button>
         </div>
