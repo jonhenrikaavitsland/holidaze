@@ -8,6 +8,7 @@ import VenuePage from "./pages/VenuePage";
 import LocationPage from "./pages/LocationPage/index.";
 import BookingPage from "./pages/BookingPage";
 import AccountPage from "./pages/AccountPage";
+import VenueHubPage from "./pages/VenueHubPage";
 
 export default function App() {
   const { isVenueManager, isLoggedIn } = useAuthStore();
@@ -24,6 +25,9 @@ export default function App() {
               path="/list-your-venue/"
               element={<Navigate to="/venue-hub/" replace />}
             />
+          )}
+          {isVenueManager && (
+            <Route path="/venue-hub/" element={<VenueHubPage />} />
           )}
           <Route
             path="/venue-hub/create-new-venue/"
