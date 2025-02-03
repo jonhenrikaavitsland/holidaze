@@ -1,12 +1,14 @@
 import { useState } from "react";
 import useAuthStore from "../../js/store/useAuthStore";
 import Heading from "../Heading";
+import useUpdateAvatar from "../../js/api/useUpdateAvatar";
 
 export default function EditProfileModal() {
-  const { user } = useAuthStore();
+  const { user, token, updateAvatarObject } = useAuthStore();
   const [newImage, setNewImage] = useState(user.avatar.url);
   const [inputUrl, setInputUrl] = useState(user.avatar.url);
-  const [error, setError] = useState("");
+  const [localError, setLocalError] = useState("");
+  const { updateAvatar, updateSuccess, error: apiError } = useUpdateAvatar();
 
   const handleInputChange = (e) => {
     const url = e.target.value;
@@ -14,7 +16,7 @@ export default function EditProfileModal() {
 
     if (!url) {
       setNewImage(user.avatar.url);
-      setError("");
+      setLocalError("");
       return;
     }
 
@@ -23,11 +25,11 @@ export default function EditProfileModal() {
     img.onload = () => {
       // When the image loads successfully, update the preview
       setNewImage(url);
-      setError("");
+      setLocalError("");
     };
     img.onerror = () => {
       // Set an error message if the image fails to load
-      setError("Failed to load image. Please enter a valid URL.");
+      setLocalError("Failed to load image. Please enter a valid URL.");
     };
     img.src = url;
   };
@@ -36,7 +38,17 @@ export default function EditProfileModal() {
   const handleClear = () => {
     setInputUrl("");
     setNewImage(user.avatar.url);
-    setError("");
+    setLocalError("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Only attempt to update if there are no local errors
+    if (localError) return;
+
+    await updateAvatar(user, token, newImage);
+    updateAvatarObject({ url: newImage, alt: user.name });
   };
 
   return (
@@ -48,17 +60,20 @@ export default function EditProfileModal() {
         Upload a new image by filling in the box below. Click save when you are
         done.
       </p>
-      <form className="flex flex-col pt-2.5 gap-5 lg:flex-row">
-        {error ? (
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col pt-2.5 gap-5 lg:flex-row"
+      >
+        {localError ? (
           <div className="h-36 flex items-center">
-            <p className="text-custom-coral font-bold mx-auto">{error}</p>
+            <p className="text-custom-coral font-bold mx-auto">{localError}</p>
           </div>
         ) : (
           <figure>
             <img
               src={newImage}
               alt={user.name}
-              className="h-36 aspect-square object-cover mx-auto"
+              className={`h-36 aspect-square object-cover mx-auto ${updateSuccess && "border-8 border-accent-teal"}`}
             />
           </figure>
         )}
@@ -92,6 +107,9 @@ export default function EditProfileModal() {
               </button>
             </div>
           </div>
+          {apiError && (
+            <p className="font-bold text-custom-coral">{apiError}</p>
+          )}
         </div>
       </form>
     </div>
