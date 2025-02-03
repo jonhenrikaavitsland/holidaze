@@ -31,10 +31,8 @@ export default function Header() {
 }
 
 function Navbar({ isThrottled, handleClick }) {
-  const [isVenueManager] = useState(false);
-
   const { isMenuOpen, openStateWithOverlay, checkAndCloseAll } = useUIStore();
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn, isVenueManager } = useAuthStore();
 
   return (
     <nav
