@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 
 export default function Footer() {
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn, isVenueManager } = useAuthStore();
 
   return (
     <footer className="flex flex-col items-center text-center  bg-light-gray pt-7.5 pb-5">
@@ -29,9 +29,9 @@ export default function Footer() {
         <li>
           <Link
             className="p-2.5 hover:bg-golden-yellow/20 rounded-xl"
-            to="/list-your-venue/"
+            to={isVenueManager ? "/venue-hub/" : "/list-your-venue/"}
           >
-            list your venue
+            {isVenueManager ? "Venue HUB" : "list your venue"}
           </Link>
         </li>
       </ul>
