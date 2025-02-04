@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Heading from "../../component/Heading";
 import useProfileVenues from "../../js/api/useProfileVenues";
+import Loader from "../../component/Loader";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -71,7 +72,11 @@ function ViewVenuesObject({ handleViewChange }) {
           venues
         </Heading>
       )}
-      {venues.length > 0 ? (
+      {loading ? (
+        <div className="flex justify-center pt-10">
+          <Loader />
+        </div>
+      ) : venues.length > 0 ? (
         <HasVenues
           venues={venues}
           meta={meta}
