@@ -10,15 +10,18 @@ export default function VenueHubPage() {
   const [viewBooking, setViewBooking] = useState(false);
   const [viewVenues, setViewVenues] = useState(false);
   const [viewNewVenue, setViewNewVenue] = useState(false);
+  const [viewUpdateVenue, setUpdateVenue] = useState(false);
+  const [currentVenue, setCurrentVenue] = useState("");
 
   function handleViewChange(view) {
     setViewWelcome(view === "welcome");
     setViewBooking(view === "booking");
     setViewVenues(view === "venues");
     setViewNewVenue(view === "newVenue");
+    setUpdateVenue(view === "updateVenue");
   }
 
-  console.log(viewBooking, viewVenues, viewNewVenue);
+  console.log(viewBooking, viewNewVenue, viewUpdateVenue, currentVenue);
 
   return (
     <div className="flex flex-col lg:flex-row">
@@ -50,13 +53,18 @@ export default function VenueHubPage() {
         <Buttons handleViewChange={handleViewChange} />
         {viewWelcome && <Welcome handleViewChange={handleViewChange} />}
         {/* {viewBooking && <ViewBookings />} */}
-        {viewVenues && <ViewVenuesObject handleViewChange={handleViewChange} />}
+        {viewVenues && (
+          <ViewVenuesObject
+            handleViewChange={handleViewChange}
+            setCurrentVenue={setCurrentVenue}
+          />
+        )}
       </section>
     </div>
   );
 }
 
-function ViewVenuesObject({ handleViewChange }) {
+function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { venues, meta, loading, error } = useProfileVenues({
@@ -83,6 +91,8 @@ function ViewVenuesObject({ handleViewChange }) {
           meta={meta}
           error={error}
           setCurrentPage={setCurrentPage}
+          handleViewChange={handleViewChange}
+          setCurrentVenue={setCurrentVenue}
         />
       ) : (
         <HasNoVenues handleViewChange={handleViewChange} />
@@ -91,20 +101,31 @@ function ViewVenuesObject({ handleViewChange }) {
   );
 }
 
-function HasVenues({ venues, meta, error, setCurrentPage }) {
+function HasVenues({
+  venues,
+  meta,
+  error,
+  setCurrentPage,
+  handleViewChange,
+  setCurrentVenue,
+}) {
   console.log(meta, error, setCurrentPage);
   return (
     <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
       {venues.map((venue, index) => (
         <div key={index}>
-          <VenueObject venue={venue} />
+          <VenueObject
+            venue={venue}
+            handleViewChange={handleViewChange}
+            setCurrentVenue={setCurrentVenue}
+          />
         </div>
       ))}
     </div>
   );
 }
 
-function VenueObject({ venue }) {
+function VenueObject({ venue, handleViewChange, setCurrentVenue }) {
   const [openState, setOpenState] = useState(false);
   const createdDate = new Date(venue.created);
 
@@ -118,7 +139,7 @@ function VenueObject({ venue }) {
 
   return (
     <section
-      className={`relative flex flex-col gap-5 pt-2.5 ${openState ? "pb-20" : "pb-5"} px-2.5 bg-light-sky-blue rounded-xl cursor-pointer shadow-md shadow-natural-charcoal/40`}
+      className={`relative flex flex-col gap-5 md:gap-7.5 lg:gap-10 pt-2.5 md:pt-5 lg:pt-7.5 ${openState ? "pb-15 md:pb-20 lg:pb-24" : "pb-5 cursor-pointer"} px-2.5 md:px-5 lg:px-7.5 bg-light-sky-blue rounded-xl shadow-md shadow-natural-charcoal/40`}
       onClick={() => setOpenState(!openState)}
     >
       <Heading level="3" className="text-center text-deep-blue">
@@ -127,67 +148,68 @@ function VenueObject({ venue }) {
       <div
         className={`${!openState && "collapse"} flex flex-col lg:flex-row gap-5 md:gap-7.5 lg:gap-10`}
       >
-        <div className="flex flex-col gap-5 w-1/2">
-          <div className="flex flex-col gap-2 italic leading-none">
+        <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 lg:w-1/2">
+          <div className="flex flex-col gap-2 italic leading-none md:text-lg-leading-none lg:text-xl-leading-none">
+            <span className="not-italic capitalize font-medium">address:</span>
             <p>{venue.location.address}</p>
             <p>
               {venue.location.zip} {venue.location.city}
             </p>
             <p>Fuerteventura, {venue.location.country}</p>
           </div>
-          <div className="flex flex-col gap-2 capitalize leading-none">
+          <div className="flex flex-col gap-2 capitalize leading-none md:text-lg-leading-none lg:text-xl-leading-none">
             <div className="flex gap-2.5">
-              <span>rating:</span>
+              <span className="font-medium">rating:</span>
               <div className="bg-white flex gap-2 px-1">
                 {[...Array(venue.rating)].map((_, index) => (
                   <div key={index}>
                     <img
                       src="/logo_warm_200.png"
                       alt="rating icon"
-                      className="h-4 md:h-5 lg:h-6"
+                      className="h-4 md:h-4.5 lg:h-5"
                     />
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex gap-2.5">
-              <span>sleeps:</span>
+              <span className="font-medium">sleeps:</span>
               <span>{venue.maxGuests}</span>
             </div>
             <div className="flex gap-2.5">
-              <span>wiFi:</span>
+              <span className="font-medium">wiFi:</span>
               <span>{venue.meta.wifi ? "available" : "not available"}</span>
             </div>
             <div className="flex gap-2.5">
-              <span>parking:</span>
+              <span className="font-medium">parking:</span>
               <span>{venue.meta.parking ? "available" : "not available"}</span>
             </div>
             <div className="flex gap-2.5">
-              <span>breakfast:</span>
+              <span className="font-medium">breakfast:</span>
               <span>{venue.breakfast ? "included" : "not included"}</span>
             </div>
             <div className="flex gap-2.5">
-              <span>pets:</span>
+              <span className="font-medium">pets:</span>
               <span>{venue.pets ? "allowed" : "not allowed"}</span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 capitalize leading-none">
+          <div className="flex flex-col gap-2 capitalize leading-none md:text-lg-leading-none lg:text-xl-leading-none">
             <div className="flex gap-2.5">
-              <span>rate €:</span>
+              <span className="font-medium">rate €:</span>
               <div className="bg-white grow px-1">
                 <span>{venue.price}</span>
               </div>
             </div>
             <div className="flex gap-2.5">
-              <span>description:</span>
+              <span className="font-medium">description:</span>
               <div className="bg-white px-1 overflow-hidden">
-                <p className="overflow-hidden text-ellipsis whitespace-nowrap max-w-md">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap lg:max-w-md">
                   {venue.description}
                 </p>
               </div>
             </div>
             <div className="flex gap-2.5">
-              <span>venue created:</span>
+              <span className="font-medium">venue created:</span>
               <div className="bg-white px-1 grow">
                 <time dateTime={venue.created}>{formattedCreatedDate}</time>
               </div>
@@ -195,8 +217,8 @@ function VenueObject({ venue }) {
           </div>
         </div>
         <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 grow">
-          <div className="flex flex-col gap-2 leading-none">
-            <span>images:</span>
+          <div className="flex flex-col gap-2 leading-none md:text-lg-leading-none lg:text-xl-leading-none">
+            <span className="font-medium capitalize">images:</span>
             {venue.media.map((obj, index) => (
               <div key={index} className="bg-white px-1 grow overflow-hidden">
                 <p className="overflow-hidden text-ellipsis whitespace-nowrap max-w-72">
@@ -207,7 +229,13 @@ function VenueObject({ venue }) {
           </div>
           <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 w-max mx-auto">
             <div>
-              <button className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
+              <button
+                className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+                onClick={() => {
+                  setCurrentVenue(venue.id);
+                  handleViewChange("updateVenue");
+                }}
+              >
                 update venue
               </button>
             </div>
