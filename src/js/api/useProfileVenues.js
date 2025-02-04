@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { apiKey, apiUrl, profilesPath } from "../data/constants";
 
-const useProfileVenues = () => {
+const useProfileVenues = ({ page = 1, limit = 100 } = {}) => {
   const [venues, setVenues] = useState([]);
   const [meta, setMeta] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,8 +20,10 @@ const useProfileVenues = () => {
       setLoading(true);
       try {
         const url = `${apiUrl}${profilesPath}/${user.name}/venues`;
+        url.searchParams.append("page", page);
+        url.searchParams.append("limit", limit);
 
-        const response = await fetch(url, {
+        const response = await fetch(url.toString(), {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +47,7 @@ const useProfileVenues = () => {
       }
     };
     fetchVenues();
-  }, [user, token]);
+  }, [user, token, page, limit]);
 
   return { venues, meta, loading, error };
 };
