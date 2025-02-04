@@ -114,7 +114,7 @@ function Paragraph({ spanContent, content }) {
 function Buttons({ handleViewChange }) {
   return (
     <div className="flex w-full mt-5 mb-10 md:mt-7.5 md:mb-15">
-      <ul className="lg:hidden mx-auto text-center bg-warm-beige sm:w-48 w-64">
+      <ul className="lg:hidden mx-auto text-center bg-warm-beige sm:w-48 w-64 shadow-md shadow-natural-charcoal/40">
         <LinkBtn
           content="view bookings"
           className=" hover:font-medium w-full"
