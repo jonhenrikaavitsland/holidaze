@@ -19,7 +19,7 @@ const useProfileVenues = ({ page = 1, limit = 100 } = {}) => {
     const fetchVenues = async () => {
       setLoading(true);
       try {
-        const url = `${apiUrl}${profilesPath}/${user.name}/venues`;
+        const url = new URL(`${apiUrl}${profilesPath}/${user.name}/venues`);
         url.searchParams.append("page", page);
         url.searchParams.append("limit", limit);
 
