@@ -80,7 +80,6 @@ function ViewVenuesObject({ handleViewChange }) {
         <HasVenues
           venues={venues}
           meta={meta}
-          loading={loading}
           error={error}
           setCurrentPage={setCurrentPage}
         />
@@ -91,8 +90,8 @@ function ViewVenuesObject({ handleViewChange }) {
   );
 }
 
-function HasVenues({ venues, meta, loading, error, setCurrentPage }) {
-  console.log(venues, meta, loading, error, setCurrentPage);
+function HasVenues({ venues, meta, error, setCurrentPage }) {
+  console.log(venues, meta, error, setCurrentPage);
   return <div></div>;
 }
 
@@ -100,7 +99,7 @@ function NoVenues({ handleViewChange }) {
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-10">
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-        <Heading level="3" className="text-center">
+        <Heading level="2" className="text-center">
           no venues yet? let&apos;s get started!
         </Heading>
         <p className="md:text-lg lg:text-xl">
@@ -129,7 +128,7 @@ function NoVenues({ handleViewChange }) {
           content="Our platform lets you highlight your venue’s unique features with photos, descriptions, and amenities that stand out."
         />
       </section>
-      <p className="text-center font-serif text-xl md:text-2xl font-bold">
+      <p className="text-center font-serif text-xl md:text-2xl lg:text-3xl font-bold">
         Take the first step today—your future guests are waiting to discover
         your property.
       </p>
