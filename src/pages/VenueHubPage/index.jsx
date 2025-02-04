@@ -32,16 +32,19 @@ export default function VenueHubPage() {
               content="view bookings"
               handleViewChange={handleViewChange}
               kind="booking"
+              status={viewBooking}
             />
             <LinkBtn
               content="view venues"
               handleViewChange={handleViewChange}
               kind="venues"
+              status={viewVenues}
             />
             <LinkBtn
               content="new venue"
               handleViewChange={handleViewChange}
               kind="newVenue"
+              status={viewNewVenue}
             />
           </ul>
         </div>
@@ -50,7 +53,12 @@ export default function VenueHubPage() {
         <Heading level="1" className="text-center text-deep-blue">
           venue hUB
         </Heading>
-        <Buttons handleViewChange={handleViewChange} />
+        <Buttons
+          handleViewChange={handleViewChange}
+          bookingStatus={viewBooking}
+          venuesStatus={viewVenues}
+          newVenueStatus={viewNewVenue}
+        />
         {viewWelcome && <Welcome handleViewChange={handleViewChange} />}
         {/* {viewBooking && <ViewBookings />} */}
         {viewVenues && (
@@ -370,7 +378,12 @@ function Paragraph({ spanContent, content }) {
   );
 }
 
-function Buttons({ handleViewChange }) {
+function Buttons({
+  handleViewChange,
+  bookingStatus,
+  venuesStatus,
+  newVenueStatus,
+}) {
   return (
     <div className="flex w-full mt-5 mb-10 md:mt-7.5 md:mb-15">
       <ul className="lg:hidden mx-auto text-center bg-warm-beige sm:w-48 w-64 shadow-md shadow-natural-charcoal/40">
@@ -379,29 +392,32 @@ function Buttons({ handleViewChange }) {
           className=" hover:font-medium w-full"
           handleViewChange={handleViewChange}
           kind="booking"
+          status={bookingStatus}
         />
         <LinkBtn
           content="view venues"
           className="border-t border-b border-natural-charcoal/40 w-full hover:font-medium"
           handleViewChange={handleViewChange}
           kind="venues"
+          status={venuesStatus}
         />
         <LinkBtn
           content="new venue"
           className="w-full hover:font-medium"
           handleViewChange={handleViewChange}
           kind="newVenue"
+          status={newVenueStatus}
         />
       </ul>
     </div>
   );
 }
 
-function LinkBtn({ className, content, handleViewChange, kind }) {
+function LinkBtn({ className, content, handleViewChange, kind, status }) {
   return (
     <li>
       <button
-        className={`font-serif text-xl-leading-none py-2.5 capitalize ${className}`}
+        className={`font-serif text-xl-leading-none py-2.5 capitalize ${className} ${status && "font-bold"}`}
         onClick={() => handleViewChange(`${kind}`)}
       >
         {content}
