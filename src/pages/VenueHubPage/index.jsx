@@ -118,16 +118,16 @@ function VenueObject({ venue }) {
 
   return (
     <section
-      className={`relative flex flex-col gap-5 pt-2.5 ${openState ? "pb-10" : "pb-5"} px-2.5 bg-light-sky-blue rounded-xl cursor-pointer shadow-md shadow-natural-charcoal/40`}
+      className={`relative flex flex-col gap-5 pt-2.5 ${openState ? "pb-20" : "pb-5"} px-2.5 bg-light-sky-blue rounded-xl cursor-pointer shadow-md shadow-natural-charcoal/40`}
       onClick={() => setOpenState(!openState)}
     >
       <Heading level="3" className="text-center text-deep-blue">
         {venue.name}
       </Heading>
       <div
-        className={`${!openState && "collapse"} flex flex-col gap-5 md:gap-7.5 lg:gap-10`}
+        className={`${!openState && "collapse"} flex flex-col lg:flex-row gap-5 md:gap-7.5 lg:gap-10`}
       >
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 w-1/2">
           <div className="flex flex-col gap-2 italic leading-none">
             <p>{venue.location.address}</p>
             <p>
@@ -180,8 +180,8 @@ function VenueObject({ venue }) {
             </div>
             <div className="flex gap-2.5">
               <span>description:</span>
-              <div className="bg-white px-1 grow overflow-hidden">
-                <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+              <div className="bg-white px-1 overflow-hidden">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap max-w-md">
                   {venue.description}
                 </p>
               </div>
@@ -194,18 +194,29 @@ function VenueObject({ venue }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+        <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 grow">
           <div className="flex flex-col gap-2 leading-none">
             <span>images:</span>
             {venue.media.map((obj, index) => (
               <div key={index} className="bg-white px-1 grow overflow-hidden">
-                <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap max-w-72">
                   {obj.url}
                 </p>
               </div>
             ))}
           </div>
-          <div>{/* buttons */}</div>
+          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 w-max mx-auto">
+            <div>
+              <button className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90">
+                update venue
+              </button>
+            </div>
+            <div>
+              <button className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90 w-full">
+                view venue
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <BtnOpenClose openState={openState} />
