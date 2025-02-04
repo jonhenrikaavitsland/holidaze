@@ -3,6 +3,7 @@ import Heading from "../../component/Heading";
 import useProfileVenues from "../../js/api/useProfileVenues";
 import Loader from "../../component/Loader";
 import BtnOpenClose from "../../component/BtnOpenClose";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -137,6 +138,16 @@ function VenueObject({ venue, handleViewChange, setCurrentVenue }) {
   const [openState, setOpenState] = useState(false);
   const createdDate = new Date(venue.created);
 
+  const navigate = useNavigate();
+
+  function handleClick() {
+    if (venue.id) {
+      navigate(`/venue/${venue.id}`);
+    } else {
+      console.warn("No venue selected!");
+    }
+  }
+
   const formattedCreatedDate = createdDate
     .toLocaleDateString("en-GB", {
       year: "numeric",
@@ -248,7 +259,12 @@ function VenueObject({ venue, handleViewChange, setCurrentVenue }) {
               </button>
             </div>
             <div>
-              <button className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90 w-full">
+              <button
+                className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90 w-full"
+                onClick={() => {
+                  handleClick();
+                }}
+              >
                 view venue
               </button>
             </div>
