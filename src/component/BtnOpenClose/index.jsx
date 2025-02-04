@@ -2,7 +2,7 @@
 export default function BtnOpenClose({ openState }) {
   return (
     <div className="absolute bottom-0 right-0">
-      <button className="bg-deep-blue py-1.5 px-5 rounded-tl-xl rounded-br-xl hover:bg-deep-blue/90">
+      <button className="bg-deep-blue py-1.5 px-5 rounded-tl-xl rounded-br-xl hover:bg-deep-blue/90 cursor-pointer">
         <img
           src={"/chevron-down-solid.svg"}
           alt=""
