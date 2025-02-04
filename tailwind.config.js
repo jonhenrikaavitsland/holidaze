@@ -116,6 +116,7 @@ export default {
       maxWidth: {
         "1/2": "50%",
         50: "12.5rem",
+        md: "29rem",
       },
       maxHeight: {
         50: "12.5rem",
