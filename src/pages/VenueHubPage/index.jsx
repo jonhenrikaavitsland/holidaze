@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Heading from "../../component/Heading";
+import useProfileVenues from "../../js/api/useProfileVenues";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -46,10 +47,107 @@ export default function VenueHubPage() {
         </Heading>
         <Buttons handleViewChange={handleViewChange} />
         {viewWelcome && <Welcome handleViewChange={handleViewChange} />}
+        {/* {viewBooking && <ViewBookings />} */}
+        {viewVenues && <ViewVenuesObject handleViewChange={handleViewChange} />}
       </section>
     </div>
   );
 }
+
+function ViewVenuesObject({ handleViewChange }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { venues, meta, loading, error } = useProfileVenues({
+    page: currentPage,
+    limit: 10,
+  });
+
+  console.log("VENUES:", venues);
+
+  return (
+    <section className="flex flex-col gap-10 md:gap-15 lg:gap-20 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
+      {venues.length > 0 && (
+        <Heading level="2" className="text-center text-custom-coral">
+          venues
+        </Heading>
+      )}
+      {venues.length > 0 ? (
+        <HasVenues
+          venues={venues}
+          meta={meta}
+          loading={loading}
+          error={error}
+          setCurrentPage={setCurrentPage}
+        />
+      ) : (
+        <NoVenues handleViewChange={handleViewChange} />
+      )}
+    </section>
+  );
+}
+
+function HasVenues({ venues, meta, loading, error, setCurrentPage }) {
+  console.log(venues, meta, loading, error, setCurrentPage);
+  return <div></div>;
+}
+
+function NoVenues({ handleViewChange }) {
+  return (
+    <div className="flex flex-col gap-10 md:gap-15 lg:gap-10">
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+        <Heading level="3" className="text-center">
+          no venues yet? let&apos;s get started!
+        </Heading>
+        <p className="md:text-lg lg:text-xl">
+          Hi there, it looks like you haven&apos;t listed any venues on Holidaze
+          just yet. Don&apos;t miss out on the opportunity to turn your property
+          into a destination for eager holidaymakers! Listing your venue is
+          quick, easy, and comes with plenty of benefits:
+        </p>
+      </section>
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+        <Heading level="3">why list your venue on holidaze?</Heading>
+        <Paragraph
+          spanContent="reach more guests: "
+          content="Tap into a growing community of travelers searching for their next getaway."
+        />
+        <Paragraph
+          spanContent="maximize earnings: "
+          content="Turn your property into a source of income, whether it’s a spare room, a cozy cabin, or a luxurious estate."
+        />
+        <Paragraph
+          spanContent="easy management: "
+          content="With our Venue HUB, managing your bookings, availability, and guest communication has never been simpler."
+        />
+        <Paragraph
+          spanContent="showcase your space: "
+          content="Our platform lets you highlight your venue’s unique features with photos, descriptions, and amenities that stand out."
+        />
+      </section>
+      <p className="text-center font-serif text-xl md:text-2xl font-bold">
+        Take the first step today—your future guests are waiting to discover
+        your property.
+      </p>
+      <CreateNewBtn handleViewChange={handleViewChange} />
+    </div>
+  );
+}
+
+// function ViewBookings() {
+//   const [currentPage, setCurrentPage] = useState(1);
+
+//   const { venues, meta, loading, error } = useProfileVenues({ page: currentPage, limit: 100 });
+
+//   console.log('VENUES:', venues);
+
+//   return (
+//     <section>
+//       <Heading level='2' className='text-center text-custom-coral'>
+//         active bookings
+//       </Heading>
+//     </section>
+//   );
+// }
 
 function Welcome({ handleViewChange }) {
   return (
@@ -62,9 +160,9 @@ function Welcome({ handleViewChange }) {
         </p>
         <p>
           Here in the Venue HUB, you have complete control over your listed
-          venues and bookings. Whether you’re managing a single cozy bungalow or
-          a portfolio of stunning properties, Venue HUB provides you with the
-          tools you need to succeed.
+          venues and bookings. Whether you&apos;re managing a single cozy
+          bungalow or a portfolio of stunning properties, Venue HUB provides you
+          with the tools you need to succeed.
         </p>
       </div>
       <section className="flex flex-col gap-5 md:gap-7.5">
