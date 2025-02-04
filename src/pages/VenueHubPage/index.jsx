@@ -2,6 +2,7 @@ import { useState } from "react";
 import Heading from "../../component/Heading";
 import useProfileVenues from "../../js/api/useProfileVenues";
 import Loader from "../../component/Loader";
+import BtnOpenClose from "../../component/BtnOpenClose";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -91,8 +92,125 @@ function ViewVenuesObject({ handleViewChange }) {
 }
 
 function HasVenues({ venues, meta, error, setCurrentPage }) {
-  console.log(venues, meta, error, setCurrentPage);
-  return <div></div>;
+  console.log(meta, error, setCurrentPage);
+  return (
+    <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+      {venues.map((venue, index) => (
+        <div key={index}>
+          <VenueObject venue={venue} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function VenueObject({ venue }) {
+  const [openState, setOpenState] = useState(false);
+  const createdDate = new Date(venue.created);
+
+  const formattedCreatedDate = createdDate
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+
+  return (
+    <section
+      className={`relative flex flex-col gap-5 pt-2.5 ${openState ? "pb-10" : "pb-5"} px-2.5 bg-light-sky-blue rounded-xl cursor-pointer shadow-md shadow-natural-charcoal/40`}
+      onClick={() => setOpenState(!openState)}
+    >
+      <Heading level="3" className="text-center text-deep-blue">
+        {venue.name}
+      </Heading>
+      <div
+        className={`${!openState && "collapse"} flex flex-col gap-5 md:gap-7.5 lg:gap-10`}
+      >
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2 italic leading-none">
+            <p>{venue.location.address}</p>
+            <p>
+              {venue.location.zip} {venue.location.city}
+            </p>
+            <p>Fuerteventura, {venue.location.country}</p>
+          </div>
+          <div className="flex flex-col gap-2 capitalize leading-none">
+            <div className="flex gap-2.5">
+              <span>rating:</span>
+              <div className="bg-white flex gap-2 px-1">
+                {[...Array(venue.rating)].map((_, index) => (
+                  <div key={index}>
+                    <img
+                      src="/logo_warm_200.png"
+                      alt="rating icon"
+                      className="h-4 md:h-5 lg:h-6"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex gap-2.5">
+              <span>sleeps:</span>
+              <span>{venue.maxGuests}</span>
+            </div>
+            <div className="flex gap-2.5">
+              <span>wiFi:</span>
+              <span>{venue.meta.wifi ? "available" : "not available"}</span>
+            </div>
+            <div className="flex gap-2.5">
+              <span>parking:</span>
+              <span>{venue.meta.parking ? "available" : "not available"}</span>
+            </div>
+            <div className="flex gap-2.5">
+              <span>breakfast:</span>
+              <span>{venue.breakfast ? "included" : "not included"}</span>
+            </div>
+            <div className="flex gap-2.5">
+              <span>pets:</span>
+              <span>{venue.pets ? "allowed" : "not allowed"}</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 capitalize leading-none">
+            <div className="flex gap-2.5">
+              <span>rate €:</span>
+              <div className="bg-white grow px-1">
+                <span>{venue.price}</span>
+              </div>
+            </div>
+            <div className="flex gap-2.5">
+              <span>description:</span>
+              <div className="bg-white px-1 grow overflow-hidden">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+                  {venue.description}
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2.5">
+              <span>venue created:</span>
+              <div className="bg-white px-1 grow">
+                <time dateTime={venue.created}>{formattedCreatedDate}</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+          <div className="flex flex-col gap-2 leading-none">
+            <span>images:</span>
+            {venue.media.map((obj, index) => (
+              <div key={index} className="bg-white px-1 grow overflow-hidden">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+                  {obj.url}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div>{/* buttons */}</div>
+        </div>
+      </div>
+      <BtnOpenClose openState={openState} />
+    </section>
+  );
 }
 
 function HasNoVenues({ handleViewChange }) {
