@@ -84,7 +84,7 @@ function ViewVenuesObject({ handleViewChange }) {
           setCurrentPage={setCurrentPage}
         />
       ) : (
-        <NoVenues handleViewChange={handleViewChange} />
+        <HasNoVenues handleViewChange={handleViewChange} />
       )}
     </section>
   );
@@ -95,7 +95,7 @@ function HasVenues({ venues, meta, error, setCurrentPage }) {
   return <div></div>;
 }
 
-function NoVenues({ handleViewChange }) {
+function HasNoVenues({ handleViewChange }) {
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-10">
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
