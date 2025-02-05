@@ -23,7 +23,8 @@ export default function ViewVenuesObject({
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
       {venues.length > 0 && (
         <Heading level="2" className="text-center text-custom-coral">
-          venues
+          venues (<span className="text-natural-charcoal">{venues.length}</span>
+          )
         </Heading>
       )}
       {loading ? (
