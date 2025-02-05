@@ -4,6 +4,7 @@ import useProfileVenues from "../../js/api/useProfileVenues";
 import Loader from "../../component/Loader";
 import BtnOpenClose from "../../component/BtnOpenClose";
 import { useNavigate } from "react-router-dom";
+import LinkBtn from "./LinkBtn";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -429,15 +430,15 @@ function Buttons({
   );
 }
 
-function LinkBtn({ className, content, handleViewChange, kind, status }) {
-  return (
-    <li>
-      <button
-        className={`font-serif text-xl-leading-none py-2.5 capitalize ${className} ${status && "font-bold"}`}
-        onClick={() => handleViewChange(`${kind}`)}
-      >
-        {content}
-      </button>
-    </li>
-  );
-}
+// function LinkBtn({ className, content, handleViewChange, kind, status }) {
+//   return (
+//     <li>
+//       <button
+//         className={`font-serif text-xl-leading-none py-2.5 capitalize ${className} ${status && "font-bold"}`}
+//         onClick={() => handleViewChange(`${kind}`)}
+//       >
+//         {content}
+//       </button>
+//     </li>
+//   );
+// }
