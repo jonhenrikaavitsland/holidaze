@@ -25,11 +25,13 @@ export default function HasVenues({
           />
         </div>
       ))}
-      <LoadMore
-        setCurrentPage={setCurrentPage}
-        meta={meta}
-        headingContent="Load more venues"
-      />
+      {meta.pageCount >= 2 && (
+        <LoadMore
+          setCurrentPage={setCurrentPage}
+          meta={meta}
+          headingContent="Load more venues"
+        />
+      )}
     </div>
   );
 }
