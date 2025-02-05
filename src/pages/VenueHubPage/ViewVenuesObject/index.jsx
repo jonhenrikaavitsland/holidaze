@@ -14,7 +14,7 @@ export default function ViewVenuesObject({
 
   const { venues, meta, loading, error } = useProfileVenues({
     page: currentPage,
-    limit: 10,
+    limit: 2,
   });
 
   console.log("VENUES:", venues);

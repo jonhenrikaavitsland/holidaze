@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import LoadMore from "../../../component/LoadMore";
 import VenueObject from "../VenueObject";
 
 export default function HasVenues({
@@ -24,18 +25,11 @@ export default function HasVenues({
           />
         </div>
       ))}
-      <div>
-        <button onClick={() => setCurrentPage(1)}>First</button>
-        {meta.pageCount > 2 &&
-          Array.from({ length: meta.pageCount - 2 }, (_, i) => i + 2).map(
-            (page) => (
-              <button key={page} onClick={() => setCurrentPage(page)}>
-                {page}
-              </button>
-            ),
-          )}
-        <button onClick={() => setCurrentPage(meta.pageCount)}>Last</button>
-      </div>
+      <LoadMore
+        setCurrentPage={setCurrentPage}
+        meta={meta}
+        headingContent="Load more venues"
+      />
     </div>
   );
 }
