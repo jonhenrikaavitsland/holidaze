@@ -6,6 +6,7 @@ import BtnOpenClose from "../../component/BtnOpenClose";
 import { useNavigate } from "react-router-dom";
 import LinkBtn from "./LinkBtn";
 import Buttons from "./Buttons";
+import Paragraph from "./Paragraph";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -387,14 +388,14 @@ function CreateNewBtn({ handleViewChange }) {
   );
 }
 
-function Paragraph({ spanContent, content }) {
-  return (
-    <p className="md:text-lg lg:text-xl">
-      <span className="capitalize font-bold">{spanContent}</span>
-      {content}
-    </p>
-  );
-}
+// function Paragraph({ spanContent, content }) {
+//   return (
+//     <p className="md:text-lg lg:text-xl">
+//       <span className="capitalize font-bold">{spanContent}</span>
+//       {content}
+//     </p>
+//   );
+// }
 
 // function Buttons({
 //   handleViewChange,
