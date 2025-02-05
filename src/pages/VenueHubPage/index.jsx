@@ -34,18 +34,21 @@ export default function VenueHubPage() {
               handleViewChange={handleViewChange}
               kind="booking"
               status={viewBooking}
+              className="hover:font-bold"
             />
             <LinkBtn
               content="view venues"
               handleViewChange={handleViewChange}
               kind="venues"
               status={viewVenues}
+              className="hover:font-bold"
             />
             <LinkBtn
               content="new venue"
               handleViewChange={handleViewChange}
               kind="newVenue"
               status={viewNewVenue}
+              className="hover:font-bold"
             />
           </ul>
         </div>
