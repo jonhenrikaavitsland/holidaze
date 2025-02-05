@@ -320,11 +320,11 @@ function BookingOpen({
 
 function BookingClosed({ venueBooking, formattedDateFrom, formattedDateTo }) {
   return (
-    <section className="text-center flex flex-col gap-2.5">
+    <section className="text-center flex flex-col md:flex-row gap-2.5 md:gap-5">
       <Heading level="3" className="text-deep-blue">
         {venueBooking.venue.name}
       </Heading>
-      <span className="text-lg-leading-none">
+      <span className="text-lg-leading-none md:text-xl-leading-none">
         <time dateTime={venueBooking.booking.dateFrom}>
           {formattedDateFrom}
         </time>{" "}
