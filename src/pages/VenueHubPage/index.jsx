@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import Heading from "../../component/Heading";
 import LinkBtn from "./LinkBtn";
@@ -7,7 +6,7 @@ import Welcome from "./Welcome";
 import ViewVenuesObject from "./ViewVenuesObject";
 import useProfileVenues from "../../js/api/useProfileVenues";
 import Loader from "../../component/Loader";
-import BookingCard from "./BookingCard";
+import BookingObjects from "./BookingObjects";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -155,22 +154,22 @@ function ViewBookings() {
   );
 }
 
-function BookingObjects({ sortedVenueBookings }) {
-  console.log(sortedVenueBookings);
-  return (
-    <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-      {sortedVenueBookings.map((venueBooking, index) => (
-        <li key={index}>
-          <BookingCard
-            venueBooking={venueBooking}
-            index={index}
-            maxNum={sortedVenueBookings.length}
-          />
-        </li>
-      ))}
-    </ul>
-  );
-}
+// function BookingObjects({ sortedVenueBookings }) {
+//   console.log(sortedVenueBookings);
+//   return (
+//     <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+//       {sortedVenueBookings.map((venueBooking, index) => (
+//         <li key={index}>
+//           <BookingCard
+//             venueBooking={venueBooking}
+//             index={index}
+//             maxNum={sortedVenueBookings.length}
+//           />
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
 
 // function BookingCard({ venueBooking, index, maxNum }) {
 //   const [openState, setOpenState] = useState(false);
