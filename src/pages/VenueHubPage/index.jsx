@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Heading from "../../component/Heading";
-import useProfileVenues from "../../js/api/useProfileVenues";
-import Loader from "../../component/Loader";
 import LinkBtn from "./LinkBtn";
 import Buttons from "./Buttons";
 import Welcome from "./Welcome";
-import HasNoVenues from "./HasNoVenues";
-import VenueObject from "./VenueObject";
+import ViewVenuesObject from "./ViewVenuesObject";
+import useProfileVenues from "../../js/api/useProfileVenues";
 
-/* eslint-disable react/prop-types */
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
   const [viewBooking, setViewBooking] = useState(false);
@@ -64,7 +61,7 @@ export default function VenueHubPage() {
           newVenueStatus={viewNewVenue}
         />
         {viewWelcome && <Welcome handleViewChange={handleViewChange} />}
-        {/* {viewBooking && <ViewBookings />} */}
+        {viewBooking && <ViewBookings />}
         {viewVenues && (
           <ViewVenuesObject
             handleViewChange={handleViewChange}
@@ -76,82 +73,124 @@ export default function VenueHubPage() {
   );
 }
 
-// function ViewBookings() {
-//   const [currentPage, setCurrentPage] = useState(1);
-
-//   const { venues, meta, loading, error } = useProfileVenues({ page: currentPage, limit: 100 });
-
-//   console.log('VENUES:', venues);
-
-//   return (
-//     <section>
-//       <Heading level='2' className='text-center text-custom-coral'>
-//         active bookings
-//       </Heading>
-//     </section>
-//   );
-// }
-
-function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
+function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [accumulatedBookings, setAccumulatedBookings] = useState([]);
 
   const { venues, meta, loading, error } = useProfileVenues({
     page: currentPage,
-    limit: 10,
+    limit: 100,
   });
 
-  console.log("VENUES:", venues);
+  // Memoize today's date so it doesn't change on every render.
+  const today = useMemo(() => new Date(), []);
+
+  // When new venues load, extract and accumulate upcoming bookings.
+  useEffect(() => {
+    if (venues && venues.length > 0) {
+      // Flatten the bookings from all venues.
+      const allBookings = venues.flatMap((venue) => venue.bookings);
+
+      // Filter out bookings where dateTo is in the past.
+      const upcomingBookings = allBookings.filter(
+        (booking) => new Date(booking.dateTo) >= today,
+      );
+
+      // Use the functional update form so we don't need to include accumulatedBookings as a dependency.
+      setAccumulatedBookings((prevBookings) => {
+        // Combine the previous bookings with the new ones.
+        const combinedBookings = [...prevBookings, ...upcomingBookings];
+
+        // Deduplicate the bookings based on their `id` attribute.
+        const uniqueBookingsMap = new Map();
+        combinedBookings.forEach((booking) => {
+          uniqueBookingsMap.set(booking.id, booking);
+        });
+        return Array.from(uniqueBookingsMap.values());
+      });
+    }
+  }, [venues, today]);
+
+  // Automatically load the next page if more pages are available.
+  useEffect(() => {
+    if (meta && meta.pageCount > currentPage) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  }, [meta, currentPage]);
+
+  // Sort the accumulated bookings by dateFrom (earliest first).
+  const sortedBookings = accumulatedBookings.sort(
+    (a, b) => new Date(a.dateFrom) - new Date(b.dateFrom),
+  );
+
+  console.log("Sorted Upcoming Bookings:", sortedBookings);
+  console.log("META:", meta);
+  console.log(loading, error);
 
   return (
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
       {venues.length > 0 && (
         <Heading level="2" className="text-center text-custom-coral">
-          venues
+          active bookings
         </Heading>
-      )}
-      {loading ? (
-        <div className="flex justify-center pt-10">
-          <Loader />
-        </div>
-      ) : venues.length > 0 ? (
-        <HasVenues
-          venues={venues}
-          meta={meta}
-          error={error}
-          setCurrentPage={setCurrentPage}
-          handleViewChange={handleViewChange}
-          setCurrentVenue={setCurrentVenue}
-        />
-      ) : (
-        <HasNoVenues handleViewChange={handleViewChange} />
       )}
     </section>
   );
 }
 
-function HasVenues({
-  venues,
-  meta,
-  error,
-  setCurrentPage,
-  handleViewChange,
-  setCurrentVenue,
-}) {
-  console.log(meta, error, setCurrentPage);
-  return (
-    <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-      {venues.map((venue, index) => (
-        <div key={index}>
-          <VenueObject
-            venue={venue}
-            handleViewChange={handleViewChange}
-            setCurrentVenue={setCurrentVenue}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
+// function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
+//   const [currentPage, setCurrentPage] = useState(1);
+
+//   const { venues, meta, loading, error } = useProfileVenues({
+//     page: currentPage,
+//     limit: 10,
+//   });
+
+//   console.log('VENUES:', venues);
+
+//   return (
+//     <section className='flex flex-col gap-5 md:gap-7.5 lg:gap-10 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20'>
+//       {venues.length > 0 && (
+//         <Heading level='2' className='text-center text-custom-coral'>
+//           venues
+//         </Heading>
+//       )}
+//       {loading ? (
+//         <div className='flex justify-center pt-10'>
+//           <Loader />
+//         </div>
+//       ) : venues.length > 0 ? (
+//         <HasVenues venues={venues} meta={meta} error={error} setCurrentPage={setCurrentPage} handleViewChange={handleViewChange} setCurrentVenue={setCurrentVenue} />
+//       ) : (
+//         <HasNoVenues handleViewChange={handleViewChange} />
+//       )}
+//     </section>
+//   );
+// }
+
+// function HasVenues({
+//   venues,
+//   meta,
+//   error,
+//   setCurrentPage,
+//   handleViewChange,
+//   setCurrentVenue,
+// }) {
+//   console.log(meta, error, setCurrentPage);
+//   return (
+//     <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+//       {venues.map((venue, index) => (
+//         <div key={index}>
+//           <VenueObject
+//             venue={venue}
+//             handleViewChange={handleViewChange}
+//             setCurrentVenue={setCurrentVenue}
+//           />
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 // function VenueObject({ venue, handleViewChange, setCurrentVenue }) {
 //   const [openState, setOpenState] = useState(false);
