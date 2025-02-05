@@ -5,6 +5,7 @@ import Loader from "../../component/Loader";
 import BtnOpenClose from "../../component/BtnOpenClose";
 import { useNavigate } from "react-router-dom";
 import LinkBtn from "./LinkBtn";
+import Buttons from "./Buttons";
 
 /* eslint-disable react/prop-types */
 export default function VenueHubPage() {
@@ -395,40 +396,40 @@ function Paragraph({ spanContent, content }) {
   );
 }
 
-function Buttons({
-  handleViewChange,
-  bookingStatus,
-  venuesStatus,
-  newVenueStatus,
-}) {
-  return (
-    <div className="flex w-full mt-5 mb-10 md:mt-7.5 md:mb-15">
-      <ul className="lg:hidden mx-auto text-center bg-warm-beige sm:w-48 w-64 shadow-md shadow-natural-charcoal/40">
-        <LinkBtn
-          content="view bookings"
-          className=" hover:font-medium w-full"
-          handleViewChange={handleViewChange}
-          kind="booking"
-          status={bookingStatus}
-        />
-        <LinkBtn
-          content="view venues"
-          className="border-t border-b border-natural-charcoal/40 w-full hover:font-medium"
-          handleViewChange={handleViewChange}
-          kind="venues"
-          status={venuesStatus}
-        />
-        <LinkBtn
-          content="new venue"
-          className="w-full hover:font-medium"
-          handleViewChange={handleViewChange}
-          kind="newVenue"
-          status={newVenueStatus}
-        />
-      </ul>
-    </div>
-  );
-}
+// function Buttons({
+//   handleViewChange,
+//   bookingStatus,
+//   venuesStatus,
+//   newVenueStatus,
+// }) {
+//   return (
+//     <div className="flex w-full mt-5 mb-10 md:mt-7.5 md:mb-15">
+//       <ul className="lg:hidden mx-auto text-center bg-warm-beige sm:w-48 w-64 shadow-md shadow-natural-charcoal/40">
+//         <LinkBtn
+//           content="view bookings"
+//           className=" hover:font-medium w-full"
+//           handleViewChange={handleViewChange}
+//           kind="booking"
+//           status={bookingStatus}
+//         />
+//         <LinkBtn
+//           content="view venues"
+//           className="border-t border-b border-natural-charcoal/40 w-full hover:font-medium"
+//           handleViewChange={handleViewChange}
+//           kind="venues"
+//           status={venuesStatus}
+//         />
+//         <LinkBtn
+//           content="new venue"
+//           className="w-full hover:font-medium"
+//           handleViewChange={handleViewChange}
+//           kind="newVenue"
+//           status={newVenueStatus}
+//         />
+//       </ul>
+//     </div>
+//   );
+// }
 
 // function LinkBtn({ className, content, handleViewChange, kind, status }) {
 //   return (
