@@ -84,10 +84,8 @@ function ViewBookings() {
     limit: 100,
   });
 
-  // Memoize today's date so it doesn't change on every render.
   const today = useMemo(() => new Date(), []);
 
-  // When new venues load, process and accumulate the bookings along with venue info.
   useEffect(() => {
     if (venues && venues.length > 0) {
       // For each venue, attach the venue info to each of its bookings.
@@ -101,13 +99,11 @@ function ViewBookings() {
         ({ booking }) => new Date(booking.dateTo) >= today,
       );
 
-      // Use a functional state update to avoid including accumulatedVenueBookings in the dependency array.
       setAccumulatedVenueBookings((prevVenueBookings) => {
         // Combine previous and new bookings.
         const combined = [...prevVenueBookings, ...upcomingVenueBookings];
 
         // Deduplicate bookings based on their id.
-        // We assume each booking has a unique id.
         const uniqueBookingsMap = new Map();
         combined.forEach((item) => {
           uniqueBookingsMap.set(item.booking.id, item);
@@ -156,7 +152,13 @@ function ViewBookings() {
 
 function BookingObject({ sortedVenueBookings }) {
   console.log(sortedVenueBookings);
-  return <section></section>;
+  return (
+    <section>
+      {sortedVenueBookings.map((venueBooking, index) => (
+        <ul key={index}></ul>
+      ))}
+    </section>
+  );
 }
 
 // function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
