@@ -135,7 +135,11 @@ function ViewBookings() {
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
       {venues.length > 0 && (
         <Heading level="2" className="text-center text-custom-coral">
-          active bookings
+          bookings(
+          <span className="text-natural-charcoal">
+            {sortedVenueBookings.length}
+          </span>
+          )
         </Heading>
       )}
       {loading ? (
@@ -196,7 +200,7 @@ function BookingCard({ venueBooking, index, maxNum }) {
         {index + 1} / {maxNum}
       </span>
       <div
-        className={`relative bg-light-sky-blue pt-2.5 px-2.5 rounded-xl shadow-md shadow-natural-charcoal/40 ${openState ? "pb-15 md:pb-20 lg:pb-24" : "cursor-pointer pb-10 md:pb-15 lg:pb-20"}`}
+        className={`relative bg-light-sky-blue pt-2.5 px-2.5 rounded-xl shadow-md shadow-natural-charcoal/40 ${openState ? "pb-15 md:pb-20 lg:pb-24" : "cursor-pointer pb-10 md:pb-15"}`}
         onClick={() => setOpenState(!openState)}
       >
         {openState ? (
