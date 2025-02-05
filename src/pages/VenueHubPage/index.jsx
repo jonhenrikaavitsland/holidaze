@@ -5,6 +5,7 @@ import Buttons from "./Buttons";
 import Welcome from "./Welcome";
 import ViewVenuesObject from "./ViewVenuesObject";
 import useProfileVenues from "../../js/api/useProfileVenues";
+import Loader from "../../component/Loader";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -82,7 +83,6 @@ function ViewBookings() {
     limit: 100,
   });
 
-  // Memoize today's date so it doesn't change on every render.
   const today = useMemo(() => new Date(), []);
 
   // When new venues load, extract and accumulate upcoming bookings.
@@ -96,7 +96,6 @@ function ViewBookings() {
         (booking) => new Date(booking.dateTo) >= today,
       );
 
-      // Use the functional update form so we don't need to include accumulatedBookings as a dependency.
       setAccumulatedBookings((prevBookings) => {
         // Combine the previous bookings with the new ones.
         const combinedBookings = [...prevBookings, ...upcomingBookings];
@@ -134,8 +133,19 @@ function ViewBookings() {
           active bookings
         </Heading>
       )}
+      {loading ? (
+        <div className="flex justify-center mt-10">
+          <Loader />
+        </div>
+      ) : (
+        <BookingObject />
+      )}
     </section>
   );
+}
+
+function BookingObject() {
+  return <div></div>;
 }
 
 // function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
