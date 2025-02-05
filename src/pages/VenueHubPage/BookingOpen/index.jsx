@@ -76,7 +76,7 @@ export default function BookingOpen({
             </div>
           </div>
           <div className="flex gap-2.5 md:gap-5 lg:gap-7.5">
-            <p>Number of guests:</p>
+            <p>Contact person:</p>
             <div className="bg-white px-1 grow">
               <span className="capitalize">
                 {venueBooking.booking.customer.name}
