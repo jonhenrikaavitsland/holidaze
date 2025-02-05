@@ -7,6 +7,7 @@ import Welcome from "./Welcome";
 import ViewVenuesObject from "./ViewVenuesObject";
 import useProfileVenues from "../../js/api/useProfileVenues";
 import Loader from "../../component/Loader";
+import BtnOpenClose from "../../component/BtnOpenClose";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -144,19 +145,187 @@ function ViewBookings() {
       ) : error ? (
         <p>Oops... I can&apos;t find your bookings!</p>
       ) : (
-        <BookingObject sortedVenueBookings={sortedVenueBookings} />
+        <BookingObjects sortedVenueBookings={sortedVenueBookings} />
       )}
     </section>
   );
 }
 
-function BookingObject({ sortedVenueBookings }) {
+function BookingObjects({ sortedVenueBookings }) {
   console.log(sortedVenueBookings);
   return (
-    <section>
+    <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
       {sortedVenueBookings.map((venueBooking, index) => (
-        <ul key={index}></ul>
+        <li key={index}>
+          <BookingCard
+            venueBooking={venueBooking}
+            index={index}
+            maxNum={sortedVenueBookings.length}
+          />
+        </li>
       ))}
+    </ul>
+  );
+}
+
+function BookingCard({ venueBooking, index, maxNum }) {
+  const [openState, setOpenState] = useState(false);
+  const dateFromObj = new Date(venueBooking.booking.dateFrom);
+  const dateToObj = new Date(venueBooking.booking.dateTo);
+
+  const formattedDateFrom = dateFromObj
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+  const formattedDateTo = dateToObj
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+
+  const dayCount = (dateToObj - dateFromObj) / (1000 * 60 * 60 * 24);
+
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="text-xs-leading-none">
+        {index + 1} / {maxNum}
+      </span>
+      <div
+        className={`relative bg-light-sky-blue pt-2.5 px-2.5 rounded-xl shadow-md shadow-natural-charcoal/40 ${openState ? "pb-15 md:pb-20 lg:pb-24" : "cursor-pointer pb-10 md:pb-15 lg:pb-20"}`}
+        onClick={() => setOpenState(!openState)}
+      >
+        {openState ? (
+          <BookingOpen
+            venueBooking={venueBooking}
+            formattedDateFrom={formattedDateFrom}
+            formattedDateTo={formattedDateTo}
+            dayCount={dayCount}
+          />
+        ) : (
+          <BookingClosed
+            venueBooking={venueBooking}
+            formattedDateFrom={formattedDateFrom}
+            formattedDateTo={formattedDateTo}
+          />
+        )}
+
+        <BtnOpenClose openState={openState} />
+      </div>
+    </div>
+  );
+}
+
+function BookingOpen({
+  venueBooking,
+  formattedDateFrom,
+  formattedDateTo,
+  dayCount,
+}) {
+  const dateCreated = new Date(venueBooking.booking.created);
+
+  const formattedDateCreated = dateCreated
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    .replace(/\//g, ".");
+
+  return (
+    <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+      <section className="flex flex-col gap-2.5">
+        <Heading level="3" className="text-deep-blue">
+          booking details
+        </Heading>
+        <div className="flex flex-col gap-1 leading-none">
+          <span className="capitalized italic text-sm-leading-none">
+            created{" "}
+            <time dateTime={venueBooking.booking.created}>
+              {formattedDateCreated}
+            </time>
+          </span>
+          <p className="font-medium text-xl-leading-none">
+            {venueBooking.venue.name}
+          </p>
+          <span>
+            <time dateTime={venueBooking.booking.dateFrom}>
+              {formattedDateFrom}
+            </time>{" "}
+            -{" "}
+            <time dateTime={venueBooking.booking.dateTo}>
+              {formattedDateTo}
+            </time>
+          </span>
+          <p className="capitalize">
+            <span>{venueBooking.venue.location.city}</span>, fuerteventura
+          </p>
+          <p>{venueBooking.venue.location.country}</p>
+        </div>
+        <div className="flex flex-col gap-1 mt-2.5">
+          <div className="flex gap-2.5 text-lg-leading-none font-medium">
+            <p>Booking value:</p>
+            <div className="bg-white px-1 grow">
+              <span>€{dayCount * venueBooking.venue.price}</span>
+            </div>
+          </div>
+          <div className="flex gap-2.5 leading-none">
+            <p>Price per night:</p>
+            <div className="bg-white px-1 grow">
+              <span>€{venueBooking.venue.price}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="flex flex-col gap-2.5">
+        <Heading level="3" className="text-deep-blue">
+          guest details
+        </Heading>
+        <div className="flex flex-col gap-1 leading-none">
+          <div className="flex gap-2.5 ">
+            <p>Number of guests:</p>
+            <div className="bg-white px-1 grow">
+              <span>{venueBooking.booking.guests}</span>
+            </div>
+          </div>
+          <div className="flex gap-2.5 ">
+            <p>Number of guests:</p>
+            <div className="bg-white px-1 grow">
+              <span className="capitalize">
+                {venueBooking.booking.customer.name}
+              </span>
+            </div>
+          </div>
+          <div className="flex gap-2.5 ">
+            <p className="whitespace-nowrap">Contact email:</p>
+            <div className="bg-white px-1 grow min-w-0">
+              <span className="break-words">
+                {venueBooking.booking.customer.email}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function BookingClosed({ venueBooking, formattedDateFrom, formattedDateTo }) {
+  return (
+    <section className="text-center flex flex-col gap-2.5">
+      <Heading level="3" className="text-deep-blue">
+        {venueBooking.venue.name}
+      </Heading>
+      <span className="text-lg-leading-none">
+        <time dateTime={venueBooking.booking.dateFrom}>
+          {formattedDateFrom}
+        </time>{" "}
+        - <time dateTime={venueBooking.booking.dateTo}>{formattedDateTo}</time>
+      </span>
     </section>
   );
 }
