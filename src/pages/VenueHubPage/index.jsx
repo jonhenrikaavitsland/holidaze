@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import Heading from "../../component/Heading";
 import LinkBtn from "./LinkBtn";
@@ -76,35 +77,42 @@ export default function VenueHubPage() {
 
 function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [accumulatedBookings, setAccumulatedBookings] = useState([]);
+  const [accumulatedVenueBookings, setAccumulatedVenueBookings] = useState([]);
 
   const { venues, meta, loading, error } = useProfileVenues({
     page: currentPage,
     limit: 100,
   });
 
+  // Memoize today's date so it doesn't change on every render.
   const today = useMemo(() => new Date(), []);
 
-  // When new venues load, extract and accumulate upcoming bookings.
+  // When new venues load, process and accumulate the bookings along with venue info.
   useEffect(() => {
     if (venues && venues.length > 0) {
-      // Flatten the bookings from all venues.
-      const allBookings = venues.flatMap((venue) => venue.bookings);
-
-      // Filter out bookings where dateTo is in the past.
-      const upcomingBookings = allBookings.filter(
-        (booking) => new Date(booking.dateTo) >= today,
+      // For each venue, attach the venue info to each of its bookings.
+      const newVenueBookings = venues.flatMap((venue) =>
+        // Create an object for each booking that includes the venue object.
+        venue.bookings.map((booking) => ({ venue, booking })),
       );
 
-      setAccumulatedBookings((prevBookings) => {
-        // Combine the previous bookings with the new ones.
-        const combinedBookings = [...prevBookings, ...upcomingBookings];
+      // Filter out the bookings where the booking's dateTo is in the past.
+      const upcomingVenueBookings = newVenueBookings.filter(
+        ({ booking }) => new Date(booking.dateTo) >= today,
+      );
 
-        // Deduplicate the bookings based on their `id` attribute.
+      // Use a functional state update to avoid including accumulatedVenueBookings in the dependency array.
+      setAccumulatedVenueBookings((prevVenueBookings) => {
+        // Combine previous and new bookings.
+        const combined = [...prevVenueBookings, ...upcomingVenueBookings];
+
+        // Deduplicate bookings based on their id.
+        // We assume each booking has a unique id.
         const uniqueBookingsMap = new Map();
-        combinedBookings.forEach((booking) => {
-          uniqueBookingsMap.set(booking.id, booking);
+        combined.forEach((item) => {
+          uniqueBookingsMap.set(item.booking.id, item);
         });
+
         return Array.from(uniqueBookingsMap.values());
       });
     }
@@ -117,12 +125,12 @@ function ViewBookings() {
     }
   }, [meta, currentPage]);
 
-  // Sort the accumulated bookings by dateFrom (earliest first).
-  const sortedBookings = accumulatedBookings.sort(
-    (a, b) => new Date(a.dateFrom) - new Date(b.dateFrom),
+  // Sort the accumulated venue-booking objects by the booking's dateFrom (earliest first).
+  const sortedVenueBookings = accumulatedVenueBookings.sort(
+    (a, b) => new Date(a.booking.dateFrom) - new Date(b.booking.dateFrom),
   );
 
-  console.log("Sorted Upcoming Bookings:", sortedBookings);
+  console.log("Sorted Upcoming Bookings:", sortedVenueBookings);
   console.log("META:", meta);
   console.log(loading, error);
 
@@ -137,15 +145,18 @@ function ViewBookings() {
         <div className="flex justify-center mt-10">
           <Loader />
         </div>
+      ) : error ? (
+        <p>Oops... I can&apos;t find your bookings!</p>
       ) : (
-        <BookingObject />
+        <BookingObject sortedVenueBookings={sortedVenueBookings} />
       )}
     </section>
   );
 }
 
-function BookingObject() {
-  return <div></div>;
+function BookingObject({ sortedVenueBookings }) {
+  console.log(sortedVenueBookings);
+  return <section></section>;
 }
 
 // function ViewVenuesObject({ handleViewChange, setCurrentVenue }) {
