@@ -148,7 +148,10 @@ function CreateNewVenue() {
         <h1 className="font-bold font-serif text-deep-blue text-xl-leading-none text-center">
           Create new Venue
         </h1>
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        <form
+          className="flex flex-col gap-5 md:grid grid-cols-2"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-col gap-5">
             <fieldset>
               <legend className="sr-only">name and location data</legend>
@@ -243,7 +246,7 @@ function CreateNewVenue() {
               <MediaElement />
             </fieldset>
           </div>
-          <fieldset className="my-5">
+          <fieldset className="my-5 col-span-full">
             <legend className="sr-only">description</legend>
             <div className="flex flex-col gap-1">
               <label
@@ -262,7 +265,7 @@ function CreateNewVenue() {
               ></textarea>
             </div>
           </fieldset>
-          <div className="flex justify-center">
+          <div className="flex justify-center col-span-full">
             <button
               className="font-serif font-bold text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-15 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
               disabled={isLoading}
