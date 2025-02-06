@@ -414,7 +414,11 @@ function RatingElement() {
             disabled={iconCount === 1}
             type="button"
           >
-            <img src="/minus-solid.svg" alt="decrease" className="h-4" />
+            <img
+              src="/minus-solid.svg"
+              alt="decrease"
+              className="h-4 md:h-4.5 lg:h-5"
+            />
           </button>
           <div className="flex gap-2.5 min-w-32 md:min-w-36 lg:min-w-40 justify-center">
             {Array.from({ length: iconCount }, (_, index) => (
@@ -433,7 +437,11 @@ function RatingElement() {
             disabled={iconCount === maxIcons}
             type="button"
           >
-            <img src="/plus-solid.svg" alt="increase" className="h-4" />
+            <img
+              src="/plus-solid.svg"
+              alt="increase"
+              className="h-4 md:h-4.5 lg:h-5"
+            />
           </button>
         </div>
       </div>
