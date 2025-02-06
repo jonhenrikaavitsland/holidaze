@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Heading from "../../component/Heading";
 import LinkBtn from "./LinkBtn";
@@ -23,8 +24,6 @@ export default function VenueHubPage() {
     setViewNewVenue(view === "newVenue");
     setUpdateVenue(view === "updateVenue");
   }
-
-  console.log(viewUpdateVenue, currentVenue);
 
   return (
     <div className="flex flex-col lg:flex-row">
@@ -74,7 +73,13 @@ export default function VenueHubPage() {
           />
         )}
         {viewNewVenue && <CreateNewVenue />}
+        {viewUpdateVenue && <UpdateVenue currentVenue={currentVenue} />}
       </section>
     </div>
   );
+}
+
+function UpdateVenue({ currentVenue }) {
+  console.log("current venue:", currentVenue);
+  return <div></div>;
 }
