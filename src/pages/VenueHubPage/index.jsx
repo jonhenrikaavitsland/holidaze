@@ -144,12 +144,12 @@ function CreateNewVenue() {
 
   return (
     <div>
-      <section className="flex flex-col gap-5 pt-5 px-5">
-        <h1 className="font-bold font-serif text-deep-blue text-xl-leading-none text-center">
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10">
+        <Heading level="2" className="text-center text-deep-blue">
           Create new Venue
-        </h1>
+        </Heading>
         <form
-          className="flex flex-col gap-5 md:grid grid-cols-2"
+          className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 md:grid grid-cols-2"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col gap-5">
@@ -209,9 +209,9 @@ function CreateNewVenue() {
           <div className="flex flex-col gap-5">
             <fieldset className="flex flex-col gap-2.5 mt-5">
               <legend className="sr-only">amenities</legend>
-              <h2 className="font-serif text-lg-leading-none font-bold text-deep-blue text-center">
+              <Heading level="3" className="text-center text-deep-blue">
                 Amenities
-              </h2>
+              </Heading>
               <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
                 <ul className="flex flex-col gap-5 items-center mt-2.5 mb-10">
                   <CustomSwitch
