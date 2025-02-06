@@ -213,7 +213,7 @@ function CreateNewVenue() {
                 Amenities
               </Heading>
               <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
-                <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 mb-10">
+                <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 md:mt-3.75 lg:mt-5 mb-10">
                   <CustomSwitch
                     onToggle={toggleWifi}
                     isOn={wifi}
