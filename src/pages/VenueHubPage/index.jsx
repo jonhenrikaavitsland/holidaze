@@ -23,7 +23,7 @@ export default function VenueHubPage() {
     setUpdateVenue(view === "updateVenue");
   }
 
-  console.log(viewBooking, viewNewVenue, viewUpdateVenue, currentVenue);
+  console.log(viewUpdateVenue, currentVenue);
 
   return (
     <div className="flex flex-col lg:flex-row">
