@@ -521,7 +521,7 @@ function ChooseLocation() {
           location
         </label>
         <select
-          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none cursor-pointer"
+          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none cursor-pointer md:text-lg-leading-none lg:text-xl-leading-none"
           name="options"
           id="options"
           required
