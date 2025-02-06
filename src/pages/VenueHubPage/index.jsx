@@ -256,7 +256,7 @@ function CreateNewVenue() {
                 description
               </label>
               <textarea
-                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar"
+                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
                 name="description"
                 id="description"
                 placeholder="Describe your amazing venue"
