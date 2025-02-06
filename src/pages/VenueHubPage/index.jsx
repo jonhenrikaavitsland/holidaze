@@ -149,96 +149,100 @@ function CreateNewVenue() {
           Create new Venue
         </h1>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-          <fieldset>
-            <legend className="sr-only">name and location data</legend>
-            <ul className="flex flex-col gap-5">
-              <FormListElement
-                setter="venue"
-                element="venue"
-                label="venue"
-                error={error}
-                mustHave={true}
-                placeholder="Venue name"
-              />
-              <FormListElement
-                setter="address"
-                element="address"
-                label="address"
-                error={error}
-                mustHave={true}
-                placeholder="Street address"
-              />
-              <ChooseLocation />
-              <FormListElement
-                setter="zipCode"
-                element="zip-code"
-                label="zip code"
-                error={error}
-                mustHave={true}
-                placeholder="35560"
-              />
-            </ul>
-          </fieldset>
-          <fieldset>
-            <legend className="sr-only">accommodation details</legend>
-            <ul className="flex flex-col gap-5">
-              <FormListElement
-                setter="price"
-                element="price"
-                label="price €"
-                error={error}
-                mustHave={true}
-                placeholder="€165"
-              />
-              <RatingElement />
-              <FormListElement
-                setter="sleeps"
-                element="sleeps"
-                label="sleeps"
-                error={error}
-                mustHave={true}
-                placeholder="4"
-              />
-            </ul>
-          </fieldset>
-          <fieldset className="flex flex-col gap-2.5 mt-5">
-            <legend className="sr-only">amenities</legend>
-            <h2 className="font-serif text-lg-leading-none font-bold text-deep-blue text-center">
-              Amenities
-            </h2>
-            <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
-              <ul className="flex flex-col gap-5 items-center mt-2.5 mb-10">
-                <CustomSwitch
-                  onToggle={toggleWifi}
-                  isOn={wifi}
-                  label="wiFi"
-                  id="wifi"
+          <div className="flex flex-col gap-5">
+            <fieldset>
+              <legend className="sr-only">name and location data</legend>
+              <ul className="flex flex-col gap-5">
+                <FormListElement
+                  setter="venue"
+                  element="venue"
+                  label="venue"
+                  error={error}
+                  mustHave={true}
+                  placeholder="Venue name"
                 />
-                <CustomSwitch
-                  onToggle={toggleBreakfast}
-                  isOn={breakfast}
-                  label="breakfast"
-                  id="breakfast"
+                <FormListElement
+                  setter="address"
+                  element="address"
+                  label="address"
+                  error={error}
+                  mustHave={true}
+                  placeholder="Street address"
                 />
-                <CustomSwitch
-                  onToggle={toggleParking}
-                  isOn={parking}
-                  label="parking"
-                  id="parking"
-                />
-                <CustomSwitch
-                  onToggle={togglePets}
-                  isOn={pets}
-                  label="pets"
-                  id="pets"
+                <ChooseLocation />
+                <FormListElement
+                  setter="zipCode"
+                  element="zip-code"
+                  label="zip code"
+                  error={error}
+                  mustHave={true}
+                  placeholder="35560"
                 />
               </ul>
-            </div>
-          </fieldset>
-          <fieldset className="mt-5">
-            <legend className="sr-only">media</legend>
-            <MediaElement />
-          </fieldset>
+            </fieldset>
+            <fieldset>
+              <legend className="sr-only">accommodation details</legend>
+              <ul className="flex flex-col gap-5">
+                <FormListElement
+                  setter="price"
+                  element="price"
+                  label="price €"
+                  error={error}
+                  mustHave={true}
+                  placeholder="€165"
+                />
+                <RatingElement />
+                <FormListElement
+                  setter="sleeps"
+                  element="sleeps"
+                  label="sleeps"
+                  error={error}
+                  mustHave={true}
+                  placeholder="4"
+                />
+              </ul>
+            </fieldset>
+          </div>
+          <div className="flex flex-col gap-5">
+            <fieldset className="flex flex-col gap-2.5 mt-5">
+              <legend className="sr-only">amenities</legend>
+              <h2 className="font-serif text-lg-leading-none font-bold text-deep-blue text-center">
+                Amenities
+              </h2>
+              <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
+                <ul className="flex flex-col gap-5 items-center mt-2.5 mb-10">
+                  <CustomSwitch
+                    onToggle={toggleWifi}
+                    isOn={wifi}
+                    label="wiFi"
+                    id="wifi"
+                  />
+                  <CustomSwitch
+                    onToggle={toggleBreakfast}
+                    isOn={breakfast}
+                    label="breakfast"
+                    id="breakfast"
+                  />
+                  <CustomSwitch
+                    onToggle={toggleParking}
+                    isOn={parking}
+                    label="parking"
+                    id="parking"
+                  />
+                  <CustomSwitch
+                    onToggle={togglePets}
+                    isOn={pets}
+                    label="pets"
+                    id="pets"
+                  />
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset className="mt-5">
+              <legend className="sr-only">media</legend>
+              <MediaElement />
+            </fieldset>
+          </div>
           <fieldset className="my-5">
             <legend className="sr-only">description</legend>
             <div className="flex flex-col gap-1">
