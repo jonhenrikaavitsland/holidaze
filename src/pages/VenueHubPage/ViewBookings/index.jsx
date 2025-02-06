@@ -3,6 +3,7 @@ import Heading from "../../../component/Heading";
 import Loader from "../../../component/Loader";
 import BookingObjects from "../BookingObjects";
 import useProfileVenues from "../../../js/api/useProfileVenues";
+import NoBookings from "../NoBookings";
 
 export default function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,8 +75,8 @@ export default function ViewBookings() {
         <div className="flex justify-center mt-10">
           <Loader />
         </div>
-      ) : error ? (
-        <p>Oops... I can&apos;t find your bookings!</p>
+      ) : !sortedVenueBookings.length ? (
+        <NoBookings />
       ) : (
         <BookingObjects sortedVenueBookings={sortedVenueBookings} />
       )}
