@@ -125,7 +125,7 @@ export default function VenueObject({
               <button
                 className="bg-deep-blue text-white font-serif font-bold py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-10 rounded-xl capitalize text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
                 onClick={() => {
-                  setCurrentVenue(venue.id);
+                  setCurrentVenue(venue);
                   handleViewChange("updateVenue");
                 }}
               >
