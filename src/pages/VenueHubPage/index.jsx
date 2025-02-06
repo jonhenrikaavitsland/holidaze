@@ -14,6 +14,7 @@ export default function VenueHubPage() {
   const [viewNewVenue, setViewNewVenue] = useState(false);
   const [viewUpdateVenue, setUpdateVenue] = useState(false);
   const [currentVenue, setCurrentVenue] = useState("");
+  // currentVenue is for passing venueId of the venue that is updated
 
   function handleViewChange(view) {
     setViewWelcome(view === "welcome");
