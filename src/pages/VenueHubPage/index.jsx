@@ -416,13 +416,13 @@ function RatingElement() {
           >
             <img src="/minus-solid.svg" alt="decrease" className="h-4" />
           </button>
-          <div className="flex gap-2.5 min-w-32 justify-center">
+          <div className="flex gap-2.5 min-w-32 md:min-w-36 lg:min-w-40 justify-center">
             {Array.from({ length: iconCount }, (_, index) => (
               <div key={index}>
                 <img
                   src="/logo_warm_200.png"
                   alt="rating sun"
-                  className="h-4"
+                  className="h-4 md:h-4.5 lg:h-5"
                 />
               </div>
             ))}
