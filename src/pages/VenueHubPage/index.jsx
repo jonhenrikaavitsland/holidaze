@@ -315,7 +315,7 @@ function MediaElement(props) {
         {inputs.map((input, index) => (
           <li key={index}>
             <input
-              className="bg-warm-beige border border-natural-charcoal/40 h-6 text-center font-medium leading-none w-full"
+              className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none w-full"
               type="text"
               value={input}
               placeholder="https://unsplash.com/photos/"
