@@ -9,7 +9,6 @@ import ViewBookings from "./ViewBookings";
 import useCreateVenueStore from "../../js/store/useCreateVenueStore";
 import useCreateVenue from "../../js/api/useCreateVenue";
 import { apiKey, apiUrl } from "../../js/data/constants";
-import BreadCrumb from "../../component/Breadcrumb";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -145,7 +144,6 @@ function CreateNewVenue() {
 
   return (
     <div>
-      {<BreadCrumb />}
       <section className="flex flex-col gap-5 pt-5 px-5">
         <h1 className="font-bold font-serif text-deep-blue text-xl-leading-none text-center">
           Create new Venue
