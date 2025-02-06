@@ -260,7 +260,7 @@ function CreateNewVenue() {
           </fieldset>
           <div className="flex justify-center">
             <button
-              className="font-serif font-bold text-xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 rounded-xl shadow-md shadow-natural-charcoal/40"
+              className="font-serif font-bold text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-15 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
               disabled={isLoading}
               type="submit"
             >
