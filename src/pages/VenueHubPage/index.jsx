@@ -398,11 +398,11 @@ function RatingElement() {
           <p className="text-sm-leading-none font-bold">{iconCount}</p>
         </div>
         <div
-          className="bg-warm-beige flex gap-5 justify-center items-center border border-natural-charcoal/40 h-6 text-center font-medium leading-none text-natural-charcoal"
+          className="bg-warm-beige flex gap-5 justify-center items-center border border-natural-charcoal/40 h-9 text-center font-medium leading-none text-natural-charcoal"
           id="rating"
         >
           <button
-            className="cursor-pointer grow flex justify-end hover:bg-custom-coral/20 pe-2.5 h-6 items-center"
+            className="cursor-pointer grow flex justify-end hover:bg-custom-coral/20 pe-2.5 py-2.5 items-center"
             onClick={decreaseCount}
             disabled={iconCount === 1}
             type="button"
@@ -421,7 +421,7 @@ function RatingElement() {
             ))}
           </div>
           <button
-            className="cursor-pointer grow hover:bg-custom-coral/20 ps-2.5 h-6 flex items-center"
+            className="cursor-pointer grow hover:bg-custom-coral/20 ps-2.5 py-2.5 flex items-center"
             onClick={increaseCount}
             disabled={iconCount === maxIcons}
             type="button"
