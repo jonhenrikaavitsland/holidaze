@@ -149,13 +149,13 @@ function CreateNewVenue() {
           Create new Venue
         </Heading>
         <form
-          className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 md:grid grid-cols-2"
+          className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
             <fieldset>
               <legend className="sr-only">name and location data</legend>
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
                 <FormListElement
                   setter="venue"
                   element="venue"
@@ -185,7 +185,7 @@ function CreateNewVenue() {
             </fieldset>
             <fieldset>
               <legend className="sr-only">accommodation details</legend>
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
                 <FormListElement
                   setter="price"
                   element="price"
@@ -206,14 +206,14 @@ function CreateNewVenue() {
               </ul>
             </fieldset>
           </div>
-          <div className="flex flex-col gap-5">
-            <fieldset className="flex flex-col gap-2.5 mt-5">
+          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+            <fieldset className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5 mt-5 md:mt-0">
               <legend className="sr-only">amenities</legend>
               <Heading level="3" className="text-center text-deep-blue">
                 Amenities
               </Heading>
               <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
-                <ul className="flex flex-col gap-5 items-center mt-2.5 mb-10">
+                <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 mb-10">
                   <CustomSwitch
                     onToggle={toggleWifi}
                     isOn={wifi}
@@ -318,7 +318,7 @@ function MediaElement(props) {
       <label className="text-sm-leading-none capitalize" htmlFor="media-0">
         media
       </label>
-      <ul className="flex flex-col gap-2.5">
+      <ul className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5">
         {inputs.map((input, index) => (
           <li key={index}>
             <input
