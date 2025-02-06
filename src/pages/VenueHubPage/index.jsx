@@ -488,7 +488,7 @@ function FormListElement(props) {
           {props.label}
         </label>
         <input
-          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none"
+          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none md:text-lg-leading-none lg:text-xl-leading-none"
           type="text"
           id={props.element}
           placeholder={props.placeholder}
