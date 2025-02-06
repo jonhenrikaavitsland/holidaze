@@ -338,7 +338,7 @@ function MediaElement(props) {
 function CustomSwitch({ isOn, onToggle, id, label }) {
   return (
     <li>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         <label
           className="text-sm-leading-none capitalize text-center"
           htmlFor={id}
@@ -346,7 +346,7 @@ function CustomSwitch({ isOn, onToggle, id, label }) {
           {label}
         </label>
         <div
-          className={`h-7.5 w-20 bg-white rounded-xl shadow-md shadow-natural-charcoal/40 flex items-center px-0.5 ${isOn ? "justify-end" : ""}`}
+          className={`h-11 w-24 bg-white rounded-xl shadow-md shadow-natural-charcoal/40 flex items-center px-0.5 ${isOn ? "justify-end" : ""}`}
           onClick={onToggle}
           role="button"
           id={id}
@@ -359,7 +359,7 @@ function CustomSwitch({ isOn, onToggle, id, label }) {
           }}
         >
           <div
-            className={` h-6.5 w-6.5 rounded-full transition-transform duration-300 ${isOn ? "bg-accent-teal" : "bg-natural-charcoal"}`}
+            className={` h-10 w-10 rounded-full transition-transform duration-300 ${isOn ? "bg-accent-teal" : "bg-natural-charcoal"}`}
           ></div>
         </div>
       </div>
