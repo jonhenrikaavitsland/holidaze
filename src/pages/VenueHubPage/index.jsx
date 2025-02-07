@@ -11,6 +11,7 @@ import useCreateVenueStore from "../../js/store/useCreateVenueStore";
 import FormListElement from "./FormListElement";
 import ChooseLocation from "./ChooseLocation";
 import RatingElement from "./RatingElement";
+import CustomSwitch from "./CustomSwitch";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -91,10 +92,18 @@ function UpdateVenue({ venue }) {
     setPrice,
     setRating,
     setSleeps,
+    toggleWifi,
+    toggleBreakfast,
+    toggleParking,
+    togglePets,
+    wifi,
+    pets,
+    breakfast,
+    parking,
   } = useCreateVenueStore();
 
   useEffect(() => {
-    if (venue?.name) {
+    if (venue) {
       setVenue(venue.name);
       setAddress(venue.location.address);
       setLocation(venue.location.city);
@@ -102,6 +111,18 @@ function UpdateVenue({ venue }) {
       setPrice(venue.price);
       setRating(venue.rating);
       setSleeps(venue.maxGuests);
+      if (venue.meta.wifi) {
+        toggleWifi();
+      }
+      if (venue.meta.pets) {
+        togglePets();
+      }
+      if (venue.meta.breakfast) {
+        toggleBreakfast();
+      }
+      if (venue.meta.parking) {
+        toggleParking();
+      }
     }
   }, [
     setVenue,
@@ -111,6 +132,10 @@ function UpdateVenue({ venue }) {
     setPrice,
     setRating,
     setSleeps,
+    toggleBreakfast,
+    toggleParking,
+    togglePets,
+    toggleWifi,
     venue,
   ]);
 
@@ -174,6 +199,42 @@ function UpdateVenue({ venue }) {
                   placeholder="4"
                 />
               </ul>
+            </fieldset>
+          </div>
+          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+            <fieldset className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5 mt-5 md:mt-0">
+              <legend className="sr-only">amenities</legend>
+              <Heading level="3" className="text-center text-deep-blue">
+                Amenities
+              </Heading>
+              <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
+                <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 md:mt-3.75 lg:mt-5 mb-10">
+                  <CustomSwitch
+                    onToggle={toggleWifi}
+                    isOn={wifi}
+                    label="wiFi"
+                    id="wifi"
+                  />
+                  <CustomSwitch
+                    onToggle={toggleBreakfast}
+                    isOn={breakfast}
+                    label="breakfast"
+                    id="breakfast"
+                  />
+                  <CustomSwitch
+                    onToggle={toggleParking}
+                    isOn={parking}
+                    label="parking"
+                    id="parking"
+                  />
+                  <CustomSwitch
+                    onToggle={togglePets}
+                    isOn={pets}
+                    label="pets"
+                    id="pets"
+                  />
+                </ul>
+              </div>
             </fieldset>
           </div>
         </form>
