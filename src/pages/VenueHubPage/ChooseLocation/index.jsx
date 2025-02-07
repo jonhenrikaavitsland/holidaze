@@ -1,7 +1,7 @@
 import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 
 export default function ChooseLocation() {
-  const { location, setLocation } = useCreateVenueStore();
+  const { chosenLocation, setChosenLocation } = useCreateVenueStore();
 
   return (
     <li>
@@ -14,10 +14,10 @@ export default function ChooseLocation() {
           name="options"
           id="options"
           required
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          value={chosenLocation}
+          onChange={(e) => setChosenLocation(e.target.value)}
         >
-          <option value="">{location || "Select Location"}</option>
+          <option value="">Select Location</option>
           <option value="1">Corralejo</option>
           <option value="2">Costa Calma</option>
           <option value="3">Caleta de Fuste</option>

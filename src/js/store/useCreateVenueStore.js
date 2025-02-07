@@ -20,7 +20,7 @@ const useCreateVenueStore = create(
 
       venue: "",
       address: "",
-      location: "",
+      chosenLocation: "",
       zipCode: "",
       price: "",
       rating: 1,
@@ -28,7 +28,7 @@ const useCreateVenueStore = create(
 
       setVenue: (value) => set(() => ({ venue: value })),
       setAddress: (value) => set(() => ({ address: value })),
-      setLocation: (value) => set(() => ({ location: value })),
+      setChosenLocation: (value) => set(() => ({ location: value })),
       setZipCode: (value) => set(() => ({ zipCode: value })),
       setPrice: (value) => set(() => ({ price: value })),
       setRating: (value) => set(() => ({ rating: value })),
@@ -57,7 +57,7 @@ const useCreateVenueStore = create(
           pets: false,
           venue: "",
           address: "",
-          location: "",
+          chosenLocation: "",
           zipCode: "",
           price: "",
           rating: 1,

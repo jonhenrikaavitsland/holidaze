@@ -13,6 +13,9 @@ import ChooseLocation from "./ChooseLocation";
 import RatingElement from "./RatingElement";
 import CustomSwitch from "./CustomSwitch";
 import MediaElement from "./MediaElement";
+import useUpdateVenue from "../../js/api/useUpdateVenue";
+import updateVenueStore from "../../js/data/updateVenueStore";
+import Loader from "../../component/Loader";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -78,63 +81,19 @@ export default function VenueHubPage() {
           />
         )}
         {viewNewVenue && <CreateNewVenue />}
-        {viewUpdateVenue && <UpdateVenue venue={currentVenue} />}
+        {viewUpdateVenue && <UpdateVenue venueObj={currentVenue} />}
       </section>
     </div>
   );
 }
 
-function UpdateVenue({ venue }) {
+function UpdateVenue({ venueObj }) {
+  const [loading, setLoading] = useState(true);
+
   const {
     setVenue,
     setAddress,
-    setLocation,
-    setZipCode,
-    setPrice,
-    setRating,
-    setSleeps,
-    toggleWifi,
-    toggleBreakfast,
-    toggleParking,
-    togglePets,
-    wifi,
-    pets,
-    breakfast,
-    parking,
-    setWifi,
-    setParking,
-    setPets,
-    setBreakfast,
-    setMedia,
-    description,
-    setDescription,
-  } = useCreateVenueStore();
-
-  useEffect(() => {
-    if (venue) {
-      setVenue(venue?.name);
-      setAddress(venue?.location.address);
-      setLocation(venue?.location.city);
-      setZipCode(venue?.location.zip);
-      setPrice(venue?.price);
-      setRating(venue?.rating);
-      setSleeps(venue?.maxGuests);
-      setWifi(venue?.meta.wifi);
-      setParking(venue?.meta.parking);
-      setBreakfast(venue?.meta.breakfast);
-      setPets(venue?.meta.pets);
-      setDescription(venue?.description);
-
-      if (venue.media && Array.isArray(venue.media)) {
-        venue.media.forEach((mediaItem, index) => {
-          setMedia(index + 1, mediaItem.url);
-        });
-      }
-    }
-  }, [
-    setVenue,
-    setAddress,
-    setLocation,
+    setChosenLocation,
     setZipCode,
     setPrice,
     setRating,
@@ -146,142 +105,252 @@ function UpdateVenue({ venue }) {
     setMedia,
     setDescription,
     venue,
+    address,
+    zipCode,
+    chosenLocation,
+    price,
+    rating,
+    sleeps,
+    toggleWifi,
+    toggleBreakfast,
+    toggleParking,
+    togglePets,
+    wifi,
+    pets,
+    breakfast,
+    parking,
+    description,
+    media0,
+    media1,
+    media2,
+    media3,
+    media4,
+    media5,
+    media6,
+    media7,
+    media8,
+    media9,
+    clearAll,
+  } = useCreateVenueStore();
+
+  useEffect(() => {
+    if (venueObj) {
+      // Update the venue store with the provided venueObj
+      updateVenueStore(venueObj, {
+        setVenue,
+        setAddress,
+        setChosenLocation,
+        setZipCode,
+        setPrice,
+        setRating,
+        setSleeps,
+        setWifi,
+        setParking,
+        setPets,
+        setBreakfast,
+        setMedia,
+        setDescription,
+        clearAll,
+      });
+      // Once the update is complete, set loading to false
+      setLoading(false);
+    } else {
+      // If venueObj isn't available, ensure loading remains true
+      setLoading(true);
+    }
+  }, [
+    venueObj,
+    setVenue,
+    setAddress,
+    setChosenLocation,
+    setZipCode,
+    setPrice,
+    setRating,
+    setSleeps,
+    setWifi,
+    setParking,
+    setPets,
+    setBreakfast,
+    setMedia,
+    setDescription,
+    clearAll,
   ]);
 
-  console.log("current venue:", venue);
+  const { updateVenue, isLoading, error } = useUpdateVenue(venueObj.id);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("location-handleSubmit:", chosenLocation);
+    updateVenue({
+      wifi,
+      breakfast,
+      parking,
+      pets,
+      venue,
+      address,
+      chosenLocation,
+      zipCode,
+      price,
+      rating,
+      sleeps,
+      description,
+      media0,
+      media1,
+      media2,
+      media3,
+      media4,
+      media5,
+      media6,
+      media7,
+      media8,
+      media9,
+    });
+    console.log("Error:", error);
+  };
+
+  console.log("current venue:", venueObj);
   return (
-    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
-      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10">
-        <Heading level="2" className="text-center text-deep-blue">
-          update venue
-        </Heading>
-        <form className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2">
-          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-            <fieldset>
-              <legend className="sr-only">name and location data</legend>
-              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-                <FormListElement
-                  setter="venue"
-                  element="venue"
-                  label="venue"
-                  error=""
-                  mustHave={true}
-                  placeholder="Venue name"
-                />
-                <FormListElement
-                  setter="address"
-                  element="address"
-                  label="address"
-                  error=""
-                  mustHave={true}
-                  placeholder="Street address"
-                />
-                <ChooseLocation />
-                <FormListElement
-                  setter="zipCode"
-                  element="zip-code"
-                  label="zip code"
-                  error=""
-                  mustHave={true}
-                  placeholder="35560"
-                />
-              </ul>
-            </fieldset>
-            <fieldset>
-              <legend className="sr-only">accommodation details</legend>
-              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-                <FormListElement
-                  setter="price"
-                  element="price"
-                  label="price €"
-                  error=""
-                  mustHave={true}
-                  placeholder="€165"
-                />
-                <RatingElement />
-                <FormListElement
-                  setter="sleeps"
-                  element="sleeps"
-                  label="sleeps"
-                  error=""
-                  mustHave={true}
-                  placeholder="4"
-                />
-              </ul>
-            </fieldset>
-          </div>
-          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
-            <fieldset className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5 mt-5 md:mt-0">
-              <legend className="sr-only">amenities</legend>
-              <Heading level="3" className="text-center text-deep-blue">
-                Amenities
-              </Heading>
-              <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
-                <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 md:mt-3.75 lg:mt-5 mb-10">
-                  <CustomSwitch
-                    onToggle={toggleWifi}
-                    isOn={wifi}
-                    label="wiFi"
-                    id="wifi"
-                  />
-                  <CustomSwitch
-                    onToggle={toggleBreakfast}
-                    isOn={breakfast}
-                    label="breakfast"
-                    id="breakfast"
-                  />
-                  <CustomSwitch
-                    onToggle={toggleParking}
-                    isOn={parking}
-                    label="parking"
-                    id="parking"
-                  />
-                  <CustomSwitch
-                    onToggle={togglePets}
-                    isOn={pets}
-                    label="pets"
-                    id="pets"
-                  />
-                </ul>
-              </div>
-            </fieldset>
-            <fieldset className="mt-5">
-              <legend className="sr-only">media</legend>
-              <MediaElement />
-            </fieldset>
-          </div>
-          <fieldset className="my-5 col-span-full">
-            <legend className="sr-only">description</legend>
-            <div className="flex flex-col gap-1">
-              <label
-                className="text-sm-leading-none capitalize"
-                htmlFor="description"
-              >
-                description
-              </label>
-              <textarea
-                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
-                name="description"
-                id="description"
-                placeholder="Describe your amazing venue"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
-          </fieldset>
-          <div className="flex justify-center col-span-full">
-            <button
-              className="font-serif font-bold text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-15 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
-              disabled="" // add loading state when api hook is connected
-              type="submit"
-            >
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
+          <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10">
+            <Heading level="2" className="text-center text-deep-blue">
               update venue
-            </button>
-          </div>
-        </form>
-      </section>
-      <DangerZone />
-    </div>
+            </Heading>
+            <form
+              className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2"
+              onSubmit={handleSubmit}
+            >
+              <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                <fieldset>
+                  <legend className="sr-only">name and location data</legend>
+                  <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                    <FormListElement
+                      setter="venue"
+                      element="venue"
+                      label="venue"
+                      error={error}
+                      mustHave={true}
+                      placeholder="Venue name"
+                    />
+                    <FormListElement
+                      setter="address"
+                      element="address"
+                      label="address"
+                      error={error}
+                      mustHave={true}
+                      placeholder="Street address"
+                    />
+                    <ChooseLocation />
+                    <FormListElement
+                      setter="zipCode"
+                      element="zip-code"
+                      label="zip code"
+                      error={error}
+                      mustHave={true}
+                      placeholder="35560"
+                    />
+                  </ul>
+                </fieldset>
+                <fieldset>
+                  <legend className="sr-only">accommodation details</legend>
+                  <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                    <FormListElement
+                      setter="price"
+                      element="price"
+                      label="price €"
+                      error={error}
+                      mustHave={true}
+                      placeholder="€165"
+                    />
+                    <RatingElement />
+                    <FormListElement
+                      setter="sleeps"
+                      element="sleeps"
+                      label="sleeps"
+                      error={error}
+                      mustHave={true}
+                      placeholder="4"
+                    />
+                  </ul>
+                </fieldset>
+              </div>
+              <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                <fieldset className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5 mt-5 md:mt-0">
+                  <legend className="sr-only">amenities</legend>
+                  <Heading level="3" className="text-center text-deep-blue">
+                    Amenities
+                  </Heading>
+                  <div className="bg-warm-beige border border-natural-charcoal/40 rounded-xl w-56 mx-auto">
+                    <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 items-center mt-2.5 md:mt-3.75 lg:mt-5 mb-10">
+                      <CustomSwitch
+                        onToggle={toggleWifi}
+                        isOn={wifi}
+                        label="wiFi"
+                        id="wifi"
+                      />
+                      <CustomSwitch
+                        onToggle={toggleBreakfast}
+                        isOn={breakfast}
+                        label="breakfast"
+                        id="breakfast"
+                      />
+                      <CustomSwitch
+                        onToggle={toggleParking}
+                        isOn={parking}
+                        label="parking"
+                        id="parking"
+                      />
+                      <CustomSwitch
+                        onToggle={togglePets}
+                        isOn={pets}
+                        label="pets"
+                        id="pets"
+                      />
+                    </ul>
+                  </div>
+                </fieldset>
+                <fieldset className="mt-5">
+                  <legend className="sr-only">media</legend>
+                  <MediaElement />
+                </fieldset>
+              </div>
+              <fieldset className="my-5 col-span-full">
+                <legend className="sr-only">description</legend>
+                <div className="flex flex-col gap-1">
+                  <label
+                    className="text-sm-leading-none capitalize"
+                    htmlFor="description"
+                  >
+                    description
+                  </label>
+                  <textarea
+                    className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
+                    name="description"
+                    id="description"
+                    placeholder="Describe your amazing venue"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </div>
+              </fieldset>
+              <div className="flex justify-center col-span-full">
+                <button
+                  className="font-serif font-bold text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-15 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+                  disabled={isLoading}
+                  type="submit"
+                >
+                  update venue
+                </button>
+              </div>
+            </form>
+          </section>
+          <DangerZone />
+        </div>
+      )}
+    </>
   );
 }
 
