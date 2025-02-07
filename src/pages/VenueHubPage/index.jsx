@@ -12,6 +12,7 @@ import FormListElement from "./FormListElement";
 import ChooseLocation from "./ChooseLocation";
 import RatingElement from "./RatingElement";
 import CustomSwitch from "./CustomSwitch";
+import MediaElement from "./MediaElement";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -104,6 +105,7 @@ function UpdateVenue({ venue }) {
     setParking,
     setPets,
     setBreakfast,
+    setMedia,
   } = useCreateVenueStore();
 
   useEffect(() => {
@@ -119,6 +121,12 @@ function UpdateVenue({ venue }) {
       setParking(venue?.meta.parking);
       setBreakfast(venue?.meta.breakfast);
       setPets(venue?.meta.pets);
+
+      if (venue.media && Array.isArray(venue.media)) {
+        venue.media.forEach((mediaItem, index) => {
+          setMedia(index + 1, mediaItem.url);
+        });
+      }
     }
   }, [
     setVenue,
@@ -132,6 +140,7 @@ function UpdateVenue({ venue }) {
     setParking,
     setPets,
     setBreakfast,
+    setMedia,
     venue,
   ]);
 
@@ -231,6 +240,10 @@ function UpdateVenue({ venue }) {
                   />
                 </ul>
               </div>
+            </fieldset>
+            <fieldset className="mt-5">
+              <legend className="sr-only">media</legend>
+              <MediaElement />
             </fieldset>
           </div>
         </form>
