@@ -100,29 +100,25 @@ function UpdateVenue({ venue }) {
     pets,
     breakfast,
     parking,
+    setWifi,
+    setParking,
+    setPets,
+    setBreakfast,
   } = useCreateVenueStore();
 
   useEffect(() => {
     if (venue) {
-      setVenue(venue.name);
-      setAddress(venue.location.address);
-      setLocation(venue.location.city);
-      setZipCode(venue.location.zip);
-      setPrice(venue.price);
-      setRating(venue.rating);
-      setSleeps(venue.maxGuests);
-      if (venue.meta.wifi) {
-        toggleWifi();
-      }
-      if (venue.meta.pets) {
-        togglePets();
-      }
-      if (venue.meta.breakfast) {
-        toggleBreakfast();
-      }
-      if (venue.meta.parking) {
-        toggleParking();
-      }
+      setVenue(venue?.name);
+      setAddress(venue?.location.address);
+      setLocation(venue?.location.city);
+      setZipCode(venue?.location.zip);
+      setPrice(venue?.price);
+      setRating(venue?.rating);
+      setSleeps(venue?.maxGuests);
+      setWifi(venue?.meta.wifi);
+      setParking(venue?.meta.parking);
+      setBreakfast(venue?.meta.breakfast);
+      setPets(venue?.meta.pets);
     }
   }, [
     setVenue,
@@ -132,10 +128,10 @@ function UpdateVenue({ venue }) {
     setPrice,
     setRating,
     setSleeps,
-    toggleBreakfast,
-    toggleParking,
-    togglePets,
-    toggleWifi,
+    setWifi,
+    setParking,
+    setPets,
+    setBreakfast,
     venue,
   ]);
 
