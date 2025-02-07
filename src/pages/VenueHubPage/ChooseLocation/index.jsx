@@ -17,7 +17,7 @@ export default function ChooseLocation() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         >
-          <option value="">Select Location</option>
+          <option value="">{location || "Select Location"}</option>
           <option value="1">Corralejo</option>
           <option value="2">Costa Calma</option>
           <option value="3">Caleta de Fuste</option>
