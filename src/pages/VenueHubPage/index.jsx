@@ -249,25 +249,34 @@ function UpdateVenue({ venue }) {
               <legend className="sr-only">media</legend>
               <MediaElement />
             </fieldset>
-            <fieldset className="my-5 col-span-full">
-              <legend className="sr-only">description</legend>
-              <div className="flex flex-col gap-1">
-                <label
-                  className="text-sm-leading-none capitalize"
-                  htmlFor="description"
-                >
-                  description
-                </label>
-                <textarea
-                  className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
-                  name="description"
-                  id="description"
-                  placeholder="Describe your amazing venue"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </div>
-            </fieldset>
+          </div>
+          <fieldset className="my-5 col-span-full">
+            <legend className="sr-only">description</legend>
+            <div className="flex flex-col gap-1">
+              <label
+                className="text-sm-leading-none capitalize"
+                htmlFor="description"
+              >
+                description
+              </label>
+              <textarea
+                className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
+                name="description"
+                id="description"
+                placeholder="Describe your amazing venue"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+          </fieldset>
+          <div className="flex justify-center col-span-full">
+            <button
+              className="font-serif font-bold text-2xl-leading-none md:text-3xl-leading-none lg:text-4xl-leading-none bg-deep-blue text-white py-3.75 px-7.5 md:py-5 md:px-10 lg:py-7.5 lg:px-15 rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/90"
+              disabled="" // add loading state when api hook is connected
+              type="submit"
+            >
+              update venue
+            </button>
           </div>
         </form>
       </section>
