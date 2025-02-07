@@ -106,6 +106,8 @@ function UpdateVenue({ venue }) {
     setPets,
     setBreakfast,
     setMedia,
+    description,
+    setDescription,
   } = useCreateVenueStore();
 
   useEffect(() => {
@@ -121,6 +123,7 @@ function UpdateVenue({ venue }) {
       setParking(venue?.meta.parking);
       setBreakfast(venue?.meta.breakfast);
       setPets(venue?.meta.pets);
+      setDescription(venue?.description);
 
       if (venue.media && Array.isArray(venue.media)) {
         venue.media.forEach((mediaItem, index) => {
@@ -141,6 +144,7 @@ function UpdateVenue({ venue }) {
     setPets,
     setBreakfast,
     setMedia,
+    setDescription,
     venue,
   ]);
 
@@ -244,6 +248,25 @@ function UpdateVenue({ venue }) {
             <fieldset className="mt-5">
               <legend className="sr-only">media</legend>
               <MediaElement />
+            </fieldset>
+            <fieldset className="my-5 col-span-full">
+              <legend className="sr-only">description</legend>
+              <div className="flex flex-col gap-1">
+                <label
+                  className="text-sm-leading-none capitalize"
+                  htmlFor="description"
+                >
+                  description
+                </label>
+                <textarea
+                  className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
+                  name="description"
+                  id="description"
+                  placeholder="Describe your amazing venue"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
             </fieldset>
           </div>
         </form>
