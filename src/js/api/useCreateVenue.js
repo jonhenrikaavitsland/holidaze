@@ -23,7 +23,7 @@ const useCreateVenue = (apiUrl, apiKey) => {
         pets,
         venue,
         address,
-        location,
+        chosenLocation,
         zipCode,
         price,
         rating,
@@ -41,7 +41,7 @@ const useCreateVenue = (apiUrl, apiKey) => {
         media9,
       } = values;
 
-      const selectedLocation = locationsMap[location] || {};
+      const selectedLocation = locationsMap[chosenLocation] || {};
       const city = selectedLocation.city || null;
       const lat = selectedLocation.lat || 0;
       const lng = selectedLocation.lng || 0;
