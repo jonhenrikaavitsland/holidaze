@@ -49,6 +49,7 @@ export default function MediaElement(props) {
               value={input}
               placeholder="https://unsplash.com/photos/"
               onChange={(e) => handleInputChange(index, e.target.value)}
+              onClick={(e) => handleInputChange(index, e.target.value)}
               required={index === 0}
               id={`media-${index}`}
             />
