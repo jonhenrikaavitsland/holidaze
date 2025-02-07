@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "../../component/Heading";
 import LinkBtn from "./LinkBtn";
 import Buttons from "./Buttons";
@@ -7,6 +7,9 @@ import Welcome from "./Welcome";
 import ViewVenuesObject from "./ViewVenuesObject";
 import ViewBookings from "./ViewBookings";
 import CreateNewVenue from "./CreateNewVenue";
+import useCreateVenueStore from "../../js/store/useCreateVenueStore";
+import FormListElement from "./FormListElement";
+import ChooseLocation from "./ChooseLocation";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -15,7 +18,6 @@ export default function VenueHubPage() {
   const [viewNewVenue, setViewNewVenue] = useState(false);
   const [viewUpdateVenue, setUpdateVenue] = useState(false);
   const [currentVenue, setCurrentVenue] = useState({});
-  // currentVenue is for passing venueId of the venue that is updated
 
   function handleViewChange(view) {
     setViewWelcome(view === "welcome");
@@ -73,13 +75,67 @@ export default function VenueHubPage() {
           />
         )}
         {viewNewVenue && <CreateNewVenue />}
-        {viewUpdateVenue && <UpdateVenue currentVenue={currentVenue} />}
+        {viewUpdateVenue && <UpdateVenue venue={currentVenue} />}
       </section>
     </div>
   );
 }
 
-function UpdateVenue({ currentVenue }) {
-  console.log("current venue:", currentVenue);
-  return <div></div>;
+function UpdateVenue({ venue }) {
+  const { setVenue, setAddress, setLocation, setZipCode } =
+    useCreateVenueStore();
+
+  useEffect(() => {
+    if (venue?.name) {
+      setVenue(venue.name);
+      setAddress(venue.location.address);
+      setLocation(venue.location.city);
+      setZipCode(venue.location.zip);
+    }
+  }, [setVenue, setAddress, setLocation, setZipCode, venue]);
+
+  console.log("current venue:", venue);
+  return (
+    <div>
+      <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10">
+        <Heading level="2" className="text-center text-deep-blue">
+          update venue
+        </Heading>
+        <form className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2">
+          <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+            <fieldset>
+              <legend className="sr-only">name and location data</legend>
+              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                <FormListElement
+                  setter="venue"
+                  element="venue"
+                  label="venue"
+                  error=""
+                  mustHave={true}
+                  placeholder="Venue name"
+                />
+                <FormListElement
+                  setter="address"
+                  element="address"
+                  label="address"
+                  error=""
+                  mustHave={true}
+                  placeholder="Street address"
+                />
+                <ChooseLocation />
+                <FormListElement
+                  setter="zipCode"
+                  element="zip-code"
+                  label="zip code"
+                  error=""
+                  mustHave={true}
+                  placeholder="35560"
+                />
+              </ul>
+            </fieldset>
+          </div>
+        </form>
+      </section>
+    </div>
+  );
 }
