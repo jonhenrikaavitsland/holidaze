@@ -13,6 +13,10 @@ const useCreateVenueStore = create(
       toggleBreakfast: () => set((state) => ({ breakfast: !state.breakfast })),
       toggleParking: () => set((state) => ({ parking: !state.parking })),
       togglePets: () => set((state) => ({ pets: !state.pets })),
+      setWifi: (value) => set(() => ({ wifi: value })),
+      setBreakfast: (value) => set(() => ({ breakfast: value })),
+      setParking: (value) => set(() => ({ parking: value })),
+      setPets: (value) => set(() => ({ pets: value })),
 
       venue: "",
       address: "",
