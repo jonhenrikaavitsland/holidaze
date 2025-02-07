@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 
 export default function RatingElement() {
-  const { setRating } = useCreateVenueStore();
-  const [iconCount, setIconCount] = useState(1);
+  const { rating, setRating } = useCreateVenueStore();
+  const [iconCount, setIconCount] = useState(rating);
   const maxIcons = 5;
 
   useEffect(() => {
