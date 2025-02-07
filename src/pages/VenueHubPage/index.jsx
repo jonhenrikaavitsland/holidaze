@@ -10,6 +10,7 @@ import CreateNewVenue from "./CreateNewVenue";
 import useCreateVenueStore from "../../js/store/useCreateVenueStore";
 import FormListElement from "./FormListElement";
 import ChooseLocation from "./ChooseLocation";
+import RatingElement from "./RatingElement";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -82,8 +83,15 @@ export default function VenueHubPage() {
 }
 
 function UpdateVenue({ venue }) {
-  const { setVenue, setAddress, setLocation, setZipCode } =
-    useCreateVenueStore();
+  const {
+    setVenue,
+    setAddress,
+    setLocation,
+    setZipCode,
+    setPrice,
+    setRating,
+    setSleeps,
+  } = useCreateVenueStore();
 
   useEffect(() => {
     if (venue?.name) {
@@ -91,8 +99,20 @@ function UpdateVenue({ venue }) {
       setAddress(venue.location.address);
       setLocation(venue.location.city);
       setZipCode(venue.location.zip);
+      setPrice(venue.price);
+      setRating(venue.rating);
+      setSleeps(venue.maxGuests);
     }
-  }, [setVenue, setAddress, setLocation, setZipCode, venue]);
+  }, [
+    setVenue,
+    setAddress,
+    setLocation,
+    setZipCode,
+    setPrice,
+    setRating,
+    setSleeps,
+    venue,
+  ]);
 
   console.log("current venue:", venue);
   return (
@@ -130,6 +150,28 @@ function UpdateVenue({ venue }) {
                   error=""
                   mustHave={true}
                   placeholder="35560"
+                />
+              </ul>
+            </fieldset>
+            <fieldset>
+              <legend className="sr-only">accommodation details</legend>
+              <ul className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
+                <FormListElement
+                  setter="price"
+                  element="price"
+                  label="price €"
+                  error=""
+                  mustHave={true}
+                  placeholder="€165"
+                />
+                <RatingElement />
+                <FormListElement
+                  setter="sleeps"
+                  element="sleeps"
+                  label="sleeps"
+                  error=""
+                  mustHave={true}
+                  placeholder="4"
                 />
               </ul>
             </fieldset>
