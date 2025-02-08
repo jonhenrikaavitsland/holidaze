@@ -8,6 +8,8 @@ import CustomSwitch from "../CustomSwitch";
 import FormListElement from "../FormListElement";
 import MediaElement from "../MediaElement";
 import RatingElement from "../RatingElement";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function CreateNewVenue() {
   const {
@@ -40,7 +42,48 @@ export default function CreateNewVenue() {
     media9,
   } = useCreateVenueStore();
   const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
-  const { register, handleSubmit } = useForm();
+
+  const schema = yup
+    .object({
+      venue: yup
+        .string()
+        .min(5, "Should be at least 5 characters.")
+        .max(40, "Must be less than 40 characters.")
+        .required("Please name your venue."),
+      address: yup
+        .string()
+        .min(8, "Should be at least 8 characters.")
+        .max(100, "Must be less than 100 characters.")
+        .required("Please type the address of your venue."),
+      zipCode: yup
+        .number()
+        .positive()
+        .integer()
+        .min(35500, "Must me at least 35500.")
+        .max(35700, "Must be lower than 35700.")
+        .required("Please input a Zip Code between 35500 and 35700."),
+      price: yup
+        .number()
+        .positive()
+        .integer()
+        .min(1, "You can not charge less than €1 / night.")
+        .max(9999, "Can not charge more above €9999 / night")
+        .required("Please specify your rate / night"),
+      sleeps: yup
+        .number()
+        .positive()
+        .integer()
+        .min(1, "You must serve at least one guest.")
+        .max(20, "Max number of guests is 20.")
+        .required("Please input your number of max guests."),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -89,7 +132,7 @@ export default function CreateNewVenue() {
                   setter="venue"
                   element="venue"
                   label="venue"
-                  error={error}
+                  error={errors.venue}
                   mustHave={true}
                   placeholder="Venue name"
                   register={register}
@@ -98,7 +141,7 @@ export default function CreateNewVenue() {
                   setter="address"
                   element="address"
                   label="address"
-                  error={error}
+                  error={errors.address}
                   mustHave={true}
                   placeholder="Street address"
                   register={register}
@@ -108,7 +151,7 @@ export default function CreateNewVenue() {
                   setter="zipCode"
                   element="zip-code"
                   label="zip code"
-                  error={error}
+                  error={errors.zipCode}
                   mustHave={true}
                   placeholder="35560"
                   register={register}
@@ -122,7 +165,7 @@ export default function CreateNewVenue() {
                   setter="price"
                   element="price"
                   label="price €"
-                  error={error}
+                  error={errors.price}
                   mustHave={true}
                   placeholder="€165"
                   register={register}
@@ -132,7 +175,7 @@ export default function CreateNewVenue() {
                   setter="sleeps"
                   element="sleeps"
                   label="sleeps"
-                  error={error}
+                  error={errors.sleeps}
                   mustHave={true}
                   placeholder="4"
                   register={register}
