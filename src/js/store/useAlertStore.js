@@ -7,10 +7,11 @@ const useAlertStore = create(
       title: "",
       message: "",
       type: "",
+      className: "",
       onOk: null,
       onCancel: null,
-      setAlert: (title, message, type, onOk, onCancel) => {
-        set({ title, message, type, onOk, onCancel });
+      setAlert: (title, message, type, onOk, onCancel, className) => {
+        set({ title, message, type, onOk, onCancel, className });
       },
       updateMessage: (message) => {
         set({ message });
@@ -20,6 +21,7 @@ const useAlertStore = create(
           title: "",
           message: "",
           type: "",
+          className: "",
           onOk: null,
           onCancel: null,
         });
