@@ -14,11 +14,9 @@ export default function updateVenueStore(
     setBreakfast,
     setMedia,
     setDescription,
-    clearAll,
   },
 ) {
   if (!venueObj) return;
-  clearAll();
 
   setVenue(venueObj?.name);
   setAddress(venueObj?.location?.address);
