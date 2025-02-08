@@ -6,6 +6,7 @@ import LoginModal from "./component/LoginModal";
 import RegisterModal from "./component/RegisterModal";
 import Overlay from "./component/Overlay";
 import EditProfileModal from "./component/EditProfileModal";
+import AlertModal from "./component/AlertModal";
 
 export default function Layout() {
   const {
@@ -13,6 +14,7 @@ export default function Layout() {
     isLoginModalOpen,
     isRegisterModalOpen,
     isEditProfileOpen,
+    isAlertModalOpen,
   } = useUIStore();
 
   return (
@@ -22,10 +24,11 @@ export default function Layout() {
         className={`flex-grow lg:container lg:mx-auto mb-10 md:mb-15 lg:mb-20 ${isOverlayOpen ? "overflow-hidden" : ""}`}
       >
         <Outlet />
-        {isLoginModalOpen ? <LoginModal /> : ""}
-        {isRegisterModalOpen ? <RegisterModal /> : ""}
-        {isOverlayOpen ? <Overlay /> : ""}
-        {isEditProfileOpen ? <EditProfileModal /> : ""}
+        {isLoginModalOpen && <LoginModal />}
+        {isRegisterModalOpen && <RegisterModal />}
+        {isOverlayOpen && <Overlay />}
+        {isEditProfileOpen && <EditProfileModal />}
+        {isAlertModalOpen && <AlertModal />}
       </main>
       <Footer />
     </div>
