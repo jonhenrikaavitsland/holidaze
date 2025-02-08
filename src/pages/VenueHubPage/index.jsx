@@ -16,6 +16,9 @@ import MediaElement from "./MediaElement";
 import useUpdateVenue from "../../js/api/useUpdateVenue";
 import updateVenueStore from "../../js/data/updateVenueStore";
 import Loader from "../../component/Loader";
+import useUIStore from "../../js/store/useUIStore";
+import useDeleteVenue from "../../js/api/useDeleteVenue";
+import useAlertStore from "../../js/store/useAlertStore";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
@@ -347,30 +350,75 @@ function UpdateVenue({ venueObj }) {
               </div>
             </form>
           </section>
-          <DangerZone />
+          <DangerZone id={venueObj.id} />
         </div>
       )}
     </>
   );
 }
 
-function DangerZone() {
+function DangerZone({ id }) {
   return (
     <section className="flex flex-col gap-10 md:gap-15 lg:gap-20 bg-custom-coral pt-5 md:pt-7.5 lg:pt-10 pb-10 md:pb-15 lg:pb-20">
       <h2 className="font-serif text-white text-center text-4xl-leading-none uppercase font-black underline">
         danger zone
       </h2>
-      <DeleteVenueBtn />
+      <DeleteVenueBtn id={id} />
     </section>
   );
 }
 
-function DeleteVenueBtn() {
+function DeleteVenueBtn({ id }) {
+  const { openStateWithOverlay, closeAll } = useUIStore();
+  const { deleteVenue, loading, error } = useDeleteVenue();
+  const { setAlert, updateMessage, clearAlert } = useAlertStore();
+
+  const title = "delete venue";
+  const message =
+    "Are you sure you want to DELETE the venue? This action can not be undone later!";
+  const type = "ok-cancel";
+
+  const handleOk = async () => {
+    const success = await deleteVenue(id);
+    if (success) {
+      updateMessage("Successfully deleted the venue!");
+      setTimeout(() => {
+        closeAll();
+        clearAlert();
+      }, 2000);
+      return;
+    }
+    setAlert(
+      "Ops. Something went wrong!",
+      error,
+      "ok-only",
+      () => {
+        closeAll();
+        clearAlert();
+      },
+      null,
+    );
+    return;
+  };
+
+  const handleCancel = () => {
+    closeAll();
+    clearAlert();
+    return;
+  };
+
   return (
     <div className="flex justify-center ">
       <div className="bg-white p-1 rounded-xl">
         <div className="bg-custom-coral p-1 rounded-xl">
-          <button className="bg-white text-custom-coral uppercase poppins font-black py-3.75 px-7.5 rounded-xl text-2xl-leading-none hover:bg-custom-coral hover:text-white">
+          <button
+            className="bg-white text-custom-coral uppercase poppins font-black py-3.75 px-7.5 rounded-xl text-2xl-leading-none hover:bg-custom-coral hover:text-white"
+            onClick={() => {
+              setAlert(title, message, type, handleOk, handleCancel);
+              openStateWithOverlay("isAlertModalOpen");
+            }}
+            disabled={loading}
+          >
             delete venue
           </button>
         </div>
