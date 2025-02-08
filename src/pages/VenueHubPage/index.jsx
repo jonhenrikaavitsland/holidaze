@@ -84,13 +84,18 @@ export default function VenueHubPage() {
           />
         )}
         {viewNewVenue && <CreateNewVenue />}
-        {viewUpdateVenue && <UpdateVenue venueObj={currentVenue} />}
+        {viewUpdateVenue && (
+          <UpdateVenue
+            venueObj={currentVenue}
+            handleViewChange={handleViewChange}
+          />
+        )}
       </section>
     </div>
   );
 }
 
-function UpdateVenue({ venueObj }) {
+function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
 
   const {
@@ -208,7 +213,7 @@ function UpdateVenue({ venueObj }) {
       media8,
       media9,
     });
-    console.log("Error:", error);
+    error ? console.log("Error:", error) : handleViewChange("venues");
   };
 
   console.log("current venue:", venueObj);
@@ -350,25 +355,25 @@ function UpdateVenue({ venueObj }) {
               </div>
             </form>
           </section>
-          <DangerZone id={venueObj.id} />
+          <DangerZone id={venueObj.id} handleViewChange={handleViewChange} />
         </div>
       )}
     </>
   );
 }
 
-function DangerZone({ id }) {
+function DangerZone({ id, handleViewChange }) {
   return (
     <section className="flex flex-col gap-10 md:gap-15 lg:gap-20 bg-custom-coral pt-5 md:pt-7.5 lg:pt-10 pb-10 md:pb-15 lg:pb-20">
       <h2 className="font-serif text-white text-center text-4xl-leading-none uppercase font-black underline">
         danger zone
       </h2>
-      <DeleteVenueBtn id={id} />
+      <DeleteVenueBtn id={id} handleViewChange={handleViewChange} />
     </section>
   );
 }
 
-function DeleteVenueBtn({ id }) {
+function DeleteVenueBtn({ id, handleViewChange }) {
   const { openStateWithOverlay, closeAll } = useUIStore();
   const { deleteVenue, loading, error } = useDeleteVenue();
   const { setAlert, updateMessage, clearAlert } = useAlertStore();
@@ -387,6 +392,7 @@ function DeleteVenueBtn({ id }) {
       setTimeout(() => {
         closeAll();
         clearAlert();
+        handleViewChange("venues");
       }, 2000);
       return;
     }
