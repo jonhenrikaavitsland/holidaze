@@ -1,7 +1,7 @@
 import useUIStore from "../../js/store/useUIStore";
 
 export default function Overlay() {
-  const { closeAll } = useUIStore();
+  const { closeAll, isAlertModalOpen } = useUIStore();
 
   return (
     <div
@@ -9,7 +9,7 @@ export default function Overlay() {
       onClick={closeAll}
     >
       <div className="lg:container lg:mx-auto flex w-full justify-center md:justify-end ">
-        <div>
+        <div className={`${isAlertModalOpen ? "hidden" : ""}`}>
           <button className="p-2.5 hover:bg-white/20 rounded-xl">
             <img
               src="/xmark-solid-white.svg"
