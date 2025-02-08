@@ -5,12 +5,18 @@ export default function LinkBtn({
   handleViewChange,
   kind,
   status,
+  action,
 }) {
   return (
     <li>
       <button
         className={`font-serif text-xl-leading-none py-2.5 capitalize ${className} ${status && "font-bold"}`}
-        onClick={() => handleViewChange(`${kind}`)}
+        onClick={() => {
+          if (action) {
+            action();
+          }
+          handleViewChange(`${kind}`);
+        }}
       >
         {content}
       </button>
