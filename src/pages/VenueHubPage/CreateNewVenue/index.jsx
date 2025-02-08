@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import Heading from "../../../component/Heading";
 import useCreateVenue from "../../../js/api/useCreateVenue";
 import { apiKey, apiUrl } from "../../../js/data/constants";
@@ -39,8 +40,9 @@ export default function CreateNewVenue() {
     media9,
   } = useCreateVenueStore();
   const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     createVenue({
       wifi,
@@ -77,7 +79,7 @@ export default function CreateNewVenue() {
         </Heading>
         <form
           className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
             <fieldset>
@@ -90,6 +92,7 @@ export default function CreateNewVenue() {
                   error={error}
                   mustHave={true}
                   placeholder="Venue name"
+                  register={register}
                 />
                 <FormListElement
                   setter="address"
@@ -98,6 +101,7 @@ export default function CreateNewVenue() {
                   error={error}
                   mustHave={true}
                   placeholder="Street address"
+                  register={register}
                 />
                 <ChooseLocation />
                 <FormListElement
@@ -107,6 +111,7 @@ export default function CreateNewVenue() {
                   error={error}
                   mustHave={true}
                   placeholder="35560"
+                  register={register}
                 />
               </ul>
             </fieldset>
@@ -120,6 +125,7 @@ export default function CreateNewVenue() {
                   error={error}
                   mustHave={true}
                   placeholder="€165"
+                  register={register}
                 />
                 <RatingElement />
                 <FormListElement
@@ -129,6 +135,7 @@ export default function CreateNewVenue() {
                   error={error}
                   mustHave={true}
                   placeholder="4"
+                  register={register}
                 />
               </ul>
             </fieldset>
