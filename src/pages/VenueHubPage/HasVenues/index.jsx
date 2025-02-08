@@ -16,7 +16,7 @@ export default function HasVenues({
       {venues.map((venue, index) => (
         <div key={index} className="flex flex-col gap-1">
           <span className="text-xs-leading-none">
-            {index + 1} / {venues.length}
+            {(meta.currentPage - 1) * 10 + (index + 1)} / {meta.totalCount}
           </span>
           <VenueObject
             venue={venue}
