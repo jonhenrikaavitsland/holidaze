@@ -23,8 +23,6 @@ export default function updateVenueStore(
   setVenue(venueObj?.name);
   setAddress(venueObj?.location?.address);
 
-  console.log("setchosenlocation:", setChosenLocation);
-
   const cityMapping = {
     Corralejo: "1",
     "Costa Calma": "2",
