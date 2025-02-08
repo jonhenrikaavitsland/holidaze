@@ -52,11 +52,29 @@ export default function ViewBookings() {
   }, [meta, currentPage]);
 
   // Sort the accumulated venue-booking objects by the booking's dateFrom (earliest first).
-  const sortedVenueBookings = accumulatedVenueBookings.sort(
-    (a, b) => new Date(a.booking.dateFrom) - new Date(b.booking.dateFrom),
-  );
+  const sortedVenueBookings = useMemo(() => {
+    return [...accumulatedVenueBookings].sort(
+      (a, b) => new Date(a.booking.dateFrom) - new Date(b.booking.dateFrom),
+    );
+  }, [accumulatedVenueBookings]);
+
+  // New constant: flat list of bookings sorted first by venue name then by booking dateFrom.
+  const sortedByVenueBookings = useMemo(() => {
+    return (
+      [...accumulatedVenueBookings]
+        // Although accumulatedVenueBookings should already only have upcoming bookings,
+        // we add an extra filter in case additional filtering is needed.
+        .filter(({ booking }) => new Date(booking.dateTo) >= today)
+        .sort((a, b) => {
+          const venueComparison = a.venue.name.localeCompare(b.venue.name);
+          if (venueComparison !== 0) return venueComparison;
+          return new Date(a.booking.dateFrom) - new Date(b.booking.dateFrom);
+        })
+    );
+  }, [accumulatedVenueBookings, today]);
 
   console.log("Sorted Upcoming Bookings:", sortedVenueBookings);
+  console.log("Sorted By Venue Bookings:", sortedByVenueBookings);
   console.log("META:", meta);
   console.log(loading, error);
 
