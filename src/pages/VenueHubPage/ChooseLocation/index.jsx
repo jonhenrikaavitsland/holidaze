@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 
-export default function ChooseLocation() {
+export default function ChooseLocation({ register, error }) {
   const { chosenLocation, setChosenLocation } = useCreateVenueStore();
+
+  console.log("ChosenLocation:", typeof chosenLocation);
 
   return (
     <li>
@@ -10,8 +13,8 @@ export default function ChooseLocation() {
           location
         </label>
         <select
+          {...register("location")}
           className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none cursor-pointer md:text-lg-leading-none lg:text-xl-leading-none"
-          name="options"
           id="options"
           required
           value={chosenLocation}
@@ -24,6 +27,14 @@ export default function ChooseLocation() {
           <option value="4">Morro Jable</option>
           <option value="5">El Cotillo</option>
         </select>
+        {error && (
+          <p
+            className="text-custom-coral text-sm-leading-none font-bold text-center"
+            id="location-error"
+          >
+            {error?.message}
+          </p>
+        )}
       </div>
     </li>
   );
