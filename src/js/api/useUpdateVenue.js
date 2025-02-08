@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import useCreateVenueStore from "../store/useCreateVenueStore";
-import { apiKey, apiUrl, locationsMap } from "../data/constants";
+import { apiKey, apiUrl, locationsMap, venuesPath } from "../data/constants";
 
 const useUpdateVenue = (id) => {
   const { token } = useAuthStore();
@@ -93,7 +93,7 @@ const useUpdateVenue = (id) => {
       console.log("Request Body:", requestBody);
 
       // API Call using fetch
-      const response = await fetch(`${apiUrl}/holidaze/venues/${id}`, {
+      const response = await fetch(`${apiUrl}${venuesPath}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
