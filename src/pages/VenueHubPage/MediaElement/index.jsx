@@ -35,6 +35,8 @@ export default function MediaElement(props) {
     setInputs(trimmedInputs);
   };
 
+  console.log(props.error?.media?.message);
+
   return (
     <div className="flex flex-col gap-1">
       <label className="text-sm-leading-none capitalize" htmlFor="media-0">
@@ -44,6 +46,7 @@ export default function MediaElement(props) {
         {inputs.map((input, index) => (
           <li key={index}>
             <input
+              {...props.register(`media${index}`)}
               className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none w-full md:text-lg-leading-none lg:text-xl-leading-none"
               type="text"
               value={input}
@@ -53,14 +56,14 @@ export default function MediaElement(props) {
               // required={index === 0}
               id={`media-${index}`}
             />
+            {props.error?.[`media${index}`] && (
+              <p className="text-custom-coral text-sm-leading-none font-bold text-center">
+                {props.error?.[`media${index}`]?.message}
+              </p>
+            )}
           </li>
         ))}
       </ul>
-      {props.error && (
-        <p className="text-custom-coral text-sm-leading-none font-bold text-center">
-          {props.error}
-        </p>
-      )}
     </div>
   );
 }
