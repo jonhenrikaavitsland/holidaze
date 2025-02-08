@@ -22,7 +22,7 @@ const useDeleteVenue = () => {
       });
       // Check if the deletion was successful (204 No Content)
       if (response.status === 204) {
-        return;
+        return true;
       } else {
         throw new Error(
           `Failed to delete venue. Status code: ${response.status}`,
@@ -30,6 +30,7 @@ const useDeleteVenue = () => {
       }
     } catch (err) {
       setError(err);
+      return false;
     } finally {
       setLoading(false);
     }
