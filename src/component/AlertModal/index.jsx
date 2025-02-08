@@ -1,11 +1,7 @@
-/* eslint-disable react/prop-types */
-export default function AlertModal({
-  title,
-  message,
-  type = "ok-cancel",
-  onOk,
-  onCancel,
-}) {
+import useAlertStore from "../../js/store/useAlertStore";
+
+export default function AlertModal() {
+  const { title, message, type, onOk, onCancel } = useAlertStore();
   return (
     <div className="bg-white rounded-xl shadow-md shadow-natural-charcoal/40">
       <section>{title && <h2>{title}</h2>}</section>
