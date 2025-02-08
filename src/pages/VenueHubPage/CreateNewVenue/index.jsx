@@ -76,6 +76,10 @@ export default function CreateNewVenue() {
         .min(1, "You must serve at least one guest.")
         .max(20, "Max number of guests is 20.")
         .required("Please input your number of max guests."),
+      location: yup
+        .string()
+        .oneOf(["1", "2", "3", "4", "5"], "Please pick a valid location.")
+        .required("Please choose a location."),
     })
     .required();
 
@@ -146,7 +150,7 @@ export default function CreateNewVenue() {
                   placeholder="Street address"
                   register={register}
                 />
-                <ChooseLocation />
+                <ChooseLocation register={register} error={errors.location} />
                 <FormListElement
                   setter="zipCode"
                   element="zip-code"
