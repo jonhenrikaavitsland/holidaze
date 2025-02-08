@@ -8,6 +8,8 @@ import NoBookings from "../NoBookings";
 export default function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
   const [accumulatedVenueBookings, setAccumulatedVenueBookings] = useState([]);
+  const [sortBy, setSortBy] = useState("date");
+  const [sortedBookings, setSortedBookings] = useState([]);
 
   const { venues, meta, loading, error } = useProfileVenues({
     page: currentPage,
@@ -73,6 +75,15 @@ export default function ViewBookings() {
     );
   }, [accumulatedVenueBookings, today]);
 
+  // Choose which sorted array to pass to BookingObjects based on the selected sort option.
+  const sortBookings = useMemo(() => {
+    return sortBy === "date" ? sortedVenueBookings : sortedByVenueBookings;
+  }, [sortBy, sortedVenueBookings, sortedByVenueBookings]);
+
+  useEffect(() => {
+    setSortedBookings(sortBookings);
+  }, [sortBookings]);
+
   console.log("Sorted Upcoming Bookings:", sortedVenueBookings);
   console.log("Sorted By Venue Bookings:", sortedByVenueBookings);
   console.log("META:", meta);
@@ -89,15 +100,41 @@ export default function ViewBookings() {
           )
         </Heading>
       )}
-      {loading ? (
-        <div className="flex justify-center mt-10">
-          <Loader />
+      <div>
+        <div>
+          <form>
+            <fieldset className="flex justify-end">
+              <legend className="sr-only">sort by</legend>
+              <div className="flex gap-5 items-end">
+                <label
+                  htmlFor="sort-b"
+                  className="font-medium text-sm-leading-none"
+                >
+                  Sort by:
+                </label>
+                <select
+                  className="capitalize bg-white pt-4 cursor-pointer"
+                  name="sort-by"
+                  id="sort-by"
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="date">date</option>
+                  <option value="venue">venue</option>
+                </select>
+              </div>
+            </fieldset>
+          </form>
         </div>
-      ) : !sortedVenueBookings.length ? (
-        <NoBookings />
-      ) : (
-        <BookingObjects sortedVenueBookings={sortedVenueBookings} />
-      )}
+        {loading ? (
+          <div className="flex justify-center mt-10">
+            <Loader />
+          </div>
+        ) : !sortedVenueBookings.length ? (
+          <NoBookings />
+        ) : (
+          <BookingObjects sortedVenueBookings={sortedBookings} />
+        )}
+      </div>
     </section>
   );
 }
