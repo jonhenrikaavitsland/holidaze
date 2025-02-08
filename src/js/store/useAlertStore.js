@@ -12,6 +12,9 @@ const useAlertStore = create(
       setAlert: (title, message, type, onOk, onCancel) => {
         set({ title, message, type, onOk, onCancel });
       },
+      updateMessage: (message) => {
+        set({ message });
+      },
       clearAlert: () => {
         set({
           title: "",
