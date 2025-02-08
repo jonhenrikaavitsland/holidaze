@@ -13,16 +13,16 @@ export default function AlertModal() {
           </Heading>
         )}
         {message && <p>{message}</p>}
-        <div className="flex justify-between sm:flex-col flex-wrap gap-5 ">
+        <div className="flex justify-between sm:flex-col gap-5 mt-5">
           <button
-            className={`${className} py-2 w-24 sm:w-full rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40`}
+            className={`${className} py-2 rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40`}
             onClick={onOk}
           >
             Ok
           </button>
           {type === "ok-cancel" && (
             <button
-              className="bg-deep-blue/20 py-2 w-24 sm:w-full rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/30"
+              className="bg-deep-blue/20 py-2 w-full rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40 hover:bg-deep-blue/30"
               onClick={onCancel}
             >
               Cancel

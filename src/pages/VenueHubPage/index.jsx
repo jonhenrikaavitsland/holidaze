@@ -377,6 +377,8 @@ function DeleteVenueBtn({ id }) {
   const message =
     "Are you sure you want to DELETE the venue? This action can not be undone later!";
   const type = "ok-cancel";
+  const className =
+    "w-full bg-custom-coral hover:text-natural-charcoal hover:bg-custom-coral/50 text-white";
 
   const handleOk = async () => {
     const success = await deleteVenue(id);
@@ -414,7 +416,7 @@ function DeleteVenueBtn({ id }) {
           <button
             className="bg-white text-custom-coral uppercase poppins font-black py-3.75 px-7.5 rounded-xl text-2xl-leading-none hover:bg-custom-coral hover:text-white"
             onClick={() => {
-              setAlert(title, message, type, handleOk, handleCancel);
+              setAlert(title, message, type, handleOk, handleCancel, className);
               openStateWithOverlay("isAlertModalOpen");
             }}
             disabled={loading}
