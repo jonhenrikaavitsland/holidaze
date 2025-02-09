@@ -36,7 +36,6 @@ export default function CreateNewVenue() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    console.log("DATA:", data);
     const {
       venue,
       address,

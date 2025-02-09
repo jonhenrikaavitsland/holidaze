@@ -38,13 +38,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     setBreakfast,
     setMedia,
     setDescription,
-    venue,
-    address,
-    zipCode,
-    chosenLocation,
-    price,
     rating,
-    sleeps,
     toggleWifi,
     toggleBreakfast,
     toggleParking,
@@ -54,16 +48,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     breakfast,
     parking,
     description,
-    media0,
-    media1,
-    media2,
-    media3,
-    media4,
-    media5,
-    media6,
-    media7,
-    media8,
-    media9,
     clearAll,
   } = useCreateVenueStore();
 
@@ -111,22 +95,16 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
   ]);
 
   const { updateVenue, isLoading, error } = useUpdateVenue(venueObj.id);
+  console.log("Error updating:", error);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log("location-handleSubmit:", chosenLocation);
-    updateVenue({
-      wifi,
-      breakfast,
-      parking,
-      pets,
+  const onSubmit = (data) => {
+    const {
       venue,
       address,
-      chosenLocation,
       zipCode,
-      price,
-      rating,
       sleeps,
+      price,
+      location,
       description,
       media0,
       media1,
@@ -138,8 +116,37 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
       media7,
       media8,
       media9,
-    });
-    error ? console.log("Error:", error) : handleViewChange("venues");
+    } = data;
+
+    try {
+      updateVenue({
+        wifi,
+        breakfast,
+        parking,
+        pets,
+        venue,
+        address,
+        location,
+        zipCode,
+        price,
+        rating,
+        sleeps,
+        description,
+        media0,
+        media1,
+        media2,
+        media3,
+        media4,
+        media5,
+        media6,
+        media7,
+        media8,
+        media9,
+      });
+    } catch (error) {
+      console.log("Error:", error);
+    }
+    handleViewChange("venues");
   };
 
   console.log("current venue:", venueObj);
