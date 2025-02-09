@@ -23,7 +23,7 @@ const useUpdateVenue = (id) => {
         pets,
         venue,
         address,
-        chosenLocation,
+        location,
         zipCode,
         price,
         rating,
@@ -41,8 +41,8 @@ const useUpdateVenue = (id) => {
         media9,
       } = values;
 
-      console.log("locObj:", chosenLocation);
-      const selectedLocation = locationsMap[chosenLocation] || {};
+      console.log("locObj:", location);
+      const selectedLocation = locationsMap[location] || {};
       const city = selectedLocation.city || null;
       const lat = selectedLocation.lat || 0;
       const lng = selectedLocation.lng || 0;
