@@ -48,8 +48,12 @@ export const schema = yup
       .required("Please choose a location."),
     description: yup
       .string()
+      .transform((value, originalValue) =>
+        originalValue.trim() === "" ? undefined : value,
+      )
       .min(50, "Your description should be longer than 50 characters.")
-      .max(1200, "Your description must be less than 1200 characters."),
+      .max(1200, "Your description must be less than 1200 characters.")
+      .notRequired(),
     ...schemaFields,
   })
   .required();
