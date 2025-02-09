@@ -1,28 +1,34 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 
 export default function MediaElement(props) {
-  const { setMedia, ...mediaStates } = useCreateVenueStore();
-  const [inputs, setInputs] = useState(() => {
-    const initialInputs = [];
-    for (let i = 0; i < 10; i++) {
-      initialInputs.push(mediaStates[`media${i}`] || "");
-    }
-    return (
-      initialInputs.filter((input, index) => index === 0 || input !== "") || [
-        "",
-      ]
+  const getInitialInputs = () => {
+    const defaults = Array.from(
+      { length: 10 },
+      (_, i) => props.watch(`media${i}`) || "",
     );
-  });
+
+    let lastIndexToShow = 0;
+    for (let i = 0; i < defaults.length; i++) {
+      if (i === 0 || defaults[i].trim() !== "") {
+        lastIndexToShow = i;
+      }
+    }
+
+    let numInputs = lastIndexToShow + 1;
+    if (numInputs < 10 && defaults[lastIndexToShow].trim() !== "") {
+      numInputs++;
+    }
+
+    return defaults.slice(0, numInputs);
+  };
+
+  const [inputs, setInputs] = useState(getInitialInputs);
 
   const handleInputChange = (index, value) => {
-    setMedia(index, value);
     const newInputs = [...inputs];
     newInputs[index] = value;
-    // setInputs(newInputs);
 
-    // If the last input has a value, add a new empty input
     if (
       value.trim() !== "" &&
       index === inputs.length - 1 &&
@@ -34,8 +40,6 @@ export default function MediaElement(props) {
     const trimmedInputs = newInputs.slice(0, 10);
     setInputs(trimmedInputs);
   };
-
-  console.log(props.error?.media?.message);
 
   return (
     <div className="flex flex-col gap-1">
