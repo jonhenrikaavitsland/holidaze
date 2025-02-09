@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import locations from "../../data/locations/locations.json";
 import { useEffect, useRef, useState } from "react";
+import sanitizeInput from "../../js/sanitize/sanitizeInput";
 
 export default function SearchBox({
   setFetchAll,
@@ -15,7 +16,7 @@ export default function SearchBox({
 
   const handleSearch = () => {
     if (query.trim()) {
-      setFetchQuery(query);
+      setFetchQuery(sanitizeInput(query));
       setFetchAll(false);
       setActiveButton(null);
       setIsAnyBtnActive(false);
