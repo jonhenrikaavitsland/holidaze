@@ -5,7 +5,7 @@ const schemaFields = {};
 for (let i = 0; i < 10; i++) {
   schemaFields[`media${i}`] = yup
     .string()
-    .url("Must be a valid URL.")
+    .url("Must be a valid and accessible URL.")
     .notRequired();
 }
 
