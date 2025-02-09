@@ -11,9 +11,18 @@ import FormListElement from "../FormListElement";
 import MediaElement from "../MediaElement";
 import RatingElement from "../RatingElement";
 import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { schema } from "../../../js/validation/venueSchema";
 
 export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const {
     setVenue,
@@ -103,7 +112,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
 
   const { updateVenue, isLoading, error } = useUpdateVenue(venueObj.id);
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log("location-handleSubmit:", chosenLocation);
     updateVenue({
@@ -146,7 +155,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
             </Heading>
             <form
               className="flex flex-col gap-5 md:gap-x-7.5 md:gap-y-15 lg:gap-x-10 lg:gap-y-20 md:grid grid-cols-2"
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
                 <fieldset>
@@ -156,26 +165,32 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                       setter="venue"
                       element="venue"
                       label="venue"
-                      error={error}
+                      error={errors.venue}
                       mustHave={true}
                       placeholder="Venue name"
+                      register={register}
                     />
                     <FormListElement
                       setter="address"
                       element="address"
                       label="address"
-                      error={error}
+                      error={errors.address}
                       mustHave={true}
                       placeholder="Street address"
+                      register={register}
                     />
-                    <ChooseLocation />
+                    <ChooseLocation
+                      register={register}
+                      error={errors.location}
+                    />
                     <FormListElement
                       setter="zipCode"
                       element="zip-code"
                       label="zip code"
-                      error={error}
+                      error={errors.zipCode}
                       mustHave={true}
                       placeholder="35560"
+                      register={register}
                     />
                   </ul>
                 </fieldset>
@@ -186,18 +201,20 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                       setter="price"
                       element="price"
                       label="price €"
-                      error={error}
+                      error={errors.price}
                       mustHave={true}
                       placeholder="€165"
+                      register={register}
                     />
                     <RatingElement />
                     <FormListElement
                       setter="sleeps"
                       element="sleeps"
                       label="sleeps"
-                      error={error}
+                      error={errors.sleeps}
                       mustHave={true}
                       placeholder="4"
+                      register={register}
                     />
                   </ul>
                 </fieldset>
@@ -239,7 +256,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                 </fieldset>
                 <fieldset className="mt-5">
                   <legend className="sr-only">media</legend>
-                  <MediaElement />
+                  <MediaElement register={register} error={errors} />
                 </fieldset>
               </div>
               <fieldset className="my-5 col-span-full">
@@ -252,6 +269,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                     description
                   </label>
                   <textarea
+                    {...register("description")}
                     className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
                     name="description"
                     id="description"
@@ -259,6 +277,14 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
+                  {errors?.description && (
+                    <p
+                      className="text-custom-coral text-sm-leading-none font-bold text-center"
+                      id="description-error"
+                    >
+                      {errors.description?.message}
+                    </p>
+                  )}
                 </div>
               </fieldset>
               <div className="flex justify-center col-span-full">
