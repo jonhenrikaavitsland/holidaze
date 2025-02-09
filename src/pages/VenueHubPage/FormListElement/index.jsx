@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
-
 export default function FormListElement({
   register,
   setter,
@@ -10,42 +8,6 @@ export default function FormListElement({
   error,
   label,
 }) {
-  const {
-    venue,
-    address,
-    zipCode,
-    price,
-    sleeps,
-    setVenue,
-    setAddress,
-    setZipCode,
-    setPrice,
-    setSleeps,
-  } = useCreateVenueStore();
-
-  const valueMap = { venue, address, zipCode, price, sleeps };
-  const value = valueMap[setter] ?? "";
-
-  // A switch that returns the appropriate setter function
-  const getOnChangeHandler = () => {
-    switch (setter) {
-      case "venue":
-        return (e) => setVenue(e.target.value);
-      case "address":
-        return (e) => setAddress(e.target.value);
-      case "zipCode":
-        return (e) => setZipCode(e.target.value);
-      case "price":
-        return (e) => setPrice(e.target.value);
-      case "sleeps":
-        return (e) => setSleeps(e.target.value);
-      default:
-        return undefined;
-    }
-  };
-
-  const onChangeHandler = getOnChangeHandler();
-
   return (
     <li>
       <div className="flex flex-col gap-1">
@@ -59,8 +21,6 @@ export default function FormListElement({
           id={element}
           placeholder={placeholder}
           required={mustHave}
-          value={value}
-          onChange={onChangeHandler}
         />
         {error && (
           <p
