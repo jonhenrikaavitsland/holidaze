@@ -46,6 +46,10 @@ export const schema = yup
       .string()
       .oneOf(["1", "2", "3", "4", "5"], "Please pick a valid location.")
       .required("Please choose a location."),
+    description: yup
+      .string()
+      .min(50, "Your description should be longer than 50 characters.")
+      .max(1200, "Your description must be less than 1200 characters."),
     ...schemaFields,
   })
   .required();
