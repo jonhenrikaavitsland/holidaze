@@ -1,6 +1,5 @@
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
-// import useDataStore from '../../js/store/useDataStore';
 import { useLocation } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import { useRegisterUser } from "../../js/api/useRegisterUser";
@@ -11,7 +10,6 @@ import { useForm } from "react-hook-form";
 export default function RegisterModal() {
   const location = useLocation();
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
-  // const { name, setName, emailAddress, setEmailAddress, password, setPassword, error, setError } = useDataStore();
   const { isLoggedIn } = useAuthStore();
   const { registerUser } = useRegisterUser();
 
