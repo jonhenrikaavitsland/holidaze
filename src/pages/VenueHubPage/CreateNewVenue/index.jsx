@@ -23,26 +23,11 @@ export default function CreateNewVenue() {
     togglePets,
     description,
     setDescription,
-    venue,
-    address,
-    chosenLocation,
-    zipCode,
-    price,
     rating,
-    sleeps,
-    media0,
-    media1,
-    media2,
-    media3,
-    media4,
-    media5,
-    media6,
-    media7,
-    media8,
-    media9,
   } = useCreateVenueStore();
 
   const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
+  console.log("Error Creating venue:", error);
 
   const {
     register,
@@ -50,20 +35,15 @@ export default function CreateNewVenue() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    createVenue({
-      wifi,
-      breakfast,
-      parking,
-      pets,
+  const onSubmit = (data) => {
+    console.log("DATA:", data);
+    const {
       venue,
       address,
-      chosenLocation,
       zipCode,
-      price,
-      rating,
       sleeps,
+      price,
+      location,
       description,
       media0,
       media1,
@@ -75,11 +55,37 @@ export default function CreateNewVenue() {
       media7,
       media8,
       media9,
-    });
-    console.log("Error:", error);
-  };
+    } = data;
 
-  console.log("ERRORS:", errors);
+    try {
+      createVenue({
+        wifi,
+        breakfast,
+        parking,
+        pets,
+        venue,
+        address,
+        location,
+        zipCode,
+        price,
+        rating,
+        sleeps,
+        description,
+        media0,
+        media1,
+        media2,
+        media3,
+        media4,
+        media5,
+        media6,
+        media7,
+        media8,
+        media9,
+      });
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   return (
     <div>
