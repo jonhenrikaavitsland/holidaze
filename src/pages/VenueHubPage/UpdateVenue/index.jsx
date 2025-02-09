@@ -14,29 +14,25 @@ import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { schema } from "../../../js/validation/venueSchema";
+import transformVenue from "../../../js/data/transformVenue";
 
 export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
+
+  const defaultObj = transformVenue(venueObj);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema), defaultValues: defaultObj });
 
   const {
-    setVenue,
-    setAddress,
-    setChosenLocation,
-    setZipCode,
-    setPrice,
     setRating,
-    setSleeps,
     setWifi,
     setParking,
     setPets,
     setBreakfast,
-    setMedia,
     setDescription,
     rating,
     toggleWifi,
@@ -55,19 +51,11 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     if (venueObj) {
       // Update the venue store with the provided venueObj
       updateVenueStore(venueObj, {
-        setVenue,
-        setAddress,
-        setChosenLocation,
-        setZipCode,
-        setPrice,
         setRating,
-        setSleeps,
         setWifi,
         setParking,
         setPets,
         setBreakfast,
-        setMedia,
-        setDescription,
         clearAll,
       });
       // Once the update is complete, set loading to false
@@ -78,19 +66,11 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     }
   }, [
     venueObj,
-    setVenue,
-    setAddress,
-    setChosenLocation,
-    setZipCode,
-    setPrice,
     setRating,
-    setSleeps,
     setWifi,
     setParking,
     setPets,
     setBreakfast,
-    setMedia,
-    setDescription,
     clearAll,
   ]);
 
