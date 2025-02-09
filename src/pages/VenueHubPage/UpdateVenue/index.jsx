@@ -20,6 +20,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
 
   const defaultObj = transformVenue(venueObj);
+  console.log("DEFAULT:", defaultObj);
 
   const {
     register,
@@ -44,7 +45,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     pets,
     breakfast,
     parking,
-    description,
     clearAll,
   } = useCreateVenueStore();
 
@@ -267,7 +267,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                     name="description"
                     id="description"
                     placeholder="Describe your amazing venue"
-                    value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
                   {errors?.description && (
