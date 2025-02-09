@@ -5,6 +5,7 @@ const useUIStore = create((set) => ({
   isMenuOpen: false,
   isLoginModalOpen: false,
   isRegisterModalOpen: false,
+  isEditProfileOpen: false,
   isAlertModalOpen: false,
 
   // Function to open a state and overlay together
@@ -21,6 +22,7 @@ const useUIStore = create((set) => ({
       isMenuOpen: false,
       isLoginModalOpen: false,
       isRegisterModalOpen: false,
+      isEditProfileOpen: false,
       isAlertModalOpen: false,
     })),
 
@@ -37,6 +39,7 @@ const useUIStore = create((set) => ({
           isMenuOpen: false,
           isLoginModalOpen: false,
           isRegisterModalOpen: false,
+          isEditProfileOpen: false,
         };
       }
       return {}; // No state changes needed
