@@ -1,11 +1,5 @@
 /* eslint-disable react/prop-types */
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
-
 export default function ChooseLocation({ register, error }) {
-  const { chosenLocation, setChosenLocation } = useCreateVenueStore();
-
-  console.log("ChosenLocation:", typeof chosenLocation);
-
   return (
     <li>
       <div className="flex flex-col gap-1">
@@ -17,8 +11,6 @@ export default function ChooseLocation({ register, error }) {
           className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none cursor-pointer md:text-lg-leading-none lg:text-xl-leading-none"
           id="options"
           required
-          value={chosenLocation}
-          onChange={(e) => setChosenLocation(e.target.value)}
         >
           <option value="">Select Location</option>
           <option value="1">Corralejo</option>
