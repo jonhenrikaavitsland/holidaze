@@ -77,7 +77,7 @@ export default function EditProfileModal() {
             />
           </figure>
         )}
-        <div>
+        <div className="lg:grow">
           <div className="flex justify-end">
             <button
               type="button"
