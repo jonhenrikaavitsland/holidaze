@@ -1,45 +1,44 @@
 import useAutStore from "../../js/store/useAuthStore";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
-import useDataStore from "../../js/store/useDataStore";
 import { useLocation, useNavigate } from "react-router-dom";
 import useLogin from "../../js/api/useLogin";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../js/validation/loginSchema";
 
 export default function LoginModal() {
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    emailAddress,
-    setEmailAddress,
-    password,
-    setPassword,
-    error,
-    setError,
-  } = useDataStore();
   const { login } = useLogin();
-  {
-    /*loading, error: loginError will add when ready to look more into error handling etc*/
-  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const { login: loginToStore } = useAutStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    const { email, password } = data;
     try {
-      const { name, email, avatar, token, venueManager } = await login(
-        emailAddress,
-        password,
-      );
+      const {
+        name,
+        email: emailAddress,
+        avatar,
+        token,
+        venueManager,
+      } = await login(email, password);
 
-      loginToStore(name, email, avatar, token, venueManager);
-      // alert("Login successful");
+      loginToStore(name, emailAddress, avatar, token, venueManager);
       closeAll();
       if (location.pathname.includes("list-your-venue")) {
         navigate("/venue-hub/");
       }
     } catch (error) {
-      setError(error.message);
+      console.error(error);
     }
   };
 
@@ -56,12 +55,10 @@ export default function LoginModal() {
             </h2>
             <p>Login with your registered account</p>
           </section>
-          {error && (
-            <p className="text-custom-coral">
-              {error || "An unknown error occurred"}
-            </p>
-          )}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="email"
@@ -71,17 +68,18 @@ export default function LoginModal() {
               </label>
               <div className="bg-white rounded border border-deep-blue/40">
                 <input
+                  {...register("email")}
                   className="w-full h-8 rounded ps-2.5"
                   type="text"
-                  value={emailAddress}
-                  onChange={(e) => setEmailAddress(e.target.value)}
                   placeholder="mail@stud.noroff.no"
                   id="email"
                   required
                 />
-                <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
-                  Example error
-                </p>
+                {errors?.email && (
+                  <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
+                    {errors.email?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -91,17 +89,18 @@ export default function LoginModal() {
               </div>
               <div className="bg-white rounded border border-deep-blue/40">
                 <input
+                  {...register("password")}
                   className="w-full h-8 rounded ps-2.5"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  id="password"
                   placeholder="*********"
+                  id="password"
                   required
                 />
-                <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
-                  Example error
-                </p>
+                {errors?.password && (
+                  <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
+                    {errors.password?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="mx-auto mb-2.5">

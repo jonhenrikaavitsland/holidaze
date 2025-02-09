@@ -3,7 +3,7 @@ import useUIStore from "../../js/store/useUIStore";
 import { useLocation } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import { useRegisterUser } from "../../js/api/useRegisterUser";
-import { schema } from "../../js/validation/authSchema";
+import { schema } from "../../js/validation/registerSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
