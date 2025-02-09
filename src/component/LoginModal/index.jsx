@@ -1,4 +1,4 @@
-import useAutStore from "../../js/store/useAuthStore";
+import useAuthStore from "../../js/store/useAuthStore";
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ export default function LoginModal() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const { login: loginToStore } = useAutStore();
+  const { login: loginToStore } = useAuthStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
 
   const onSubmit = async (data) => {
