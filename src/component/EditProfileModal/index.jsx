@@ -1,54 +1,42 @@
-import { useState } from "react";
 import useAuthStore from "../../js/store/useAuthStore";
 import Heading from "../Heading";
 import useUpdateAvatar from "../../js/api/useUpdateAvatar";
+import { useForm } from "react-hook-form";
+import { schema } from "../../js/validation/profileSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function EditProfileModal() {
   const { user, token, updateAvatarObject } = useAuthStore();
-  const [newImage, setNewImage] = useState(user.avatar.url);
-  const [inputUrl, setInputUrl] = useState(user.avatar.url);
-  const [localError, setLocalError] = useState("");
   const { updateAvatar, updateSuccess, error: apiError } = useUpdateAvatar();
+  console.log("Error updating profile:", apiError);
 
-  const handleInputChange = (e) => {
-    const url = e.target.value;
-    setInputUrl(url);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      image: user.avatar.url,
+    },
+  });
 
-    if (!url) {
-      setNewImage(user.avatar.url);
-      setLocalError("");
-      return;
-    }
-
-    // Attempt to load the image
-    const img = new Image();
-    img.onload = () => {
-      // When the image loads successfully, update the preview
-      setNewImage(url);
-      setLocalError("");
-    };
-    img.onerror = () => {
-      // Set an error message if the image fails to load
-      setLocalError("Failed to load image. Please enter a valid URL.");
-    };
-    img.src = url;
-  };
+  const imageUrl = watch("image");
 
   // Clear the input field, reset the preview image, and clear errors
   const handleClear = () => {
-    setInputUrl("");
-    setNewImage(user.avatar.url);
-    setLocalError("");
+    reset({ image: "" });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
+    const { image } = data;
     // Only attempt to update if there are no local errors
-    if (localError) return;
+    if (!data) return;
 
-    await updateAvatar(user, token, newImage);
-    updateAvatarObject({ url: newImage, alt: user.name });
+    await updateAvatar(user, token, image);
+    updateAvatarObject({ url: image, alt: user.name });
   };
 
   return (
@@ -61,22 +49,16 @@ export default function EditProfileModal() {
         done.
       </p>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col pt-2.5 gap-5 lg:flex-row"
       >
-        {localError ? (
-          <div className="h-36 flex items-center">
-            <p className="text-custom-coral font-bold mx-auto">{localError}</p>
-          </div>
-        ) : (
-          <figure>
-            <img
-              src={newImage}
-              alt={user.name}
-              className={`h-36 aspect-square object-cover mx-auto ${updateSuccess && "border-8 border-accent-teal"}`}
-            />
-          </figure>
-        )}
+        <figure>
+          <img
+            src={imageUrl || user.avatar.url}
+            alt={user.name}
+            className={`h-36 aspect-square object-cover mx-auto ${updateSuccess && "border-8 border-accent-teal"}`}
+          />
+        </figure>
         <div className="lg:grow">
           <div className="flex justify-end">
             <button
@@ -93,11 +75,10 @@ export default function EditProfileModal() {
                 New image url:
               </label>
               <input
+                {...register("image")}
                 type="text"
                 id="newImage"
                 className="w-full ps-2.5"
-                value={inputUrl}
-                onChange={handleInputChange}
               />
               <button
                 type="submit"
@@ -107,8 +88,10 @@ export default function EditProfileModal() {
               </button>
             </div>
           </div>
-          {apiError && (
-            <p className="font-bold text-custom-coral">{apiError}</p>
+          {errors?.image && (
+            <p className="font-bold text-custom-coral">
+              {errors.image?.message}
+            </p>
           )}
         </div>
       </form>
