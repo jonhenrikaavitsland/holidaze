@@ -13,11 +13,12 @@ export function useRegisterUser() {
       email,
       password,
       avatar: {
-        url: "https://unsplash.com/photos/palm-tree--wapbtQueAE",
+        url: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Manila_dwarf_coconut_palm.jpg",
         alt: "me as a palm",
       },
       venueManager: manager,
     };
+    // image is available under the CCO creative license and has not been altered.
 
     setLoading(true);
     setError(null);
