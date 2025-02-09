@@ -1,42 +1,37 @@
 import Logo from "../Logo";
 import useUIStore from "../../js/store/useUIStore";
-import useDataStore from "../../js/store/useDataStore";
+// import useDataStore from '../../js/store/useDataStore';
 import { useLocation } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import { useRegisterUser } from "../../js/api/useRegisterUser";
+import { schema } from "../../js/validation/authSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 export default function RegisterModal() {
   const location = useLocation();
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
-  const {
-    name,
-    setName,
-    emailAddress,
-    setEmailAddress,
-    password,
-    setPassword,
-    error,
-    setError,
-  } = useDataStore();
+  // const { name, setName, emailAddress, setEmailAddress, password, setPassword, error, setError } = useDataStore();
   const { isLoggedIn } = useAuthStore();
-  const { registerUser } = useRegisterUser(); //loading, error: registerError Will look into error handling and loading
+  const { registerUser } = useRegisterUser();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
+  const onSubmit = async (data) => {
+    const { name, email, password } = data;
     const isListingVenue =
       location.pathname.includes("list-your-venue") && !isLoggedIn;
 
     try {
-      if (isListingVenue) {
-        await registerUser(name, emailAddress, password, isListingVenue);
-      } else {
-        await registerUser(name, emailAddress, password, false);
-      }
+      await registerUser(name, email, password, isListingVenue);
       checkAndCloseAll();
       openStateWithOverlay("isLoginModalOpen");
     } catch (error) {
-      setError(error.message);
+      console.error(error);
     }
   };
 
@@ -53,12 +48,10 @@ export default function RegisterModal() {
             </h2>
             <p>Register your account now</p>
           </section>
-          {error && (
-            <p className="text-custom-coral">
-              {error || "An unknown error occurred"}
-            </p>
-          )}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="email"
@@ -68,17 +61,18 @@ export default function RegisterModal() {
               </label>
               <div className="bg-white rounded border border-deep-blue/40">
                 <input
+                  {...register("email")}
                   className="w-full h-8 rounded ps-2.5"
                   type="text"
-                  value={emailAddress}
-                  onChange={(e) => setEmailAddress(e.target.value)}
                   placeholder="mail@stud.noroff.no"
                   id="email"
                   required
                 />
-                <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
-                  Example error
-                </p>
+                {errors?.email && (
+                  <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
+                    {errors.email?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -88,17 +82,18 @@ export default function RegisterModal() {
               </div>
               <div className="bg-white rounded border border-deep-blue/40">
                 <input
+                  {...register("password")}
                   className="w-full h-8 rounded ps-2.5"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  id="password"
                   placeholder="*********"
+                  id="password"
                   required
                 />
-                <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
-                  Example error
-                </p>
+                {errors?.password && (
+                  <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
+                    {errors.password?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -107,16 +102,18 @@ export default function RegisterModal() {
               </div>
               <div className="bg-white rounded border border-deep-blue/40">
                 <input
+                  {...register("name")}
                   className="w-full h-8 rounded ps-2.5"
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
                   id="name"
                   required
                 />
-                <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
-                  Example error
-                </p>
+                {errors?.name && (
+                  <p className="text-center text-sm-leading-none text-custom-coral font-bold rounded-b">
+                    {errors.name?.message}
+                  </p>
+                )}
               </div>
             </div>
             <div className="mx-auto mb-2.5">
