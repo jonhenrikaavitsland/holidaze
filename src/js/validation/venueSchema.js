@@ -22,11 +22,18 @@ export const schema = yup
       .max(100, "Must be less than 100 characters.")
       .required("Please type the address of your venue."),
     zipCode: yup
-      .number()
-      .positive()
-      .integer()
-      .min(35500, "Must me at least 35500.")
-      .max(35700, "Must be lower than 35700.")
+      .string()
+      .test(
+        "is-valid-zip",
+        "Zip Code must be a number between 35500 and 35700.",
+        (value) => {
+          console.log("VALUE:", value);
+          if (!value) return false; // or handle empty string as needed
+          const numberValue = Number(value);
+          if (isNaN(numberValue)) return false;
+          return numberValue >= 35500 && numberValue <= 35700;
+        },
+      )
       .required("Please input a Zip Code between 35500 and 35700."),
     price: yup
       .number()
