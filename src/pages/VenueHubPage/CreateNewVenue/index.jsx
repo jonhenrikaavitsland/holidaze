@@ -200,6 +200,7 @@ export default function CreateNewVenue() {
                 description
               </label>
               <textarea
+                {...register("description")}
                 className="bg-warm-beige border border-natural-charcoal/40 w-full h-44 p-1 overflow-y-scroll overscroll-contain scrollbar md:text-lg lg:text-xl"
                 name="description"
                 id="description"
@@ -207,6 +208,14 @@ export default function CreateNewVenue() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
+              {errors?.description && (
+                <p
+                  className="text-custom-coral text-sm-leading-none font-bold text-center"
+                  id="description-error"
+                >
+                  {errors.description?.message}
+                </p>
+              )}
             </div>
           </fieldset>
           <div className="flex justify-center col-span-full">
