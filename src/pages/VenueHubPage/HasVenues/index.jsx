@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import LoadMore from "../../../component/LoadMore";
-import VenueObject from "../VenueObject";
+import VenueObject from "../../../component/pages/VenueHubPage/VenueObject";
 
 export default function HasVenues({
   venues,
