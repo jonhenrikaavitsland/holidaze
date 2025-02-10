@@ -32,6 +32,7 @@ export default function CreateNewVenue() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -192,7 +193,7 @@ export default function CreateNewVenue() {
             </fieldset>
             <fieldset className="mt-5">
               <legend className="sr-only">media</legend>
-              <MediaElement register={register} error={errors} />
+              <MediaElement register={register} error={errors} watch={watch} />
             </fieldset>
           </div>
           <fieldset className="my-5 col-span-full">
