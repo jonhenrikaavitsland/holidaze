@@ -13,7 +13,7 @@ export default function AccountPage() {
   console.log("bookings:", bookings);
 
   return (
-    <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10 pt-5 md:pt-7.5 lg:pt-10">
+    <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 px-5 md:px-7.5 lg:px-10 pt-5 md:pt-7.5 lg:pt-10 mb-10 md:mb-15 lg:mb-20">
       <Heading level="1" className="text-center text-deep-blue">
         Account
       </Heading>
