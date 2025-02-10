@@ -13,7 +13,7 @@ import FormListElement from "../../../../pages/VenueHubPage/FormListElement";
 import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
 import RatingElement from "../RatingElement";
 import CustomSwitch from "../../../../pages/VenueHubPage/CustomSwitch";
-import MediaElement from "../../../../pages/VenueHubPage/MediaElement";
+import MediaElement from "../MediaElement";
 import DangerZone from "../../../../pages/VenueHubPage/DangerZone";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 import { schema } from "../../../../js/validation/venueSchema";

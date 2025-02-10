@@ -7,7 +7,7 @@ import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 import ChooseLocation from "../ChooseLocation";
 import CustomSwitch from "../CustomSwitch";
 import FormListElement from "../FormListElement";
-import MediaElement from "../MediaElement";
+import MediaElement from "../../../component/pages/VenueHubPage/MediaElement";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../js/validation/venueSchema";
 import sanitizeInput from "../../../js/sanitize/sanitizeInput";
