@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
-import ListYourVenue from "./pages/ListYourVenue";
+import ListYourVenue from "./component/pages/ListYourVenue";
 import useAuthStore from "./js/store/useAuthStore";
 import VenueHubPage from "./pages/VenueHubPage";
 import VenuePage from "./component/pages/VenuePage";
