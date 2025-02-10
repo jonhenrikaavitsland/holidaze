@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
+import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 
 export default function RatingElement() {
   const { rating, setRating } = useCreateVenueStore();
