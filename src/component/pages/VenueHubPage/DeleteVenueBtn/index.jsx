@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import useDeleteVenue from "../../../js/api/useDeleteVenue";
-import useAlertStore from "../../../js/store/useAlertStore";
-import useUIStore from "../../../js/store/useUIStore";
+import useDeleteVenue from "../../../../js/api/useDeleteVenue";
+import useAlertStore from "../../../../js/store/useAlertStore";
+import useUIStore from "../../../../js/store/useUIStore";
 
 export default function DeleteVenueBtn({ id, handleViewChange }) {
   const { openStateWithOverlay, closeAll } = useUIStore();
