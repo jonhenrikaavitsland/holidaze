@@ -1,4 +1,4 @@
-import Heading from "../../../component/Heading";
+import Heading from "../../../Heading";
 
 /* eslint-disable react/prop-types */
 export default function BookingClosed({
