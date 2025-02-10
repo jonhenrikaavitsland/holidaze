@@ -71,7 +71,7 @@ export default function VenueHubPage() {
             setCurrentVenue={setCurrentVenue}
           />
         )}
-        {viewNewVenue && <CreateNewVenue />}
+        {viewNewVenue && <CreateNewVenue handleViewChange={handleViewChange} />}
         {viewUpdateVenue && (
           <UpdateVenue
             venueObj={currentVenue}

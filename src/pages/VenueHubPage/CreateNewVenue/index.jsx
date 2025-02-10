@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import Heading from "../../../component/Heading";
 import useCreateVenue from "../../../js/api/useCreateVenue";
@@ -13,7 +14,7 @@ import { schema } from "../../../js/validation/venueSchema";
 import sanitizeInput from "../../../js/sanitize/sanitizeInput";
 import sanitizeAndValidateUrl from "../../../js/sanitize/sanitizeAndValidateUrl";
 
-export default function CreateNewVenue() {
+export default function CreateNewVenue({ handleViewChange }) {
   const {
     wifi,
     toggleWifi,
@@ -99,6 +100,7 @@ export default function CreateNewVenue() {
         media8: sanitizedMedia8,
         media9: sanitizedMedia9,
       });
+      handleViewChange("venues");
     } catch (error) {
       console.error("Error:", error);
     }
