@@ -1,4 +1,4 @@
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
+import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 
 /* eslint-disable react/prop-types */
 export default function CreateNewBtn({ handleViewChange }) {
