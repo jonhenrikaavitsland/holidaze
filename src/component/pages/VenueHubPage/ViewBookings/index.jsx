@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Heading from "../../../Heading";
 import Loader from "../../../Loader";
-import BookingObjects from "../../../../pages/VenueHubPage/BookingObjects";
+import BookingObjects from "../BookingObjects";
 import useProfileVenues from "../../../../js/api/useProfileVenues";
 import NoBookings from "../NoBookings";
 
