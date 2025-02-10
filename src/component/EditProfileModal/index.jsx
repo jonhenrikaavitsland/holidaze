@@ -4,6 +4,7 @@ import useUpdateAvatar from "../../js/api/useUpdateAvatar";
 import { useForm } from "react-hook-form";
 import { schema } from "../../js/validation/profileSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import sanitizeAndValidateUrl from "../../js/sanitize/sanitizeAndValidateUrl";
 
 export default function EditProfileModal() {
   const { user, token, updateAvatarObject } = useAuthStore();
@@ -35,8 +36,10 @@ export default function EditProfileModal() {
     // Only attempt to update if there are no local errors
     if (!data) return;
 
+    const sanitizedImage = sanitizeAndValidateUrl(image);
+
     await updateAvatar(user, token, image);
-    updateAvatarObject({ url: image, alt: user.name });
+    updateAvatarObject({ url: sanitizedImage, alt: user.name });
   };
 
   return (
