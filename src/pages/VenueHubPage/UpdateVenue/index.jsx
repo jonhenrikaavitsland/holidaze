@@ -15,12 +15,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { schema } from "../../../js/validation/venueSchema";
 import transformVenue from "../../../js/data/transformVenue";
+import sanitizeInput from "../../../js/sanitize/sanitizeInput";
+import sanitizeAndValidateUrl from "../../../js/sanitize/sanitizeAndValidateUrl";
 
 export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
 
   const defaultObj = transformVenue(venueObj);
-  console.log("DEFAULT:", defaultObj);
 
   const {
     register,
@@ -99,38 +100,54 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
       media9,
     } = data;
 
+    const sanitizedVenue = sanitizeInput(venue);
+    const sanitizedAddress = sanitizeInput(address);
+    const sanitizedZipCode = sanitizeInput(zipCode);
+    const sanitizedSleeps = sanitizeInput(sleeps);
+    const sanitizedPrice = sanitizeInput(price);
+    const sanitizedDescription = sanitizeInput(description);
+    const sanitizedMedia0 = sanitizeAndValidateUrl(media0);
+    const sanitizedMedia1 = sanitizeAndValidateUrl(media1);
+    const sanitizedMedia2 = sanitizeAndValidateUrl(media2);
+    const sanitizedMedia3 = sanitizeAndValidateUrl(media3);
+    const sanitizedMedia4 = sanitizeAndValidateUrl(media4);
+    const sanitizedMedia5 = sanitizeAndValidateUrl(media5);
+    const sanitizedMedia6 = sanitizeAndValidateUrl(media6);
+    const sanitizedMedia7 = sanitizeAndValidateUrl(media7);
+    const sanitizedMedia8 = sanitizeAndValidateUrl(media8);
+    const sanitizedMedia9 = sanitizeAndValidateUrl(media9);
+
     try {
       updateVenue({
         wifi,
         breakfast,
         parking,
         pets,
-        venue,
-        address,
+        venue: sanitizedVenue,
+        address: sanitizedAddress,
         location,
-        zipCode,
-        price,
+        zipCode: sanitizedZipCode,
+        price: sanitizedPrice,
         rating,
-        sleeps,
-        description,
-        media0,
-        media1,
-        media2,
-        media3,
-        media4,
-        media5,
-        media6,
-        media7,
-        media8,
-        media9,
+        sleeps: sanitizedSleeps,
+        description: sanitizedDescription,
+        media0: sanitizedMedia0,
+        media1: sanitizedMedia1,
+        media2: sanitizedMedia2,
+        media3: sanitizedMedia3,
+        media4: sanitizedMedia4,
+        media5: sanitizedMedia5,
+        media6: sanitizedMedia6,
+        media7: sanitizedMedia7,
+        media8: sanitizedMedia8,
+        media9: sanitizedMedia9,
       });
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
     }
     handleViewChange("venues");
   };
 
-  console.log("current venue:", venueObj);
   return (
     <>
       {loading ? (
