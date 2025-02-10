@@ -3,7 +3,7 @@ import Paragraph from "../Paragraph";
 
 export default function NoBookings() {
   return (
-    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
+    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 mb-10 md:mb-15 lg:mb-20">
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
         <Heading level="2" className="text-center">
           No Bookings Yet? Don’t Worry — We’re on It!
