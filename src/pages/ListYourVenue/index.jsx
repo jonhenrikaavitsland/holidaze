@@ -32,7 +32,7 @@ export default function ListYourVenue() {
   };
 
   return (
-    <div className="flex flex-col gap-10 md:gap-15">
+    <div className="flex flex-col gap-10 md:gap-15 mb-10 md:mb-15 lg:mb-20">
       <div>
         <div
           className="bg-cover bg-center min-h-52 md:h-110 rounded-br-big shadow-md shadow-natural-charcoal/40"
