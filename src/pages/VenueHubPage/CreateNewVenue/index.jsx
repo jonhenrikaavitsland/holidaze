@@ -23,8 +23,6 @@ export default function CreateNewVenue() {
     toggleParking,
     pets,
     togglePets,
-    description,
-    setDescription,
     rating,
   } = useCreateVenueStore();
 
@@ -230,8 +228,6 @@ export default function CreateNewVenue() {
                 name="description"
                 id="description"
                 placeholder="Describe your amazing venue"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
               ></textarea>
               {errors?.description && (
                 <p
