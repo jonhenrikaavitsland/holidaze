@@ -6,6 +6,7 @@ import useLogin from "../../js/api/useLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../js/validation/loginSchema";
+import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
 
 export default function LoginModal() {
   const location = useLocation();
@@ -23,6 +24,10 @@ export default function LoginModal() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
+
+    const sanitizedEmail = sanitizeEmail(email);
+    const sanitizedPassword = password.trim();
+
     try {
       const {
         name,
@@ -30,7 +35,7 @@ export default function LoginModal() {
         avatar,
         token,
         venueManager,
-      } = await login(email, password);
+      } = await login(sanitizedEmail, sanitizedPassword);
 
       loginToStore(name, emailAddress, avatar, token, venueManager);
       closeAll();
