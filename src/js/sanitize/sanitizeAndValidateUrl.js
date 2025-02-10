@@ -1,4 +1,8 @@
 export default function sanitizeAndValidateUrl(urlString) {
+  if (!urlString) {
+    return;
+  }
+
   try {
     const url = new URL(urlString);
     // Only allow http and https protocols.
@@ -8,7 +12,6 @@ export default function sanitizeAndValidateUrl(urlString) {
     // Return a normalized URL string
     return url.toString();
   } catch (error) {
-    // Handle error: the URL is either malformed or uses a disallowed protocol
-    throw new Error("Invalid URL provided", error);
+    throw new Error(`Invalid URL provided: ${error.message}`);
   }
 }
