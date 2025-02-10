@@ -5,7 +5,7 @@ import Paragraph from "../Paragraph";
 
 export default function Welcome({ handleViewChange }) {
   return (
-    <div className="flex flex-col gap-10 md:gap-15 mx-5 md:mx-7.5 lg:mx-10 mb-5 md:mb-7.5 lg:mb-10">
+    <div className="flex flex-col gap-10 md:gap-15 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
       <div className="flex flex-col gap-5 md:gap-7.5 md:text-lg lg:text-xl">
         <p>
           Welcome to the <span className="capitalize font-bold">venue HUB</span>{" "}
