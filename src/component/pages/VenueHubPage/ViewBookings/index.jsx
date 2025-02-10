@@ -3,7 +3,7 @@ import Heading from "../../../Heading";
 import Loader from "../../../Loader";
 import BookingObjects from "../../../../pages/VenueHubPage/BookingObjects";
 import useProfileVenues from "../../../../js/api/useProfileVenues";
-import NoBookings from "../../../../pages/VenueHubPage/NoBookings";
+import NoBookings from "../NoBookings";
 
 export default function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
