@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import BtnOpenClose from "../../../component/BtnOpenClose";
 import { useState } from "react";
-import Heading from "../../../component/Heading";
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
+import BtnOpenClose from "../../../BtnOpenClose";
+import Heading from "../../../Heading";
+import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 
 export default function VenueObject({
   venue,
