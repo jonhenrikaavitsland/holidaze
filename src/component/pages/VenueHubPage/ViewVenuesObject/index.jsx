@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Heading from "../../../Heading";
 import Loader from "../../../Loader";
-import HasNoVenues from "../../../../pages/VenueHubPage/HasNoVenues";
+import HasNoVenues from "../HasNoVenues";
 import HasVenues from "../HasVenues";
 import useProfileVenues from "../../../../js/api/useProfileVenues";
 
