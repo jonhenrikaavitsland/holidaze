@@ -1,13 +1,13 @@
-/* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
-import BreadCrumb from "../../component/Breadcrumb";
-import Heading from "../../component/Heading";
+import BreadCrumb from "../../Breadcrumb";
+import Heading from "../../Heading";
 import { useEffect, useState } from "react";
-import Loader from "../../component/Loader";
-import CardLocation from "../../component/CardLocation";
-import { useAPISearch } from "../../js/api/useAPISearch";
-import { apiUrl, venuesPath } from "../../js/data/constants";
-import CardVenue from "../../component/CardVenue";
+import Loader from "../../Loader";
+import CardLocation from "../../CardLocation";
+import { useAPISearch } from "../../../js/api/useAPISearch";
+import { apiUrl, venuesPath } from "../../../js/data/constants";
+import CardVenue from "../../CardVenue";
+import FourThings from "./FourThings";
 
 export default function LocationPage() {
   const { locationName } = useParams();
@@ -111,29 +111,6 @@ export default function LocationPage() {
           )}
         </div>
       </section>
-    </div>
-  );
-}
-
-function FourThings({ thing, index }) {
-  // Determine the grid positioning based on the index
-  const gridClasses =
-    index % 2 === 1
-      ? "lg:col-start-2 lg:col-end-3"
-      : "lg:col-start-1 lg:col-end-2";
-  return (
-    <div className="flex flex-col gap-3.75 lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:mx-10 lg:gap-x-10 lg:gap-y-5">
-      <Heading level="3" className="mx-5 md:mx-7.5 lg:mx-0">
-        {thing.title}
-      </Heading>
-      <img
-        src={thing.image.url}
-        alt={thing.image.alt}
-        className={`sm:mx-0 mx-5 md:mx-7.5 lg:mx-0 ${gridClasses} row-span-full`}
-      />
-      <p className="mx-5 md:mx-7.5 lg:mx-0 md:text-lg lg:text-xl">
-        {thing.description}
-      </p>
     </div>
   );
 }
