@@ -60,8 +60,6 @@ export default function LocationPage() {
     );
   }
 
-  console.log(data);
-
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 mb-10 md:mb-15 lg:mb-20">
       <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10">
