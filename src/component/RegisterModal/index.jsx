@@ -6,6 +6,8 @@ import { useRegisterUser } from "../../js/api/useRegisterUser";
 import { schema } from "../../js/validation/registerSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
+import sanitizeInput from "../../js/sanitize/sanitizeInput";
 
 export default function RegisterModal() {
   const location = useLocation();
@@ -24,8 +26,17 @@ export default function RegisterModal() {
     const isListingVenue =
       location.pathname.includes("list-your-venue") && !isLoggedIn;
 
+    const sanitizedEmail = sanitizeEmail(email);
+    const sanitizedName = sanitizeInput(name);
+    const sanitizedPassword = password.trim();
+
     try {
-      await registerUser(name, email, password, isListingVenue);
+      await registerUser(
+        sanitizedName,
+        sanitizedEmail,
+        sanitizedPassword,
+        isListingVenue,
+      );
       checkAndCloseAll();
       openStateWithOverlay("isLoginModalOpen");
     } catch (error) {
