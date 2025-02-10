@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Heading from "../../../Heading";
 import CreateNewBtn from "../../../../pages/VenueHubPage/CreateNewBtn";
-import Paragraph from "../../../../pages/VenueHubPage/Paragraph";
+import Paragraph from "../Paragraph";
 
 export default function Welcome({ handleViewChange }) {
   return (

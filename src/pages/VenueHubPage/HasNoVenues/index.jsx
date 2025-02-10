@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Heading from "../../../component/Heading";
 import CreateNewBtn from "../CreateNewBtn";
-import Paragraph from "../Paragraph";
+import Paragraph from "../../../component/pages/VenueHubPage/Paragraph";
 
 export default function HasNoVenues({ handleViewChange }) {
   return (

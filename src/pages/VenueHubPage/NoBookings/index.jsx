@@ -1,5 +1,5 @@
 import Heading from "../../../component/Heading";
-import Paragraph from "../Paragraph";
+import Paragraph from "../../../component/pages/VenueHubPage/Paragraph";
 
 export default function NoBookings() {
   return (
