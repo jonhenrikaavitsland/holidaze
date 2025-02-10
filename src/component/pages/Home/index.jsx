@@ -1,14 +1,14 @@
-/* eslint-disable react/prop-types */
 import { useMemo, useState, useCallback } from "react";
-import CardLocation from "../../component/CardLocation";
-import Hero from "../../component/Hero";
-import SearchBox from "../../component/SearchBox";
-import locationData from "../../data/locations/locations.json";
-import { useAPISearch } from "../../js/api/useAPISearch";
-import CardVenue from "../../component/CardVenue";
-import Loader from "../../component/Loader";
-import { apiUrl, venuesPath } from "../../js/data/constants";
-import Heading from "../../component/Heading";
+import CardLocation from "../../CardLocation";
+import Hero from "../../Hero";
+import SearchBox from "../../SearchBox";
+import locationData from "../../../data/locations/locations.json";
+import { useAPISearch } from "../../../js/api/useAPISearch";
+import CardVenue from "../../CardVenue";
+import Loader from "../../Loader";
+import { apiUrl, venuesPath } from "../../../js/data/constants";
+import Heading from "../../Heading";
+import ViewMoreBtn from "./ViewMoreBtn";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -107,16 +107,5 @@ export default function Home() {
         )}
       </div>
     </div>
-  );
-}
-
-function ViewMoreBtn({ data, paginateData }) {
-  return (
-    <button
-      onClick={() => paginateData(data, 10)}
-      className="font-serif font-bold text-xl-leading-none md:text-2xl-leading-none lg:text-3xl-leading-none capitalize text-natural-charcoal bg-golden-yellow rounded-xl shadow-md shadow-natural-charcoal/40 hover:bg-golden-yellow/90 mt-5 md:mt-7.5 lg:mt-10 py-3.75 px-7.5 md:py-5 md:px-10"
-    >
-      load more
-    </button>
   );
 }
