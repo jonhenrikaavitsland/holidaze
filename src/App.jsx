@@ -5,9 +5,9 @@ import ListYourVenue from "./pages/ListYourVenue";
 import useAuthStore from "./js/store/useAuthStore";
 import LocationPage from "./pages/LocationPage/index.";
 import BookingPage from "./pages/BookingPage";
-import AccountPage from "./pages/AccountPage";
 import VenueHubPage from "./pages/VenueHubPage";
 import VenuePage from "./component/pages/VenuePage";
+import AccountPage from "./component/pages/AccountPage";
 
 export default function App() {
   const { isVenueManager, isLoggedIn } = useAuthStore();
