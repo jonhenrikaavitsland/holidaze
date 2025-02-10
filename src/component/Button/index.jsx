@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
+import useUIStore from "../../js/store/useUIStore";
 
 /* eslint-disable react/prop-types */
 export default function Button(props) {
   const { logout } = useAuthStore();
+  const navigate = useNavigate();
+  const { checkAndCloseAll } = useUIStore();
 
   function handleColor() {
     if (props.color === "custom-coral") {
@@ -19,6 +23,9 @@ export default function Button(props) {
         onClick={() => {
           if (props.action) {
             logout();
+            navigate("/");
+            checkAndCloseAll();
+            // Notify user?
           }
         }}
       >

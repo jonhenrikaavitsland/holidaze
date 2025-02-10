@@ -32,7 +32,8 @@ const useUIStore = create((set) => ({
       if (
         state.isMenuOpen ||
         state.isLoginModalOpen ||
-        state.isRegisterModalOpen
+        state.isRegisterModalOpen ||
+        state.isEditProfileOpen
       ) {
         return {
           isOverlayOpen: false,
