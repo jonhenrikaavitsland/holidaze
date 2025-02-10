@@ -102,7 +102,7 @@ export default function CreateNewVenue() {
         media9: sanitizedMedia9,
       });
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
     }
   };
 
