@@ -36,7 +36,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     setParking,
     setPets,
     setBreakfast,
-    setDescription,
     rating,
     toggleWifi,
     toggleBreakfast,
@@ -51,7 +50,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
 
   useEffect(() => {
     if (venueObj) {
-      // Update the venue store with the provided venueObj
       updateVenueStore(venueObj, {
         setRating,
         setWifi,
@@ -60,10 +58,8 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
         setBreakfast,
         clearAll,
       });
-      // Once the update is complete, set loading to false
       setLoading(false);
     } else {
-      // If venueObj isn't available, ensure loading remains true
       setLoading(true);
     }
   }, [
@@ -284,7 +280,6 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
                     name="description"
                     id="description"
                     placeholder="Describe your amazing venue"
-                    onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
                   {errors?.description && (
                     <p
