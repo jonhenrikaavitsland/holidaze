@@ -100,10 +100,10 @@ export default function CreateNewVenue({ handleViewChange }) {
         media8: sanitizedMedia8,
         media9: sanitizedMedia9,
       });
-      handleViewChange("venues");
     } catch (error) {
       console.error("Error:", error);
     }
+    handleViewChange("venues");
   };
 
   return (
