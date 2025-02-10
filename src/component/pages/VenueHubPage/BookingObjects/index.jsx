@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import BookingCard from "../../../../pages/VenueHubPage/BookingCard";
+import BookingCard from "../BookingCard";
 
 export default function BookingObjects({ sortedVenueBookings }) {
   console.log(sortedVenueBookings);
