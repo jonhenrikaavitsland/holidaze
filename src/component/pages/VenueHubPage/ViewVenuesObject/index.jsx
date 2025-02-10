@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import Heading from "../../../component/Heading";
-import Loader from "../../../component/Loader";
-import HasNoVenues from "../HasNoVenues";
-import HasVenues from "../HasVenues";
-import useProfileVenues from "../../../js/api/useProfileVenues";
+import Heading from "../../../Heading";
+import Loader from "../../../Loader";
+import HasNoVenues from "../../../../pages/VenueHubPage/HasNoVenues";
+import HasVenues from "../../../../pages/VenueHubPage/HasVenues";
+import useProfileVenues from "../../../../js/api/useProfileVenues";
 
 export default function ViewVenuesObject({
   handleViewChange,
