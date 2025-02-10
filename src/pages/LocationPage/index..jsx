@@ -131,7 +131,7 @@ function FourThings({ thing, index }) {
       <img
         src={thing.image.url}
         alt={thing.image.alt}
-        className={`md:mx-7.5 lg:mx-0 ${gridClasses} row-span-full`}
+        className={`sm:mx-0 mx-5 md:mx-7.5 lg:mx-0 ${gridClasses} row-span-full`}
       />
       <p className="mx-5 md:mx-7.5 lg:mx-0 md:text-lg lg:text-xl">
         {thing.description}
