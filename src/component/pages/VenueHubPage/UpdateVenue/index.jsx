@@ -9,7 +9,7 @@ import Heading from "../../../Heading";
 import Loader from "../../../Loader";
 import useUpdateVenue from "../../../../js/api/useUpdateVenue";
 import updateVenueStore from "../../../../js/data/updateVenueStore";
-import FormListElement from "../../../../pages/VenueHubPage/FormListElement";
+import FormListElement from "../FormListElement";
 import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
 import RatingElement from "../RatingElement";
 import CustomSwitch from "../../../../pages/VenueHubPage/CustomSwitch";
