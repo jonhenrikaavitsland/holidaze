@@ -2,7 +2,7 @@
 import { useState } from "react";
 import BtnOpenClose from "../../../component/BtnOpenClose";
 import BookingClosed from "../BookingClosed";
-import BookingOpen from "../BookingOpen";
+import BookingOpen from "../../../component/pages/VenueHubPage/BookingOpen";
 
 export default function BookingCard({ venueBooking, index, maxNum }) {
   const [openState, setOpenState] = useState(false);
