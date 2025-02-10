@@ -8,11 +8,11 @@ import ChooseLocation from "../ChooseLocation";
 import CustomSwitch from "../CustomSwitch";
 import FormListElement from "../FormListElement";
 import MediaElement from "../MediaElement";
-import RatingElement from "../RatingElement";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../js/validation/venueSchema";
 import sanitizeInput from "../../../js/sanitize/sanitizeInput";
 import sanitizeAndValidateUrl from "../../../js/sanitize/sanitizeAndValidateUrl";
+import RatingElement from "../../../component/pages/VenueHubPage/RatingElement";
 
 export default function CreateNewVenue({ handleViewChange }) {
   const {

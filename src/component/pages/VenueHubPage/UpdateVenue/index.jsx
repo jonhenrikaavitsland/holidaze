@@ -11,7 +11,7 @@ import useUpdateVenue from "../../../../js/api/useUpdateVenue";
 import updateVenueStore from "../../../../js/data/updateVenueStore";
 import FormListElement from "../../../../pages/VenueHubPage/FormListElement";
 import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
-import RatingElement from "../../../../pages/VenueHubPage/RatingElement";
+import RatingElement from "../RatingElement";
 import CustomSwitch from "../../../../pages/VenueHubPage/CustomSwitch";
 import MediaElement from "../../../../pages/VenueHubPage/MediaElement";
 import DangerZone from "../../../../pages/VenueHubPage/DangerZone";
