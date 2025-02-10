@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import Heading from "../../../component/Heading";
-import useCreateVenue from "../../../js/api/useCreateVenue";
-import { apiKey, apiUrl } from "../../../js/data/constants";
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
-import ChooseLocation from "../ChooseLocation";
-import CustomSwitch from "../../../component/pages/VenueHubPage/CustomSwitch";
-import FormListElement from "../../../component/pages/VenueHubPage/FormListElement";
-import MediaElement from "../../../component/pages/VenueHubPage/MediaElement";
+import Heading from "../../../Heading";
+import useCreateVenue from "../../../../js/api/useCreateVenue";
+import { apiKey, apiUrl } from "../../../../js/data/constants";
+import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
+import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
+import CustomSwitch from "../CustomSwitch";
+import FormListElement from "../FormListElement";
+import MediaElement from "../MediaElement";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../../js/validation/venueSchema";
-import sanitizeInput from "../../../js/sanitize/sanitizeInput";
-import sanitizeAndValidateUrl from "../../../js/sanitize/sanitizeAndValidateUrl";
-import RatingElement from "../../../component/pages/VenueHubPage/RatingElement";
+import { schema } from "../../../../js/validation/venueSchema";
+import sanitizeInput from "../../../../js/sanitize/sanitizeInput";
+import sanitizeAndValidateUrl from "../../../../js/sanitize/sanitizeAndValidateUrl";
+import RatingElement from "../RatingElement";
 
 export default function CreateNewVenue({ handleViewChange }) {
   const {
