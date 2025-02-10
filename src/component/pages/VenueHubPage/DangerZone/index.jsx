@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import DeleteVenueBtn from "../../../component/pages/VenueHubPage/DeleteVenueBtn";
+import DeleteVenueBtn from "../DeleteVenueBtn";
 
 export default function DangerZone({ id, handleViewChange }) {
   return (
