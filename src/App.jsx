@@ -2,12 +2,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import ListYourVenue from "./component/pages/ListYourVenue";
 import useAuthStore from "./js/store/useAuthStore";
-import VenueHubPage from "./pages/VenueHubPage";
 import VenuePage from "./component/pages/VenuePage";
 import AccountPage from "./component/pages/AccountPage";
 import BookingPage from "./component/pages/BookingPage";
 import LocationPage from "./component/pages/LocationPage";
 import Home from "./component/pages/Home";
+import VenueHubPage from "./component/pages/VenueHubPage";
 
 export default function App() {
   const { isVenueManager, isLoggedIn } = useAuthStore();
