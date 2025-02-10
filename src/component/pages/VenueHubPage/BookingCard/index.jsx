@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import BtnOpenClose from "../../../component/BtnOpenClose";
-import BookingOpen from "../../../component/pages/VenueHubPage/BookingOpen";
-import BookingClosed from "../../../component/pages/VenueHubPage/BookingClosed";
+import BtnOpenClose from "../../../BtnOpenClose";
+import BookingOpen from "../BookingOpen";
+import BookingClosed from "../BookingClosed";
 
 export default function BookingCard({ venueBooking, index, maxNum }) {
   const [openState, setOpenState] = useState(false);
