@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 export default function Logo(props) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
-    <figure className="flex justify-center">
+    <figure
+      className="flex justify-center cursor-pointer"
+      onClick={handleClick}
+    >
       <div
         className={`flex flex-col items-center ${props.modal ? "" : "md:flex-row md:h-[75px] md:items-start w-min"}`}
       >
