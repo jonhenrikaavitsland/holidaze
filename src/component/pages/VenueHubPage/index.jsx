@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Heading from "../../component/Heading";
+import Heading from "../../Heading";
 import LinkBtn from "./LinkBtn";
-import Buttons from "./Buttons";
-import Welcome from "./Welcome";
 import ViewVenuesObject from "./ViewVenuesObject";
-import ViewBookings from "./ViewBookings";
 import CreateNewVenue from "./CreateNewVenue";
+import Welcome from "./Welcome";
+import ViewBookings from "./ViewBookings";
 import UpdateVenue from "./UpdateVenue";
+import Buttons from "./Buttons";
 
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
