@@ -117,6 +117,12 @@ function HamburgerIcon({ isThrottled, handleClick }) {
 }
 
 function LinkBtn(props) {
+  const { checkAndCloseAll } = useUIStore();
+
+  const handleClick = () => {
+    checkAndCloseAll();
+  };
+
   return (
     <li className="py-2.5">
       <NavLink
@@ -126,6 +132,7 @@ function LinkBtn(props) {
             : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto inline-block text-center leading-none"
         }
         to={props.to}
+        onClick={handleClick}
       >
         {props.text}
       </NavLink>
