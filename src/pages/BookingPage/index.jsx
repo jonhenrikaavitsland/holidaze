@@ -63,7 +63,7 @@ export default function BookingPage() {
   console.log("Data:", data);
 
   return (
-    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20">
+    <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 mb-10 md:mb-15 lg:mb-20">
       <div className="flex flex-col gap-5">
         <BreadCrumb venueId={data.id} venueName={data.name} />
         <Heading level="1" className={"text-center text-deep-blue"}>
