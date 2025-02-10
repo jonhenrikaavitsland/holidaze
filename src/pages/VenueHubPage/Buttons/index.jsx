@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
-import LinkBtn from "../LinkBtn";
+import LinkBtn from "../../../component/pages/VenueHubPage/LinkBtn";
 
 export default function Buttons({
   handleViewChange,
