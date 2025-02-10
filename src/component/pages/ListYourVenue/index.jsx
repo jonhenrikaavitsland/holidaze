@@ -1,10 +1,10 @@
 import { useState } from "react";
-import listVenue from "../../data/listVenue/listVenue.json";
-import ListElement from "../../component/ListElement";
-import useUIStore from "../../js/store/useUIStore";
-import useAuthStore from "../../js/store/useAuthStore";
-import useUpdateProfile from "../../js/api/useUpdateProfile";
-import Heading from "../../component/Heading";
+import listVenue from "../../../data/listVenue/listVenue.json";
+import ListElement from "../../ListElement";
+import useUIStore from "../../../js/store/useUIStore";
+import useAuthStore from "../../../js/store/useAuthStore";
+import useUpdateProfile from "../../../js/api/useUpdateProfile";
+import Heading from "../../Heading";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
