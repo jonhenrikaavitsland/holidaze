@@ -21,7 +21,7 @@ export default function Layout() {
     <div className="flex flex-col h-screen">
       <Header />
       <main
-        className={`flex-grow lg:container lg:mx-auto mb-10 md:mb-15 lg:mb-20 ${isOverlayOpen ? "overflow-hidden" : ""}`}
+        className={`flex-grow lg:container lg:mx-auto ${isOverlayOpen ? "overflow-hidden" : ""}`}
       >
         <Outlet />
         {isLoginModalOpen && <LoginModal />}
