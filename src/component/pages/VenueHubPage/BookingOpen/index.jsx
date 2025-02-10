@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import Heading from "../../../component/Heading";
+
+import Heading from "../../../Heading";
 
 export default function BookingOpen({
   venueBooking,
