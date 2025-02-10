@@ -6,7 +6,7 @@ export default function ListElement(props) {
   return (
     <li className="flex flex-col gap-2.5 md:gap-3.75" key={props.index}>
       <section className="flex gap-2.5 md:gap-5 lg:gap-7.5">
-        <NumberIcon number={props.number} height={props.height} />
+        <NumberIcon number={props.number} className={props.height} />
         <Heading level={props.level} className={props.className}>
           {props.item.title}
         </Heading>
