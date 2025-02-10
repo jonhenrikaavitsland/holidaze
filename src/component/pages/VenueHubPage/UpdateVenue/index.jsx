@@ -1,22 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Heading from "../../../component/Heading";
-import Loader from "../../../component/Loader";
-import useUpdateVenue from "../../../js/api/useUpdateVenue";
-import updateVenueStore from "../../../js/data/updateVenueStore";
-import ChooseLocation from "../ChooseLocation";
-import CustomSwitch from "../CustomSwitch";
-import DangerZone from "../DangerZone";
-import FormListElement from "../FormListElement";
-import MediaElement from "../MediaElement";
-import RatingElement from "../RatingElement";
-import useCreateVenueStore from "../../../js/store/useCreateVenueStore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { schema } from "../../../js/validation/venueSchema";
-import transformVenue from "../../../js/data/transformVenue";
-import sanitizeInput from "../../../js/sanitize/sanitizeInput";
-import sanitizeAndValidateUrl from "../../../js/sanitize/sanitizeAndValidateUrl";
+import transformVenue from "../../../../js/data/transformVenue";
+import sanitizeInput from "../../../../js/sanitize/sanitizeInput";
+import sanitizeAndValidateUrl from "../../../../js/sanitize/sanitizeAndValidateUrl";
+import Heading from "../../../Heading";
+import Loader from "../../../Loader";
+import useUpdateVenue from "../../../../js/api/useUpdateVenue";
+import updateVenueStore from "../../../../js/data/updateVenueStore";
+import FormListElement from "../../../../pages/VenueHubPage/FormListElement";
+import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
+import RatingElement from "../../../../pages/VenueHubPage/RatingElement";
+import CustomSwitch from "../../../../pages/VenueHubPage/CustomSwitch";
+import MediaElement from "../../../../pages/VenueHubPage/MediaElement";
+import DangerZone from "../../../../pages/VenueHubPage/DangerZone";
+import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
+import { schema } from "../../../../js/validation/venueSchema";
 
 export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
