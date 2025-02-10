@@ -4,7 +4,7 @@ import Heading from "../../../Heading";
 import useCreateVenue from "../../../../js/api/useCreateVenue";
 import { apiKey, apiUrl } from "../../../../js/data/constants";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
-import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
+import ChooseLocation from "../ChooseLocation";
 import CustomSwitch from "../CustomSwitch";
 import FormListElement from "../FormListElement";
 import MediaElement from "../MediaElement";

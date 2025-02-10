@@ -10,7 +10,7 @@ import Loader from "../../../Loader";
 import useUpdateVenue from "../../../../js/api/useUpdateVenue";
 import updateVenueStore from "../../../../js/data/updateVenueStore";
 import FormListElement from "../FormListElement";
-import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
+import ChooseLocation from "../ChooseLocation";
 import RatingElement from "../RatingElement";
 import CustomSwitch from "../CustomSwitch";
 import MediaElement from "../MediaElement";
