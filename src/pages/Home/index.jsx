@@ -51,7 +51,7 @@ export default function Home() {
   }, [data, resetPagination, paginateData]);
 
   return (
-    <>
+    <div className="flex flex-col mb-10 md:mb-15 lg:mb-20">
       <div className="flex flex-col gap-10 md:gap-12.5 lg:gap-15">
         <div className="grid grid-rows-hero grid-cols-hero md:grid-cols-heroMd md:grid-rows-heroMd lg:grid-cols-heroLg relative">
           <div className="row-start-1 row-end-3 col-span-full bg-natural-charcoal"></div>
@@ -106,7 +106,7 @@ export default function Home() {
           <ViewMoreBtn data={data} paginateData={paginateData} />
         )}
       </div>
-    </>
+    </div>
   );
 }
 
