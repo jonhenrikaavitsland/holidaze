@@ -12,7 +12,7 @@ import updateVenueStore from "../../../../js/data/updateVenueStore";
 import FormListElement from "../FormListElement";
 import ChooseLocation from "../../../../pages/VenueHubPage/ChooseLocation";
 import RatingElement from "../RatingElement";
-import CustomSwitch from "../../../../pages/VenueHubPage/CustomSwitch";
+import CustomSwitch from "../CustomSwitch";
 import MediaElement from "../MediaElement";
 import DangerZone from "../DangerZone";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
