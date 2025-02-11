@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import useUIStore from "../../js/store/useUIStore";
 
 /* eslint-disable react/prop-types */
 export default function Logo(props) {
   const navigate = useNavigate();
+  const { isMenuOpen } = useUIStore();
 
   const handleClick = () => {
     navigate("/");
@@ -11,7 +13,7 @@ export default function Logo(props) {
   return (
     <figure
       className="flex justify-center cursor-pointer"
-      onClick={handleClick}
+      onClick={!isMenuOpen && handleClick}
     >
       <div
         className={`flex flex-col items-center ${props.modal ? "" : "md:flex-row md:h-[75px] md:items-start w-min"}`}
