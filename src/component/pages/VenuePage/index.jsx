@@ -75,7 +75,7 @@ export default function VenuePage() {
             }
           />
         </div>
-        <p className="mx-5 md:mx-7.5 lg:mx-10 md:text-lg lg:text-xl">
+        <p className="mx-5 md:mx-7.5 lg:mx-10 md:text-lg lg:text-xl break-words">
           {data.description}
         </p>
       </section>
