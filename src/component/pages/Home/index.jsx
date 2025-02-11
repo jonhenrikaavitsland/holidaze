@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import CardLocation from "../../CardLocation";
 import Hero from "../../Hero";
 import SearchBox from "../../SearchBox";
@@ -9,12 +9,14 @@ import Loader from "../../Loader";
 import { apiUrl, venuesPath } from "../../../js/data/constants";
 import Heading from "../../Heading";
 import ViewMoreBtn from "./ViewMoreBtn";
+import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
   const [fetchQuery, setFetchQuery] = useState("");
   const [arrangedVenues, setArrangedVenues] = useState([]);
   const [activeButton, setActiveButton] = useState(null);
+  const [shownData, setShownData] = useState([]);
 
   const apiURL = useMemo(() => {
     if (fetchQuery) {
@@ -27,6 +29,22 @@ export default function Home() {
   }, [fetchQuery, fetchAll]);
 
   const { data, isLoading, isError } = useAPISearch(apiURL);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setShownData(data);
+    }
+
+    const filteredData = filterDataByLocation(
+      data,
+      activeButton?.toLowerCase(),
+    );
+
+    if (filteredData) {
+      setShownData(filteredData);
+    }
+  }, [data, activeButton]),
+    console.log("DATA:", shownData);
 
   const resetPagination = useCallback(() => {
     setArrangedVenues([]);
@@ -44,11 +62,11 @@ export default function Home() {
   }, []);
 
   useMemo(() => {
-    if (data && data.length > 0) {
+    if (shownData && shownData.length > 0) {
       resetPagination();
-      paginateData(data, 10);
+      paginateData(shownData, 10);
     }
-  }, [data, resetPagination, paginateData]);
+  }, [shownData, resetPagination, paginateData]);
 
   return (
     <div className="flex flex-col mb-10 md:mb-15 lg:mb-20">
@@ -102,8 +120,8 @@ export default function Home() {
         )}
       </div>
       <div className="flex justify-center">
-        {data && arrangedVenues.length < data.length && (
-          <ViewMoreBtn data={data} paginateData={paginateData} />
+        {shownData && arrangedVenues.length < shownData.length && (
+          <ViewMoreBtn data={shownData} paginateData={paginateData} />
         )}
       </div>
     </div>

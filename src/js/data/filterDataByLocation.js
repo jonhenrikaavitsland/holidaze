@@ -2,7 +2,8 @@ export function filterDataByLocation(data, activeButton) {
   if (
     activeButton === "" ||
     activeButton === "all destinations" ||
-    activeButton === undefined
+    activeButton === undefined ||
+    activeButton === null
   ) {
     return;
   }
