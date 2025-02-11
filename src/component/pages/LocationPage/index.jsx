@@ -1,24 +1,65 @@
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../../Breadcrumb";
 import Heading from "../../Heading";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Loader from "../../Loader";
 import CardLocation from "../../CardLocation";
 import { useAPISearch } from "../../../js/api/useAPISearch";
 import { apiUrl, venuesPath } from "../../../js/data/constants";
 import CardVenue from "../../CardVenue";
 import FourThings from "./FourThings";
+import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
+import ViewMoreBtn from "../Home/ViewMoreBtn";
 
 export default function LocationPage() {
   const { locationName } = useParams();
   const [locationData, setLocationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [shownLocations, setShownLocations] = useState([]);
+  const [arrangedVenues, setArrangedVenues] = useState([]);
 
   const {
     data,
     isLoading: loading,
     isError,
-  } = useAPISearch(`${apiUrl}${venuesPath}/search?q=${locationName}`);
+  } = useAPISearch(`${apiUrl}${venuesPath}/?`);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setShownLocations(data);
+    }
+
+    const filteredData = filterDataByLocation(
+      data,
+      locationName?.toLowerCase(),
+    );
+
+    if (filteredData) {
+      setShownLocations(filteredData);
+    }
+  }, [data, locationName]);
+
+  const resetPagination = useCallback(() => {
+    setArrangedVenues([]);
+  }, []);
+
+  const paginateData = useCallback((dataArray, pageSize) => {
+    setArrangedVenues((prev) => {
+      const currentLength = prev.length;
+      const nextPageData = dataArray.slice(
+        currentLength,
+        currentLength + pageSize,
+      );
+      return [...prev, ...nextPageData];
+    });
+  }, []);
+
+  useMemo(() => {
+    if (shownLocations && shownLocations.length > 0) {
+      resetPagination();
+      paginateData(shownLocations, 10);
+    }
+  }, [shownLocations, resetPagination, paginateData]);
 
   useEffect(() => {
     const fetchLocationData = async () => {
@@ -95,8 +136,8 @@ export default function LocationPage() {
           ) : loading ? (
             <Loader />
           ) : (
-            data &&
-            data.map((venue, index) => {
+            arrangedVenues &&
+            arrangedVenues.map((venue, index) => {
               // Check if the number of venues is odd and if this is the last item
               const isLastOdd =
                 data.length % 2 === 1 && index === data.length - 1;
@@ -108,6 +149,11 @@ export default function LocationPage() {
                 />
               );
             })
+          )}
+        </div>
+        <div className="flex justify-center">
+          {shownLocations && arrangedVenues.length < shownLocations.length && (
+            <ViewMoreBtn data={shownLocations} paginateData={paginateData} />
           )}
         </div>
       </section>
