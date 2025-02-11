@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import useUIStore from "../../js/store/useUIStore";
@@ -190,14 +190,7 @@ export default function Calendar({ data, venueId }) {
     }
   };
 
-  useEffect(() => {
-    if (waitingForLogin && isLoggedIn) {
-      setWaitingForLogin(false);
-      proceedWithBooking();
-    }
-  }, [isLoggedIn, waitingForLogin]);
-
-  const proceedWithBooking = () => {
+  const proceedWithBooking = useCallback(() => {
     if (selectedRange.from && selectedRange.to) {
       const formattedFrom = formatDateForURL(selectedRange.from);
       const formattedTo = formatDateForURL(selectedRange.to);
@@ -208,7 +201,7 @@ export default function Calendar({ data, venueId }) {
     } else {
       console.warn("please select a valid date range before booking");
     }
-  };
+  }, [selectedRange, venueId, navigate]);
 
   // Utility function to ensure the date is correctly formatted in local time
   const formatDateForURL = (date) => {
@@ -217,6 +210,13 @@ export default function Calendar({ data, venueId }) {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`; // Ensures proper local format
   };
+
+  useEffect(() => {
+    if (waitingForLogin && isLoggedIn) {
+      setWaitingForLogin(false);
+      proceedWithBooking();
+    }
+  }, [isLoggedIn, waitingForLogin, proceedWithBooking]);
 
   return (
     <div className="p-5 bg-light-sky-blue flex justify-center pb-10 shadow-md shadow-natural-charcoal/40 md:mx-auto rounded-xl md:w-210">
