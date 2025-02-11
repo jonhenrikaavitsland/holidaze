@@ -2,6 +2,7 @@ import { useState } from "react";
 import WhiteBox from "../WhiteBox";
 import useAuthStore from "../../../../js/store/useAuthStore";
 import { apiKey, apiUrl, bookingPath } from "../../../../js/data/constants";
+import Heading from "../../../Heading";
 
 /* eslint-disable react/prop-types */
 export default function BookingComp({
@@ -46,11 +47,11 @@ export default function BookingComp({
   return (
     <div className="flex flex-col md:flex-row rounded-xl bg-light-sky-blue shadow-md shadow-natural-charcoal/40 mx-5 pb-10 md:w-200 md:mx-auto lg:w-250">
       <div className="flex sm:flex-col md:w-1/2 md:flex-col">
-        <div className="max-w-1/2 sm:max-w-full md:max-w-full">
+        <div className="max-w-1/2 sm:max-w-full md:max-w-full overflow-hidden">
           <img
             src={data.media[0].url}
             alt={data.media[0].alt}
-            className="rounded-tl-xl sm:rounded-t-xl h-full object-cover"
+            className="rounded-tl-xl sm:rounded-t-xl object-fill max-h-96 w-full"
           />
         </div>
         <section className="px-5 flex flex-col items-center justify-center gap-2 lg:gap-3.75 py-5 md:py-7.5 w-full">
@@ -62,8 +63,10 @@ export default function BookingComp({
           </span>
         </section>
       </div>
-      <section className="flex flex-col gap-2.5 lg:gap-7.5 pt-5 px-2.5 md:w-1/2 lg:px-5 lg:pt-7.5">
-        <h3 className="font-serif font-bold">Booking Details:</h3>
+      <section className="flex flex-col justify-center gap-2.5 lg:gap-7.5 pt-5 px-2.5 md:w-1/2 lg:px-5 lg:pt-7.5">
+        <Heading level="3" className="md:text-center">
+          Booking Details:
+        </Heading>
         <form className="flex flex-col gap-10" onSubmit={handleBooking}>
           <fieldset className="flex flex-col gap-5 lg:gap-7.5">
             <legend className="sr-only">Booking details</legend>
