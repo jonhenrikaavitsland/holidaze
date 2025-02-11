@@ -126,6 +126,7 @@ export default {
         7.5: "30px",
         15: "60px",
         23: "90px",
+        30: "120px",
       },
       margin: {
         3.75: "15px",

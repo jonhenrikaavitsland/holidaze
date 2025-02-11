@@ -31,7 +31,13 @@ export default function Carousel({ media }) {
   }, [nextSlide, prevSlide]);
 
   if (!media || media.length === 0) {
-    return <p>No images available</p>;
+    return (
+      <div className="md:mx-7.5 py-30 md:py-48 bg-natural-charcoal text-white font-bold">
+        <div className="flex items-center justify-center h-15 md:h-25">
+          <p>No images available</p>
+        </div>
+      </div>
+    );
   }
 
   return (
