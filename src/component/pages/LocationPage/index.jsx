@@ -128,7 +128,7 @@ export default function LocationPage() {
           level="2"
           className="text-center text-deep-blue"
         >{`Available venues in ${locationData.name}`}</Heading>
-        <div className="lg:grid lg:grid-cols-2 lg:gap-10 lg:mx-10">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-5 md:gap-7.5 lg:gap-10 lg:mx-10">
           {isError ? (
             <p className="font-bold text-custom-coral text-center">
               Something went wrong fetching venues!
