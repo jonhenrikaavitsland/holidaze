@@ -1,8 +1,12 @@
 export default function updateVenueStore(
   venueObj,
-  { setRating, setWifi, setParking, setPets, setBreakfast },
+  { setRating, setWifi, setParking, setPets, setBreakfast, clearAll },
 ) {
   if (!venueObj) return;
+
+  if (venueObj === "reset") {
+    clearAll();
+  }
 
   setRating(venueObj?.rating);
   setWifi(venueObj?.meta?.wifi);
