@@ -8,6 +8,8 @@ export function filterDataByLocation(data, activeButton) {
     return;
   }
 
+  activeButton = activeButton.replace(/-/g, " ");
+
   const filteredData = data.filter(
     (item) => item.location.city.toLowerCase() === activeButton,
   );
