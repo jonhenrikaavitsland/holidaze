@@ -13,6 +13,7 @@ import { schema } from "../../../../js/validation/venueSchema";
 import sanitizeInput from "../../../../js/sanitize/sanitizeInput";
 import sanitizeAndValidateUrl from "../../../../js/sanitize/sanitizeAndValidateUrl";
 import RatingElement from "../RatingElement";
+import updateVenueStore from "../../../../js/data/updateVenueStore";
 
 export default function CreateNewVenue({ handleViewChange }) {
   const {
@@ -25,10 +26,27 @@ export default function CreateNewVenue({ handleViewChange }) {
     pets,
     togglePets,
     rating,
+    setRating,
+    setWifi,
+    setParking,
+    setPets,
+    setBreakfast,
+    clearAll,
   } = useCreateVenueStore();
 
   const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
   console.log("Error Creating venue:", error);
+
+  () => {
+    updateVenueStore("reset", {
+      setRating,
+      setWifi,
+      setParking,
+      setPets,
+      setBreakfast,
+      clearAll,
+    });
+  };
 
   const {
     register,
