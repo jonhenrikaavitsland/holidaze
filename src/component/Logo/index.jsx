@@ -13,7 +13,7 @@ export default function Logo(props) {
   return (
     <figure
       className="flex justify-center cursor-pointer"
-      onClick={!isMenuOpen && handleClick}
+      onClick={!isMenuOpen ? handleClick : undefined}
     >
       <div
         className={`flex flex-col items-center ${props.modal ? "" : "md:flex-row md:h-[75px] md:items-start w-min"}`}
