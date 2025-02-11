@@ -43,8 +43,7 @@ export default function Home() {
     if (filteredData) {
       setShownData(filteredData);
     }
-  }, [data, activeButton]),
-    console.log("DATA:", shownData);
+  }, [data, activeButton]);
 
   const resetPagination = useCallback(() => {
     setArrangedVenues([]);
