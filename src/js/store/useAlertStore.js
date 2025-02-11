@@ -16,6 +16,9 @@ const useAlertStore = create(
       updateMessage: (message) => {
         set({ message });
       },
+      updateSuccess: (message, type) => {
+        set({ message, type });
+      },
       clearAlert: () => {
         set({
           title: "",

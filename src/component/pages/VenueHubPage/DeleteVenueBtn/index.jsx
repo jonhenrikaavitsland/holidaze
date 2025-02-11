@@ -6,7 +6,7 @@ import useUIStore from "../../../../js/store/useUIStore";
 export default function DeleteVenueBtn({ id, handleViewChange }) {
   const { openStateWithOverlay, closeAll } = useUIStore();
   const { deleteVenue, loading, error } = useDeleteVenue();
-  const { setAlert, updateMessage, clearAlert } = useAlertStore();
+  const { setAlert, updateSuccess, clearAlert } = useAlertStore();
 
   const title = "delete venue";
   const message =
@@ -18,7 +18,7 @@ export default function DeleteVenueBtn({ id, handleViewChange }) {
   const handleOk = async () => {
     const success = await deleteVenue(id);
     if (success) {
-      updateMessage("Successfully deleted the venue!");
+      updateSuccess("Successfully deleted the venue!", "");
       setTimeout(() => {
         closeAll();
         clearAlert();
