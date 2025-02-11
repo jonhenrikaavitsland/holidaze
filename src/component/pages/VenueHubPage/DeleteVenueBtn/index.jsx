@@ -18,7 +18,7 @@ export default function DeleteVenueBtn({ id, handleViewChange }) {
   const handleOk = async () => {
     const success = await deleteVenue(id);
     if (success) {
-      updateSuccess("Successfully deleted the venue!", "");
+      updateSuccess("Successfully deleted the venue!", "", true);
       setTimeout(() => {
         closeAll();
         clearAlert();

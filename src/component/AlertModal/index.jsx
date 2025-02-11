@@ -2,11 +2,16 @@ import useAlertStore from "../../js/store/useAlertStore";
 import Heading from "../Heading";
 
 export default function AlertModal() {
-  const { title, message, type, onOk, onCancel, className } = useAlertStore();
+  const { title, message, type, onOk, onCancel, className, success } =
+    useAlertStore();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <section className="flex flex-col gap-5 bg-white mx-5 p-5 max-w-96 rounded-xl shadow-md shadow-natural-charcoal/40">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center ${success ? "border-8 border-accent-teal" : ""}`}
+    >
+      <section
+        className={`flex flex-col gap-5 bg-white mx-5 p-5 max-w-96 rounded-xl shadow-md shadow-natural-charcoal/40 ${success ? "border-4 border-accent-teal" : ""} `}
+      >
         {title && (
           <Heading level="2" className="text-center">
             {title}

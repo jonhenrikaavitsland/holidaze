@@ -8,6 +8,7 @@ const useAlertStore = create(
       message: "",
       type: "",
       className: "",
+      success: false,
       onOk: null,
       onCancel: null,
       setAlert: (title, message, type, onOk, onCancel, className) => {
@@ -16,8 +17,8 @@ const useAlertStore = create(
       updateMessage: (message) => {
         set({ message });
       },
-      updateSuccess: (message, type) => {
-        set({ message, type });
+      updateSuccess: (message, type, success) => {
+        set({ message, type, success });
       },
       clearAlert: () => {
         set({
@@ -25,6 +26,7 @@ const useAlertStore = create(
           message: "",
           type: "",
           className: "",
+          success: false,
           onOk: null,
           onCancel: null,
         });
