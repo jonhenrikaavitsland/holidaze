@@ -1,18 +1,34 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Carousel({ media }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
-  };
+  }, [media]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? media.length - 1 : prevIndex - 1,
     );
-  };
+  }, [media]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowLeft") {
+        prevSlide();
+      } else if (event.key === "ArrowRight") {
+        nextSlide();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [nextSlide, prevSlide]);
 
   if (!media || media.length === 0) {
     return <p>No images available</p>;
