@@ -158,11 +158,11 @@ export default function Calendar({ data, venueId }) {
       calendarDays.push(
         <div
           key={day}
-          className={`w-13 h-13 sm:h-10 sm:w-10 flex items-center justify-center cursor-pointer border border-natural-charcoal/40  
-            ${disabled || isPastDate ? "bg-light-gray cursor-not-allowed" : ""}
-            ${isFromDate || isToDate ? "bg-golden-yellow" : ""} 
-            ${isInRange ? "bg-golden-yellow/20" : ""} 
-            ${!isFromDate && !isToDate && !isInRange && !disabled && !isPastDate ? "bg-white hover:bg-blue-100" : ""}`}
+          className={`w-13 h-13 sm:h-10 sm:w-10 flex items-center justify-center border border-natural-charcoal/40  
+            ${disabled || isPastDate ? "bg-deep-blue/10 cursor-not-allowed" : ""}
+            ${isFromDate || isToDate ? "bg-golden-yellow cursor-pointer" : ""} 
+            ${isInRange ? "bg-golden-yellow/20 cursor-pointer" : ""} 
+            ${!isFromDate && !isToDate && !isInRange && !disabled && !isPastDate ? "bg-white hover:bg-blue-100 cursor-pointer" : ""}`}
           onClick={() => !disabled && !isPastDate && handleDateClick(date)}
         >
           {day}
