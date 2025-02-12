@@ -10,6 +10,7 @@ import { apiUrl, venuesPath } from "../../../js/data/constants";
 import Heading from "../../Heading";
 import ViewMoreBtn from "./ViewMoreBtn";
 import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
+import BackToTopBtn from "../../BackToTopBtn";
 
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
@@ -128,7 +129,10 @@ export default function Home() {
       </div>
       <div className="flex justify-center">
         {shownData && arrangedVenues.length < shownData.length && (
-          <ViewMoreBtn data={shownData} paginateData={paginateData} />
+          <div className="flex flex-col gap-5">
+            <ViewMoreBtn data={shownData} paginateData={paginateData} />
+            <BackToTopBtn />
+          </div>
         )}
       </div>
     </div>
