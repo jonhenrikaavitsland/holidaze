@@ -10,7 +10,7 @@ export default function CustomSwitch({ isOn, onToggle, id, label }) {
           {label}
         </label>
         <div
-          className={`h-11 w-24 bg-white rounded-xl shadow-md shadow-natural-charcoal/40 flex items-center px-0.5 ${isOn ? "justify-end" : ""}`}
+          className={`h-11 w-24 bg-white rounded-xl shadow-md shadow-natural-charcoal/40 flex items-center px-0.5 ${isOn ? "justify-end" : ""} active:ring-transparent focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline`}
           onClick={onToggle}
           role="button"
           id={id}
