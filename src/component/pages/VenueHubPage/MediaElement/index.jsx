@@ -49,6 +49,13 @@ export default function MediaElement(props) {
       <ul className="flex flex-col gap-2.5 md:gap-3.75 lg:gap-5">
         {inputs.map((input, index) => (
           <li key={index}>
+            {index > 0 ? (
+              <label className="sr-only" htmlFor={`media-${index}`}>
+                media {index}
+              </label>
+            ) : (
+              ""
+            )}
             <input
               {...props.register(`media${index}`)}
               className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none w-full md:text-lg-leading-none lg:text-xl-leading-none active:ring-transparent focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline"
