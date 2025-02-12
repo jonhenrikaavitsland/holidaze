@@ -26,7 +26,7 @@ export default function VenueHubPage() {
 
   return (
     <div className="flex flex-col lg:flex-row">
-      <div className="hidden lg:block bg-warm-beige p-10 w-56 border-r border-natural-charcoal/40 min-h-full">
+      <div className="hidden lg:flex bg-warm-beige p-10 w-56 border-r border-natural-charcoal/40 min-h-dvh">
         <div className="mt-17.5">
           <ul className="flex flex-col gap-10 w-max">
             <LinkBtn
