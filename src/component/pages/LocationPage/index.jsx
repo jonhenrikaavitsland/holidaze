@@ -10,6 +10,7 @@ import CardVenue from "../../CardVenue";
 import FourThings from "./FourThings";
 import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
 import ViewMoreBtn from "../Home/ViewMoreBtn";
+import BackToTopBtn from "../../BackToTopBtn";
 
 export default function LocationPage() {
   const { locationName } = useParams();
@@ -153,7 +154,10 @@ export default function LocationPage() {
         </div>
         <div className="flex justify-center">
           {shownLocations && arrangedVenues.length < shownLocations.length && (
-            <ViewMoreBtn data={shownLocations} paginateData={paginateData} />
+            <div className="flex flex-col gap-5">
+              <ViewMoreBtn data={shownLocations} paginateData={paginateData} />
+              <BackToTopBtn />
+            </div>
           )}
         </div>
       </section>
