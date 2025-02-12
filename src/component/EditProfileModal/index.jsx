@@ -73,7 +73,7 @@ export default function EditProfileModal() {
             </button>
           </div>
           <div className="my-auto grow shadow-md shadow-natural-charcoal/40 rounded-xl border border-natural-charcoal/40">
-            <div className="flex flex-col md:flex-row bg-white p-1 rounded-xl">
+            <div className="flex flex-col md:flex-row bg-white p-1 rounded-xl focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
               <label htmlFor="newImage" className="sr-only">
                 New image url:
               </label>
@@ -81,7 +81,7 @@ export default function EditProfileModal() {
                 {...register("image")}
                 type="text"
                 id="newImage"
-                className="w-full ps-2.5"
+                className="w-full ps-2.5 active:ring-transparent focus:outline-none"
               />
               <button
                 type="submit"
