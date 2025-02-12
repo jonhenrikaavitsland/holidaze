@@ -71,10 +71,10 @@ export default function LoginModal() {
               >
                 Email
               </label>
-              <div className="bg-white rounded border border-deep-blue/40">
+              <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
                   {...register("email")}
-                  className="w-full h-8 rounded ps-2.5"
+                  className="w-full h-8 rounded ps-2.5 active:ring-transparent focus:outline-none"
                   type="text"
                   placeholder="mail@stud.noroff.no"
                   id="email"
@@ -92,10 +92,10 @@ export default function LoginModal() {
                 <label htmlFor="password">Password</label>
                 <button type="button">Forgot your password?</button>
               </div>
-              <div className="bg-white rounded border border-deep-blue/40">
+              <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
                   {...register("password")}
-                  className="w-full h-8 rounded ps-2.5"
+                  className="w-full h-8 rounded ps-2.5 active:ring-transparent focus:outline-none"
                   type="password"
                   placeholder="*********"
                   id="password"
