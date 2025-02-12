@@ -116,7 +116,7 @@
   }
 
   body {
-    @apply text-natural-charcoal;
+    @apply text-natural-charcoal scroll-smooth;
   }
 }
 
