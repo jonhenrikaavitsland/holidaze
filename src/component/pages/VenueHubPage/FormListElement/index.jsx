@@ -16,7 +16,7 @@ export default function FormListElement({
         </label>
         <input
           {...register(setter)}
-          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none md:text-lg-leading-none lg:text-xl-leading-none"
+          className="bg-warm-beige border border-natural-charcoal/40 h-9 text-center font-medium leading-none md:text-lg-leading-none lg:text-xl-leading-none active:ring-transparent focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline"
           type="text"
           id={element}
           placeholder={placeholder}
