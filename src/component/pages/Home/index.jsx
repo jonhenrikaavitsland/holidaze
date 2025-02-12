@@ -103,7 +103,12 @@ export default function Home() {
             <CardVenue
               key={venueObject.id}
               venue={venueObject}
-              className={index === data.length - 1 ? "lg:col-span-full" : ""}
+              className={
+                index === arrangedVenues.length - 1 &&
+                arrangedVenues.length % 2 !== 0
+                  ? "lg:col-span-full"
+                  : ""
+              }
             />
           ))
         ) : (
@@ -112,7 +117,10 @@ export default function Home() {
               key={location.name}
               location={location}
               className={
-                index === locationData.length - 1 ? "lg:col-span-full" : ""
+                index === locationData.length - 1 &&
+                locationData.length % 2 !== 0
+                  ? "lg:col-span-full"
+                  : ""
               }
             />
           ))
