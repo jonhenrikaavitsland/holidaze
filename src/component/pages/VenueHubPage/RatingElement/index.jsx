@@ -32,7 +32,7 @@ export default function RatingElement() {
           <p className="text-sm-leading-none font-bold">{iconCount}</p>
         </div>
         <div
-          className="bg-warm-beige flex gap-5 justify-center items-center border border-natural-charcoal/40 h-9 text-center font-medium leading-none text-natural-charcoal"
+          className="bg-warm-beige flex gap-5 justify-center items-center border border-natural-charcoal/40 h-9 text-center font-medium leading-none text-natural-charcoal active:ring-transparent focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline"
           id="rating"
         >
           <button
