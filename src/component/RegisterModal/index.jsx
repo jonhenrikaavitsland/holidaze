@@ -68,10 +68,10 @@ export default function RegisterModal() {
               >
                 Email
               </label>
-              <div className="bg-white rounded border border-deep-blue/40">
+              <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
                   {...register("email")}
-                  className="w-full h-8 rounded ps-2.5"
+                  className="w-full h-8 rounded ps-2.5 active:ring-transparent focus:outline-none"
                   type="text"
                   placeholder="mail@stud.noroff.no"
                   id="email"
@@ -89,10 +89,10 @@ export default function RegisterModal() {
                 <label htmlFor="password">Password</label>
                 <button type="button">Forgot your password?</button>
               </div>
-              <div className="bg-white rounded border border-deep-blue/40">
+              <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
                   {...register("password")}
-                  className="w-full h-8 rounded ps-2.5"
+                  className="w-full h-8 rounded ps-2.5 active:ring-transparent focus:outline-none"
                   type="password"
                   placeholder="*********"
                   id="password"
@@ -109,10 +109,10 @@ export default function RegisterModal() {
               <div className="flex justify-between text-sm-leading-none font-medium">
                 <label htmlFor="name">Name</label>
               </div>
-              <div className="bg-white rounded border border-deep-blue/40">
+              <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
                   {...register("name")}
-                  className="w-full h-8 rounded ps-2.5"
+                  className="w-full h-8 rounded ps-2.5 active:ring-transparent focus:outline-none"
                   type="text"
                   placeholder="Your name"
                   id="name"
