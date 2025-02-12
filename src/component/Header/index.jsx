@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header className="bg-light-gray">
       <div className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 lg:container lg:mx-auto">
-        <Logo color={"deep-blue"} />
+        <Logo className={"text-deep-blue"} />
         <HamburgerIcon isThrottled={isThrottled} handleClick={handleClick} />
         <Navbar isThrottled={isThrottled} handleClick={handleClick} />
       </div>
@@ -43,7 +43,7 @@ function Navbar({ isThrottled, handleClick }) {
       }
     >
       <div className="lg:collapse">
-        <Logo color={"deep-blue"} />
+        <Logo className={"text-deep-blue"} />
       </div>
       <CloseIcon isThrottled={isThrottled} handleClick={handleClick} />
       <ul

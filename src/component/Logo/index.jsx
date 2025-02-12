@@ -23,7 +23,7 @@ export default function Logo(props) {
         </div>
         <div className={props.modal ? "" : "md:h-full md:flex md:items-end"}>
           <span
-            className={`font-mono text-xl-leading-none text-${props.color} ${props.modal ? "" : "md:text-5xl-50"}`}
+            className={`font-mono text-xl-leading-none ${props.className} ${props.modal ? "" : "md:text-5xl-50"}`}
           >
             holidaze
           </span>
