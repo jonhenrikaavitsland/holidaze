@@ -108,6 +108,7 @@ export default {
         30: "7.5rem",
         90: "22.625rem",
         100: "25rem",
+        165: "41.25rem",
         192: "48rem",
         200: "48.375rem",
         210: "50rem",
@@ -121,6 +122,7 @@ export default {
       },
       maxHeight: {
         50: "12.5rem",
+        110: "27.5rem",
       },
       padding: {
         3.75: "15px",
