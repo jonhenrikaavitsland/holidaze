@@ -49,11 +49,11 @@ export default function LoginModal() {
 
   return (
     <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <div className="flex flex-col gap-5 sm:min-w-72 min-w-96 ">
-        <div>
-          <Logo modal={true} className="text-white bg-natural-charcoal" />
+      <div className="flex flex-col md:flex-row gap-5 sm:min-w-72 min-w-96 md:w-192 md:bg-light-sky-blue md:rounded-xl">
+        <div className="md:w-1/2 md:order-last md:flex md:items-center md:justify-center">
+          <Logo modal={true} className="text-deep-blue" />
         </div>
-        <div className="bg-light-sky-blue rounded-xl flex flex-col gap-5 pt-5 px-5 pb-10 shadow-md shadow-natural-charcoal/40  ">
+        <div className="bg-light-sky-blue rounded-xl flex flex-col gap-5 pt-5 px-5 pb-10 shadow-md shadow-natural-charcoal/40 md:w-1/2 md:shadow-none ">
           <section className="text-center flex flex-col gap-2.5">
             <h2 className="font-serif text-xl-leading-none font-bold">
               Welcome Back
