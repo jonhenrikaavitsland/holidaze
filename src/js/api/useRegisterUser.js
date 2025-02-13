@@ -34,11 +34,16 @@ export function useRegisterUser() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Registration failed:", errorData);
-        throw new Error(
-          `Error ${response.status}: ${errorData.message || "Unknown error"}`,
-        );
+        // Attempt to extract the error details from the response
+        const errorData = await response.json().catch(() => null);
+
+        const errorMessage = (errorData && errorData.message) || "Login Failed";
+
+        const errorToThrow = new Error(errorMessage);
+        errorToThrow.status = response.status;
+        errorToThrow.data = errorData;
+
+        throw errorToThrow;
       }
 
       const responseData = await response.json();
@@ -54,39 +59,3 @@ export function useRegisterUser() {
 
   return { registerUser, loading, error };
 }
-// export default async function registerUser(name, email, password, manager) {
-//   const url = apiUrl + registerPath;
-
-//   const requestBody = {
-//     name,
-//     email,
-//     password,
-//     avatar: {
-//       url: "https://unsplash.com/photos/palm-tree--wapbtQueAE",
-//       alt: "me as a palm",
-//     },
-//     venueManager: manager,
-//   };
-
-//   try {
-//     const response = await fetch(url, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "X-Noroff-API-Key": apiKey,
-//       },
-//       body: JSON.stringify(requestBody),
-//     });
-
-//     if (!response.ok) {
-//       const error = await response.json();
-//       console.error("Registration failed:", error);
-//       throw new Error(
-//         `Error ${response.status}: ${error.message || "Unknown error"}`,
-//       );
-//     }
-//   } catch (error) {
-//     console.error("An error occurred:", error.message);
-//     throw error;
-//   }
-// }
