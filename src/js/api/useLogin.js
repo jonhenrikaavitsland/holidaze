@@ -21,7 +21,16 @@ const useLogin = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Login Failed");
+        // Attempt to extract the error details from the response
+        const errorData = await response.json().catch(() => null);
+
+        const errorMessage = (errorData && errorData.message) || "Login Failed";
+
+        const errorToThrow = new Error(errorMessage);
+        errorToThrow.status = response.status;
+        errorToThrow.data = errorData;
+
+        throw errorToThrow;
       }
 
       const data = await response.json();
@@ -37,7 +46,7 @@ const useLogin = () => {
       setUser(userData);
       return userData;
     } catch (err) {
-      setError(err.message);
+      setError(err);
       console.error(err);
       throw err; // Optional: re-throw the error for further handling
     } finally {
