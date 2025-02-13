@@ -29,7 +29,7 @@ export default function Home() {
     return null;
   }, [fetchQuery, fetchAll]);
 
-  const { data, isLoading, isError } = useAPISearch(apiURL);
+  const { data, isLoading, isError, errorMessage } = useAPISearch(apiURL);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -86,7 +86,7 @@ export default function Home() {
           className="text-center text-deep-blue mb-5 md:mb-7.5 lg:mb-10"
         >
           {fetchQuery
-            ? `Venues in ${fetchQuery}`
+            ? `Venues`
             : arrangedVenues.length
               ? `Venues in ${activeButton}`
               : "explore fuerteventura"}
@@ -98,7 +98,9 @@ export default function Home() {
             <Loader />
           </div>
         ) : isError ? (
-          <div>Error</div>
+          <div className="text-center font-bold font-serif text-custom-coral">
+            <p>{errorMessage}</p>
+          </div>
         ) : arrangedVenues.length > 0 ? (
           arrangedVenues.map((venueObject, index) => (
             <CardVenue
