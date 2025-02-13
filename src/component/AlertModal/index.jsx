@@ -21,7 +21,7 @@ export default function AlertModal() {
         <div className="flex justify-between sm:flex-col gap-5 mt-5">
           {type && (
             <button
-              className={`${className} py-2 rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40`}
+              className={`${className} py-2 w-1/2 rounded-xl font-serif uppercase font-medium shadow-md shadow-natural-charcoal/40`}
               onClick={onOk}
             >
               Ok
