@@ -25,9 +25,17 @@ const useUpdateAvatar = () => {
       });
 
       if (!response.ok) {
-        // Attempt to extract error message from the API response.
-        const data = await response.json();
-        throw new Error(data.error || "Failed to update profile image.");
+        // Attempt to extract the error details from the response
+        const errorData = await response.json().catch(() => null);
+
+        const errorMessage =
+          (errorData && errorData.message) || "Updating Avatar failed";
+
+        const errorToThrow = new Error(errorMessage);
+        errorToThrow.status = response.status;
+        errorToThrow.data = errorData;
+
+        throw errorToThrow;
       }
 
       // If update is successful, update state.
@@ -36,6 +44,7 @@ const useUpdateAvatar = () => {
     } catch (err) {
       setError(err.message);
       setUpdateSuccess(false);
+      throw err;
     }
   };
 
