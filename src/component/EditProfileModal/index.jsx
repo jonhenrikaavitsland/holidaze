@@ -5,10 +5,15 @@ import { useForm } from "react-hook-form";
 import { schema } from "../../js/validation/profileSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import sanitizeAndValidateUrl from "../../js/sanitize/sanitizeAndValidateUrl";
+import useAlertStore from "../../js/store/useAlertStore";
+import useUIStore from "../../js/store/useUIStore";
+import handleUpdateProfile from "../../js/errorHandling/handleUpdateProfile";
 
 export default function EditProfileModal() {
   const { user, token, updateAvatarObject } = useAuthStore();
   const { updateAvatar, updateSuccess, error: apiError } = useUpdateAvatar();
+  const { setAlert, clearAlert } = useAlertStore();
+  const { checkAndCloseAll, openStateWithOverlay, closeAll } = useUIStore();
   console.log("Error updating profile:", apiError);
 
   const {
@@ -31,6 +36,11 @@ export default function EditProfileModal() {
     reset({ image: "" });
   };
 
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
+
   const onSubmit = async (data) => {
     const { image } = data;
     // Only attempt to update if there are no local errors
@@ -38,8 +48,26 @@ export default function EditProfileModal() {
 
     const sanitizedImage = sanitizeAndValidateUrl(image);
 
-    await updateAvatar(user, token, image);
-    updateAvatarObject({ url: sanitizedImage, alt: user.name });
+    try {
+      await updateAvatar(user, token, image);
+      updateAvatarObject({ url: sanitizedImage, alt: user.name });
+    } catch (error) {
+      const { title, message } = handleUpdateProfile(error.status);
+      setTimeout(() => {
+        checkAndCloseAll();
+        setAlert(
+          title,
+          message,
+          "ok-only",
+          handleOk,
+          "",
+          "bg-custom-coral text-white",
+        );
+        setTimeout(() => {
+          openStateWithOverlay("isAlertModalOpen");
+        }, 1000);
+      }, 500);
+    }
   };
 
   return (
