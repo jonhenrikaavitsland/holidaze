@@ -4,6 +4,7 @@ import Loader from "../../../Loader";
 import BookingObjects from "../BookingObjects";
 import useProfileVenues from "../../../../js/api/useProfileVenues";
 import NoBookings from "../NoBookings";
+import SortBy from "../SortBy";
 
 export default function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -101,30 +102,7 @@ export default function ViewBookings() {
         </Heading>
       )}
       <div>
-        <div>
-          <form>
-            <fieldset className="flex justify-end">
-              <legend className="sr-only">sort by</legend>
-              <div className="flex gap-5 items-end">
-                <label
-                  htmlFor="sort-b"
-                  className="font-medium text-sm-leading-none"
-                >
-                  Sort by:
-                </label>
-                <select
-                  className="capitalize bg-white pt-4 cursor-pointer"
-                  name="sort-by"
-                  id="sort-by"
-                  onChange={(e) => setSortBy(e.target.value)}
-                >
-                  <option value="date">date</option>
-                  <option value="venue">venue</option>
-                </select>
-              </div>
-            </fieldset>
-          </form>
-        </div>
+        <SortBy setSortBy={setSortBy} />
         {loading ? (
           <div className="flex justify-center mt-10">
             <Loader />
