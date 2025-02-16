@@ -131,7 +131,6 @@ const useUpdateVenue = (id) => {
         throw errorToThrow;
       }
 
-      // setSuccess(true);
       clearAll();
     } catch (error) {
       console.error(error.message, error.status, error.data);
