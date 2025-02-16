@@ -8,7 +8,6 @@ import useUIStore from "../store/useUIStore";
 const useCreateVenue = (apiUrl, apiKey) => {
   const { token } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const { clearAll } = useCreateVenueStore();
   const { setAlert, clearAlert } = useAlertStore();
@@ -21,7 +20,6 @@ const useCreateVenue = (apiUrl, apiKey) => {
 
   const createVenue = async (values) => {
     setIsLoading(true);
-    setError(null);
     setSuccess(false);
 
     try {
@@ -73,7 +71,6 @@ const useCreateVenue = (apiUrl, apiKey) => {
           alt: "A wonderful place under the sun",
         }));
 
-      // Build request body
       const requestBody = {
         name: venue,
         description,
@@ -98,7 +95,6 @@ const useCreateVenue = (apiUrl, apiKey) => {
         },
       };
 
-      // API Call using fetch
       const response = await fetch(`${apiUrl}/holidaze/venues`, {
         method: "POST",
         headers: {
@@ -139,13 +135,13 @@ const useCreateVenue = (apiUrl, apiKey) => {
       setSuccess(true);
       clearAll();
     } catch (error) {
-      setError(error.message || "An error occurred");
+      console.error(error.message, error.status, error.data);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { createVenue, isLoading, error, success };
+  return { createVenue, isLoading, success };
 };
 
 export default useCreateVenue;
