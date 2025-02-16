@@ -1,9 +1,17 @@
 import { useCallback, useState } from "react";
 import { apiKey, apiUrl, registerPath } from "../data/constants";
+import useAlertStore from "../store/useAlertStore";
+import useUIStore from "../store/useUIStore";
 
 export function useRegisterUser() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { setAlert, clearAlert } = useAlertStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
+
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
 
   const registerUser = useCallback(async (name, email, password, manager) => {
     const url = apiUrl + registerPath;
@@ -21,7 +29,6 @@ export function useRegisterUser() {
     // image is available under the CCO creative license and has not been altered.
 
     setLoading(true);
-    setError(null);
 
     try {
       const response = await fetch(url, {
@@ -34,7 +41,6 @@ export function useRegisterUser() {
       });
 
       if (!response.ok) {
-        // Attempt to extract the error details from the response
         const errorData = await response.json().catch(() => null);
 
         const errorMessage = (errorData && errorData.message) || "Login Failed";
@@ -43,19 +49,33 @@ export function useRegisterUser() {
         errorToThrow.status = response.status;
         errorToThrow.data = errorData;
 
+        setTimeout(() => {
+          checkAndCloseAll();
+          setAlert(
+            errorToThrow.data?.status,
+            errorToThrow.data.errors[0]?.message,
+            "ok-only",
+            handleOk,
+            "",
+            "bg-custom-coral text-white",
+          );
+          setTimeout(() => {
+            openStateWithOverlay("isAlertModalOpen");
+          }, 1000);
+        }, 500);
+
         throw errorToThrow;
       }
 
       const responseData = await response.json();
       return responseData;
     } catch (err) {
-      console.error("An error occurred:", err.message);
-      setError(err);
+      console.error(err.message, err.status, err.data);
       throw err;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  return { registerUser, loading, error };
+  return { registerUser, loading };
 }
