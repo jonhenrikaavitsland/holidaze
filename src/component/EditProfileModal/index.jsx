@@ -5,16 +5,10 @@ import { useForm } from "react-hook-form";
 import { schema } from "../../js/validation/profileSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import sanitizeAndValidateUrl from "../../js/sanitize/sanitizeAndValidateUrl";
-import useAlertStore from "../../js/store/useAlertStore";
-import useUIStore from "../../js/store/useUIStore";
-import handleUpdateProfile from "../../js/errorHandling/handleUpdateProfile";
 
 export default function EditProfileModal() {
   const { user, token, updateAvatarObject } = useAuthStore();
-  const { updateAvatar, updateSuccess, error: apiError } = useUpdateAvatar();
-  const { setAlert, clearAlert } = useAlertStore();
-  const { checkAndCloseAll, openStateWithOverlay, closeAll } = useUIStore();
-  console.log("Error updating profile:", apiError);
+  const { updateAvatar, updateSuccess } = useUpdateAvatar();
 
   const {
     register,
@@ -31,19 +25,13 @@ export default function EditProfileModal() {
 
   const imageUrl = watch("image");
 
-  // Clear the input field, reset the preview image, and clear errors
   const handleClear = () => {
     reset({ image: "" });
   };
 
-  const handleOk = () => {
-    clearAlert();
-    closeAll();
-  };
-
   const onSubmit = async (data) => {
     const { image } = data;
-    // Only attempt to update if there are no local errors
+
     if (!data) return;
 
     const sanitizedImage = sanitizeAndValidateUrl(image);
@@ -52,21 +40,7 @@ export default function EditProfileModal() {
       await updateAvatar(user, token, image);
       updateAvatarObject({ url: sanitizedImage, alt: user.name });
     } catch (error) {
-      const { title, message } = handleUpdateProfile(error.status);
-      setTimeout(() => {
-        checkAndCloseAll();
-        setAlert(
-          title,
-          message,
-          "ok-only",
-          handleOk,
-          "",
-          "bg-custom-coral text-white",
-        );
-        setTimeout(() => {
-          openStateWithOverlay("isAlertModalOpen");
-        }, 1000);
-      }, 500);
+      console.log(error);
     }
   };
 
