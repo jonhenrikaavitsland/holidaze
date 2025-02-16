@@ -2,18 +2,23 @@ import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import useCreateVenueStore from "../store/useCreateVenueStore";
 import { apiKey, apiUrl, locationsMap, venuesPath } from "../data/constants";
+import useAlertStore from "../store/useAlertStore";
+import useUIStore from "../store/useUIStore";
 
 const useUpdateVenue = (id) => {
   const { token } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const { clearAll } = useCreateVenueStore();
+  const { setAlert, clearAlert } = useAlertStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
+
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
 
   const updateVenue = async (values) => {
     setIsLoading(true);
-    setError(null);
-    setSuccess(false);
 
     try {
       const {
@@ -65,7 +70,6 @@ const useUpdateVenue = (id) => {
           alt: "A wonderful place under the sun",
         }));
 
-      // Build request body
       const requestBody = {
         name: venue,
         description,
@@ -90,9 +94,6 @@ const useUpdateVenue = (id) => {
         },
       };
 
-      console.log("Request Body:", requestBody);
-
-      // API Call using fetch
       const response = await fetch(`${apiUrl}${venuesPath}/${id}`, {
         method: "PUT",
         headers: {
@@ -104,19 +105,41 @@ const useUpdateVenue = (id) => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update venue");
+        const errorData = await response.json().catch(() => null);
+
+        const errorMessage = (errorData && errorData.message) || "Login Failed";
+
+        const errorToThrow = new Error(errorMessage);
+        errorToThrow.status = response.status;
+        errorToThrow.data = errorData;
+
+        setTimeout(() => {
+          checkAndCloseAll();
+          setAlert(
+            errorToThrow.data?.status,
+            errorToThrow.data.errors[0]?.message,
+            "ok-only",
+            handleOk,
+            "",
+            "bg-custom-coral text-white",
+          );
+          setTimeout(() => {
+            openStateWithOverlay("isAlertModalOpen");
+          }, 1000);
+        }, 500);
+
+        throw errorToThrow;
       }
 
-      setSuccess(true);
+      // setSuccess(true);
       clearAll();
     } catch (error) {
-      setError(error.message || "An error occurred");
+      console.error(error.message, error.status, error.data);
     } finally {
       setIsLoading(false);
     }
   };
-  return { updateVenue, isLoading, error, success };
+  return { updateVenue, isLoading };
 };
 
 export default useUpdateVenue;
