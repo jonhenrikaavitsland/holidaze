@@ -7,8 +7,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../js/validation/loginSchema";
 import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
-import useAlertStore from "../../js/store/useAlertStore";
-import handleLogInError from "../../js/errorHandling/handleLogInError";
 
 export default function LoginModal() {
   const location = useLocation();
@@ -23,13 +21,6 @@ export default function LoginModal() {
 
   const { login: loginToStore } = useAuthStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
-
-  const { setAlert, clearAlert } = useAlertStore();
-
-  const handleOk = () => {
-    clearAlert();
-    closeAll();
-  };
 
   const onSubmit = async (data) => {
     const { email, password } = data;
@@ -52,21 +43,7 @@ export default function LoginModal() {
         navigate("/venue-hub/");
       }
     } catch (error) {
-      const { title, message } = handleLogInError(error.status);
-      setTimeout(() => {
-        checkAndCloseAll();
-        setAlert(
-          title,
-          message,
-          "ok-only",
-          handleOk,
-          "",
-          "bg-custom-coral text-white",
-        );
-        setTimeout(() => {
-          openStateWithOverlay("isAlertModalOpen");
-        }, 1000);
-      }, 500);
+      console.error(error);
     }
   };
 
