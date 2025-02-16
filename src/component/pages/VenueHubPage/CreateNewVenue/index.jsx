@@ -34,8 +34,7 @@ export default function CreateNewVenue({ handleViewChange }) {
     clearAll,
   } = useCreateVenueStore();
 
-  const { createVenue, isLoading, error } = useCreateVenue(apiUrl, apiKey);
-  console.log("Error Creating venue:", error);
+  const { createVenue, isLoading } = useCreateVenue(apiUrl, apiKey);
 
   () => {
     updateVenueStore("reset", {
