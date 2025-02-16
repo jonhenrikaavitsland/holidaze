@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { apiKey, apiUrl, profilesPath } from "../data/constants";
+import useAlertStore from "../store/useAlertStore";
+import useUIStore from "../store/useUIStore";
 
 const useUpdateAvatar = () => {
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const { setAlert, clearAlert } = useAlertStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
+
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
 
   const updateAvatar = async (user, token, newImage) => {
     const endPoint = `${apiUrl}${profilesPath}/${user.name}`;
@@ -25,30 +33,42 @@ const useUpdateAvatar = () => {
       });
 
       if (!response.ok) {
-        // Attempt to extract the error details from the response
         const errorData = await response.json().catch(() => null);
 
-        const errorMessage =
-          (errorData && errorData.message) || "Updating Avatar failed";
+        const errorMessage = (errorData && errorData.message) || "Login Failed";
 
         const errorToThrow = new Error(errorMessage);
         errorToThrow.status = response.status;
         errorToThrow.data = errorData;
+
+        setTimeout(() => {
+          checkAndCloseAll();
+          setAlert(
+            errorToThrow.data?.status,
+            errorToThrow.data.errors[0]?.message,
+            "ok-only",
+            handleOk,
+            "",
+            "bg-custom-coral text-white",
+          );
+          setTimeout(() => {
+            openStateWithOverlay("isAlertModalOpen");
+          }, 1000);
+        }, 500);
 
         throw errorToThrow;
       }
 
       // If update is successful, update state.
       setUpdateSuccess(true);
-      setError("");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      console.error(error.message, error.status, error.data);
       setUpdateSuccess(false);
-      throw err;
+      throw error;
     }
   };
 
-  return { updateAvatar, updateSuccess, error };
+  return { updateAvatar, updateSuccess };
 };
 
 export default useUpdateAvatar;
