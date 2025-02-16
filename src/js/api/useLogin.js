@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { apiKey, apiUrl, loginPath } from "../data/constants";
+import useAlertStore from "../store/useAlertStore";
+import useUIStore from "../store/useUIStore";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  const { setAlert, clearAlert } = useAlertStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
+
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
 
   const login = async (emailAddress, password) => {
     setLoading(true);
-    setError(null);
 
     try {
       const response = await fetch(`${apiUrl}${loginPath}?_holidaze=true`, {
@@ -21,7 +27,6 @@ const useLogin = () => {
       });
 
       if (!response.ok) {
-        // Attempt to extract the error details from the response
         const errorData = await response.json().catch(() => null);
 
         const errorMessage = (errorData && errorData.message) || "Login Failed";
@@ -29,6 +34,21 @@ const useLogin = () => {
         const errorToThrow = new Error(errorMessage);
         errorToThrow.status = response.status;
         errorToThrow.data = errorData;
+
+        setTimeout(() => {
+          checkAndCloseAll();
+          setAlert(
+            errorToThrow.data?.status,
+            errorToThrow.data.errors[0]?.message,
+            "ok-only",
+            handleOk,
+            "",
+            "bg-custom-coral text-white",
+          );
+          setTimeout(() => {
+            openStateWithOverlay("isAlertModalOpen");
+          }, 1000);
+        }, 500);
 
         throw errorToThrow;
       }
@@ -43,18 +63,16 @@ const useLogin = () => {
         token: accessToken,
         venueManager,
       };
-      setUser(userData);
       return userData;
     } catch (err) {
-      setError(err);
-      console.error(err);
-      throw err; // Optional: re-throw the error for further handling
+      console.error(err.message, err.status, err.data);
+      throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  return { login, user, loading, error };
+  return { login, loading };
 };
 
 export default useLogin;
