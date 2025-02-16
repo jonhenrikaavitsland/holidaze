@@ -13,7 +13,7 @@ export default function RegisterModal() {
   const location = useLocation();
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
   const { isLoggedIn } = useAuthStore();
-  const { registerUser } = useRegisterUser();
+  const { registerUser, loading } = useRegisterUser();
 
   const {
     register,
@@ -129,6 +129,7 @@ export default function RegisterModal() {
               <button
                 type="submit"
                 className="text-white bg-deep-blue rounded-xl px-7.5 py-3.75 font-serif font-bold text-xl-leading-none shadow-md shadow-natural-charcoal/40 capitalize w-full"
+                disabled={loading}
               >
                 Register now
               </button>
