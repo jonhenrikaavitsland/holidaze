@@ -11,7 +11,7 @@ import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
 export default function LoginModal() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { login } = useLogin();
+  const { login, loading } = useLogin();
 
   const {
     register,
@@ -112,6 +112,7 @@ export default function LoginModal() {
               <button
                 type="submit"
                 className="text-white bg-deep-blue rounded-xl px-7.5 py-3.75 font-serif font-bold text-xl-leading-none shadow-md shadow-natural-charcoal/40 w-full"
+                disabled={loading}
               >
                 Login
               </button>
