@@ -2,6 +2,8 @@ import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import useCreateVenueStore from "../store/useCreateVenueStore";
 import { locationsMap } from "../data/constants";
+import useAlertStore from "../store/useAlertStore";
+import useUIStore from "../store/useUIStore";
 
 const useCreateVenue = (apiUrl, apiKey) => {
   const { token } = useAuthStore();
@@ -9,6 +11,13 @@ const useCreateVenue = (apiUrl, apiKey) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const { clearAll } = useCreateVenueStore();
+  const { setAlert, clearAlert } = useAlertStore();
+  const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
+
+  const handleOk = () => {
+    clearAlert();
+    closeAll();
+  };
 
   const createVenue = async (values) => {
     setIsLoading(true);
@@ -101,8 +110,30 @@ const useCreateVenue = (apiUrl, apiKey) => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to create venue");
+        const errorData = await response.json().catch(() => null);
+
+        const errorMessage = (errorData && errorData.message) || "Login Failed";
+
+        const errorToThrow = new Error(errorMessage);
+        errorToThrow.status = response.status;
+        errorToThrow.data = errorData;
+
+        setTimeout(() => {
+          checkAndCloseAll();
+          setAlert(
+            errorToThrow.data?.status,
+            errorToThrow.data.errors[0]?.message,
+            "ok-only",
+            handleOk,
+            "",
+            "bg-custom-coral text-white",
+          );
+          setTimeout(() => {
+            openStateWithOverlay("isAlertModalOpen");
+          }, 1000);
+        }, 500);
+
+        throw errorToThrow;
       }
 
       setSuccess(true);
