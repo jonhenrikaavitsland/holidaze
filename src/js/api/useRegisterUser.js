@@ -8,74 +8,78 @@ export function useRegisterUser() {
   const { setAlert, clearAlert } = useAlertStore();
   const { closeAll, checkAndCloseAll, openStateWithOverlay } = useUIStore();
 
-  const handleOk = () => {
-    clearAlert();
-    closeAll();
-  };
+  const registerUser = useCallback(
+    async (name, email, password, manager) => {
+      const url = apiUrl + registerPath;
 
-  const registerUser = useCallback(async (name, email, password, manager) => {
-    const url = apiUrl + registerPath;
-
-    const requestBody = {
-      name,
-      email,
-      password,
-      avatar: {
-        url: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Manila_dwarf_coconut_palm.jpg",
-        alt: "me as a palm",
-      },
-      venueManager: manager,
-    };
-    // image is available under the CCO creative license and has not been altered.
-
-    setLoading(true);
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Noroff-API-Key": apiKey,
+      const requestBody = {
+        name,
+        email,
+        password,
+        avatar: {
+          url: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Manila_dwarf_coconut_palm.jpg",
+          alt: "me as a palm",
         },
-        body: JSON.stringify(requestBody),
-      });
+        venueManager: manager,
+      };
+      // image is available under the CCO creative license and has not been altered.
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
+      setLoading(true);
 
-        const errorMessage = (errorData && errorData.message) || "Login Failed";
+      const handleOk = () => {
+        clearAlert();
+        closeAll();
+      };
 
-        const errorToThrow = new Error(errorMessage);
-        errorToThrow.status = response.status;
-        errorToThrow.data = errorData;
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Noroff-API-Key": apiKey,
+          },
+          body: JSON.stringify(requestBody),
+        });
 
-        setTimeout(() => {
-          checkAndCloseAll();
-          setAlert(
-            errorToThrow.data?.status,
-            errorToThrow.data.errors[0]?.message,
-            "ok-only",
-            handleOk,
-            "",
-            "bg-custom-coral text-white",
-          );
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+
+          const errorMessage =
+            (errorData && errorData.message) || "Login Failed";
+
+          const errorToThrow = new Error(errorMessage);
+          errorToThrow.status = response.status;
+          errorToThrow.data = errorData;
+
           setTimeout(() => {
-            openStateWithOverlay("isAlertModalOpen");
-          }, 1000);
-        }, 500);
+            checkAndCloseAll();
+            setAlert(
+              errorToThrow.data?.status,
+              errorToThrow.data.errors[0]?.message,
+              "ok-only",
+              handleOk,
+              "",
+              "bg-custom-coral text-white",
+            );
+            setTimeout(() => {
+              openStateWithOverlay("isAlertModalOpen");
+            }, 1000);
+          }, 500);
 
-        throw errorToThrow;
+          throw errorToThrow;
+        }
+
+        const responseData = await response.json();
+        return responseData;
+      } catch (err) {
+        console.error(err.message, err.status, err.data);
+        throw err;
+      } finally {
+        setLoading(false);
       }
-
-      const responseData = await response.json();
-      return responseData;
-    } catch (err) {
-      console.error(err.message, err.status, err.data);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [checkAndCloseAll, clearAlert, closeAll, openStateWithOverlay, setAlert],
+  );
 
   return { registerUser, loading };
 }
