@@ -8,12 +8,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
 import sanitizeInput from "../../js/sanitize/sanitizeInput";
-import useAlertStore from "../../js/store/useAlertStore";
-import handleRegistrationError from "../../js/errorHandling/handleRegistrationError";
 
 export default function RegisterModal() {
   const location = useLocation();
-  const { checkAndCloseAll, openStateWithOverlay, closeAll } = useUIStore();
+  const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
   const { isLoggedIn } = useAuthStore();
   const { registerUser } = useRegisterUser();
 
@@ -22,13 +20,6 @@ export default function RegisterModal() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-
-  const { setAlert, clearAlert } = useAlertStore();
-
-  const handleOk = () => {
-    clearAlert();
-    closeAll();
-  };
 
   const onSubmit = async (data) => {
     const { name, email, password } = data;
@@ -49,21 +40,7 @@ export default function RegisterModal() {
       checkAndCloseAll();
       openStateWithOverlay("isLoginModalOpen");
     } catch (error) {
-      const { title, message } = handleRegistrationError(error.status);
-      setTimeout(() => {
-        checkAndCloseAll();
-        setAlert(
-          title,
-          message,
-          "ok-only",
-          handleOk,
-          "",
-          "bg-custom-coral text-white",
-        );
-        setTimeout(() => {
-          openStateWithOverlay("isAlertModalOpen");
-        }, 1000);
-      }, 500);
+      console.error(error);
     }
   };
 
