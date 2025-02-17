@@ -19,11 +19,9 @@ export default function LocationPage() {
   const [shownLocations, setShownLocations] = useState([]);
   const [arrangedVenues, setArrangedVenues] = useState([]);
 
-  const {
-    data,
-    isLoading: loading,
-    isError,
-  } = useAPISearch(`${apiUrl}${venuesPath}/?`);
+  const apiURL = `${apiUrl}${venuesPath}?`;
+
+  const { data, isLoading: loading, isError } = useAPISearch(apiURL);
 
   useEffect(() => {
     if (data && data.length > 0) {
