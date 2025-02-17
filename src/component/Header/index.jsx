@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header className="bg-light-gray">
-      <div className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 lg:container lg:mx-auto">
+      <div className="flex flex-col justify-center p-5 bg-light-gray lg:flex-row lg:justify-start lg:p-10 lg:container lg:mx-auto h-min">
         <Logo className={"text-deep-blue"} />
         <HamburgerIcon isThrottled={isThrottled} handleClick={handleClick} />
         <Navbar isThrottled={isThrottled} handleClick={handleClick} />
