@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import listVenue from "../../../data/listVenue/listVenue.json";
 import ListElement from "../../ListElement";
 import useUIStore from "../../../js/store/useUIStore";
@@ -11,6 +11,22 @@ export default function ListYourVenue() {
   const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
   const { isLoggedIn, isVenueManager, updateVenueManager } = useAuthStore();
   const { updateProfile, loading, error } = useUpdateProfile();
+
+  useEffect(() => {
+    document.title = "Venue Manager || Holidaze";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content =
+      "Become a Venue Manager with Holidaze and start listing your amazing venues now, making them accessible to thousands of holiday goers looking for a venue just like yours.";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
 
   const handleClick = async () => {
     if (isLoggedIn) {
