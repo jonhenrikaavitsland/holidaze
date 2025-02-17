@@ -21,6 +21,8 @@ export default function CardLocation({ location, className }) {
     "Morro Jable": imageMorroJable,
     "El Cotillo": imageElCotillo,
   };
+  // These images has their source and author information listed in /src/data/locations/locations.json
+  // These images may be altered to be less than 200kb as well as had their DPI set to 72.
 
   const image = imageMapping[location.name];
 
