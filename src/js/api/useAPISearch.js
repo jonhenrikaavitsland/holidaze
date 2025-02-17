@@ -7,6 +7,33 @@ const TARGET_LOCATIONS = Object.values(locationsMap).map(({ lat, lng }) => ({
   lng,
 }));
 
+/**
+ * Custom React hook that fetches and filters data from an API endpoint with pagination support.
+ *
+ * This hook performs a fetch request to the provided URL and filters the returned data to include only those items
+ * whose location matches one of the predefined target locations. If the API response indicates multiple pages of data
+ * (via `meta.pageCount`), the hook will fetch all additional pages concurrently and merge the results.
+ *
+ * The hook manages and returns the following state:
+ * - `data`: The filtered (and reversed) array of items that match the target locations.
+ * - `isLoading`: A boolean indicating whether the fetch operation is in progress.
+ * - `isError`: A boolean indicating whether an error occurred during fetching.
+ * - `errorMessage`: A string containing the error message if an error occurred.
+ *
+ * If no URL is provided, the hook aborts the fetch process and resets all states.
+ *
+ * @param {string|null} url - The API endpoint URL to fetch data from.
+ * @returns {object} An object containing:
+ *   - {Array} data - The filtered and reversed array of data items.
+ *   - {boolean} isLoading - Indicates if the data is currently being fetched.
+ *   - {boolean} isError - Indicates if an error occurred during the fetch.
+ *   - {string} errorMessage - The error message if an error occurred, otherwise an empty string.
+ *
+ * @example
+ * // Usage example:
+ * const { data, isLoading, isError, errorMessage } = useAPISearch("https://api.example.com/venues");
+ */
+
 export function useAPISearch(url) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
