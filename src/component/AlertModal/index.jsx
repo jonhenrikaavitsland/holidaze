@@ -1,6 +1,33 @@
 import useAlertStore from "../../js/store/useAlertStore";
 import Heading from "../Heading";
 
+/**
+ * Renders an Alert Modal component that displays a title, message, and action buttons based on the current alert state.
+ *
+ * The component retrieves its state from `useAlertStore`, which provides the following properties:
+ * - `title` (string): The heading of the alert modal.
+ * - `message` (string): The detailed message of the alert.
+ * - `type` (string): The type of alert, determining which buttons are displayed.
+ * - `onOk` (function): Callback function executed when the "Ok" button is clicked.
+ * - `onCancel` (function): Callback function executed when the "Cancel" button is clicked.
+ * - `className` (string): Additional CSS classes applied to the "Ok" button.
+ * - `success` (boolean): Indicates if the alert represents a success state, affecting the modal's styling.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * import AlertModal from './AlertModal';
+ *
+ * function App() {
+ *   return (
+ *     <div>
+ *       <AlertModal />
+ *     </div>
+ *   );
+ * }
+ *
+ * @returns {JSX.Element} The rendered Alert Modal component.
+ */
 export default function AlertModal() {
   const { title, message, type, onOk, onCancel, className, success } =
     useAlertStore();
