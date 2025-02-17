@@ -4,6 +4,38 @@ import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import useUIStore from "../../js/store/useUIStore";
 
+/**
+ * Renders an interactive calendar component for booking purposes.
+ *
+ * This component displays a monthly calendar that allows users to select a date range for booking a venue.
+ * It provides navigation to move between months and handles various interactions including:
+ * - Selecting a start and end date for the booking.
+ * - Preventing selection of past or blocked dates.
+ * - Resetting the selection with the "Escape" key.
+ * - Validating that the selected range does not include disabled dates.
+ * - Formatting the selected date range for URL parameters.
+ *
+ * When the "book now" button is clicked, the component checks if the user is logged in:
+ * - If not logged in, it opens a login modal and defers the booking until login is complete.
+ * - If logged in and a valid date range is selected, it navigates to the booking page with formatted dates.
+ *
+ * The component also displays weekday headers and uses dynamic styling to indicate selected dates,
+ * dates in the current range, and disabled dates. It relies on various hooks and external stores:
+ * - `useState` and `useEffect` for managing state and side effects.
+ * - `useNavigate` from React Router for navigation.
+ * - Custom hooks `useAuthStore` and `useUIStore` for authentication and UI state management.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Array} props.data - An array of booking objects, each containing `dateFrom` and `dateTo` to denote blocked dates.
+ * @param {string|number} props.venueId - The unique identifier for the venue, used to generate booking URLs.
+ *
+ * @example
+ * // Example usage:
+ * <Calendar data={bookings} venueId="12345" />
+ *
+ * @returns {JSX.Element} The rendered Calendar component with date selection and booking functionality.
+ */
 export default function Calendar({ data, venueId }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedRange, setSelectedRange] = useState({
