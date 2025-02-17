@@ -6,6 +6,23 @@ import { schema } from "../../js/validation/profileSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import sanitizeAndValidateUrl from "../../js/sanitize/sanitizeAndValidateUrl";
 
+/**
+ * Renders a modal that allows the user to edit their profile image.
+ *
+ * This component displays a form pre-populated with the user's current avatar URL.
+ * It leverages react-hook-form with Yup validation to manage and validate the form input.
+ * The modal provides a live preview of the avatar image and includes functionality to clear the input or submit a new URL.
+ *
+ * On submission, the provided image URL is sanitized and validated before calling the update API.
+ * If the update is successful, the user's avatar in the global state is updated accordingly.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <EditProfileModal />
+ *
+ * @returns {JSX.Element} The rendered modal component for editing the profile image.
+ */
 export default function EditProfileModal() {
   const { user, token, updateAvatarObject } = useAuthStore();
   const { updateAvatar, updateSuccess } = useUpdateAvatar();
@@ -40,7 +57,7 @@ export default function EditProfileModal() {
       await updateAvatar(user, token, image);
       updateAvatarObject({ url: sanitizedImage, alt: user.name });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
