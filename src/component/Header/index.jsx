@@ -39,7 +39,7 @@ function Navbar({ isThrottled, handleClick }) {
       className={
         isMenuOpen
           ? `visible absolute z-50 w-full top-0 left-0 pt-5 pb-10 bg-light-gray shadow-md shadow-natural-charcoal/40`
-          : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end"
+          : "collapse lg:visible lg:flex lg:items-center lg:w-full lg:justify-end h-0"
       }
     >
       <div className="lg:collapse">
