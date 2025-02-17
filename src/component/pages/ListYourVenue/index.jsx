@@ -5,6 +5,8 @@ import useUIStore from "../../../js/store/useUIStore";
 import useAuthStore from "../../../js/store/useAuthStore";
 import useUpdateProfile from "../../../js/api/useUpdateProfile";
 import Heading from "../../Heading";
+import costaCalmaImage from "/src/data/locations/images/costa-calma_1.jpg";
+import reviewImage from "/src/data/listVenue/venue.jpg";
 
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
@@ -53,7 +55,7 @@ export default function ListYourVenue() {
         <div
           className="bg-cover bg-center min-h-52 md:h-110 rounded-br-big shadow-md shadow-natural-charcoal/40"
           style={{
-            backgroundImage: `url('/src/data/locations/images/costa-calma_1.jpg')`,
+            backgroundImage: `url(${costaCalmaImage})`,
           }}
         ></div>
         <section className="px-5 pt-5 md:pt-7.5 md:px-7.5">
@@ -82,7 +84,7 @@ export default function ListYourVenue() {
       <div className="flex mx-5 md:mx-7.5 rounded-xl sm:flex-col min-h-44 md:h-52 shadow-md shadow-natural-charcoal/40">
         <div
           className="w-1/3 md:w-1/2 sm:w-full sm:h-40 sm:rounded-t-xl sm:rounded-b-none rounded-s-xl bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${data.review[0].media.url})` }}
+          style={{ backgroundImage: `url(${reviewImage})` }}
         ></div>
         <article className="bg-warm-beige sm:w-full w-2/3 md:w-1/2 sm:rounded-b-xl sm:rounded-t-none rounded-e-xl pt-2.5 md:pt-5 px-2.5 md:px-5 pb-5 md:p-10">
           <p className="font-serif font-light italic md:text-lg">
