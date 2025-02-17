@@ -8,6 +8,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../js/validation/loginSchema";
 import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
 
+/**
+ * Renders a modal login form that allows users to log in with their registered account.
+ *
+ * The modal provides a form for inputting an email and password, which are validated using react-hook-form and Yup.
+ * User input is sanitized before submission, and upon successful authentication via the login API,
+ * the authentication store is updated and the modal is closed. Additionally, if the current route includes "list-your-venue",
+ * the user is navigated to the venue hub.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <LoginModal />
+ *
+ * @returns {JSX.Element} The rendered login modal component.
+ */
 export default function LoginModal() {
   const location = useLocation();
   const navigate = useNavigate();
