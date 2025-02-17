@@ -11,6 +11,7 @@ import FourThings from "./FourThings";
 import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
 import ViewMoreBtn from "../Home/ViewMoreBtn";
 import BackToTopBtn from "../../BackToTopBtn";
+import locationsData from "/src/data/locations/locations.json";
 
 export default function LocationPage() {
   const { locationName } = useParams();
@@ -76,25 +77,17 @@ export default function LocationPage() {
   }, [shownLocations, resetPagination, paginateData]);
 
   useEffect(() => {
-    const fetchLocationData = async () => {
-      try {
-        const response = await fetch("/src/data/locations/locations.json");
-        const data = await response.json();
-
-        const matchedLocation = data.find(
-          (location) =>
-            location.name.toLowerCase().replace(/\s+/g, "-") === locationName,
-        );
-
-        setLocationData(matchedLocation || null);
-      } catch (error) {
-        console.error("Error fetching locations", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchLocationData();
+    try {
+      const matchedLocation = locationsData.find(
+        (location) =>
+          location.name.toLowerCase().replace(/\s+/g, "-") === locationName,
+      );
+      setLocationData(matchedLocation || null);
+    } catch (error) {
+      console.error("Error processing locations data", error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [locationName]);
 
   // While loading, avoid rendering anything that relies on locationData
