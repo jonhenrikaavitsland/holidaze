@@ -1,8 +1,26 @@
 import { Link } from "react-router-dom";
 import Heading from "../../Heading";
+import { useEffect } from "react";
 
 export default function DefaultPage() {
   // This is a 404 page
+
+  useEffect(() => {
+    document.title = "404 || Holidaze";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content =
+      "Got lost? Do not worry as Holidaze has you covered, lets go back and try again.";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   return (
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 text-center mt-5 md:mt-7.5 lg:mt-10">
       <div className="flex justify-center">
