@@ -32,6 +32,22 @@ export default function Home() {
   const { data, isLoading, isError, errorMessage } = useAPISearch(apiURL);
 
   useEffect(() => {
+    document.title = "Home || Holidaze";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content =
+      "Book your visit to Fuerteventura now. Holidaze is your goto accommodation provider in Fuerteventura.";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
+
+  useEffect(() => {
     if (data && data.length > 0) {
       setShownData(data);
     }
