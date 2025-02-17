@@ -6,6 +6,23 @@ import Button from "../Button";
 import useUIStore from "../../js/store/useUIStore";
 import useAuthStore from "../../js/store/useAuthStore";
 
+/**
+ * Renders the Header component that includes the logo, hamburger icon, and navigation bar.
+ *
+ * This component manages a throttling state to prevent rapid menu toggling. It composes the following elements:
+ * - A Logo component displayed prominently.
+ * - A HamburgerIcon component for toggling the mobile menu.
+ * - A Navbar component that provides responsive navigation links.
+ *
+ * The `isThrottled` state ensures that the menu toggle cannot be triggered more than once every 500 milliseconds.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <Header />
+ *
+ * @returns {JSX.Element} The rendered Header component.
+ */
 export default function Header() {
   const [isThrottled, setIsThrottled] = useState(false);
 
@@ -30,6 +47,27 @@ export default function Header() {
   );
 }
 
+/**
+ * Renders a responsive navigation bar with conditional menu items based on the user's authentication status and UI state.
+ *
+ * The Navbar component displays different navigation links and buttons depending on whether the user is logged in, is a venue manager,
+ * and whether the mobile menu is open. It utilizes several helper components (Logo, CloseIcon, LinkBtn, and Button) to render its elements.
+ * - When the menu is open (on small screens), it shows a full-screen overlay with navigation links.
+ * - For authenticated users, it displays an "Account" link and a "Logout" button.
+ * - For non-authenticated users, it shows a "Log In" button that opens the login modal.
+ * - For venue managers, it displays a "Venue HUB" link; otherwise, it shows a "List Your Venue" link.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {boolean} props.isThrottled - Disables menu actions if true to prevent rapid, repeated clicks.
+ * @param {Function} props.handleClick - Callback function executed to toggle or handle menu-related click events.
+ *
+ * @example
+ * // Example usage:
+ * <Navbar isThrottled={false} handleClick={() => console.log('Menu toggled')} />
+ *
+ * @returns {JSX.Element} The rendered navigation bar component.
+ */
 function Navbar({ isThrottled, handleClick }) {
   const { isMenuOpen, openStateWithOverlay, checkAndCloseAll } = useUIStore();
   const { isLoggedIn, isVenueManager } = useAuthStore();
@@ -96,6 +134,24 @@ function Navbar({ isThrottled, handleClick }) {
   );
 }
 
+/**
+ * Renders a hamburger icon button that opens the navigation menu overlay.
+ *
+ * When clicked, the button triggers the provided `handleClick` callback and opens the menu by calling
+ * `openStateWithOverlay` from the UI store. The button is disabled if `isThrottled` is true to prevent rapid clicks.
+ * It is styled to be visible on small screens and hidden on larger screens.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {boolean} props.isThrottled - If true, disables the button to throttle click events.
+ * @param {Function} props.handleClick - Callback function to execute on button click.
+ *
+ * @example
+ * // Example usage:
+ * <HamburgerIcon isThrottled={false} handleClick={() => console.log('Menu opened')} />
+ *
+ * @returns {JSX.Element} The rendered hamburger icon button component.
+ */
 function HamburgerIcon({ isThrottled, handleClick }) {
   const { openStateWithOverlay } = useUIStore();
 
@@ -116,6 +172,23 @@ function HamburgerIcon({ isThrottled, handleClick }) {
   );
 }
 
+/**
+ * Renders a navigation button as a list item that uses React Router's NavLink for client-side routing.
+ *
+ * When clicked, the button triggers a function to close any open UI elements via `checkAndCloseAll` from the UI store.
+ * The NavLink applies different styles based on whether it is active or not.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.to - The target route path for navigation.
+ * @param {React.ReactNode|string} props.text - The display text for the navigation button.
+ *
+ * @example
+ * // Example usage:
+ * <LinkBtn to="/dashboard" text="Dashboard" />
+ *
+ * @returns {JSX.Element} The rendered navigation button within a list item.
+ */
 function LinkBtn(props) {
   const { checkAndCloseAll } = useUIStore();
 
@@ -140,6 +213,23 @@ function LinkBtn(props) {
   );
 }
 
+/**
+ * Renders a close icon button that conditionally appears based on the menu's open state.
+ *
+ * The component retrieves the current menu state from the UI store and, when the menu is open,
+ * displays a button with a close icon. Clicking the button triggers the provided `handleClick` callback
+ * and a global close action via the `closeAll` function. The button is disabled if the `isThrottled` flag is true.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {boolean} props.isThrottled - Disables the button if true to prevent rapid, repeated clicks.
+ * @param {Function} props.handleClick - Callback function executed when the close button is clicked.
+ * @example
+ * // Example usage:
+ * <CloseIcon isThrottled={false} handleClick={() => console.log('Close clicked')} />
+ *
+ * @returns {JSX.Element} The rendered CloseIcon component.
+ */
 function CloseIcon({ isThrottled, handleClick }) {
   const { isMenuOpen, closeAll } = useUIStore();
   return (
