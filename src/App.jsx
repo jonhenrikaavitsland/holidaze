@@ -8,6 +8,7 @@ import BookingPage from "./component/pages/BookingPage";
 import LocationPage from "./component/pages/LocationPage";
 import Home from "./component/pages/Home";
 import VenueHubPage from "./component/pages/VenueHubPage";
+import DefaultPage from "./component/pages/DefaultPage";
 
 export default function App() {
   const { isVenueManager, isLoggedIn } = useAuthStore();
@@ -36,7 +37,7 @@ export default function App() {
           <Route path="/venue" element={<Navigate to="/" replace />} />
           <Route path="/locations" element={<Navigate to="/" replace />} />
           {/* Catch-all 404 route */}
-          {/* <Route path='*' element={<NotFound />} /> */}
+          <Route path="*" element={<DefaultPage />} />
         </Route>
       </Routes>
     </div>
