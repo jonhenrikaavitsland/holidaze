@@ -2,6 +2,22 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../../js/store/useAuthStore";
 import useUIStore from "../../js/store/useUIStore";
 
+/**
+ * Renders the footer navigation component with conditional links based on the user's authentication and venue manager status.
+ *
+ * The component displays:
+ * - A "home" link.
+ * - An "Account" link if the user is logged in, or a "log in" button that opens the login modal if not.
+ * - A link to either the "Venue HUB" (for venue managers) or "list your venue" (for regular users).
+ * - A copyright notice at the bottom.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <Footer />
+ *
+ * @returns {JSX.Element} The rendered Footer component.
+ */
 export default function Footer() {
   const { isLoggedIn, isVenueManager } = useAuthStore();
   const { openStateWithOverlay } = useUIStore();
