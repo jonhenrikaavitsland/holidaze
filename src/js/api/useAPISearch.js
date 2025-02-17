@@ -84,6 +84,9 @@ export function useAPISearch(url) {
           setData(filteredData.reverse());
         }
       } catch (error) {
+        if (error.name === "AbortError") {
+          return;
+        }
         console.error(error);
         setIsError(true);
         setErrorMessage(error.message);
