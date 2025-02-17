@@ -82,7 +82,7 @@ function Navbar({ isThrottled, handleClick }) {
           <li
             className={
               isMenuOpen
-                ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20"
+                ? "visible flex justify-center pt-5 border-t-2 border-natural-charcoal/20 w-full"
                 : "collapse lg:visible"
             }
           >
