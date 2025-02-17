@@ -24,6 +24,21 @@ export default function LocationPage() {
   const { data, isLoading: loading, isError } = useAPISearch(apiURL);
 
   useEffect(() => {
+    document.title = `${locationName} || Holidaze`;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content = `Visit ${locationName} now with Holidaze and experience an exclusive selection of venues with prices only available at Holidaze. We know Fuerteventura, Holidaze, Your goto holiday maker.`;
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, [locationName]);
+
+  useEffect(() => {
     if (data && data.length > 0) {
       setShownLocations(data);
     }
