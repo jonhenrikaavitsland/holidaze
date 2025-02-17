@@ -62,6 +62,7 @@ export default function EditProfileModal() {
             src={imageUrl || user.avatar.url}
             alt={user.name}
             className={`h-36 aspect-square object-cover mx-auto ${updateSuccess && "border-8 border-accent-teal"}`}
+            loading="lazy"
           />
         </figure>
         <div className="lg:grow">
