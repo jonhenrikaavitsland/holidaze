@@ -48,6 +48,7 @@ export default function Carousel({ media }) {
           src={media[currentIndex].url}
           alt={media[currentIndex].alt || `Slide ${currentIndex + 1}`}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         {/* Navigation Buttons */}
         <button
@@ -77,6 +78,7 @@ export default function Carousel({ media }) {
               src={item.url}
               alt={item.alt || `Thumbnail ${index + 1}`}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             {/* Overlay */}
             {currentIndex !== index && (
