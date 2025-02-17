@@ -20,6 +20,22 @@ export default function BookingPage() {
   const toDate = searchParams.get("to");
 
   useEffect(() => {
+    document.title = "Booking || Holidaze";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content =
+      "Book your holiday with Holidaze now. It is fast, easy and reliable!";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
+
+  useEffect(() => {
     async function getData(url) {
       try {
         setIsLoading(true);
