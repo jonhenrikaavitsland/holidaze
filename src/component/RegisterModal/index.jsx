@@ -87,7 +87,6 @@ export default function RegisterModal() {
             <div className="flex flex-col gap-1">
               <div className="flex justify-between text-sm-leading-none font-medium">
                 <label htmlFor="password">Password</label>
-                <button type="button">Forgot your password?</button>
               </div>
               <div className="bg-white rounded border border-deep-blue/40 focus-within:outline-deep-blue focus-within:outline-2 focus-within:outline">
                 <input
