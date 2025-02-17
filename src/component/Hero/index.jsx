@@ -4,6 +4,8 @@ import hero1 from "/src/data/hero/hero_1.jpg";
 import hero2 from "/src/data/hero/hero_2.jpg";
 import hero3 from "/src/data/hero/hero_3.jpg";
 import hero4 from "/src/data/hero/hero_4.jpg";
+// Image sources are specified in /src/data/hero/hero_1 through hero_4
+// The images are from WikiCommons which is under Creative Commons License and if altered, these images has only had their DPI converted to 72.
 
 const images = [hero1, hero2, hero3, hero4];
 
@@ -26,7 +28,6 @@ export default function Hero() {
   return (
     <section
       className={`h-60 md:h-[480px] bg-cover bg-center pt-7.5 md:pt-23 col-span-full row-start-1 row-end-3 relative`}
-      // style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
       <BackgroundWrapper currentImage={currentImage} fade={fade} />
       <Heading />
