@@ -50,19 +50,23 @@ export default function Carousel({ media }) {
           className="w-full h-full object-cover"
           loading="lazy"
         />
-        {/* Navigation Buttons */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-2.5 top-1/2 transform -translate-y-1/2 bg-natural-charcoal text-white px-2 py-1 rounded-full shadow-md hover:bg-natural-charcoal/80"
-        >
-          &#8592;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2.5 top-1/2 transform -translate-y-1/2 bg-natural-charcoal text-white px-2 py-1 rounded-full shadow-md hover:bg-natural-charcoal/80"
-        >
-          &#8594;
-        </button>
+        {/* Navigation Buttons - only show if media length is greater than 1 */}
+        {media.length >= 2 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-2.5 top-1/2 transform -translate-y-1/2 bg-natural-charcoal text-white px-2 py-1 rounded-full shadow-md hover:bg-natural-charcoal/80"
+            >
+              &#8592;
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2.5 top-1/2 transform -translate-y-1/2 bg-natural-charcoal text-white px-2 py-1 rounded-full shadow-md hover:bg-natural-charcoal/80"
+            >
+              &#8594;
+            </button>
+          </>
+        )}
       </div>
 
       {/* Thumbnail Row */}
