@@ -41,7 +41,7 @@ export default function VenueObject({
         {venue.name}
       </Heading>
       <div
-        className={`${!openState && "collapse"} flex flex-col lg:flex-row gap-5 md:gap-7.5 lg:gap-10`}
+        className={`${!openState && "collapse h-0"} flex flex-col lg:flex-row gap-5 md:gap-7.5 lg:gap-10`}
       >
         <div className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 lg:w-1/2">
           <div className="flex flex-col gap-2 italic leading-none md:text-lg-leading-none lg:text-xl-leading-none">
