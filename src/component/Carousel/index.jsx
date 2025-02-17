@@ -1,6 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Renders a media carousel that allows users to navigate through a series of images.
+ *
+ * The carousel supports keyboard navigation using the left and right arrow keys, as well as click-based navigation via buttons and thumbnails.
+ * It displays a main image along with a row of clickable thumbnail images. If no media is provided, it shows a fallback message.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Array<Object>} props.media - An array of media objects to display in the carousel.
+ * @param {string} props.media[].url - The URL of the image.
+ * @param {string} [props.media[].alt] - Optional alt text for the image; if not provided, a default label is used.
+ *
+ * @example
+ * // Example usage:
+ * const mediaItems = [
+ *   { url: 'https://example.com/image1.jpg', alt: 'Image 1 description' },
+ *   { url: 'https://example.com/image2.jpg', alt: 'Image 2 description' },
+ * ];
+ *
+ * <Carousel media={mediaItems} />
+ *
+ * @returns {JSX.Element} The rendered Carousel component.
+ */
 export default function Carousel({ media }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
