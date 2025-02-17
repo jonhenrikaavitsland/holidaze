@@ -1,5 +1,18 @@
 import useUIStore from "../../js/store/useUIStore";
 
+/**
+ * Renders an overlay component that covers the viewport and allows users to close open modals or alerts.
+ *
+ * The overlay dims the background using a semi-transparent dark layer and listens for click events to trigger the `closeAll` function
+ * from the UI store, effectively closing any open UI elements. Additionally, if the alert modal is not open, a close button is displayed.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <Overlay />
+ *
+ * @returns {JSX.Element} The rendered overlay component.
+ */
 export default function Overlay() {
   const { closeAll, isAlertModalOpen } = useUIStore();
 
