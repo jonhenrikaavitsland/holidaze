@@ -1,3 +1,23 @@
+/**
+ * Renders a "Back to Top" button that scrolls the window to the top when clicked.
+ *
+ * When the button is pressed, it triggers a scroll-to-top behavior using the browser's native scroll function.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * import BackToTopBtn from './BackToTopBtn';
+ *
+ * function App() {
+ *   return (
+ *     <div>
+ *       <BackToTopBtn />
+ *     </div>
+ *   );
+ * }
+ *
+ * @returns {JSX.Element} The rendered Back to Top button component.
+ */
 export default function BackToTopBtn() {
   const scrollToTop = () => {
     window.scrollTo({
