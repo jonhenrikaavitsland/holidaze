@@ -3,6 +3,30 @@ import locations from "../../data/locations/locations.json";
 import { useEffect, useRef, useState } from "react";
 import sanitizeInput from "../../js/sanitize/sanitizeInput";
 
+/**
+ * Renders a search box component that allows users to filter destinations.
+ *
+ * This component provides a search input and a grid of location buttons that users can interact with to filter or fetch destinations.
+ * When a search query is provided, it sanitizes the input and updates the fetch query; if the query is empty, it defaults to fetching all destinations.
+ * The component also manages the active state of location buttons.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.setFetchAll - Callback to set fetching all destinations.
+ * @param {Function} props.setFetchQuery - Callback to set the fetch query string.
+ * @param {string|null} props.activeButton - The currently active location button.
+ * @param {Function} props.setActiveButton - Callback to update the active location button.
+ *
+ * @example
+ * <SearchBox
+ *   setFetchAll={setFetchAll}
+ *   setFetchQuery={setFetchQuery}
+ *   activeButton={activeButton}
+ *   setActiveButton={setActiveButton}
+ * />
+ *
+ * @returns {JSX.Element} The rendered search box component.
+ */
 export default function SearchBox({
   setFetchAll,
   setFetchQuery,
@@ -55,6 +79,28 @@ export default function SearchBox({
   );
 }
 
+/**
+ * Renders the search bar section of the search box component.
+ *
+ * The SearchBar includes a search icon, an input field for entering the query, and a "go" button to trigger the search action.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.query - The current search query.
+ * @param {Function} props.setQuery - Callback to update the search query.
+ * @param {Function} props.handleSearch - Function to execute the search action.
+ * @param {object} props.hasCalledHandleLocationClick - A ref indicating if the "All Destinations" action has been triggered.
+ *
+ * @example
+ * <SearchBar
+ *   query={query}
+ *   setQuery={setQuery}
+ *   handleSearch={handleSearch}
+ *   hasCalledHandleLocationClick={hasCalledHandleLocationClick}
+ * />
+ *
+ * @returns {JSX.Element} The rendered search bar component.
+ */
 function SearchBar({
   query,
   setQuery,
@@ -78,6 +124,36 @@ function SearchBar({
   );
 }
 
+/**
+ * Renders a grid of location buttons for filtering destinations.
+ *
+ * This component displays a list of buttons for each available destination (plus an "All Destinations" button).
+ * Clicking a button triggers the appropriate fetch actions and updates the active button state.
+ * It also listens to the window scroll event to adjust button visibility on small screens.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string[]} props.locationData - An array of location names.
+ * @param {Function} props.handleLocationClick - Callback function to trigger when a location button is clicked (fetching all destinations).
+ * @param {React.MutableRefObject<boolean>} props.hasCalledHandleLocationClick - A ref to track if the "All Destinations" action has been triggered.
+ * @param {string|null} props.activeButton - The currently active location button.
+ * @param {Function} props.setActiveButton - Callback to update the active location button.
+ * @param {boolean} props.isAnyBtnActive - Indicates whether any location button is active.
+ * @param {Function} props.setIsAnyBtnActive - Callback to update the state of any active button.
+ *
+ * @example
+ * <Locations
+ *   locationData={locationData}
+ *   handleLocationClick={handleLocationClick}
+ *   hasCalledHandleLocationClick={hasCalledHandleLocationClick}
+ *   activeButton={activeButton}
+ *   setActiveButton={setActiveButton}
+ *   isAnyBtnActive={isAnyBtnActive}
+ *   setIsAnyBtnActive={setIsAnyBtnActive}
+ * />
+ *
+ * @returns {JSX.Element} The rendered grid of location buttons.
+ */
 function Locations({
   locationData,
   handleLocationClick,
@@ -138,6 +214,24 @@ function Locations({
   );
 }
 
+/**
+ * Renders an individual location button.
+ *
+ * This button displays the name of a destination and applies active styling if it is the selected location.
+ * On small screens, its visibility can be toggled based on the scroll state.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.content - The text content of the button (location name).
+ * @param {boolean} props.isActive - Indicates whether this button is currently active.
+ * @param {Function} props.handleClick - Callback function invoked when the button is clicked.
+ * @param {boolean} [props.hasScrolled=true] - Indicates whether the page has been scrolled, affecting button visibility on small screens.
+ *
+ * @example
+ * <LocationBtn content="Corralejo" isActive={true} handleClick={handleClick} />
+ *
+ * @returns {JSX.Element} The rendered location button.
+ */
 function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
   return (
     <button
@@ -149,6 +243,17 @@ function LocationBtn({ content, isActive, handleClick, hasScrolled = true }) {
   );
 }
 
+/**
+ * Renders a search icon used in the search bar.
+ *
+ * This component displays an image icon representing the search function.
+ *
+ * @component
+ * @example
+ * <Icon />
+ *
+ * @returns {JSX.Element} The rendered search icon.
+ */
 function Icon() {
   return (
     <div className="p-2.5 md:p-3.75 rounded-s-xl sm:collapse">
@@ -161,6 +266,22 @@ function Icon() {
   );
 }
 
+/**
+ * Renders the input field for the search bar.
+ *
+ * This component provides a text input for entering search queries and triggers the search action when the "Enter" key is pressed.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {string} props.query - The current search query.
+ * @param {Function} props.setQuery - Callback to update the search query.
+ * @param {Function} props.handleSearch - Function to execute the search action.
+ *
+ * @example
+ * <Field query={query} setQuery={setQuery} handleSearch={handleSearch} />
+ *
+ * @returns {JSX.Element} The rendered input field.
+ */
 function Field({ query, setQuery, handleSearch }) {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -181,6 +302,20 @@ function Field({ query, setQuery, handleSearch }) {
   );
 }
 
+/**
+ * Renders the "go" button for the search bar.
+ *
+ * Clicking this button triggers the search action defined by the handleSearch function.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.handleSearch - Function to execute when the "go" button is clicked.
+ *
+ * @example
+ * <Go handleSearch={handleSearch} />
+ *
+ * @returns {JSX.Element} The rendered "go" button.
+ */
 function Go({ handleSearch }) {
   return (
     <button
