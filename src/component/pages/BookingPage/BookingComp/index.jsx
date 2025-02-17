@@ -52,6 +52,7 @@ export default function BookingComp({
             src={data.media[0].url}
             alt={data.media[0].alt}
             className="rounded-tl-xl sm:rounded-t-xl object-fill max-h-96 w-full"
+            loading="lazy"
           />
         </div>
         <section className="px-5 flex flex-col items-center justify-center gap-2 lg:gap-3.75 py-5 md:py-7.5 w-full">
