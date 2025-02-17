@@ -54,7 +54,7 @@ export default function BookingOpen({
           <div className="flex gap-2.5 md:gap-5 lg:gap-7.5 text-lg-leading-none font-medium md:text-xl-leading-none lg:text-2xl-leading-none">
             <p>Booking value:</p>
             <div className="bg-white px-1 grow">
-              <span>€{dayCount * venueBooking.venue.price}</span>
+              <span>€{Math.round(dayCount * venueBooking.venue.price)}</span>
             </div>
           </div>
           <div className="flex gap-2.5 md:gap-5 lg:gap-7.5 leading-none md:text-lg-leading-none lg:text-xl-leading-none">
