@@ -1,3 +1,16 @@
+/**
+ * Renders a loader animation component.
+ *
+ * This component displays a custom CSS-based loader animation inspired by designs from loading.io (CC0 License).
+ * It consists of multiple animated div elements that create an ellipsis effect.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <Loader />
+ *
+ * @returns {JSX.Element} The rendered loader animation.
+ */
 export default function Loader() {
   /* Source https://loading.io/css/
   //  CC0 License which means we can use it freely */
@@ -10,4 +23,4 @@ export default function Loader() {
     </div>
   );
 }
-// loader is a custom class.
+// loader is a custom CSS class.
