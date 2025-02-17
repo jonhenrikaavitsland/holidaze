@@ -38,6 +38,21 @@ export default function VenuePage() {
     getData(`${apiUrl}${venuesPath}/${venueId}?_bookings=true`);
   }, [venueId]);
 
+  useEffect(() => {
+    document.title = `${data?.name} || Holidaze`;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content = `Welcome to ${data?.name}. Your exclusive venue in ${data.location?.city}. Holidaze provides the best and most exclusive venues in Fuerteventura. What are you waiting for. Book now. `;
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, [data]);
+
   if (isLoading || !data) {
     return (
       <div className="flex justify-center">
