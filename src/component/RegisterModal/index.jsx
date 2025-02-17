@@ -9,6 +9,28 @@ import { useForm } from "react-hook-form";
 import sanitizeEmail from "../../js/sanitize/sanitizeEmail";
 import sanitizeInput from "../../js/sanitize/sanitizeInput";
 
+/**
+ * Renders a modal registration form for new users to create an account.
+ *
+ * This component provides a form with fields for email, password, and name, which are validated using react-hook-form
+ * in conjunction with Yup (via the yupResolver). User inputs are sanitized before submission using custom sanitization functions.
+ * On form submission, it calls the `registerUser` API function to create a new account.
+ *
+ * If the current route indicates that the user is attempting to list a venue and they are not logged in, a flag is passed
+ * to the API to handle this case. Upon successful registration, the modal is closed and the login modal is opened.
+ *
+ * The component utilizes various custom hooks:
+ * - `useUIStore` for managing UI state and modal overlays.
+ * - `useAuthStore` for checking authentication status.
+ * - `useRegisterUser` for executing the registration API call.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <RegisterModal />
+ *
+ * @returns {JSX.Element} The rendered registration modal component.
+ */
 export default function RegisterModal() {
   const location = useLocation();
   const { checkAndCloseAll, openStateWithOverlay } = useUIStore();
