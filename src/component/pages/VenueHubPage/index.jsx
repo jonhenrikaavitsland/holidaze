@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "../../Heading";
 import LinkBtn from "./LinkBtn";
 import ViewVenuesObject from "./ViewVenuesObject";
@@ -15,6 +15,22 @@ export default function VenueHubPage() {
   const [viewNewVenue, setViewNewVenue] = useState(false);
   const [viewUpdateVenue, setUpdateVenue] = useState(false);
   const [currentVenue, setCurrentVenue] = useState({});
+
+  useEffect(() => {
+    document.title = "Venue HUB || Holidaze";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content =
+      "Welcome to your playground, this is were you manage your valuable assets, create new venues, view existing venues, view bookings and interact with your assets as you need. All made accessible to you here at Holidaze.";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
 
   function handleViewChange(view) {
     setViewWelcome(view === "welcome");
