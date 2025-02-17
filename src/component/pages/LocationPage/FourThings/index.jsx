@@ -15,6 +15,7 @@ export default function FourThings({ thing, index }) {
       <img
         src={thing.image.url}
         alt={thing.image.alt}
+        loading="lazy"
         className={`sm:mx-0 mx-5 md:mx-7.5 lg:mx-0 ${gridClasses} row-span-full md:max-h-110 md:object-cover lg:h-110 lg:w-165`}
       />
       {/* images used are referenced in /src/data/locations/locations.json, images may be altered to be 200kb or less or have had their DPI set to 72 */}
