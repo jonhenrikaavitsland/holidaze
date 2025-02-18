@@ -12,6 +12,27 @@ import Address from "./Address";
 import BtnCheckAvailability from "./BtnCheckAvailability";
 import Includes from "./Includes";
 
+/**
+ * Renders the Venue Page for Holidaze, providing detailed information about a specific venue.
+ *
+ * This component performs the following tasks:
+ * - Retrieves the venue ID from the URL parameters and fetches detailed venue data (including bookings) from the API.
+ * - Sets the document title and meta description based on the venue's name and location for improved SEO.
+ * - Displays a breadcrumb for navigation, a carousel of venue images, and the venue name as a heading.
+ * - Renders an "Includes" section showing available amenities and a button (BtnCheckAvailability) that scrolls
+ *   smoothly to the calendar section.
+ * - Shows the venue description, a map, and the venue's address.
+ * - Displays a calendar component for booking the venue and a CardLocation component for exploring the location.
+ *
+ * The component handles loading and error states by displaying a Loader while data is being fetched and an error message if necessary.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <VenuePage />
+ *
+ * @returns {JSX.Element} The rendered Venue Page component.
+ */
 export default function VenuePage() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,8 +89,6 @@ export default function VenuePage() {
       </div>
     );
   }
-
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 mb-10 md:mb-15 lg:mb-20">
