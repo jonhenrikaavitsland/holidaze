@@ -5,6 +5,25 @@ import ClosedCard from "../ClosedCard";
 import OpenCard from "../OpenCard";
 import VenueName from "../VenueName";
 
+/**
+ * Renders a booking card component that displays brief or detailed information about a booking.
+ *
+ * The component displays the booking index relative to the total number of bookings, the venue name, and formatted booking dates.
+ * It toggles between a closed view (using the ClosedCard component) and an open view (using the OpenCard component) when clicked.
+ * A button (BtnOpenClose) is also included to visually indicate the current state (open or closed) of the card.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.booking - The booking data object containing details such as dateFrom, dateTo, and venue information.
+ * @param {number} props.index - The current index of the booking in the list (used for display purposes).
+ * @param {number} props.maxNum - The total number of bookings (used for display purposes).
+ *
+ * @example
+ * // Example usage:
+ * <BookingCard booking={bookingData} index={0} maxNum={5} />
+ *
+ * @returns {JSX.Element} The rendered BookingCard component.
+ */
 export default function BookingCard({ booking, index, maxNum }) {
   const dateFromObj = new Date(booking.dateFrom);
   const dateToObj = new Date(booking.dateTo);
