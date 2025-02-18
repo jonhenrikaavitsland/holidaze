@@ -8,6 +8,26 @@ import CardVenue from "../../CardVenue";
 import CardLocation from "../../CardLocation";
 import BookingComp from "./BookingComp";
 
+/**
+ * Renders the Booking Page for Holidaze where users can view venue details, make a booking, and explore the destination.
+ *
+ * This component performs the following actions:
+ * - Sets the document title and meta description for SEO.
+ * - Fetches detailed venue data (including bookings) based on the venue ID from the URL parameters.
+ * - Extracts booking dates ("from" and "to") from the URL search parameters.
+ * - Displays a loader while data is being fetched.
+ * - Renders a breadcrumb and heading to guide the user.
+ * - Displays the booking component (BookingComp) which allows users to book the venue.
+ * - Once a booking is successfully reserved (indicated by `isReserved`), it shows additional venue information
+ *   including a venue card (CardVenue) and a location card (CardLocation) to help users explore the destination.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <BookingPage />
+ *
+ * @returns {JSX.Element} The rendered Booking Page component.
+ */
 export default function BookingPage() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
