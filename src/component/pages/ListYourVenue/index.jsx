@@ -58,12 +58,7 @@ export default function ListYourVenue() {
     if (isLoggedIn) {
       try {
         const { venueManager } = await updateProfile();
-        console.log("API RESPONSE:", venueManager);
         updateVenueManager(venueManager);
-        console.log(
-          "STORE isVenueManager:",
-          useAuthStore.getState().isVenueManager,
-        );
       } catch (err) {
         console.error("Error updating profile", err);
       }
