@@ -1,4 +1,37 @@
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders a button that displays venue information and triggers a scroll action to the calendar section.
+ *
+ * The button is divided into three sections:
+ * - A header displaying the venue's city (from `data.location.city`) on a dark background.
+ * - A middle section showing the price per night, formatted as "€{data.price} / Night".
+ * - A footer with a call-to-action text "check availability" on a deep blue background.
+ *
+ * When clicked, the button invokes the `scrollToCalendar` callback, allowing users to quickly jump to the calendar section.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.data - The venue data object.
+ * @param {object} props.data.location - The location details of the venue.
+ * @param {string} props.data.location.city - The city where the venue is located.
+ * @param {number|string} props.data.price - The price per night for the venue.
+ * @param {Function} props.scrollToCalendar - Callback function to scroll to the calendar section.
+ *
+ * @example
+ * // Example usage:
+ * const venueData = {
+ *   location: { city: "Fuerteventura" },
+ *   price: 120
+ * };
+ *
+ * <BtnCheckAvailability
+ *   data={venueData}
+ *   scrollToCalendar={() => window.scrollTo(0, document.getElementById('calendar').offsetTop)}
+ * />
+ *
+ * @returns {JSX.Element} The rendered button component.
+ */
 export default function BtnCheckAvailability({ data, scrollToCalendar }) {
   return (
     <div>
