@@ -8,6 +8,30 @@ import Heading from "../../Heading";
 import costaCalmaImage from "/src/data/locations/images/costa-calma_1.jpg";
 import reviewImage from "/src/data/listVenue/venue.jpg";
 
+/**
+ * Renders the "List Your Venue" page for Holidaze, enabling users to become Venue Managers.
+ *
+ * This component displays a visually rich page that guides users through the process of listing their venue.
+ * It includes:
+ * - A header section with a background image and an introductory heading.
+ * - A list of steps or features (rendered via the ListElement component) that explain how to list a venue.
+ * - A review section with an image and testimonial to build trust.
+ * - A call-to-action (CTA) section that prompts the user to update their profile and become a venue manager.
+ *
+ * When the CTA button is clicked:
+ * - If the user is logged in, the component calls the `updateProfile` function from the `useUpdateProfile` hook to update
+ *   the user's profile, then updates the venue manager status in the auth store.
+ * - If the user is not logged in, it triggers the registration modal by closing other UI elements and opening the login overlay.
+ *
+ * Additionally, the component sets the document title and meta description on mount for improved SEO.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <ListYourVenue />
+ *
+ * @returns {JSX.Element} The rendered "List Your Venue" page.
+ */
 export default function ListYourVenue() {
   const [data] = useState(listVenue);
   const { openStateWithOverlay, checkAndCloseAll } = useUIStore();
