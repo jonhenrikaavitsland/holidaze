@@ -2,6 +2,19 @@ import { Link } from "react-router-dom";
 import Heading from "../../Heading";
 import { useEffect } from "react";
 
+/**
+ * Renders a 404 Default Page for Holidaze when no matching route is found.
+ *
+ * This component displays a friendly "not found" message with an image, heading, and a link to navigate back to the home page.
+ * It also sets the document title and meta description for SEO purposes.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <DefaultPage />
+ *
+ * @returns {JSX.Element} The rendered 404 Default Page component.
+ */
 export default function DefaultPage() {
   // This is a 404 page
 
