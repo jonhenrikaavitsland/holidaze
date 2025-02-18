@@ -50,6 +50,42 @@ const imagesMapping = {
   "/src/data/locations/images/cotillo_5.jpg": cotillo_5,
 };
 
+/**
+ * Renders a "FourThings" section that displays a title, an image, and a description in a responsive grid layout.
+ *
+ * This component uses the provided `thing` object to display:
+ * - A heading with the title.
+ * - An image determined by mapping the `thing.image.url` to a locally imported image.
+ * - A paragraph with the description.
+ *
+ * The grid layout adjusts based on the index to determine the column positioning in larger viewports.
+ * The component is designed to be responsive and supports lazy loading of the image.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.thing - The object containing details to display.
+ * @param {string} props.thing.title - The title text to display as a heading.
+ * @param {object} props.thing.image - The image object for the thing.
+ * @param {string} props.thing.image.url - The URL key used to look up the corresponding image in the mapping.
+ * @param {string} props.thing.image.alt - The alternative text for the image.
+ * @param {string} props.thing.description - The descriptive text to display.
+ * @param {number} props.index - The index of the item, used to determine grid positioning.
+ *
+ * @example
+ * // Example usage:
+ * const thing = {
+ *   title: "Amazing Feature",
+ *   image: {
+ *     url: "/src/data/locations/images/corralejo_2.jpg",
+ *     alt: "A scenic view of Corralejo"
+ *   },
+ *   description: "Discover the unique aspects of our service in this feature."
+ * };
+ *
+ * <FourThings thing={thing} index={0} />
+ *
+ * @returns {JSX.Element} The rendered component displaying a title, an image, and a description.
+ */
 export default function FourThings({ thing, index }) {
   // Determine the grid positioning based on the index
   const gridClasses =
