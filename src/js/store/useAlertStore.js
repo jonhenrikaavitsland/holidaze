@@ -1,6 +1,20 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+/**
+ * A Zustand store for managing alert state with persistence.
+ *
+ * This store holds alert properties such as title, message, type, className, success status,
+ * and callback functions for "ok" and "cancel" actions. It provides methods to:
+ * - Set a new alert with `setAlert`.
+ * - Update just the message with `updateMessage`.
+ * - Update the message, type, and success status with `updateSuccess`.
+ * - Clear the current alert with `clearAlert`.
+ *
+ * The store is persisted using the key "alert".
+ *
+ * @module useAlertStore
+ */
 const useAlertStore = create(
   persist(
     (set) => ({
