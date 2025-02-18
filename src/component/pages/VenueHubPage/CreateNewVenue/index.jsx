@@ -15,6 +15,36 @@ import sanitizeAndValidateUrl from "../../../../js/sanitize/sanitizeAndValidateU
 import RatingElement from "../RatingElement";
 import updateVenueStore from "../../../../js/data/updateVenueStore";
 
+/**
+ * Renders the "Create New Venue" form allowing users to submit details for a new venue.
+ *
+ * This component integrates with react-hook-form and Yup for form handling and validation. It collects information about the venue,
+ * including its name, address, zip code, price, sleeps, location, description, media URLs, and available amenities (WiFi, breakfast,
+ * parking, and pets). Input values are sanitized using custom sanitization functions before being passed to the API.
+ *
+ * The component uses state management from the `useCreateVenueStore` for toggling amenities and resetting form state,
+ * and calls the `createVenue` API function (provided by `useCreateVenue`) to submit the new venue data. Upon successful submission,
+ * it switches the view back to the venues list by calling the provided `handleViewChange` callback.
+ *
+ * The form is structured with multiple fieldsets:
+ * - A fieldset for name and location details (venue name, address, location select, zip code).
+ * - A fieldset for accommodation details (price, rating via RatingElement, sleeps).
+ * - A fieldset for amenities (using CustomSwitch components for WiFi, breakfast, parking, and pets).
+ * - A fieldset for media URLs (rendered via the MediaElement component).
+ * - A fieldset for the venue description.
+ *
+ * Validation errors are displayed below the respective fields. The submit button is disabled while the creation API call is in progress.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.handleViewChange - Callback function to switch views. It is called with "venues" after a successful submission.
+ *
+ * @example
+ * // Example usage:
+ * <CreateNewVenue handleViewChange={(view) => console.log("Switching view to:", view)} />
+ *
+ * @returns {JSX.Element} The rendered "Create New Venue" form component.
+ */
 export default function CreateNewVenue({ handleViewChange }) {
   const {
     wifi,
