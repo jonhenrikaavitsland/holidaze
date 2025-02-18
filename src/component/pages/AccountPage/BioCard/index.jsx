@@ -1,6 +1,37 @@
 /* eslint-disable react/prop-types */
 import useUIStore from "../../../../js/store/useUIStore";
 
+/**
+ * Renders a bio card displaying a user's avatar, name, and email.
+ *
+ * The BioCard component shows the user's avatar as a circular background image,
+ * along with their name and email in a vertically stacked layout. It also includes
+ * an edit button that, when clicked, triggers the "Edit Profile" overlay by calling
+ * the `openStateWithOverlay` function from the UI store.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.user - The user object containing profile details.
+ * @param {object} props.user.avatar - The avatar object for the user.
+ * @param {string} props.user.avatar.url - The URL of the user's avatar image.
+ * @param {string} props.user.avatar.alt - The alternative text for the avatar image.
+ * @param {string} props.user.name - The name of the user.
+ * @param {string} props.user.email - The email address of the user.
+ *
+ * @example
+ * const user = {
+ *   avatar: {
+ *     url: "https://example.com/avatar.jpg",
+ *     alt: "User Avatar"
+ *   },
+ *   name: "Jane Doe",
+ *   email: "jane.doe@example.com"
+ * };
+ *
+ * <BioCard user={user} />
+ *
+ * @returns {JSX.Element} The rendered BioCard component.
+ */
 export default function BioCard({ user }) {
   const { openStateWithOverlay } = useUIStore();
   return (
