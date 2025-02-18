@@ -1,4 +1,40 @@
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders a section displaying various included amenities and features for a venue.
+ *
+ * This component creates an object `included` that maps venue details to descriptive strings,
+ * such as the venue's rating, maximum guest capacity, and available amenities like WiFi, breakfast,
+ * pets, and parking. It then iterates over these entries and, for each non-null value, renders an
+ * icon (using a warm logo image) alongside the descriptive text.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.data - The venue data object.
+ * @param {number|string} props.data.rating - The rating of the venue.
+ * @param {number|string} props.data.maxGuests - The maximum number of guests the venue can accommodate.
+ * @param {object} props.data.meta - An object containing boolean flags for amenities.
+ * @param {boolean} props.data.meta.wifi - Indicates if WiFi is available.
+ * @param {boolean} props.data.meta.breakfast - Indicates if breakfast is included.
+ * @param {boolean} props.data.meta.pets - Indicates if pets are welcome.
+ * @param {boolean} props.data.meta.parking - Indicates if parking is available.
+ *
+ * @example
+ * const venueData = {
+ *   rating: 4.5,
+ *   maxGuests: 6,
+ *   meta: {
+ *     wifi: true,
+ *     breakfast: false,
+ *     pets: true,
+ *     parking: true,
+ *   }
+ * };
+ *
+ * <Includes data={venueData} />
+ *
+ * @returns {JSX.Element} The rendered component displaying the included amenities.
+ */
 export default function Includes({ data }) {
   const included = {
     rating: `Rating of ${data.rating}`,
