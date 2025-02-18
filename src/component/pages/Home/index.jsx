@@ -12,6 +12,28 @@ import ViewMoreBtn from "./ViewMoreBtn";
 import { filterDataByLocation } from "../../../js/data/filterDataByLocation";
 import BackToTopBtn from "../../BackToTopBtn";
 
+/**
+ * Renders the Home page for Holidaze, the accommodation booking platform for Fuerteventura.
+ *
+ * This component manages the display of venues and locations based on user search queries and filter selections.
+ * It utilizes custom hooks and components to:
+ * - Set the document title and meta description for SEO purposes.
+ * - Fetch venue data via the `useAPISearch` hook based on search queries or a flag to fetch all venues.
+ * - Filter the fetched data based on an active location button using the `filterDataByLocation` function.
+ * - Paginate the displayed venues with a "load more" functionality.
+ * - Render a Hero section with a background image and a SearchBox for filtering.
+ * - Display a grid of venue cards (using `CardVenue`) if venues are available; otherwise, show location cards (using `CardLocation`).
+ * - Show a "Back to Top" button and a "Load More" button if there is more data to paginate.
+ *
+ * The component uses several state variables to manage data fetching, pagination, active filters, and display logic.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <Home />
+ *
+ * @returns {JSX.Element} The rendered Home page component.
+ */
 export default function Home() {
   const [fetchAll, setFetchAll] = useState(false);
   const [fetchQuery, setFetchQuery] = useState("");
