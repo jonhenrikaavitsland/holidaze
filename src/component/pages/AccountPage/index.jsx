@@ -6,6 +6,25 @@ import BioCard from "./BioCard";
 import BookingCard from "./BookingCard";
 import { useEffect } from "react";
 
+/**
+ * Renders the Account Page for the Holidaze application.
+ *
+ * This component displays the user's account information, including their bio (via the BioCard component)
+ * and a list of their upcoming bookings (via the BookingCard component). It uses custom hooks to retrieve the
+ * current authenticated user (from useAuthStore) and their bookings (from useUserBookings). While loading,
+ * a Loader is displayed; if an error occurs, an error message is shown; and if no bookings exist, an informational
+ * message is rendered.
+ *
+ * Additionally, the component sets the document title and meta description when it mounts to provide relevant
+ * information for SEO and browser tab labeling.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <AccountPage />
+ *
+ * @returns {JSX.Element} The rendered Account Page component.
+ */
 export default function AccountPage() {
   const { user } = useAuthStore();
   const { bookings, loading, error } = useUserBookings();
