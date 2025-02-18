@@ -13,6 +13,27 @@ import ViewMoreBtn from "../Home/ViewMoreBtn";
 import BackToTopBtn from "../../BackToTopBtn";
 import locationsData from "/src/data/locations/locations.json";
 
+/**
+ * Renders the Location Page for Holidaze, showcasing details and venues for a specific location.
+ *
+ * This component performs several tasks:
+ * - It extracts the `locationName` from the URL parameters and uses it to filter venue data.
+ * - It fetches venue data via the `useAPISearch` hook from the API endpoint and filters it using the `filterDataByLocation` function.
+ * - It manages pagination for the displayed venues, loading a set number of venues at a time.
+ * - It retrieves additional location details from a local JSON file and sets the document title and meta description for SEO.
+ * - It renders a header section containing a breadcrumb, heading, location card, and description for the location.
+ * - It displays a "4 Things to see and do" section, mapping over the location's `four-things` array to render each item using the `FourThings` component.
+ * - It displays available venues in a responsive grid using the `CardVenue` component.
+ * - If more venues are available than currently displayed, it shows a "View More" button (via `ViewMoreBtn`) and a "Back to Top" button.
+ * - It handles loading and error states appropriately with a `Loader` component and error messages.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <LocationPage />
+ *
+ * @returns {JSX.Element} The rendered Location Page component.
+ */
 export default function LocationPage() {
   const { locationName } = useParams();
   const [locationData, setLocationData] = useState(null);
