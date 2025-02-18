@@ -1,4 +1,23 @@
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders a select input for choosing a location as part of a form.
+ *
+ * This component is designed to work with react-hook-form. It displays a labeled select field
+ * with options for five different locations. If there is a validation error passed via the `error` prop,
+ * it displays the error message below the select field.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.register - The register function from react-hook-form for registering the select field.
+ * @param {object} props.error - The error object for the location field, which may contain a validation message.
+ *
+ * @example
+ * // Example usage with react-hook-form:
+ * <ChooseLocation register={register} error={errors.location} />
+ *
+ * @returns {JSX.Element} The rendered location select input.
+ */
 export default function ChooseLocation({ register, error }) {
   return (
     <li>
