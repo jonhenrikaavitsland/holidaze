@@ -5,6 +5,43 @@ import { apiKey, apiUrl, bookingPath } from "../../../../js/data/constants";
 import Heading from "../../../Heading";
 
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders the booking component UI for a venue, allowing users to book a stay.
+ *
+ * This component displays detailed booking information including:
+ * - Venue image, name, and location.
+ * - Booking details such as arrival and departure dates.
+ * - Reservation status (available/reserved) and a dropdown to select the number of guests (if not reserved).
+ *
+ * When the form is submitted, it sends a POST request to create a booking for the specified venue.
+ * If the booking is successful, it updates the reservation state by calling the provided `setIsReserved` callback.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.data - The venue data object.
+ * @param {string} props.data.id - The unique identifier of the venue.
+ * @param {Array<Object>} props.data.media - An array of media objects; the first element is used for the venue image.
+ * @param {object} props.data.location - The location details of the venue.
+ * @param {string} props.data.location.city - The city where the venue is located.
+ * @param {string} props.data.name - The name of the venue.
+ * @param {string} fromDate - The formatted check-in date.
+ * @param {string} toDate - The formatted check-out date.
+ * @param {boolean} isReserved - Indicates whether the venue is already reserved.
+ * @param {Function} setIsReserved - Callback function to update the reservation status.
+ *
+ * @example
+ * // Example usage:
+ * <BookingComp
+ *   data={venueData}
+ *   fromDate="01.01.2025"
+ *   toDate="05.01.2025"
+ *   isReserved={false}
+ *   setIsReserved={setReservationState}
+ * />
+ *
+ * @returns {JSX.Element} The rendered booking component UI.
+ */
 export default function BookingComp({
   data,
   fromDate,
