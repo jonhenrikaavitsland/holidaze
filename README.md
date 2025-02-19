@@ -19,6 +19,7 @@ Holidaze is a modern, responsive accommodation booking web application developed
 - [Design & Planning Resources](#design--planning-resources)
 - [Setup & Installation](#setup--installation)
 - [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
 ## Project Overview:
 
@@ -134,3 +135,7 @@ npm run build
 ## Acknowledgements
 
 _This project was developed as a part of my final exam in my two year frontend development education. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
+
+## Contact
+
+[Visit me on LinkedIn](https://www.linkedin.com/in/jon-henrik-aavitsland-abaa872b7/)
