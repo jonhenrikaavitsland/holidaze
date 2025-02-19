@@ -5,6 +5,61 @@ import BtnOpenClose from "../../../BtnOpenClose";
 import Heading from "../../../Heading";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 
+/**
+ * Renders a detailed venue object card that allows users to view and update venue information.
+ *
+ * This component displays a venue's information in a card format, including:
+ * - The venue name as a heading.
+ * - The venue's address, rating (displayed as icons), guest capacity, and available amenities (WiFi, parking, breakfast, and pets).
+ * - Additional details such as the nightly rate, a truncated description, and the creation date of the venue.
+ * - A list of media URLs associated with the venue.
+ *
+ * The card supports an expandable view:
+ * - When in the closed state, only basic information is shown.
+ * - When expanded (openState is true), more details (e.g., images list) and action buttons become visible.
+ *
+ * The component also provides two action buttons:
+ * - "update venue": Clears the venue creation state, sets the current venue in the parent state (via `setCurrentVenue`),
+ *   and triggers a view change to the update venue form.
+ * - "view venue": Navigates to the detailed venue view by calling the `handleClick` function.
+ *
+ * The state of the card (open or closed) is toggled by clicking anywhere on the card, and the current state is visually indicated
+ * by the `BtnOpenClose` component.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.venue - The venue object containing detailed information.
+ * @param {string} props.venue.id - The unique identifier of the venue.
+ * @param {string} props.venue.name - The name of the venue.
+ * @param {object} props.venue.location - The location details of the venue.
+ * @param {string} props.venue.location.address - The street address of the venue.
+ * @param {string} props.venue.location.zip - The zip code of the venue.
+ * @param {string} props.venue.location.city - The city where the venue is located.
+ * @param {string} props.venue.location.country - The country where the venue is located.
+ * @param {number} props.venue.rating - The numeric rating of the venue.
+ * @param {number} props.venue.maxGuests - The maximum number of guests the venue can accommodate.
+ * @param {object} props.venue.meta - An object containing boolean flags for amenities:
+ *   - {boolean} wifi - Indicates if WiFi is available.
+ *   - {boolean} parking - Indicates if parking is available.
+ *   - {boolean} breakfast - Indicates if breakfast is included.
+ *   - {boolean} pets - Indicates if pets are allowed.
+ * @param {number|string} props.venue.price - The nightly price of the venue.
+ * @param {string} props.venue.description - A description of the venue.
+ * @param {string} props.venue.created - The ISO date string when the venue was created.
+ * @param {Array<Object>} props.venue.media - An array of media objects, each with a `url` property.
+ * @param {Function} props.handleViewChange - Callback function to change the view (e.g., to "updateVenue" or "viewVenue").
+ * @param {Function} props.setCurrentVenue - Callback function to set the currently selected venue for further actions.
+ *
+ * @example
+ * // Example usage:
+ * <VenueObject
+ *   venue={venueData}
+ *   handleViewChange={(view) => console.log("Switching to", view)}
+ *   setCurrentVenue={(venue) => console.log("Selected venue:", venue)}
+ * />
+ *
+ * @returns {JSX.Element} The rendered venue object card component.
+ */
 export default function VenueObject({
   venue,
   handleViewChange,
