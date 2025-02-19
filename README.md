@@ -17,7 +17,6 @@ Holidaze is a modern, responsive accommodation booking web application developed
 - API Documentation
 - Design & Planning Resources
 - Setup & Installation
-- Required Links
 - Acknowledgements
 
 ## Project Overview:
@@ -121,3 +120,7 @@ The application should now be running on http://localhost:5173.
 ```bash
 npm run build
 ```
+
+## Acknowledgements
+
+_This project was developed as a part of my final exam in frontend development. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
