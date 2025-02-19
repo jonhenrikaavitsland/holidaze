@@ -6,6 +6,32 @@ import useProfileVenues from "../../../../js/api/useProfileVenues";
 import NoBookings from "../NoBookings";
 import SortBy from "../SortBy";
 
+/**
+ * Renders the ViewBookings component that displays the user's upcoming venue bookings.
+ *
+ * This component performs the following actions:
+ * - Fetches venue data with bookings using the `useProfileVenues` hook, which retrieves a paginated list of venues
+ *   and their associated bookings for the current user.
+ * - Accumulates and deduplicates booking objects by flattening the bookings from each venue and filtering out past bookings.
+ * - Automatically loads additional pages of venue data if more pages are available.
+ * - Provides two sorting options for the accumulated bookings:
+ *   - Sorting by date (i.e., by the booking's `dateFrom` in ascending order).
+ *   - Sorting by venue name (alphabetically) and then by booking date.
+ * - Uses the `SortBy` component to allow the user to select the sorting criterion.
+ * - Displays a heading that shows the total number of upcoming bookings.
+ * - Renders a loader while data is being fetched, an error message if fetching fails, or a "NoBookings" message if no bookings exist.
+ * - When bookings are available, the `BookingObjects` component is used to render the sorted list of booking objects.
+ *
+ * The component utilizes React hooks such as `useState`, `useEffect`, `useMemo`, and `useCallback` for data management,
+ * pagination, and sorting logic.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <ViewBookings />
+ *
+ * @returns {JSX.Element} The rendered ViewBookings component.
+ */
 export default function ViewBookings() {
   const [currentPage, setCurrentPage] = useState(1);
   const [accumulatedVenueBookings, setAccumulatedVenueBookings] = useState([]);
@@ -85,13 +111,13 @@ export default function ViewBookings() {
     setSortedBookings(sortBookings);
   }, [sortBookings]);
 
-  console.log("Sorted Upcoming Bookings:", sortedVenueBookings);
-  console.log("Sorted By Venue Bookings:", sortedByVenueBookings);
-  console.log("META:", meta);
-  console.log(loading, error);
-
   return (
     <section className="flex flex-col gap-5 md:gap-7.5 lg:gap-10 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
+      {error && (
+        <p className="text-center font-bold text-custom-coral md:text-lg lg:text-xl">
+          {error.message}
+        </p>
+      )}
       {venues.length > 0 && (
         <Heading level="2" className="text-center text-custom-coral">
           bookings (
