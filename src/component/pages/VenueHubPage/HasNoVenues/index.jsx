@@ -3,6 +3,28 @@ import Heading from "../../../Heading";
 import CreateNewBtn from "../CreateNewBtn";
 import Paragraph from "../Paragraph";
 
+/**
+ * Renders a call-to-action section for users who have not yet listed any venues on Holidaze.
+ *
+ * This component displays a friendly message encouraging users to start listing their venue, along with
+ * several compelling reasons to join the platform. It uses the following subcomponents:
+ * - **Heading**: To display prominent section headings.
+ * - **Paragraph**: To list benefits of listing a venue on Holidaze.
+ * - **CreateNewBtn**: A button that triggers a view change to the venue creation form.
+ *
+ * The component is designed to motivate users by explaining the benefits of listing their property,
+ * and it concludes with a call-to-action encouraging users to get started.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.handleViewChange - Callback function to change the view, typically to the "new venue" creation form.
+ *
+ * @example
+ * // Example usage:
+ * <HasNoVenues handleViewChange={(view) => console.log("Switching to", view)} />
+ *
+ * @returns {JSX.Element} The rendered section encouraging the user to list their venue.
+ */
 export default function HasNoVenues({ handleViewChange }) {
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-10 mb-10 md:mb-15 lg:mb-20">
