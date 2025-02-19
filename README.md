@@ -10,14 +10,14 @@ Holidaze is a modern, responsive accommodation booking web application developed
 
 ## Table of Contents:
 
-- Project Overview
-- Project Goals
-- Features & User Stories
-- Technical Requirements & Restrictions
-- API Documentation
-- Design & Planning Resources
-- Setup & Installation
-- Acknowledgements
+- [Project Overview](#project-overview)
+- [Project Goals](#project-goals)
+- [Features & User Stories](#features--user-stories)
+- [Technical Requirements & Restrictions](#technical-requirements--restrictions)
+- [API Documentation](#api-documentation)
+- [Design & Planning Resources](#design--planning-resources)
+- [Setup & Installation](#setup--installation)
+- [Acknowledgements](#acknowledgements)
 
 ## Project Overview:
 
