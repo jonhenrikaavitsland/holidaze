@@ -60,7 +60,7 @@ export default function Footer() {
           </Link>
         </li>
       </ul>
-      <div className="border-t-2 border-natural-charcoal/20 w-dvw pt-5">
+      <div className="border-t-2 border-natural-charcoal/20 w-full pt-5">
         <span>© Holidaze 2025</span>
       </div>
     </footer>
