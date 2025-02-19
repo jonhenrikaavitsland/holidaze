@@ -14,6 +14,7 @@ Holidaze is a modern, responsive accommodation booking web application developed
 - [Project Goals](#project-goals)
 - [Features & User Stories](#features--user-stories)
 - [Technical Requirements & Restrictions](#technical-requirements--restrictions)
+- [Configured With](#configured-with)
 - [API Documentation](#api-documentation)
 - [Design & Planning Resources](#design--planning-resources)
 - [Setup & Installation](#setup--installation)
@@ -70,6 +71,15 @@ The client’s requirements, defined through user stories, include:
 - **Design & Planning:** Utilize approved design and planning applications (e.g., Adobe XD, Figma, Sketch for design; Trello or GitHub Projects for planning).
   - Planning tool used is Github Projects while Design work has been utilizing Figma.
 
+## Configured with:
+
+- Vite
+- Prettier
+- Eslint
+- PostCSS
+- Lint-Staged
+- Husky
+
 ## API Documentation
 
 All backend functionality is managed through the existing API. You can find the detailed API endpoints and documentation under Holidaze in the [Noroff API Documentation](https://docs.noroff.dev/docs/v2). Additionally, an [API Swagger](https://v2.api.noroff.dev/docs/static/index.html) is available for quick reference.
@@ -123,4 +133,4 @@ npm run build
 
 ## Acknowledgements
 
-_This project was developed as a part of my final exam in my twp year frontend development education. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
+_This project was developed as a part of my final exam in my two year frontend development education. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
