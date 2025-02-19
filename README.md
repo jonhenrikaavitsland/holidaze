@@ -59,3 +59,14 @@ The client’s requirements, defined through user stories, include:
   - A registered user may log in.
   - A registered user may update their avatar.
   - A registered user may log out.
+
+## Technical Requirements & Restrictions
+
+- **JavaScript Framework:** Must use an approved framework (e.g., React v16 or higher).
+  - The project uses React v19
+- **CSS Framework:** Must use an approved framework (e.g., Bootstrap v5+, Tailwind v3+, MUI v5+, Styled Components, or CSS Modules).
+  - The project uses Tailwind v3.4.17
+- **Hosting:** The application must be hosted on an approved static host (e.g., GitHub Pages or Netlify).
+  - [![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys)
+- **Design & Planning:** Utilize approved design and planning applications (e.g., Adobe XD, Figma, Sketch for design; Trello or GitHub Projects for planning).
+  - Planning tool used is Github Projects while Design work has been utilizing Figma.
