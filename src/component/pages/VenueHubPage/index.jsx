@@ -8,6 +8,31 @@ import ViewBookings from "./ViewBookings";
 import UpdateVenue from "./UpdateVenue";
 import Buttons from "./Buttons";
 
+/**
+ * Renders the Venue HUB page, a central dashboard for venue managers to manage their venues and bookings.
+ *
+ * This component provides a multi-view interface that allows users to:
+ * - View a welcome message with introductory information and options (default view).
+ * - View upcoming bookings via the "view bookings" view.
+ * - View a list of existing venues via the "view venues" view.
+ * - Create a new venue via the "new venue" view.
+ * - Update an existing venue via the "update venue" view.
+ *
+ * The view is controlled by several state variables (`viewWelcome`, `viewBooking`, `viewVenues`, `viewNewVenue`, and `viewUpdateVenue`)
+ * and is changed using the `handleViewChange` callback. The component also manages the currently selected venue (`currentVenue`)
+ * for updating purposes.
+ *
+ * Additionally, it sets the document title and meta description upon mounting for SEO purposes.
+ *
+ * On large screens, a sidebar with navigation buttons (implemented with `LinkBtn` components) is displayed for quick access to the different views.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <VenueHubPage />
+ *
+ * @returns {JSX.Element} The rendered Venue HUB page.
+ */
 export default function VenueHubPage() {
   const [viewWelcome, setViewWelcome] = useState(true);
   const [viewBooking, setViewBooking] = useState(false);
