@@ -1,6 +1,21 @@
 import { useEffect, useState } from "react";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 
+/**
+ * Renders a rating element that allows users to adjust the venue rating interactively.
+ *
+ * This component displays the current rating as a number along with a corresponding number of icons.
+ * Users can increase or decrease the rating using the plus and minus buttons. The rating is bounded
+ * between a minimum value of 1 and a maximum value of 5. Whenever the rating changes, it updates the
+ * venue store state via the `setRating` function from `useCreateVenueStore`.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <RatingElement />
+ *
+ * @returns {JSX.Element} The rendered rating element, including interactive buttons and icons representing the current rating.
+ */
 export default function RatingElement() {
   const { rating, setRating } = useCreateVenueStore();
   const [iconCount, setIconCount] = useState(rating);
