@@ -91,10 +91,10 @@ All backend functionality is managed through the existing API. You can find the 
 
 ## Design & Planning Resources
 
-- **Design Prototype:** [View Prototype]()
-- **Style Guide:** [View Style Guide]()
-- **Gantt Chart:** [View Gantt Chart]()
-- **Kanban Board:** [View Kanban Board]()
+- **Design Prototype:** [View Prototype](https://www.figma.com/design/evk4gdXDt84Zkgu7s9xrL2/Exam25?node-id=0-1&t=K6imwfnxqqs76QXF-1)
+- **Style Guide:** [View Style Guide](https://www.figma.com/design/evk4gdXDt84Zkgu7s9xrL2/Exam25?node-id=381-6443&t=K6imwfnxqqs76QXF-1)
+- **Gantt Chart:** [View Gantt Chart](https://github.com/users/jonhenrikaavitsland/projects/4/views/1)
+- **Kanban Board:** [View Kanban Board](https://github.com/users/jonhenrikaavitsland/projects/4/views/4)
 
 ![image](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
