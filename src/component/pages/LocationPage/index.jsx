@@ -180,12 +180,16 @@ export default function LocationPage() {
           )}
         </div>
         <div className="flex justify-center">
-          {shownLocations && arrangedVenues.length < shownLocations.length && (
-            <div className="flex flex-col gap-5">
-              <ViewMoreBtn data={shownLocations} paginateData={paginateData} />
-              <BackToTopBtn />
-            </div>
-          )}
+          <div className="flex flex-col">
+            {shownLocations &&
+              arrangedVenues.length < shownLocations.length && (
+                <ViewMoreBtn
+                  data={shownLocations}
+                  paginateData={paginateData}
+                />
+              )}
+            {shownLocations && arrangedVenues.length > 10 && <BackToTopBtn />}
+          </div>
         </div>
       </section>
     </div>
