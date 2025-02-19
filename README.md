@@ -35,3 +35,27 @@ This project highlights my ability to design and develop a full-featured fronten
 - **User Experience & Design:** Deliver an intuitive and responsive UI that enhances user engagement.
 - **API Integration:** Seamlessly integrate with an existing API to manage all booking functionalities.
 - **Technical Proficiency:** Utilize approved technologies and tools as specified in the project brief.
+
+## Features & User Stories:
+
+The client’s requirements, defined through user stories, include:
+
+- **Venue Browsing & Searching:**
+  - A user may view a list of venues.
+  - A user may search for a specific venue.
+  - A user may view a specific venue page by id.
+  - A user may view a calendar with available dates for a venue.
+- **Customer Functionality:**
+  - A user with a stud.noroff.no email may register as a customer.
+  - A registered customer may create a booking at a venue.
+  - A registered customer may view their upcoming bookings.
+- **Venue Manager Functionality:**
+  - A user with a stud.noroff.no email may register as a venue manager.
+  - A registered venue manager may create a venue.
+  - A registered venue manager may update a venue they manage.
+  - A registered Venue manager may delete a Venue they manage
+  - A registered venue manager may view bookings for a venue they manage.
+- **User Account Management:**
+  - A registered user may log in.
+  - A registered user may update their avatar.
+  - A registered user may log out.
