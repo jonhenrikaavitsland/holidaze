@@ -26,7 +26,7 @@ export default function BackToTopBtn() {
   };
 
   return (
-    <div className="flex justify-center leading-none font-serif ">
+    <div className="flex justify-center leading-none font-serif mt-5">
       <button
         className="py-2.5 capitalize hover:font-bold"
         onClick={scrollToTop}
