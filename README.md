@@ -26,3 +26,10 @@ Holidaze is an accommodation booking platform created for a newly launched servi
 2. **Admin Side:** Users with a stud.noroff.no email can register as venue managers, create/update/delete venues, and manage bookings.
 
 This project highlights my ability to design and develop a full-featured frontend application using modern web development practices.
+
+## Project Goals:
+
+- **Demonstrate Development Capabilities:** Showcase comprehensive frontend development skills acquired over the last two years.
+- **User Experience & Design:** Deliver an intuitive and responsive UI that enhances user engagement.
+- **API Integration:** Seamlessly integrate with an existing API to manage all booking functionalities.
+- **Technical Proficiency:** Utilize approved technologies and tools as specified in the project brief.
