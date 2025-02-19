@@ -1,6 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
+/**
+ * Renders a dynamic list of input fields for media URLs, supporting up to 10 entries.
+ *
+ * This component is designed to integrate with react-hook-form. It initializes its state by "watching" the current values of
+ * the media fields (from `media0` to `media9`) using the provided `watch` function, and it calculates how many input fields
+ * should initially be displayed based on which fields are populated. If the last visible input field is non-empty and there are
+ * fewer than 10 inputs, an additional empty input is added to allow the user to enter a new media URL.
+ *
+ * As the user types in an input field, the corresponding value is updated in the component state, and any validation errors for that field,
+ * provided via the `error` prop, are displayed below the input.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.register - The register function from react-hook-form used to register each input field.
+ * @param {Function} props.watch - The watch function from react-hook-form used to obtain the current values of the media fields.
+ * @param {object} [props.error] - An object containing validation errors for the media fields (e.g., errors.media0, errors.media1, etc.).
+ *
+ * @example
+ * // Example usage with react-hook-form:
+ * <MediaElement register={register} watch={watch} error={errors} />
+ *
+ * @returns {JSX.Element} A JSX element containing the list of media input fields.
+ */
 export default function MediaElement(props) {
   const getInitialInputs = () => {
     const defaults = Array.from(
