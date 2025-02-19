@@ -74,3 +74,10 @@ The client’s requirements, defined through user stories, include:
 ## API Documentation
 
 All backend functionality is managed through the existing API. You can find the detailed API endpoints and documentation under Holidaze in the [Noroff API Documentation](https://docs.noroff.dev/docs/v2). Additionally, an [API Swagger](https://v2.api.noroff.dev/docs/static/index.html) is available for quick reference.
+
+## Design & Planning Resources
+
+- **Design Prototype:** [View Prototype]()
+- **Style Guide:** [View Style Guide]()
+- **Gantt Chart:** [View Gantt Chart]()
+- **Kanban Board:** [View Kanban Board]()
