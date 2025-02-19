@@ -1,6 +1,26 @@
 import Heading from "../../../Heading";
 import Paragraph from "../Paragraph";
 
+/**
+ * Renders an informational page for venue managers when no bookings have been made yet.
+ *
+ * This component displays a series of sections that:
+ * - Reassure the venue manager that bookings are on the way.
+ * - Provide tips to enhance the venue profile, such as adding high-quality photos,
+ *   writing an engaging description, setting competitive pricing, listing key amenities, and collecting reviews.
+ * - Conclude with a motivational message encouraging collaboration to make the venue a must-visit destination.
+ *
+ * The component makes use of the following subcomponents:
+ * - **Heading**: For displaying section headings.
+ * - **Paragraph**: For displaying tip details with emphasized span content.
+ *
+ * @component
+ * @example
+ * // Example usage:
+ * <NoBookings />
+ *
+ * @returns {JSX.Element} The rendered informational page when there are no bookings.
+ */
 export default function NoBookings() {
   return (
     <div className="flex flex-col gap-10 md:gap-15 lg:gap-20 mb-10 md:mb-15 lg:mb-20">
