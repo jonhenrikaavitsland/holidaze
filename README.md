@@ -138,4 +138,4 @@ _This project was developed as a part of my final exam in my two year frontend d
 
 ## Contact
 
-![image](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white) [Visit me on LinkedIn](https://www.linkedin.com/in/jon-henrik-aavitsland-abaa872b7/)
+[![image](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jon-henrik-aavitsland-abaa872b7/)
