@@ -1,4 +1,30 @@
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders a custom toggle switch component.
+ *
+ * This component displays a switch styled as a sliding toggle, allowing users to toggle an option on or off.
+ * It accepts an `isOn` prop to indicate the current state and an `onToggle` callback that is triggered when the switch is activated.
+ * The component supports keyboard accessibility (toggling with the Enter or Space keys) and displays a label above the switch.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {boolean} props.isOn - Indicates whether the switch is currently on.
+ * @param {Function} props.onToggle - Callback function to be called when the switch is toggled.
+ * @param {string} props.id - A unique identifier for the switch, used for accessibility.
+ * @param {string} props.label - The text label displayed above the switch.
+ *
+ * @example
+ * // Example usage:
+ * <CustomSwitch
+ *   isOn={true}
+ *   onToggle={() => console.log("Toggled")}
+ *   id="wifi-switch"
+ *   label="WiFi"
+ * />
+ *
+ * @returns {JSX.Element} The rendered custom switch component.
+ */
 export default function CustomSwitch({ isOn, onToggle, id, label }) {
   return (
     <li>
