@@ -1,4 +1,21 @@
 /* eslint-disable react/prop-types */
+
+/**
+ * Renders a "Sort By" control that allows users to select a sorting criterion.
+ *
+ * This component displays a form with a labeled select dropdown. When the user changes the selected option,
+ * the provided `setSortBy` callback is called with the new value, allowing the parent component to update the sorting order.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.setSortBy - Callback function to update the sort criterion based on the user's selection.
+ *
+ * @example
+ * // Example usage:
+ * <SortBy setSortBy={(value) => console.log("Sort by:", value)} />
+ *
+ * @returns {JSX.Element} The rendered sort-by control.
+ */
 export default function SortBy({ setSortBy }) {
   return (
     <div>
