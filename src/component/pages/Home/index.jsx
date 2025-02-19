@@ -168,12 +168,12 @@ export default function Home() {
         )}
       </div>
       <div className="flex justify-center">
-        {shownData && arrangedVenues.length < shownData.length && (
-          <div className="flex flex-col gap-5">
+        <div className="flex flex-col">
+          {shownData && arrangedVenues.length < shownData.length && (
             <ViewMoreBtn data={shownData} paginateData={paginateData} />
-            <BackToTopBtn />
-          </div>
-        )}
+          )}
+          {shownData && arrangedVenues.length > 10 && <BackToTopBtn />}
+        </div>
       </div>
     </div>
   );
