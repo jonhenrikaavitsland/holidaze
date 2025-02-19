@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useUIStore from "../../js/store/useUIStore";
 
 /**
@@ -15,6 +16,11 @@ import useUIStore from "../../js/store/useUIStore";
  */
 export default function Overlay() {
   const { closeAll, isAlertModalOpen } = useUIStore();
+
+  // Scroll to the top when the component mounts.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div
