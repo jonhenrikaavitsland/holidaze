@@ -81,3 +81,43 @@ All backend functionality is managed through the existing API. You can find the 
 - **Style Guide:** [View Style Guide]()
 - **Gantt Chart:** [View Gantt Chart]()
 - **Kanban Board:** [View Kanban Board]()
+
+## Setup & Installation
+
+To run the project locally, follow these steps:
+
+1. **Clone the Repository:**
+
+```bash
+git clone git@github.com:jonhenrikaavitsland/holidaze.git
+cd holidaze
+```
+
+2. **Install Dependencies:**
+
+```bash
+npm install
+```
+
+3. **Configure Environment Variables:**
+
+Create a .env file in the root directory and add any required environment variables as specified in the documentation (e.g., API base URL):
+
+```env
+VITE_API_KEY=<YOUR_API_KEY>
+VITE_API_URL=<YOUR_API_BASE_URL>
+```
+
+4. **Run the Application:**
+
+```bash
+npm run dev
+```
+
+The application should now be running on http://localhost:5173.
+
+5. **Build for production:**
+
+```bash
+npm run build
+```
