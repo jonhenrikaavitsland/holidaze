@@ -4,7 +4,7 @@
 
 ![image](/public/screenshot.jpg)
 
-Holidaze is a modern, responsive accommodation booking web application developed as part of my final exam project in frontend development. This application serves both a customer-facing side—allowing users to browse and book holiday venues—and an admin-facing side—enabling venue managers to register, manage venues, and handle bookings.
+[Holidaze](https://holidaze-fuerteventura.netlify.app/) is a modern, responsive accommodation booking web application developed as part of my final exam project in frontend development. This application serves both a customer-facing side—allowing users to browse and book holiday venues—and an admin-facing side—enabling venue managers to register, manage venues, and handle bookings.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys)
 
@@ -72,12 +72,14 @@ The client’s requirements, defined through user stories, include:
 - **Design & Planning:** Utilize approved design and planning applications (e.g., Adobe XD, Figma, Sketch for design; Trello or GitHub Projects for planning).
   - Planning tool used is Github Projects while Design work has been utilizing Figma.
 
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![image](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
 ## Configured with:
 
-- Vite
-- Prettier
-- Eslint
-- PostCSS
+- ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+- ![image](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+- ![image](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
+- ![image](https://img.shields.io/badge/postcss-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white)
 - Lint-Staged
 - Husky
 
@@ -91,6 +93,8 @@ All backend functionality is managed through the existing API. You can find the 
 - **Style Guide:** [View Style Guide]()
 - **Gantt Chart:** [View Gantt Chart]()
 - **Kanban Board:** [View Kanban Board]()
+
+![image](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 ## Setup & Installation
 
