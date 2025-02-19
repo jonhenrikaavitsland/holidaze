@@ -2,11 +2,11 @@
 
 ## An App for Booking Accommodation
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys) ![Repo Size](https://img.shields.io/github/repo-size/Sulstice/global-chem) [![Downloads](https://pepy.tech/badge/global-chem)](https://pepy.tech/project/global-chem)
+
 ![image](/public/screenshot.jpg)
 
 [Holidaze](https://holidaze-fuerteventura.netlify.app/) is a modern, responsive accommodation booking web application developed as part of my final exam project in frontend development. This application serves both a customer-facing side—allowing users to browse and book holiday venues—and an admin-facing side—enabling venue managers to register, manage venues, and handle bookings.
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys)
 
 ## Table of Contents:
 
