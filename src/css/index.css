@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Nosifer';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/src/fonts/Nosifer/Nosifer-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-LightItalic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-BoldItalic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/src/fonts/Poppins/Poppins-Black.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/src/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+  }
+
+  body {
+    @apply text-natural-charcoal scroll-smooth;
+  }
+}
+
+@layer components {
+  .loader {
+    @apply box-border absolute top-loader w-4 h-4 rounded-full bg-current;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar styles */
+  /* Only works in some browsers */
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 50px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #33333350;
+    border-radius: 4px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: #33333320;
+  }
+
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #333;
+  }
+}

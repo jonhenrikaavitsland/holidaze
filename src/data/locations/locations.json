@@ -1,0 +1,357 @@
+[
+  {
+    "name": "Corralejo",
+    "displayImg": {
+      "url": "/src/data/locations/images/corralejo_1.jpg",
+      "alt": "a view of corralejo from a window",
+      "source": {
+        "author": "Tom Podmore",
+        "author-url": "https://unsplash.com/@tompodmore86",
+        "image-url": "https://unsplash.com/photos/a-view-of-a-city-from-a-window-6_6TCHPQeVk"
+      }
+    },
+    "description": "Corralejo is a charming town located on the northern tip of Fuerteventura, one of Spain's Canary Islands. It is renowned for its stunning beaches, turquoise waters, and vibrant atmosphere. Originally a fishing village, Corralejo has grown into a popular tourist destination, offering a mix of natural beauty, adventure, and local culture. Expect a laid-back vibe with opportunities for watersports, excursions to nearby islands, and sampling delicious Canarian cuisine.",
+    "four-things": [
+      {
+        "id": 1,
+        "title": "Visit Corralejo Natural Park",
+        "description": "Explore this vast expanse of golden sand dunes and crystal-clear waters. It's perfect for a relaxing walk, sunbathing, or kite surfing. The park's unique desert-like landscape is a must-see.",
+        "image": {
+          "url": "/src/data/locations/images/corralejo_2.jpg",
+          "alt": "corralejo natural park",
+          "source": {
+            "author": "Tamara Kulikova",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/Category:Dunas_de_Corralejo#/media/File:Dunas_de_Corralejo,_Barj%C3%A1n.jpg"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Take a Day Trip to Isla de Lobos",
+        "description": "Just a short ferry ride away, Isla de Lobos is a small, uninhabited island offering pristine beaches, hiking trails, and excellent snorkeling opportunities. It's a haven for nature enthusiasts.",
+        "image": {
+          "url": "/src/data/locations/images/corralejo_3.jpg",
+          "alt": "ferry ride to isla de lobos",
+          "source": {
+            "author": "Mike Peel",
+            "author-url": "https://www.mikepeel.net/",
+            "image-url": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_114.jpg"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Discover the Old Town of Corralejo",
+        "description": "Stroll through the narrow streets of the old town to experience its traditional charm. Enjoy local shops, bars, and restaurants offering authentic Canarian dishes.",
+        "image": {
+          "url": "/src/data/locations/images/corralejo_4.jpg",
+          "alt": "charming restaurant in old town of corralejo",
+          "source": {
+            "author": "Bengt Nyman",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Corralejo_2016_08.jpg"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Enjoy Watersports",
+        "description": "Corralejo is a hotspot for surfing, windsurfing, and paddleboarding due to its consistent waves and winds. Many schools and rental shops cater to beginners and experts alike.",
+        "image": {
+          "url": "/src/data/locations/images/corralejo_5.jpg",
+          "alt": "water sport in corralejo",
+          "source": {
+            "author": "mroszewski",
+            "author-url": "https://web.archive.org/web/20161016191138/http://www.panoramio.com/photo/41227492",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Corralejo_-_panoramio_-_mroszewski_(8).jpg"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Costa Calma",
+    "displayImg": {
+      "url": "/src/data/locations/images/costa-calma_1.jpg",
+      "alt": "coastline of costa calma",
+      "source": {
+        "author": "dirkvorderstrasse",
+        "author-url": "https://www.flickr.com/photos/107086296@N08/51495115332/",
+        "image-url": "https://commons.wikimedia.org/wiki/File:Luftbild_Costa_Calma_mit_Strand_und_Hotels.jpg"
+      }
+    },
+    "description": "Costa Calma is a tranquil resort town on the southern coast of Fuerteventura, known for its long sandy beaches and serene atmosphere. It is a gateway to the famous Jandía Peninsula and attracts tourists seeking relaxation and watersports. Expect a mix of family-friendly resorts, palm-lined streets, and opportunities for kitesurfing and beach exploration. The town is ideal for those looking for a laid-back holiday experience with access to beautiful nature. Expect stunning beaches with opportunities for sunbathing, swimming, and kiteboarding. Also expect a laid-back vibe suited for relaxation and family vacations as well as access to nature and scenic landscapes, perfect for exploring.",
+    "four-things": [
+      {
+        "id": 1,
+        "title": "Relax at Playa de Sotavento",
+        "description": "One of the most famous beaches in the Canary Islands, Sotavento Beach offers a stunning stretch of golden sand and shallow waters, perfect for swimming or enjoying the breathtaking scenery. It’s also a hotspot for windsurfing and kitesurfing.",
+        "image": {
+          "url": "/src/data/locations/images/costa-calma_2.jpg",
+          "alt": "the famous beach playa de sotavento",
+          "source": {
+            "author": "Javier Branas",
+            "author-url": "https://web.archive.org/web/20161010204019/http://www.panoramio.com/photo/5356385",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Playa_de_sotavento.Fuerteventura_-_panoramio.jpg"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Visit Jandía Natural Park",
+        "description": "Explore this vast protected area, home to rugged volcanic landscapes, unique flora and fauna, and hiking trails. A visit to the iconic Pico de la Zarza, the island's highest peak, is highly recommended.",
+        "image": {
+          "url": "/src/data/locations/images/costa-calma_3.jpg",
+          "alt": "cacti in the natural park",
+          "source": {
+            "author": "dronepicr",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Cacti_in_the_Natural_Park_of_Jandia_on_Fuerteventura,_Canary_Islands_(51124140725).jpg"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Explore Oasis Wildlife Fuerteventura",
+        "description": "Located a short drive from Costa Calma, this large animal park features exotic wildlife, botanical gardens, and interactive experiences, making it an excellent outing for families.",
+        "image": {
+          "url": "/src/data/locations/images/costa-calma_4.jpg",
+          "alt": "Suricates at oasis wildlife park",
+          "source": {
+            "author": "H. Zell",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Suricata_suricatta_-_Oasis_Park_-_Fuerteventura.jpg"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Discover Ajuy Caves",
+        "description": "Visit the picturesque fishing village of Ajuy and its dramatic volcanic caves. The black sand beach and natural geological formations make for a unique excursion.",
+        "image": {
+          "url": "/src/data/locations/images/costa-calma_5.jpg",
+          "alt": "the caves",
+          "source": {
+            "author": "Frank Vincentz",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:P%C3%A1jara_-_Ajuy_-_Monumento_Natural_-_Caleta_Negra_01_ies.jpg"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Caleta de Fuste",
+    "displayImg": {
+      "url": "/src/data/locations/images/caleta_1.jpg",
+      "alt": "aerial photo of caleta de fuste",
+      "source": {
+        "author": "Sebaso",
+        "author-url": "",
+        "image-url": "https://commons.wikimedia.org/wiki/File:20141218_-_Castillo_Caleta_de_Fuste_-_Beach_-_Air_Photo_by_sebaso.jpg"
+      }
+    },
+    "description": "Caleta de Fuste, also known as El Castillo, is a family-friendly resort town located on Fuerteventura’s east coast. Renowned for its sheltered bay and golden sandy beaches, it’s a great destination for those seeking a relaxed and convenient holiday. With a marina, a golf course, and a range of restaurants and bars, the town caters to tourists looking for comfort and leisure. Expect calm, shallow waters ideal for swimming and water activities. Also expect a modern resort vibe with plenty of shops, restaurants and amenities, family-friendly activities like mini-golf, boat trips and safe beaches. The location is convenient near the airport and other attractions. ",
+    "four-things": [
+      {
+        "id": 1,
+        "title": "Enjoy Caleta de Fuste Beach",
+        "description": "Relax on this crescent-shaped beach with calm waters, perfect for swimming and sunbathing. The nearby promenade offers cafes and restaurants with ocean views.",
+        "image": {
+          "url": "/src/data/locations/images/caleta_2.jpg",
+          "alt": "stacked sunbeds on a sandy beach",
+          "source": {
+            "author": "Frank Vincentz",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Antigua_Caleta_de_Fuste_-_Lugar_Diseminado_la_Guirra_-_Caleta_de_la_Guirra_-_Playa_04_ies.jpg"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Visit the Salt Museum (Museo del Sal)",
+        "description": "Located just south of the town, this museum showcases the island’s salt production history. You can also visit the nearby salt flats for a unique and picturesque experience.",
+        "image": {
+          "url": "/src/data/locations/images/caleta_3.jpg",
+          "alt": "the salt museum building",
+          "source": {
+            "author": "Victor R. Ruiz",
+            "author-url": "https://www.flickr.com/photos/rvr/",
+            "image-url": "https://commons.wikimedia.org/wiki/File:WLM14ES_-_Museo_de_la_sal_-_rvr.jpg"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Take a trip to Oasis Park Fuerteventura",
+        "description": "A short drive away, this zoo and botanical garden offers animal encounters, live shows, and lush greenery. Great for families and nature enthusiasts.",
+        "image": {
+          "url": "/src/data/locations/images/caleta_4.jpg",
+          "alt": "seals in oasis park",
+          "source": {
+            "author": "Oasis Park",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Show_de_Leones_Marinos_en_Oasis_Park_Fuerteventura.JPG"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Play Golf in Caleta de Fuste",
+        "description": "Play a round at one of the area’s well-maintained golf courses, such as the Fuerteventura Golf Club. The courses feature scenic views and facilities for all skill levels.",
+        "image": {
+          "url": "/src/data/locations/images/caleta_5.jpg",
+          "alt": "golf course",
+          "source": {
+            "author": "radwoc",
+            "author-url": "https://web.archive.org/web/20161017023314/http://www.panoramio.com/photo/45888955",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Golf_course_in_the_middle_of_buildings_-_panoramio.jpg"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "Morro Jable",
+    "displayImg": {
+      "url": "/src/data/locations/images/morro_1.jpg",
+      "alt": "overview of morro jable beach and lighthouse",
+      "source": {
+        "author": "Dirk Vorderstraße",
+        "author-url": "",
+        "image-url": "https://commons.wikimedia.org/wiki/File:Morro_Jable_mit_Strand_und_Leuchtturm_(10576161214).jpg"
+      }
+    },
+    "description": "Morro Jable is a charming coastal town located on the southern tip of Fuerteventura. Once a small fishing village, it has grown into a popular tourist destination while retaining much of its traditional charm. Known for its pristine beaches, turquoise waters, and relaxed atmosphere, Morro Jable is ideal for sun-seekers, couples, and families. Expect golden sandy beaches with calm, clear waters. Expect a  mix of modern amenities and traditional charm, including a quaint old town. Water sports and excursions like dolphin and whale watching are popular. Enjoy excellent seafood restaurants and oceanfront dining options.",
+    "four-things": [
+      {
+        "id": 1,
+        "title": "Relax at Playa del Matorral",
+        "description": "This expansive beach is perfect for sunbathing, swimming, and water sports. Its iconic lighthouse, Faro de Morro Jable, is a striking landmark and a great spot for photos.",
+        "image": {
+          "url": "/src/data/locations/images/morro_2.jpg",
+          "alt": "beach chairs at the beach",
+          "source": {
+            "author": "H. Zell",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Beach_chairs_-_Playa_del_Matorral.jpg"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Explore Morro Jable Old Town",
+        "description": "Wander through the narrow streets of the old fishing village, where you can discover local shops, cafes, and traditional Canarian architecture.",
+        "image": {
+          "url": "/src/data/locations/images/morro_3.jpeg",
+          "alt": "morro jable old town at night",
+          "source": {
+            "author": "R J",
+            "author-url": "https://500px.com/p/rommka86?view=photos",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Morro_Jable_(142136217).jpeg"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Traverse Dolphin and Whale Watching Tours",
+        "description": "Embark on a boat excursion to spot dolphins, whales, and other marine life in their natural habitat. These tours are popular and depart regularly from Morro Jable’s harbor.",
+        "image": {
+          "url": "/src/data/locations/images/morro_4.jpg",
+          "alt": "boat trip",
+          "source": {
+            "author": "Mike Peel",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:At_Fuerteventura_2022_112.jpg"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Visit Cofete Beach",
+        "description": "A short drive or guided tour from Morro Jable will take you to this remote, breathtaking beach surrounded by mountains. It’s perfect for nature lovers seeking a serene, unspoiled landscape.",
+        "image": {
+          "url": "/src/data/locations/images/morro_5.jpg",
+          "alt": "cofete beach with the mountains behind",
+          "source": {
+            "author": "Tamara k",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Fuerteventura,_Canary_Islands,_panorama_of_Cofete_beach_on_Jandia_Peninsula.jpg"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "El Cotillo",
+    "displayImg": {
+      "url": "/src/data/locations/images/cotillo_1.jpg",
+      "alt": "sign by the sea that names the town",
+      "source": {
+        "author": "Mike Peel",
+        "author-url": "",
+        "image-url": "https://commons.wikimedia.org/wiki/File:At_El_Cotillo_2022_050.jpg"
+      }
+    },
+    "description": "El Cotillo is a quaint fishing village on Fuerteventura’s northwest coast, renowned for its relaxed vibe, stunning beaches, and spectacular sunsets. It’s a favorite spot for surfers, nature lovers, and those looking to escape the busier tourist hubs. The village offers a mix of charming local restaurants, historical sites, and unspoiled natural beauty. Expect idyllic beaches with turquoise waters, perfect for swimming or surfing. Expect a peaceful laid-back atmosphere that's ideal for unwinding. Watch incredible sunsets over the atlantic ocean and enjoy delicious seafood served at traditional Canarian restaurants.",
+    "four-things": [
+      {
+        "id": 1,
+        "title": "Enjoy El Cotillo' Beaches (Playa de la Concha and Lagoons)",
+        "description": "Enjoy the crystal-clear waters and golden sands of Playa de la Concha or explore the lagoons near the village, which are ideal for families and snorkeling.",
+        "image": {
+          "url": "/src/data/locations/images/cotillo_2.jpg",
+          "alt": "golden beach",
+          "source": {
+            "author": "Thomas Tolkien",
+            "author-url": "https://www.flickr.com/people/38585972@N04",
+            "image-url": "https://commons.wikimedia.org/wiki/File:El_Cotillo,_Fuerteventura_6_(38458335995).jpg"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Visit El Tostón Lighthouse (Faro de El Tostón)",
+        "description": "Visit this iconic lighthouse that offers fantastic ocean views and houses a small museum about Fuerteventura’s maritime history.",
+        "image": {
+          "url": "/src/data/locations/images/cotillo_3.jpg",
+          "alt": "the lighthouse",
+          "source": {
+            "author": "Thérèse Gaigé",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Phare_de_Tost%C3%B3n_(La_Oliva,_Fuerteventura)_-_01.jpg"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Enjoy Surfing and Water Sports",
+        "description": "The beaches near El Cotillo, such as Playa del Castillo, are known for their excellent waves. Beginners and experienced surfers can find schools and rental options.",
+        "image": {
+          "url": "/src/data/locations/images/cotillo_4.jpg",
+          "alt": "surfer on a wave",
+          "source": {
+            "author": "Bengt Nyman",
+            "author-url": "",
+            "image-url": "https://commons.wikimedia.org/wiki/File:El_Cotillo_Fuerteventura_2016_30.jpg"
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Hike the La Caldera Mountain",
+        "description": "Hike to the nearby La Caldera volcano for panoramic views of the surrounding coastline and landscapes. It’s a relatively easy hike and a great way to explore the area’s natural beauty.",
+        "image": {
+          "url": "/src/data/locations/images/cotillo_5.jpg",
+          "alt": "the volcano and mountain",
+          "source": {
+            "author": "Andy Mitchell",
+            "author-url": "https://www.flickr.com/photos/monstermunch/",
+            "image-url": "https://commons.wikimedia.org/wiki/File:Caldera_Encantada_%26_Las_Calderas_(8239472796).jpg"
+          }
+        }
+      }
+    ]
+  }
+]
