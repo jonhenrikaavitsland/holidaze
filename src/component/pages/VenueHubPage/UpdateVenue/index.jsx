@@ -18,6 +18,37 @@ import DangerZone from "../DangerZone";
 import useCreateVenueStore from "../../../../js/store/useCreateVenueStore";
 import { schema } from "../../../../js/validation/venueSchema";
 
+/**
+ * Renders the "Update Venue" form for editing an existing venue's details.
+ *
+ * This component allows venue managers to update their venue information by pre-populating a form with
+ * default values transformed from the provided `venueObj`. It integrates with react-hook-form and Yup
+ * for form handling and validation. The form includes fields for venue name, address, zip code, price,
+ * sleeps, location, description, media URLs, and amenities (WiFi, breakfast, parking, and pets), as well
+ * as a rating element.
+ *
+ * The component uses the `useCreateVenueStore` hook to manage and synchronize state for amenities and rating,
+ * and calls `updateVenueStore` to update these values when the component mounts. It also uses the `useUpdateVenue`
+ * hook to perform the API call for updating the venue. All input values are sanitized using custom functions
+ * (`sanitizeInput` and `sanitizeAndValidateUrl`) before being submitted.
+ *
+ * Upon successful submission, the view is changed back to the venues list by invoking the `handleViewChange` callback.
+ * Additionally, a "Danger Zone" section is rendered to provide options for deleting the venue.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {object} props.venueObj - The current venue object containing the venue's existing details.
+ * @param {Function} props.handleViewChange - Callback function to change the view (e.g., switching back to the venues list) after updating the venue.
+ *
+ * @example
+ * // Example usage:
+ * <UpdateVenue
+ *   venueObj={venueData}
+ *   handleViewChange={(view) => console.log("Switching to", view)}
+ * />
+ *
+ * @returns {JSX.Element} The rendered update venue form.
+ */
 export default function UpdateVenue({ venueObj, handleViewChange }) {
   const [loading, setLoading] = useState(true);
 
@@ -72,8 +103,7 @@ export default function UpdateVenue({ venueObj, handleViewChange }) {
     clearAll,
   ]);
 
-  const { updateVenue, isLoading, error } = useUpdateVenue(venueObj.id);
-  console.log("Error updating:", error);
+  const { updateVenue, isLoading } = useUpdateVenue(venueObj.id);
 
   const onSubmit = (data) => {
     const {
