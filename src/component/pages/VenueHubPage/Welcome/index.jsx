@@ -3,6 +3,27 @@ import Heading from "../../../Heading";
 import CreateNewBtn from "../CreateNewBtn";
 import Paragraph from "../Paragraph";
 
+/**
+ * Renders a welcome section for the Venue HUB dashboard, introducing venue managers to the available features.
+ *
+ * This component displays a friendly introductory message, an explanation of the key features available in the Venue HUB,
+ * and a call-to-action button (using the `CreateNewBtn` component) to create a new venue.
+ *
+ * It uses the following subcomponents:
+ * - **Heading**: To display section headings.
+ * - **Paragraph**: To list and explain the various actions that can be performed within the Venue HUB.
+ * - **CreateNewBtn**: A button that, when clicked, triggers a view change to the "new venue" creation form.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {Function} props.handleViewChange - Callback function to change the view. This is typically used to navigate to the new venue creation form.
+ *
+ * @example
+ * // Example usage:
+ * <Welcome handleViewChange={(view) => console.log("Switching view to:", view)} />
+ *
+ * @returns {JSX.Element} The rendered welcome section for the Venue HUB.
+ */
 export default function Welcome({ handleViewChange }) {
   return (
     <div className="flex flex-col gap-10 md:gap-15 mx-5 md:mx-7.5 lg:mx-10 mb-10 md:mb-15 lg:mb-20">
