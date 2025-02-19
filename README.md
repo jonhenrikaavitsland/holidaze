@@ -123,4 +123,4 @@ npm run build
 
 ## Acknowledgements
 
-_This project was developed as a part of my final exam in frontend development. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
+_This project was developed as a part of my final exam in my twp year frontend development education. I would like to thank the Noroff team for providing the API documentation and the approved resources that made this project possible. Special thanks to my peers, mentors, and instructors who provided invaluable feedback and support throughout the development process._
