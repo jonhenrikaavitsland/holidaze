@@ -2,7 +2,7 @@
 
 ## An App for Booking Accommodation
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys) [Live Site](https://holidaze-fuerteventura.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5ea5ddb-c805-43dd-b472-faeb31727eb5/deploy-status)](https://app.netlify.com/sites/holidaze-fuerteventura/deploys)
 
 ![image](/public/screenshot.jpg)
 
