@@ -86,8 +86,8 @@ export default function BookingComp({
       <div className="flex sm:flex-col md:w-1/2 md:flex-col">
         <div className="max-w-1/2 sm:max-w-full md:max-w-full overflow-hidden">
           <img
-            src={data.media[0].url}
-            alt={data.media[0].alt}
+            src={data.media[0]?.url}
+            alt={data.media[0]?.alt}
             className="rounded-tl-xl sm:rounded-t-xl object-fill max-h-96 w-full"
             loading="lazy"
           />
