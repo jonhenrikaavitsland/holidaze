@@ -128,7 +128,7 @@ export default function ViewBookings() {
         </Heading>
       )}
       <div>
-        {venues.length > 0 && <SortBy setSortBy={setSortBy} />}
+        {sortedVenueBookings.length > 0 && <SortBy setSortBy={setSortBy} />}
         {loading ? (
           <div className="flex justify-center mt-10">
             <Loader />
