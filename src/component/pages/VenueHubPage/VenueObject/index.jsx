@@ -136,11 +136,11 @@ export default function VenueObject({
             </div>
             <div className="flex gap-2.5">
               <span className="font-medium">breakfast:</span>
-              <span>{venue.breakfast ? "included" : "not included"}</span>
+              <span>{venue.meta.breakfast ? "included" : "not included"}</span>
             </div>
             <div className="flex gap-2.5">
               <span className="font-medium">pets:</span>
-              <span>{venue.pets ? "allowed" : "not allowed"}</span>
+              <span>{venue.meta.pets ? "allowed" : "not allowed"}</span>
             </div>
           </div>
           <div className="flex flex-col gap-2 capitalize leading-none md:text-lg-leading-none lg:text-xl-leading-none">
