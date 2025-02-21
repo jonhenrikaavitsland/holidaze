@@ -34,12 +34,17 @@ export default function CardVenue({ venue, className }) {
 
   return (
     <div
-      className={`bg-cover bg-no-repeat bg-center lg:rounded-xl h-56 md:h-110 lg:h-96 cursor-pointer shadow-md shadow-natural-charcoal/40 ${className} hover:contrast-125 grid grid-rows-locationCard md:grid-rows-locationCardMd`}
+      className={`relative bg-cover bg-no-repeat bg-center bg-natural-charcoal lg:rounded-xl h-56 md:h-110 lg:h-96 cursor-pointer shadow-md shadow-natural-charcoal/40 ${className} hover:contrast-125 grid grid-rows-locationCard md:grid-rows-locationCardMd`}
       style={{ backgroundImage: `url(${venue.media[0]?.url})` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => navigate(`/venue/${venue.id}`)}
     >
+      {!venue.media[0]?.url && (
+        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
+          No image available
+        </p>
+      )}
       <IconSun isHovered={isHovered} />
       <NamePlate location={venue} />
     </div>
