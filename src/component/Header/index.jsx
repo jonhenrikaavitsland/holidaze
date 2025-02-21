@@ -201,8 +201,8 @@ function LinkBtn(props) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75 w-44 lg:w-auto inline-block text-center leading-none"
-            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:w-auto inline-block text-center leading-none"
+            ? "font-bold rounded-xl bg-golden-yellow py-2.5 px-5 shadow-md shadow-natural-charcoal/40 font-serif hover:bg-golden-yellow/75 w-44 lg:whitespace-nowrap lg:w-auto inline-block text-center leading-none"
+            : "font-normal py-2.5 px-5 rounded-xl font-serif hover:bg-golden-yellow/20 w-44 lg:whitespace-nowrap lg:w-auto inline-block text-center leading-none"
         }
         to={props.to}
         onClick={handleClick}
